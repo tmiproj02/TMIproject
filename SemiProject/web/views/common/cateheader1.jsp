@@ -193,7 +193,7 @@ nav{
 
 .nav_ul li div a{
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     color: #333;
 }
 .category-menu{

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>cateheader2</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
@@ -12,11 +12,8 @@
     margin: 0;
     padding: 0;
 }
-body{
+body,html{
     min-width: 1200px;
-}
-div{
-    display: block;
 }
 header{
     font-family: 'Noto Sans KR', sans-serif;
@@ -185,17 +182,17 @@ nav{
 
 .mymenu li div{
 
-	border: 2px solid transparent;
-	border-bottom: none;
+   border: 2px solid transparent;
+   border-bottom: none;
     padding: 10px 16px;
     position: relative;
     top: 5px;
 }
 
 .dealmenu:hover{
-	background : #fff;
-	border: 2px solid #BDD4F2;
-	border-bottom: none;
+   background : #fff;
+   border: 2px solid #BDD4F2;
+   border-bottom: none;
     padding: 10px 16px;
     position: relative;
     top: 5px;
@@ -208,54 +205,62 @@ nav{
     color: #333;
 }
 .downmenu{
-	width : 1200px;
-	height : 165px;
+   width : 1200px;
+   height : 165px;
+   margin : 0 auto;
+   
 }
 
 .buymenu{
-	position : relative;
-	left : 195px;
-	border : 2px solid #BDD4F2;
-	border-top : none;
-	width : 130px;
-	height : 160px;
+   border : 2px solid #BDD4F2;
+   border-top : none;
+   width : 115px;
+   height : 160px;
+   margin-left: 150px;
+   float: left;
+   display : none;
 }
 
 .buymenu ul{
-	list-style : none;
+   list-style : none;
 }
 
 .buymenu ul li{
-	position : relative;
-	left : 16px;
-	top : 16px;
-	margin-bottom : 12px;
-	font-size : 15px;
-	font-weight : 400;
+   margin-left : 16px;
+   margin-bottom : 12px;
+   font-size : 15px;
+   font-weight : 400;
+}
+
+.buymenu ul li div{
+	padding-top : 3px;
 }
 
 .sellmenu{
-	position : relative;
-	bottom : 100px;
-	border : 2px solid #BDD4F2;
-	border-top : none;
-	width : 10%;
-	height : 160px;
-	
+   border : 2px solid #BDD4F2;
+   border-top : none;
+   width : 115px;
+   height : 160px;
+   overflow : hidden;
+   margin-left : 275px;
+   display : none;
 }
 
 .sellmenu ul{
-	list-style : none;
+   list-style : none;
+   
 }
 
 .sellmenu ul li{
-	left : 16px;
-	top : 16px;
-	margin-bottom : 12px;
-	font-size : 15px;
-	font-weight : 400;
+   margin-left : 16px;
+   margin-bottom : 12px;
+   font-size : 15px;
+   font-weight : 400;
 }
 
+.sellmenu ul li div{
+	padding-top : 3px;
+}
 
 </style>
 </head>
@@ -298,26 +303,73 @@ nav{
                     </ul>
                 </div>
             </nav>
-            <div class="downmenu">
-            	<div class="buymenu">
-            	<ul>
-            		<li><div><a href="">구매관리</a></div></li>
-            		<li><div><a href="">TMI캐시</a></div></li>
-            		<li><div><a href="">캐시충전</a></div></li>
-            		<li><div><a href="">쿠폰</a></div></li>
-            	</ul>
-            </div>
-            <div class="sellmenu">
-            	<ul>
-            		<li><div><a href="">판매관리</a></div></li>
-            		<li><div><a href="">나의서비스</a></div></li>
-            		<li><div><a href="">수익관리</a></div></li>
-            		<li><div><a href="">광고등록</a></div></li>
-            	</ul>
+
+               <div class="downmenu">
+                  <div class="buymenu">
+                     <ul class="ul-out">
+                        <li style="margin-top : 5px"><div><a href="">구매관리</a></div></li>
+                        <li><div><a href="">TMI캐시</a></div></li>
+                        <li><div><a href="">캐시충전</a></div></li>
+                        <li><div><a href="">쿠폰</a></div></li>
+                     </ul>
+                  </div>
+                  <div class="sellmenu">
+                     <ul class="ul-out">
+                        <li style="margin-top : 5px"><div><a href="">판매관리</a></div></li>
+                        <li><div><a href="">나의서비스</a></div></li>
+                        <li><div><a href="">수익관리</a></div></li>
+                        <li><div><a href="">광고등록</a></div></li>
+                     </ul>
+                  </div>
             </div>  
-            </div>
+
         </header>
     </div>
+    
+  	<script>
+  		$("#buycate,.buymenu").mouseenter(function(){
+  			$("#buycate").css({
+  				'background' : '#fff',
+	  		   'border': '2px solid #BDD4F2',
+	  		   'border-bottom': 'none'
+  			})
+  			$(".buymenu").css({
+  				'display' : 'block'
+  			})
+  		});
+  		$("#buycate,.buymenu").mouseleave(function(){	
+  			$("#buycate").css({
+  				'background' : 'none',
+	  		   'border': '2px solid transparent',
+	  		   'border-bottom': 'none'
+  			})
+  			$(".buymenu").css({
+  				'display' : 'none'
+  			})
+  		})
+  		$("#sellcate,.sellmenu").mouseenter(function(){
+  			$("#sellcate").css({
+  				'background' : '#fff',
+	  		   'border': '2px solid #BDD4F2',
+	  		   'border-bottom': 'none'
+  			})
+  			$(".sellmenu").css({
+  				'display' : 'block'
+  			})
+  		});
+  		$("#sellcate,.sellmenu").mouseleave(function(){	
+  			$("#sellcate").css({
+  				'background' : 'none',
+	  		   'border': '2px solid transparent',
+	  		   'border-bottom': 'none'
+  			})
+  			$(".sellmenu").css({
+  				'display' : 'none'
+  			})
+  		})
+  	</script>
+    
+    
     
 </body>
 </html>
