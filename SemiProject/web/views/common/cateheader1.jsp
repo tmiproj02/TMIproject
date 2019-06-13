@@ -170,67 +170,54 @@ nav{
 .nav_ul{
     width: 1200px;
     height: 50px;
-    position: relative;
     text-align: center;
     margin : 0 auto;
 }
 
-.nav_ul li{
-    height: 50px;
+.nav_ul>li{
+    padding-left : 20px;
+    padding-right : 20px;
+    vertical-align : top;
     display: inline-block;
-    padding-left: 30px;
-    padding-right: 30px;
-    position: relative;
 }
 
-.nav_ul li div{
+.cate{
+	text-align : left;
+	margin-top : 3px;
     padding: 10px 16px;
     border: 2px solid transparent;
     border-bottom: none;
-    position: relative;
-    top: 4px;
+    display : inline-block;
+    position : relative;
 }
 
-.nav_ul li div a{
+.cate a{
     font-size: 16px;
     font-weight: 500;
     color: #333;
 }
-.category-menu{
-    width: 100%;
-    max-width: 1200px;
-    height: 200px;
-    margin: 0 auto;
-    border: 2px solid #BDD4F2;
-    background: white;
-    border-top: none;
-    display: none;
-    z-index: 2;
-    position: relative;
-}
-.ul-out{
-    height: 100%;
-    display: block;
-    text-align: center;
-}
-.ul-out>li{
-    display: inline-block;
-    text-align: center;
-    width: 10%;
-    height: 100%;
-    overflow: hidden;
+
+.downmenu{
+	width : 105px;
+	padding: 10px 20px;
+	position:absolute;
+	border : 2px solid #BDD4F2;
+	border-top : none;
+	display : none;
 }
 
-.ul-out li ol li{
-    font-size: 14px;
-    font-weight: 400;
-    margin-top: 16px;
-    margin-bottom: 16px;
+.downmenu li{
+	text-align:left;
+	padding-top : 7px;
+	padding-bottom : 7px;
+	list-style:none;
 }
 
-.test{
-    z-index: 1;
+.downmenu a{
+	font-size : 14px;
 }
+
+
 </style>
 </head>
 <body>
@@ -264,81 +251,91 @@ nav{
             <nav>
                 <div class="navsize">
                     <ul class='nav_ul'>
-                        <li><div><a href="">디자인</a></div></li>
-                        <li><div><a href="">IT/프로그래밍</a></div></li>
-                        <li><div><a href="">마케팅</a></div></li>
-                        <li><div><a href="">콘텐츠 제작</a></div></li>
-                        <li><div><a href="">번역/통역</a></div></li>
-                        <li><div><a href="">문서/취업</a></div></li>
-                        <li><div><a href="">기프트/커스텀</a></div></li>
+                        <li>
+                        	<div class="cate"><a href="">디자인</a></div>
+                        	<ul class="downmenu">
+                        		<li><a href="">로고디자인</a></li>
+                            	<li><a href="">의류디자인</a></li>
+                            	<li><a href="">간판디자인</a></li>
+                            	<li><a href="">일러스트</a></li>
+                            	<li><a href="">웹툰</a></li>
+                        	</ul>
+                        </li>
+                        <li>
+	                        <div class="cate"><a href="">IT/프로그래밍</a></div>
+	                        <ul class="downmenu">
+	                        	<li><a href="">웹사이트 개발</a></li>
+	                            <li><a href="">프로그램 개발</a></li>
+	                            <li><a href="">서버 및 기술지원</a></li>
+	                            <li><a href="">게임</a></li>
+	                            <li><a href="">모바일앱/웹</a></li>
+	                        </ul>
+                        </li>
+                        <li>
+                        	<div class="cate"><a href="">마케팅</a></div>
+                        	<ul class="downmenu">
+                        		<li><a href="">sns마켓팅</a></li>
+	                            <li><a href="">종합광고대행</a></li>
+	                            <li><a href="">블로그</a></li>
+	                            <li><a href="">마케팅 노하우</a></li>
+	                            <li><a href="">유튜브 크리에이터</a></li>
+                        	</ul>
+                        </li>
+                        <li>
+                        	<div class="cate"><a href="">콘텐츠 제작</a></div>
+                        	<ul class="downmenu">
+	                        	<li><a href="">영상</a></li>
+	                            <li><a href="">더빙/녹음</a></li>
+	                            <li><a href="">음악/사운드</a></li>
+	                            <li><a href="">엔터테이너</a></li>
+	                            <li><a href="">사진</a></li>
+                        	</ul>
+                        </li>
+                        <li>
+                        	<div class="cate"><a href="">번역/통역</a></div>
+	                        <ul class="downmenu">
+		                        <li><a href="">번역</a></li>
+	                            <li><a href="">영상번역</a></li>
+	                            <li><a href="">통역</a></li>
+	                        </ul>
+                        </li>
+                        <li>
+                        	<div class="cate"><a href="">문서/취업</a></div>
+                        	<ul class="downmenu">
+                        		<li><a href="">논문</a></li>
+	                            <li><a href="">타이핑</a></li>
+	                            <li><a href="">글작성/대본</a></li>
+	                            <li><a href="">면접/취업코딩</a></li>
+	                            <li><a href="">자소서/이력서</a></li>
+                        	</ul>
+                        </li>
+                        <li>
+                        	<div class="cate"><a href="">기프트/커스텀</a></div>
+                        	<ul class="downmenu">
+                        		<li><a href="">라이프</a></li>
+                            	<li><a href="">패션</a></li>
+                            	<li><a href="">푸드</a></li>
+                        	</ul>
+                        </li>
                     </ul>
                 </div>
             </nav>
-            <div class="category-menu">
-                <ul class="ul-out">
-                    <li style="margin-right: 17px;">
-                        <ol>
-                            <li><a href="">로고디자인</a></li>
-                            <li><a href="">의류디자인</a></li>
-                            <li><a href="">간판디자인</a></li>
-                            <li><a href="">일러스트</a></li>
-                            <li><a href="">웹툰</a></li>
-                        </ol>
-                    </li>
-                    <li style="margin-left: 26px; margin-right: 22px;">
-                        <ol>
-                            <li><a href="">웹사이트 개발</a></li>
-                            <li><a href="">프로그램 개발</a></li>
-                            <li><a href="">서버 및 기술지원</a></li>
-                            <li><a href="">게임</a></li>
-                            <li><a href="">모바일앱/웹</a></li>
-                        </ol>
-                    </li>
-                    <li style="margin-left: 22px; margin-right: 22px;">
-                        <ol>
-                            <li><a href="">sns마켓팅</a></li>
-                            <li><a href="">종합광고대행</a></li>
-                            <li><a href="">블로그</a></li>
-                            <li><a href="">마케팅 노하우</a></li>
-                            <li><a href="">유튜브 크리에이터</a></li>
-                        </ol>
-                    </li>
-                    <li style="margin-left: 13px; margin-right: 31px;">
-                        <ol>
-                            <li><a href="">영상</a></li>
-                            <li><a href="">더빙/녹음</a></li>
-                            <li><a href="">음악/사운드</a></li>
-                            <li><a href="">엔터테이너</a></li>
-                            <li><a href="">사진</a></li>
-                        </ol>
-                    </li>
-                    <li style="margin-left: 16px; margin-right: 28px;">
-                        <ol>
-                            <li><a href="">번역</a></li>
-                            <li><a href="">영상번역</a></li>
-                            <li><a href="">통역</a></li>
-                        </ol>
-                    </li>
-                    <li style="margin-left: 13px; margin-right: 31px;">
-                        <ol>
-                            <li><a href="">논문</a></li>
-                            <li><a href="">타이핑</a></li>
-                            <li><a href="">글작성/대본</a></li>
-                            <li><a href="">면접/취업코딩</a></li>
-                            <li><a href="">자소서/이력서</a></li>
-                        </ol>
-                    </li>
-                    <li style="margin-left: 24px; margin-right: 24px;">
-                        <ol>
-                            <li><a href="">라이프</a></li>
-                            <li><a href="">패션</a></li>
-                            <li><a href="">푸드</a></li>
-                        </ol>
-                    </li>
-                </ul>
-            </div>
         </header>
     </div>
-    <script src="/semi/resources/js/cateheader.js"></script>
+    <script>
+    	$(".cate").hover(function(){
+    		$(this).css({
+    			"border":"2px solid #BDD4F2",
+    			"border-bottom":"none"
+    		});
+    		$().css("display","block");
+    	},function(){
+    		$(this).css({
+    			"border":"2px solid transparent",
+    			"border-bottom":"none"
+    		});	
+    		$(".downmenu").css("display","none");
+    	})
+    </script>
 </body>
 </html>
