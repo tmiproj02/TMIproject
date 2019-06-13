@@ -209,7 +209,7 @@
 							switch(num) {
 							case 1 : $('#titleImg').attr('src', e.target.result);
 								break;
-							}
+							} 
 						}
 						reader.readAsDataURL(value.files[0]);
 					}

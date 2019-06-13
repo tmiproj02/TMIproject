@@ -158,7 +158,7 @@
 					</div>
 				</td>
 			</tr>
-			<tr>
+			<tr> 
 				<td>
 					<div class="ui input focus">
 					<input type="text" placeholder="예) 잔반처리기사" value="" style="width:230px; height:30px;">
