@@ -251,9 +251,9 @@ nav{
             <nav>
                 <div class="navsize">
                     <ul class='nav_ul'>
-                        <li>
+                        <li clase="talent-category">
                         	<div class="cate"><a href="">디자인</a></div>
-                        	<ul class="downmenu">
+                        	<ul class="downmenu" id="downmenu0">
                         		<li><a href="">로고디자인</a></li>
                             	<li><a href="">의류디자인</a></li>
                             	<li><a href="">간판디자인</a></li>
@@ -261,9 +261,9 @@ nav{
                             	<li><a href="">웹툰</a></li>
                         	</ul>
                         </li>
-                        <li>
+                        <li clase="talent-category">
 	                        <div class="cate"><a href="">IT/프로그래밍</a></div>
-	                        <ul class="downmenu">
+	                        <ul class="downmenu" id="downmenu1">
 	                        	<li><a href="">웹사이트 개발</a></li>
 	                            <li><a href="">프로그램 개발</a></li>
 	                            <li><a href="">서버 및 기술지원</a></li>
@@ -271,9 +271,9 @@ nav{
 	                            <li><a href="">모바일앱/웹</a></li>
 	                        </ul>
                         </li>
-                        <li>
+                        <li clase="talent-category">
                         	<div class="cate"><a href="">마케팅</a></div>
-                        	<ul class="downmenu">
+                        	<ul class="downmenu" id="downmenu2">
                         		<li><a href="">sns마켓팅</a></li>
 	                            <li><a href="">종합광고대행</a></li>
 	                            <li><a href="">블로그</a></li>
@@ -281,9 +281,9 @@ nav{
 	                            <li><a href="">유튜브 크리에이터</a></li>
                         	</ul>
                         </li>
-                        <li>
+                        <li clase="talent-category">
                         	<div class="cate"><a href="">콘텐츠 제작</a></div>
-                        	<ul class="downmenu">
+                        	<ul class="downmenu" id="downmenu3">
 	                        	<li><a href="">영상</a></li>
 	                            <li><a href="">더빙/녹음</a></li>
 	                            <li><a href="">음악/사운드</a></li>
@@ -291,17 +291,17 @@ nav{
 	                            <li><a href="">사진</a></li>
                         	</ul>
                         </li>
-                        <li>
+                        <li clase="talent-category">
                         	<div class="cate"><a href="">번역/통역</a></div>
-	                        <ul class="downmenu">
+	                        <ul class="downmenu" id="downmenu4">
 		                        <li><a href="">번역</a></li>
 	                            <li><a href="">영상번역</a></li>
 	                            <li><a href="">통역</a></li>
 	                        </ul>
                         </li>
-                        <li>
+                        <li clase="talent-category">
                         	<div class="cate"><a href="">문서/취업</a></div>
-                        	<ul class="downmenu">
+                        	<ul class="downmenu" id="downmenu5">
                         		<li><a href="">논문</a></li>
 	                            <li><a href="">타이핑</a></li>
 	                            <li><a href="">글작성/대본</a></li>
@@ -309,9 +309,9 @@ nav{
 	                            <li><a href="">자소서/이력서</a></li>
                         	</ul>
                         </li>
-                        <li>
+                        <li clase="talent-category">
                         	<div class="cate"><a href="">기프트/커스텀</a></div>
-                        	<ul class="downmenu">
+                        	<ul class="downmenu"  id="downmenu6">
                         		<li><a href="">라이프</a></li>
                             	<li><a href="">패션</a></li>
                             	<li><a href="">푸드</a></li>
@@ -328,13 +328,20 @@ nav{
     			"border":"2px solid #BDD4F2",
     			"border-bottom":"none"
     		});
-    		$().css("display","block");
+    		var i = $(".cate").index(this);
+    		console.log(i);
+    		$("#downmenu"+i).css("display","block");
+    		$("#downmenu"+i).mouseenter(function(){
+    			$(this).css("display","block");
+    		});
+
     	},function(){
     		$(this).css({
     			"border":"2px solid transparent",
     			"border-bottom":"none"
-    		});	
-    		$(".downmenu").css("display","none");
+    		});
+    		console.log(i);
+    		$("#downmenu"+i).css("display","none");
     	})
     </script>
 </body>
