@@ -25,7 +25,7 @@ public class EmailDupCheckServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String email = request.getParameter("email");
-		System.out.println(email);
+	
 		MemberService ms = new MemberService();
 		
 		try {

@@ -21,7 +21,18 @@ public class Member implements Serializable {
 	private String phone; // 전화번호
 	private Date enrollDate; // 가입날짜(java.sql.Date ==> DB로 보내기 위한 Date 클래스)
 	private String emailVerification;
+	private int cash;
+	private String isSeller;
+	private String profileImage;
+	private String callTime;
+	private String isAlive;
+	private String coupon;
 	private String isSNS;
+
+	
+	
+	
+	
 	// 2. 생성자
 	public Member() {};
 	
@@ -53,17 +64,26 @@ public class Member implements Serializable {
 	
 
 	// 3-4 회원의 전체 데이터를 가져오기 위한 생성자
-	
-	
-
-	public Member(String email, String userPwd, String userName, String phone, Date enrollDate, String emailVerification) {
+	// 사용하나?
+	public Member(String email, String userPwd, String userName, String memberSSN, String phone, Date enrollDate,
+			String emailVerification, int cash, String isSeller, String profileImage, String callTime, String isAlive,
+			String coupon) {
 		super();
 		this.email = email;
 		this.userPwd = userPwd;
 		this.userName = userName;
+		this.memberSSN = memberSSN;
 		this.phone = phone;
 		this.enrollDate = enrollDate;
+		this.emailVerification = emailVerification;
+		this.cash = cash;
+		this.isSeller = isSeller;
+		this.profileImage = profileImage;
+		this.callTime = callTime;
+		this.isAlive = isAlive;
+		this.coupon = coupon;
 	}
+
 	
 	
 	// 회원 정보 수정할 때 사용할 생성자
@@ -73,6 +93,9 @@ public class Member implements Serializable {
 		this.userPwd = userPwd;
 		this.phone = phone;
 	}
+
+	
+
 
 	public String getEmail() {
 		return email;
@@ -156,6 +179,70 @@ public class Member implements Serializable {
 		this.userName = userName;
 		this.memberSSN = memberSSN;
 	}
+
+
+	public int getCash() {
+		return cash;
+	}
+
+
+	public void setCash(int cash) {
+		this.cash = cash;
+	}
+
+
+	public String getIsSeller() {
+		return isSeller;
+	}
+
+
+	public void setIsSeller(String isSeller) {
+		this.isSeller = isSeller;
+	}
+
+
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+
+	public String getCallTime() {
+		return callTime;
+	}
+
+
+	public void setCallTime(String callTime) {
+		this.callTime = callTime;
+	}
+
+
+	public String getIsAlive() {
+		return isAlive;
+	}
+
+
+	public void setIsAlive(String isAlive) {
+		this.isAlive = isAlive;
+	}
+
+
+	public String getCoupon() {
+		return coupon;
+	}
+
+
+	public void setCoupon(String coupon) {
+		this.coupon = coupon;
+	}
+	
+	
+	
+	
 	
 	
 	
