@@ -14,12 +14,42 @@
     padding: 0;
    
 }
-.faq{
-    width: 80px;
-    height: 100px;
-    background: #333; 
-    cursor : pointer;
-    display : none;
+.float{
+    position: fixed; 
+    left: 85%; 
+    top: 600px;
+    padding: 20px; 
+    text-align:center; 
+    width: 60px;
+    height: 160px;
+    background: rgba(240, 233, 233, 0.904);
+    color: #333;
+}
+.float1{
+    position: fixed; 
+    right: 205px; 
+    top: 620px; 
+    margin: 20px;
+    margin-top: 10px; 
+    text-align:center; 
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    background: #f1c40f;
+    color: #333;
+    box-sizing: border-box;
+}
+.float2{
+    position: fixed; 
+    right: 205px; 
+    top: 720px; 
+    text-align:center; 
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    background: #f1c40f;
+    color: #333;
+    box-sizing: border-box;
 }
 header{
     margin: 0 auto;
@@ -572,6 +602,15 @@ footer{
                 <p>Copyright © 2019 TMI Inc. All rights reserved.</p>
             </div>
         </footer>
-    
+        
+    	<div class="float">
+            <div class="float1">
+                <a href="">구매방법</a>
+            </div>
+
+            <div class="float2">
+                <a href="">FAQ </a>
+            </div>
+        </div>
 </body>
 </html>
