@@ -15,6 +15,7 @@
 	
 	MemberService ms = new MemberService();
 	
+	
 	if(edittedCode.equals(compareCode)){
 		
 		PrintWriter script = response.getWriter();

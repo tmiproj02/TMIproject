@@ -2,9 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "member.model.vo.Member"%>
 
-<% 				
+<% 			
 				// 오브젝트로 가져오기 때문에 다운캐스팅
 	Member m = (Member)session.getAttribute("member");
+	String errorMsg ="";
+	if(request.getAttribute("errorMsg")!=null) {
+		errorMsg = (String)request.getAttribute("errorMsg");
+	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -33,22 +38,23 @@
 <title>TMI - 로그인</title>
 </head>
 <body>
-  <div id="loginPageContainer" style="width:100%;height:100%; ">
-	<nav id="logo" style="height:100px;">
-		<img src="/semi/resources/images/KakaoTalk_20190606_164601739.png" style="height:120px; position:absolute; left:50%; margin-left:-65px; cursor:pointer;" onclick="toMain();">	
+  <div id="Wrapper" style="width:100%;height:100%;">
+	<nav id="logo" style="height:100px; border-bottom: 2px solid gray;">
+		<img src="/semi/resources/images/KakaoTalk_20190606_164601739.png" style="width:130px;height:120px; position:absolute; left:50%; margin-left:-65px; cursor:pointer;" onclick="toMain();">	
 	</nav>
-	<hr>
 	
-	 <div id="#loginDiv" style="position: absolute; top:50%;left:50%; width:500px; height:500px;margin-top: -250px; margin-left:-170px;">
+	 <div id="loginDiv" style="position: absolute; top:50%;left:50%; width:500px; height:500px;margin-top: -280px; margin-left:-170px;">
 		<form action="/semi/login.do" method="post" style="margin-top:100px;"> 
-			<input type="text" name="userEmail" class="form-control" placeholder="이메일" style="width:350px;height:50px; margin-bottom:-10px;"><br>
-			<input type="password" name="userPwd" class="form-control" placeholder="비밀번호" style="width:350px;height:50px; margin-bottom:-15px;"><br>
-			<button type="submit" class="btn btn-primary" style="width:350px; margin-bottom:7px;">로그인</button>
+			&nbsp;<label>로그인</label>
+			<input type="text" name="userEmail" class="form-control" placeholder="이메일을 입력하세요" style="width:350px;height:50px; margin-bottom:5px;"><br>
+			&nbsp;<label>비밀번호</label>
+			<input type="password" name="userPwd" class="form-control" placeholder="비밀번호를 입력하세요" style="width:350px;height:50px; margin-bottom:7px;">
+			<label id="isValid" style="font-size:11px; color:red;"><%=errorMsg %></label><br>
+			<button type="submit" class="btn btn-primary" style="width:350px; height:45px; margin-bottom:7px;">로그인</button>
 		</form>
 		<a id="searchIPBtn" onclick="searchIP()" style="cursor:pointer;">아이디/비밀번호 찾기</a>
-		
-		<a href="./member/memberJoin.jsp" id="memberJoin" style="cursor:pointer; margin-left:160px;">회원 가입</a>
-		<br>
+		<a href="/semi/views/member/memberJoin.jsp" id="memberJoin" style="cursor:pointer; margin-left:160px;">회원 가입</a>
+		<br><br>
 		<!-- 카카오톡 로그인 버튼 -->
 		<div style="margin-bottom:11px;">
 		<a id="kakao-login-btn"></a>
@@ -70,7 +76,7 @@
 <script>
 	// 아이디 / 비밀번호 찾기 함수
 	function searchIP(){
-		location.href = '../views/member/memberSearch.jsp';
+		location.href = '/semi/views/member/memberSearch.jsp';
 	}
 	
 	

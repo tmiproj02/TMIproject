@@ -37,20 +37,20 @@ public class MemberDeleteServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
 		String userEmail = m.getEmail();
-		System.out.println("삭제할 아이디 : " + userEmail);
+		
 		
 		MemberService ms = new MemberService();
 		int result = ms.deleteMember(userEmail);
 		
 		if(result >0) {
 			// 회원 삭제 성공
-			System.out.println("회원 삭제 성공!");
+	
 			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 			session.invalidate();
 			view.forward(request, response);
 		}else {
 			// 회원 삭제 실패
-			System.out.println("회원 삭제 실패");
+			
 			response.sendRedirect("views/common/errorPage.jsp");
 		}
 	}

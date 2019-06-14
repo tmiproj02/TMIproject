@@ -55,9 +55,9 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			request.setAttribute("msg", "아이디와 비밀번호가 일치하지 않습니다.");
-			request.getRequestDispatcher("views/loginFail.jsp").forward(request, response);
-			e.printStackTrace();
+			request.setAttribute("errorMsg", "아이디 또는 비밀번호를 다시 확인하세요.<br> TMI에 등록되지 않은 아이디이거나, 비밀번호를 잘못 입력하셨습니다.");
+			request.getRequestDispatcher("views/LoginForm.jsp").forward(request, response);
+			
 			// 로그인 실패!
 		
 		}

@@ -109,20 +109,24 @@ public class MemberDao {
 					// 이미 존재하는 값 재활용하기
 					result.setEmail(m.getEmail());
 					result.setUserPwd(m.getUserPwd());
-			
+					
 					
 					// ResultSet으로부터 결과를 추출하는 방법
 					// 1. 결과를 행의 순서대로 가져올 경우( 1, 2, 3 . . .) 
 					// 2. 컬럼명으로 직접 선언하여 가져오는 경우
-										
 												// 3번째 컬럼 값을 가져온다
-					result.setUserName(rset.getString("username"));
-										
+					result.setUserName(rset.getString("nickname"));
 											// 컬럼명으로 가져온다
 					
 					result.setPhone(rset.getString("phone"));
 					result.setEnrollDate(rset.getDate("enrollDate"));
-					result.setEmailVerification(rset.getString("emailVerification"));
+					result.setEmailVerification(rset.getString("emailYN"));
+					result.setCash(rset.getInt("cash"));
+					result.setIsSeller(rset.getString("isSeller"));
+					result.setProfileImage(rset.getString("profileimage"));
+					result.setCallTime(rset.getString("callTime"));
+					result.setIsAlive(rset.getString("isAlive"));
+					result.setCoupon(rset.getString("coupon"));
 					
 				}
 			}catch(Exception e) {
