@@ -7,6 +7,9 @@
 <title>cateheader1</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <style>
 *{
     margin: 0;
@@ -68,16 +71,16 @@ header{
 }
 div.head_input{
     position: relative;
-    width: 380px;
-    height: 54px;
+    width: 390px;
+    height: 84px;
     float: left;
 }
 .search-input{
     font-family: 'Noto Sans KR', sans-serif;
     position: relative;
     margin-top: 10px;
-    width: 350px;
-    height: 20px;
+    width: 370px;
+    height: 44px;
     border-radius: 4px;
     background-color: #BDD4F2;
     font-size: 14px;
@@ -91,7 +94,7 @@ div.head_input{
 
 .search-btn{
     position: absolute;
-    right: 30px;
+    right: 23px;
     cursor: pointer;
     vertical-align: top;
     top: 33px;
@@ -175,6 +178,7 @@ nav{
 }
 
 .nav_ul>li{
+	margin-top : 2px;	
     padding-left : 20px;
     padding-right : 20px;
     vertical-align : top;
@@ -201,8 +205,8 @@ nav{
 
 .downmenu{
 	margin-top : 2px;
-	width : 105px;
-	padding: 10px 20px;
+	width : 150px;
+	padding: 10px 18px;
 	position: absolute;
 	border : 2px solid #BDD4F2;
 	border-top : none;

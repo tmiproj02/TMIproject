@@ -7,13 +7,19 @@
 <title>cateheader2</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <style>
 *{
     margin: 0;
     padding: 0;
 }
-body,html{
+body{
     min-width: 1200px;
+}
+div{
+    display: block;
 }
 header{
     font-family: 'Noto Sans KR', sans-serif;
@@ -65,16 +71,16 @@ header{
 }
 div.head_input{
     position: relative;
-    width: 380px;
-    height: 54px;
+    width: 390px;
+    height: 84px;
     float: left;
 }
 .search-input{
     font-family: 'Noto Sans KR', sans-serif;
     position: relative;
     margin-top: 10px;
-    width: 350px;
-    height: 20px;
+    width: 370px;
+    height: 44px;
     border-radius: 4px;
     background-color: #BDD4F2;
     font-size: 14px;
@@ -88,7 +94,7 @@ div.head_input{
 
 .search-btn{
     position: absolute;
-    right: 30px;
+    right: 23px;
     cursor: pointer;
     vertical-align: top;
     top: 33px;
@@ -158,110 +164,71 @@ nav{
     display: flex;
     justify-content: center;
 }
-.mymenubar{
+.navsize{
     display: block;
     width: 1200px;
     margin-left: 15px;
     margin-right: 15px;
 }
-.mymenu{
+.nav_ul{
     width: 1200px;
     height: 50px;
-    position: relative;
-    text-align: center;
+    text-align: left;
+    margin : 0 auto;
 }
 
-.mymenu li{
-    height: 50px;
+.nav_ul>li{
+	margin-top : 2px;
+    padding-left : 20px;
+    padding-right : 20px;
+    vertical-align : top;
     display: inline-block;
-    padding-left: 15px;
-    padding-right: 15px;
-    position: relative;
-    float:left;
 }
 
-.mymenu li div{
-
-   border: 2px solid transparent;
-   border-bottom: none;
+.cate{
+	text-align : left;
+	margin-top : 3px;
     padding: 10px 16px;
-    position: relative;
-    top: 5px;
+    border: 2px solid transparent;
+    border-bottom: none;
+    display : inline-block;
+    position : relative;
+
+   	top : 3px;
 }
 
-.dealmenu:hover{
-   background : #fff;
-   border: 2px solid #BDD4F2;
-   border-bottom: none;
-    padding: 10px 16px;
-    position: relative;
-    top: 5px;
-    z-index : 999;
-}
-
-.mymenu li div a{
+.cate a{
     font-size: 16px;
     font-weight: 500;
     color: #333;
 }
+
 .downmenu{
-   width : 1200px;
-   height : 165px;
-   margin : 0 auto;
-   z-index: 999;
+	margin-top : 2px;
+	width : 120px;
+	padding: 10px 18px;
+	position: absolute;
+	border : 2px solid #BDD4F2;
+	border-top : none;
+	display : none;
+	background : #fff;
+	z-index:999;
 }
 
-
-.buymenu{
-   border : 2px solid #BDD4F2;
-   border-top : none;
-   width : 115px;
-   height : 160px;
-   margin-left: 150px;
-   float: left;
-   display : none;
+.downmenu li{
+	text-align:left;
+	padding-top : 7px;
+	padding-bottom : 7px;
+	list-style:none;
 }
 
-.buymenu ul{
-   list-style : none;
+.downmenu a{
+	font-size : 14px;
 }
 
-.buymenu ul li{
-   margin-left : 16px;
-   margin-bottom : 12px;
-   font-size : 15px;
-   font-weight : 400;
+.talent-category{
+	background : #fff;
 }
-
-.buymenu ul li div{
-	padding-top : 3px;
-}
-
-.sellmenu{
-   border : 2px solid #BDD4F2;
-   border-top : none;
-   width : 115px;
-   height : 160px;
-   overflow : hidden;
-   margin-left : 275px;
-   display : none;
-}
-
-.sellmenu ul{
-   list-style : none;
-}
-
-.sellmenu ul li{
-   margin-left : 16px;
-   margin-bottom : 12px;
-   font-size : 15px;
-   font-weight : 400;
-}
-
-.sellmenu ul li div{
-	padding-top : 3px;
-}
-
 </style>
 </head>
 <body>
@@ -293,81 +260,81 @@ nav{
                 </div>
             </div>
             <nav>
-                <div class="mymenubar">
-                    <ul class="mymenu">
-                        <li style="margin-left:10px"><div><a href="">나의정보</a></div></li>
-                        <li><div class="dealmenu" id="buycate"><a href="">구매관리</a></div></li>
-                        <li><div class="dealmenu" id="sellcate"><a href="">판매관리</a></div></li>
-                        <li><div><a href="">메시지</a></div></li>
-                        <li><div><a href="">계정설정</a></div></li>
+                <div class="navsize">
+                    <ul class='nav_ul'>
+                        <li clase="talent-category">
+                        	<div class="cate" id="cate0"><a href="">나의정보</a></div>
+                        </li>
+                        <li clase="talent-category">
+	                        <div class="cate" id="cate1"><a href="">구매관리</a></div>
+                        	<ul class="downmenu" id="downmenu1">
+                        		<li><a href="">TMI캐시</a></li>
+                            	<li><a href="">캐시충전</a></li>
+                            	<li><a href="">쿠폰</a></li>
+                        	</ul>
+                        </li>
+                        <li clase="talent-category">
+                        	<div class="cate" id="cate2"><a href="">판매관리</a></div>
+                        	<ul class="downmenu" id="downmenu2">
+	                        	<li><a href="">나의서비스</a></li>
+	                            <li><a href="">수익관리</a></li>
+	                            <li><a href="">광고등록</a></li>
+	                        </ul>
+                        </li>
+                        <li clase="talent-category">
+                        	<div class="cate" id="cate3"><a href="">메시지</a></div>
+                        </li>
+                        <li clase="talent-category">
+                        	<div class="cate" id="cate4"><a href="">계정설정</a></div>
+                        </li>
                     </ul>
                 </div>
             </nav>
 
-               <div class="downmenu">
-                  <div class="buymenu">
-                     <ul class="ul-out">
-                        <li style="margin-top : 5px"><div><a href="">구매관리</a></div></li>
-                        <li><div><a href="">TMI캐시</a></div></li>
-                        <li><div><a href="">캐시충전</a></div></li>
-                        <li><div><a href="">쿠폰</a></div></li>
-                     </ul>
-                  </div>
-                  <div class="sellmenu">
-                     <ul class="ul-out">
-                        <li style="margin-top : 5px"><div><a href="">판매관리</a></div></li>
-                        <li><div><a href="">나의서비스</a></div></li>
-                        <li><div><a href="">수익관리</a></div></li>
-                        <li><div><a href="">광고등록</a></div></li>
-                     </ul>
-                  </div>
-            </div>  
-
         </header>
     </div>
     
-  	<script>
-  		$("#buycate,.buymenu").mouseenter(function(){
-  			$("#buycate").css({
-  				'background' : '#fff',
-	  		   'border': '2px solid #BDD4F2',
-	  		   'border-bottom': 'none'
-  			})
-  			$(".buymenu").css({
-  				'display' : 'block'
-  			})
-  		});
-  		$("#buycate,.buymenu").mouseleave(function(){	
-  			$("#buycate").css({
-  				'background' : 'none',
-	  		   'border': '2px solid transparent',
-	  		   'border-bottom': 'none'
-  			})
-  			$(".buymenu").css({
-  				'display' : 'none'
-  			})
-  		})
-  		$("#sellcate,.sellmenu").mouseenter(function(){
-  			$("#sellcate").css({
-  				'background' : '#fff',
-	  		   'border': '2px solid #BDD4F2',
-	  		   'border-bottom': 'none'
-  			})
-  			$(".sellmenu").css({
-  				'display' : 'block'
-  			})
-  		});
-  		$("#sellcate,.sellmenu").mouseleave(function(){	
-  			$("#sellcate").css({
-  				'background' : 'none',
-	  		   'border': '2px solid transparent',
-	  		   'border-bottom': 'none'
-  			})
-  			$(".sellmenu").css({
-  				'display' : 'none'
-  			})
-  		})
-  	</script>
+  	    <script>
+    	var i = -1;
+    	$(".cate").mouseenter(function(){
+    		i = $(".cate").index(this);
+    		if(i>0&&i<3){
+	    		$(this).css({
+	    			"border":"2px solid #BDD4F2",
+	    			"border-bottom":"none",
+	   			    "background" : "#fff"	
+	    		});
+	    		
+	    		$("#downmenu"+i).css("display","block");
+    		}
+    	});
+    	$(".downmenu").mouseenter(function(){
+    		$(this).css("display","block");
+    		$("#cate"+i).css({
+    			"border":"2px solid #BDD4F2",
+    			"border-bottom":"none",
+   				"background" : "#fff"
+    		});
+    	});
+    	$(".cate").mouseleave(function(){
+    		if(i>0&&i<3){
+	    		$(this).css({
+	    			"border":"2px solid transparent",
+	    			"border-bottom":"none",
+	   				"background" : "none"
+	    		});
+	    		$("#downmenu"+i).css("display","none");
+    		}
+    	});
+    	$(".downmenu").mouseleave(function(){
+    		$(this).css("display","none");
+    		$("#cate"+i).css({
+    			"border":"2px solid transparent",
+    			"border-bottom":"none",
+   				"background" : "none"
+    		});
+    	});
+    </script>
     
     
     
