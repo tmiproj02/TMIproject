@@ -38,7 +38,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="../common/cateheader1.jsp" %>
 
 	<div class="jumbotron" style = "position: absolute; top:10%;left:20%; width:800px; height:auto;" align="center">
 

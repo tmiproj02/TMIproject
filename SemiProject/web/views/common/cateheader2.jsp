@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>cateheader2</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
@@ -208,8 +208,9 @@ nav{
    width : 1200px;
    height : 165px;
    margin : 0 auto;
-   
+   z-index: 999;
 }
+
 
 .buymenu{
    border : 2px solid #BDD4F2;
@@ -248,7 +249,6 @@ nav{
 
 .sellmenu ul{
    list-style : none;
-   
 }
 
 .sellmenu ul li{
@@ -276,7 +276,7 @@ nav{
                             </a>
                         </div>
                         <div class='head_input'>
-                            <input type="text" name="keyword" maxlength="15" class="search-input" placeholder="¾î¶² ¼­ºñ½º¸¦ Ã£°í°è½Å°¡¿ä?">
+                            <input type="text" name="keyword" maxlength="15" class="search-input" placeholder="ì–´ë–¤ ì„œë¹„ìŠ¤ë¥¼ ì°¾ê³ ê³„ì‹ ê°€ìš”?">
                             <div class="search-btn">
                                 <img class="width-15px margin-right-10 cursor" src="/semi/resources/images/cancel-button2.png" style="display: none">
                                 <img class="width-20px cursor" src="/semi/resources/images/search2.png" style="vertical-align: inherit">
@@ -285,9 +285,9 @@ nav{
                     </div>
                     <div class="right-head paddinghead">
                         <div class="info flex-center">
-                            <div class="padding-20px"><a href="/">ÆÇ¸Å ½ÃÀÛÇÏ±â</a></div>
-                            <div class="padding-15px"><a href="/">·Î±×ÀÎ</a></div>
-                            <div class="padding-15px"><a class="btn" href="/">¹«·á È¸¿ø°¡ÀÔ</a></div>
+                            <div class="padding-20px"><a href="/">íŒë§¤ ì‹œì‘í•˜ê¸°</a></div>
+                            <div class="padding-15px"><a href="/">ë¡œê·¸ì¸</a></div>
+                            <div class="padding-15px"><a class="btn" href="/">ë¬´ë£Œ íšŒì›ê°€ì…</a></div>
                         </div>
                     </div>
                 </div>
@@ -295,11 +295,11 @@ nav{
             <nav>
                 <div class="mymenubar">
                     <ul class="mymenu">
-                        <li style="margin-left:10px"><div><a href="">³ªÀÇÁ¤º¸</a></div></li>
-                        <li><div class="dealmenu" id="buycate"><a href="">±¸¸Å°ü¸®</a></div></li>
-                        <li><div class="dealmenu" id="sellcate"><a href="">ÆÇ¸Å°ü¸®</a></div></li>
-                        <li><div><a href="">¸Ş½ÃÁö</a></div></li>
-                        <li><div><a href="">°èÁ¤¼³Á¤</a></div></li>
+                        <li style="margin-left:10px"><div><a href="">ë‚˜ì˜ì •ë³´</a></div></li>
+                        <li><div class="dealmenu" id="buycate"><a href="">êµ¬ë§¤ê´€ë¦¬</a></div></li>
+                        <li><div class="dealmenu" id="sellcate"><a href="">íŒë§¤ê´€ë¦¬</a></div></li>
+                        <li><div><a href="">ë©”ì‹œì§€</a></div></li>
+                        <li><div><a href="">ê³„ì •ì„¤ì •</a></div></li>
                     </ul>
                 </div>
             </nav>
@@ -307,18 +307,18 @@ nav{
                <div class="downmenu">
                   <div class="buymenu">
                      <ul class="ul-out">
-                        <li style="margin-top : 5px"><div><a href="">±¸¸Å°ü¸®</a></div></li>
-                        <li><div><a href="">TMIÄ³½Ã</a></div></li>
-                        <li><div><a href="">Ä³½ÃÃæÀü</a></div></li>
-                        <li><div><a href="">ÄíÆù</a></div></li>
+                        <li style="margin-top : 5px"><div><a href="">êµ¬ë§¤ê´€ë¦¬</a></div></li>
+                        <li><div><a href="">TMIìºì‹œ</a></div></li>
+                        <li><div><a href="">ìºì‹œì¶©ì „</a></div></li>
+                        <li><div><a href="">ì¿ í°</a></div></li>
                      </ul>
                   </div>
                   <div class="sellmenu">
                      <ul class="ul-out">
-                        <li style="margin-top : 5px"><div><a href="">ÆÇ¸Å°ü¸®</a></div></li>
-                        <li><div><a href="">³ªÀÇ¼­ºñ½º</a></div></li>
-                        <li><div><a href="">¼öÀÍ°ü¸®</a></div></li>
-                        <li><div><a href="">±¤°íµî·Ï</a></div></li>
+                        <li style="margin-top : 5px"><div><a href="">íŒë§¤ê´€ë¦¬</a></div></li>
+                        <li><div><a href="">ë‚˜ì˜ì„œë¹„ìŠ¤</a></div></li>
+                        <li><div><a href="">ìˆ˜ìµê´€ë¦¬</a></div></li>
+                        <li><div><a href="">ê´‘ê³ ë“±ë¡</a></div></li>
                      </ul>
                   </div>
             </div>  

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>cateheader1</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
@@ -189,6 +189,8 @@ nav{
     border-bottom: none;
     display : inline-block;
     position : relative;
+
+   	top : 3px;
 }
 
 .cate a{
@@ -198,12 +200,15 @@ nav{
 }
 
 .downmenu{
+	margin-top : 2px;
 	width : 105px;
 	padding: 10px 20px;
-	position:absolute;
+	position: absolute;
 	border : 2px solid #BDD4F2;
 	border-top : none;
 	display : none;
+	background : #fff;
+	z-index:999;
 }
 
 .downmenu li{
@@ -217,7 +222,9 @@ nav{
 	font-size : 14px;
 }
 
-
+.talent-category{
+	background : #fff;
+}
 </style>
 </head>
 <body>
@@ -232,7 +239,7 @@ nav{
                             </a>
                         </div>
                         <div class='head_input'>
-                            <input type="text" name="keyword" maxlength="15" class="search-input" placeholder="¾î¶² ¼­ºñ½º¸¦ Ã£°í°è½Å°¡¿ä?">
+                            <input type="text" name="keyword" maxlength="15" class="search-input" placeholder="ì–´ë–¤ ì„œë¹„ìŠ¤ë¥¼ ì°¾ê³ ê³„ì‹ ê°€ìš”?">
                             <div class="search-btn">
                                 <img class="width-15px margin-right-10 cursor" src="/semi/resources/images/cancel-button2.png" style="display: none">
                                 <img class="width-20px cursor" src="/semi/resources/images/search2.png" style="vertical-align: inherit">
@@ -241,9 +248,9 @@ nav{
                     </div>
                     <div class="right-head paddinghead">
                         <div class="info flex-center">
-                            <div class="padding-20px"><a href="/">ÆÇ¸Å ½ÃÀÛÇÏ±â</a></div>
-                            <div class="padding-15px"><a href="/">·Î±×ÀÎ</a></div>
-                            <div class="padding-15px"><a class="btn" href="/">¹«·á È¸¿ø°¡ÀÔ</a></div>
+                            <div class="padding-20px"><a href="/">íŒë§¤ ì‹œì‘í•˜ê¸°</a></div>
+                            <div class="padding-15px"><a href="/">ë¡œê·¸ì¸</a></div>
+                            <div class="padding-15px"><a class="btn" href="/">ë¬´ë£Œ íšŒì›ê°€ì…</a></div>
                         </div>
                     </div>
                 </div>
@@ -252,69 +259,69 @@ nav{
                 <div class="navsize">
                     <ul class='nav_ul'>
                         <li clase="talent-category">
-                        	<div class="cate"><a href="">µğÀÚÀÎ</a></div>
+                        	<div class="cate" id="cate0"><a href="">ë””ìì¸</a></div>
                         	<ul class="downmenu" id="downmenu0">
-                        		<li><a href="">·Î°íµğÀÚÀÎ</a></li>
-                            	<li><a href="">ÀÇ·ùµğÀÚÀÎ</a></li>
-                            	<li><a href="">°£ÆÇµğÀÚÀÎ</a></li>
-                            	<li><a href="">ÀÏ·¯½ºÆ®</a></li>
-                            	<li><a href="">À¥Å÷</a></li>
+                        		<li><a href="">ë¡œê³ ë””ìì¸</a></li>
+                            	<li><a href="">ì˜ë¥˜ë””ìì¸</a></li>
+                            	<li><a href="">ê°„íŒë””ìì¸</a></li>
+                            	<li><a href="">ì¼ëŸ¬ìŠ¤íŠ¸</a></li>
+                            	<li><a href="">ì›¹íˆ°</a></li>
                         	</ul>
                         </li>
                         <li clase="talent-category">
-	                        <div class="cate"><a href="">IT/ÇÁ·Î±×·¡¹Ö</a></div>
+	                        <div class="cate" id="cate1"><a href="">IT/í”„ë¡œê·¸ë˜ë°</a></div>
 	                        <ul class="downmenu" id="downmenu1">
-	                        	<li><a href="">À¥»çÀÌÆ® °³¹ß</a></li>
-	                            <li><a href="">ÇÁ·Î±×·¥ °³¹ß</a></li>
-	                            <li><a href="">¼­¹ö ¹× ±â¼úÁö¿ø</a></li>
-	                            <li><a href="">°ÔÀÓ</a></li>
-	                            <li><a href="">¸ğ¹ÙÀÏ¾Û/À¥</a></li>
+	                        	<li><a href="">ì›¹ì‚¬ì´íŠ¸ ê°œë°œ</a></li>
+	                            <li><a href="">í”„ë¡œê·¸ë¨ ê°œë°œ</a></li>
+	                            <li><a href="">ì„œë²„ ë° ê¸°ìˆ ì§€ì›</a></li>
+	                            <li><a href="">ê²Œì„</a></li>
+	                            <li><a href="">ëª¨ë°”ì¼ì•±/ì›¹</a></li>
 	                        </ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate"><a href="">¸¶ÄÉÆÃ</a></div>
+                        	<div class="cate" id="cate2"><a href="">ë§ˆì¼€íŒ…</a></div>
                         	<ul class="downmenu" id="downmenu2">
-                        		<li><a href="">sns¸¶ÄÏÆÃ</a></li>
-	                            <li><a href="">Á¾ÇÕ±¤°í´ëÇà</a></li>
-	                            <li><a href="">ºí·Î±×</a></li>
-	                            <li><a href="">¸¶ÄÉÆÃ ³ëÇÏ¿ì</a></li>
-	                            <li><a href="">À¯Æ©ºê Å©¸®¿¡ÀÌÅÍ</a></li>
+                        		<li><a href="">snsë§ˆì¼“íŒ…</a></li>
+	                            <li><a href="">ì¢…í•©ê´‘ê³ ëŒ€í–‰</a></li>
+	                            <li><a href="">ë¸”ë¡œê·¸</a></li>
+	                            <li><a href="">ë§ˆì¼€íŒ… ë…¸í•˜ìš°</a></li>
+	                            <li><a href="">ìœ íŠœë¸Œ í¬ë¦¬ì—ì´í„°</a></li>
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate"><a href="">ÄÜÅÙÃ÷ Á¦ÀÛ</a></div>
+                        	<div class="cate" id="cate3"><a href="">ì½˜í…ì¸  ì œì‘</a></div>
                         	<ul class="downmenu" id="downmenu3">
-	                        	<li><a href="">¿µ»ó</a></li>
-	                            <li><a href="">´õºù/³ìÀ½</a></li>
-	                            <li><a href="">À½¾Ç/»ç¿îµå</a></li>
-	                            <li><a href="">¿£ÅÍÅ×ÀÌ³Ê</a></li>
-	                            <li><a href="">»çÁø</a></li>
+	                        	<li><a href="">ì˜ìƒ</a></li>
+	                            <li><a href="">ë”ë¹™/ë…¹ìŒ</a></li>
+	                            <li><a href="">ìŒì•…/ì‚¬ìš´ë“œ</a></li>
+	                            <li><a href="">ì—”í„°í…Œì´ë„ˆ</a></li>
+	                            <li><a href="">ì‚¬ì§„</a></li>
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate"><a href="">¹ø¿ª/Åë¿ª</a></div>
+                        	<div class="cate" id="cate4"><a href="">ë²ˆì—­/í†µì—­</a></div>
 	                        <ul class="downmenu" id="downmenu4">
-		                        <li><a href="">¹ø¿ª</a></li>
-	                            <li><a href="">¿µ»ó¹ø¿ª</a></li>
-	                            <li><a href="">Åë¿ª</a></li>
+		                        <li><a href="">ë²ˆì—­</a></li>
+	                            <li><a href="">ì˜ìƒë²ˆì—­</a></li>
+	                            <li><a href="">í†µì—­</a></li>
 	                        </ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate"><a href="">¹®¼­/Ãë¾÷</a></div>
+                        	<div class="cate" id="cate5"><a href="">ë¬¸ì„œ/ì·¨ì—…</a></div>
                         	<ul class="downmenu" id="downmenu5">
-                        		<li><a href="">³í¹®</a></li>
-	                            <li><a href="">Å¸ÀÌÇÎ</a></li>
-	                            <li><a href="">±ÛÀÛ¼º/´ëº»</a></li>
-	                            <li><a href="">¸éÁ¢/Ãë¾÷ÄÚµù</a></li>
-	                            <li><a href="">ÀÚ¼Ò¼­/ÀÌ·Â¼­</a></li>
+                        		<li><a href="">ë…¼ë¬¸</a></li>
+	                            <li><a href="">íƒ€ì´í•‘</a></li>
+	                            <li><a href="">ê¸€ì‘ì„±/ëŒ€ë³¸</a></li>
+	                            <li><a href="">ë©´ì ‘/ì·¨ì—…ì½”ë”©</a></li>
+	                            <li><a href="">ìì†Œì„œ/ì´ë ¥ì„œ</a></li>
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate"><a href="">±âÇÁÆ®/Ä¿½ºÅÒ</a></div>
+                        	<div class="cate" id="cate6"><a href="">ê¸°í”„íŠ¸/ì»¤ìŠ¤í…€</a></div>
                         	<ul class="downmenu"  id="downmenu6">
-                        		<li><a href="">¶óÀÌÇÁ</a></li>
-                            	<li><a href="">ÆĞ¼Ç</a></li>
-                            	<li><a href="">Çªµå</a></li>
+                        		<li><a href="">ë¼ì´í”„</a></li>
+                            	<li><a href="">íŒ¨ì…˜</a></li>
+                            	<li><a href="">í‘¸ë“œ</a></li>
                         	</ul>
                         </li>
                     </ul>
@@ -323,26 +330,41 @@ nav{
         </header>
     </div>
     <script>
-    	$(".cate").hover(function(){
+    	var i = -1;
+    	$(".cate").mouseenter(function(){
     		$(this).css({
     			"border":"2px solid #BDD4F2",
-    			"border-bottom":"none"
+    			"border-bottom":"none",
+   			    "background" : "#fff"
+    			
     		});
-    		var i = $(".cate").index(this);
-    		console.log(i);
+    		i = $(".cate").index(this);
     		$("#downmenu"+i).css("display","block");
-    		$("#downmenu"+i).mouseenter(function(){
-    			$(this).css("display","block");
+    	});
+    	$(".downmenu").mouseenter(function(){
+    		$(this).css("display","block");
+    		$("#cate"+i).css({
+    			"border":"2px solid #BDD4F2",
+    			"border-bottom":"none",
+   				"background" : "#fff"
     		});
-
-    	},function(){
+    	});
+    	$(".cate").mouseleave(function(){
     		$(this).css({
     			"border":"2px solid transparent",
-    			"border-bottom":"none"
+    			"border-bottom":"none",
+   				"background" : "none"
     		});
-    		console.log(i);
     		$("#downmenu"+i).css("display","none");
-    	})
+    	});
+    	$(".downmenu").mouseleave(function(){
+    		$(this).css("display","none");
+    		$("#cate"+i).css({
+    			"border":"2px solid transparent",
+    			"border-bottom":"none",
+   				"background" : "none"
+    		});
+    	});
     </script>
 </body>
 </html>
