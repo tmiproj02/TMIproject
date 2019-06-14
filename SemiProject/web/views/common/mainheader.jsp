@@ -315,7 +315,7 @@ footer{
                 
                 <div class="header">
                     <div class="flex-left">
-                        <a href="/">
+                        <a href="../common/mainheader.jsp">
                             <img src="/semi/resources/images/tmi.png" width="110px">
                         </a>
                     </div>
@@ -341,7 +341,7 @@ footer{
 
                 <div class="category">
                     <ul>
-                        <li><a href="#">
+                        <li><a href="../serviceCategoryPage.jsp">
                             <img src="/semi/resources/images/edit.png"> <br>
                             <span>디자인</span>
                         </a></li>

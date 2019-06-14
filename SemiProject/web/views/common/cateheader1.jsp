@@ -238,7 +238,7 @@ nav{
                 <div class="container">
                     <div class="left-head paddinghead">
                         <div class="logo">
-                            <a href="/">
+                            <a href="../views/common/mainheader.jsp">
                                 <img class="logoImg" src="/semi/resources/images/TMI1.png" width=80px>
                             </a>
                         </div>
