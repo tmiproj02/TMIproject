@@ -29,8 +29,8 @@
    	<nav id="logo" style="height:100px; border-bottom: 2px solid gray; margin-bottom:20px;">
 		<img src="/semi/resources/images/KakaoTalk_20190606_164601739.png" style="width:130px;height:120px; position:absolute; left:50%; margin-left:-65px; cursor:pointer; " onclick="toMain();">	
 	</nav>	
-	<div id="serchIdContainer" style="display:flex;  align-items:center; flex-direction:column; margin-top:10%;">
-		 <div class="panel panel-info" style="width:300px; height:221px;">
+	<div id="serchIdContainer" style="display:flex;  align-items:center; flex-direction:column; margin-top:6%;">
+		 <div class="panel panel-info" style="width:300px; height:240px; margin-bottom:41px;">
 	            <div class="panel-heading">
 	              <h3 class="panel-title">아이디 찾기</h3>
 	            </div>
@@ -40,24 +40,24 @@
 		           	<input type ="text" id="userName" name = "sName" class="form-control" style="width:100px; height:30px;margin-bottom:6px;">
 		           	<label for="sSsn1">주민등록번호</label><br>
 		            <input type = "text" id="userSSN1" name = "sSsn1" class="form-control" style="width:80px; height:30px; display:inline;">&nbsp;-&nbsp;<input type = "password" id="userSSN2"name = "sSsn2" class="form-control" style="width:80px; height:30px; display:inline;">
-		            <input type="button" value="아이디 찾기" id="findIdBtn" class="btn btn-info"  data-toggle="modal" data-target=".bd-example-modal-sm" style="margin-top:7px;">
+		            <input type="button" value="아이디 찾기" id="findIdBtn" class="btn btn-info"  data-toggle="modal" data-target=".bd-example-modal-sm" style="margin-top:14px;" onclick="findId();">
 	            </div>
 		</div>   
 	  
-		<div class="panel panel-info" style="width:300px;">
+		<div class="panel panel-info" style="width:300px; height:301px;">
 	            <div class="panel-heading">
 	              <h3 class="panel-title">비밀번호 찾기</h3>
 	            </div>
 	            <div class="panel-body">
 	          	  <form action="/semi/searchPwd.do" method = "post">
 			    	<label for="sName">이메일</label><br>
-		           	<input type = "text" name = "sEmail" class="form-control" style="width:200px; height:30px;">
+		           	<input type = "text" name = "sEmail" class="form-control" style="width:200px; height:30px; margin-bottom:5px;">
 		           	<label for="sName">이름</label><br>
-		            <input type = "text" name = "sName" class="form-control" style="width:100px; height:30px;">
+		            <input type = "text" name = "sName" class="form-control" style="width:100px; height:30px; margin-bottom:5px;">
 		            <label for="sName">주민등록번호</label><br>
 		            <input type = "text" name = "sSsn1" class="form-control" style="width:80px; height:30px; display:inline;">&nbsp;-&nbsp;<input type = "password" name = "sSsn2" class="form-control" style="width:80px; height:30px; display:inline;">
 		            
-		            <input type="submit" value="비밀번호 찾기" style="margin-top:7px;" class="btn btn-info">
+		            <input type="submit" value="비밀번호 찾기" style="margin-top:14px;" class="btn btn-info">
 	        
 				  </form>
 	            </div>
@@ -68,20 +68,20 @@
 	<div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   		<div class="modal-dialog modal-sm">
     	
-	     	<div class="ui success message" style="width:350px;height:100px; margin-top:100%; text-align:center; position:absolute; /* visibility:hidden; */">
-				 	 <i class="close icon"></i>
+	     	<div class="ui success message" id="idAlert" style="width:350px;height:100px; margin-top:100%; text-align:center; position:absolute; visibility:hidden;">
+				 	 <i class="close icon" data-dismiss="modal" aria-label="Close"></i>
 				 	 <div class="header">
 				 	  	회원님의 이메일 주소 
 				 	 </div>
 				 	 <p style="font-size : 20px;"><strong id="successText"></strong></p>
 				</div>
 				
-				<div class="ui negative message" id="idFailAlert" style="margin-top:100%; width:350px;height:100px;position:absolute; visibility:hidden;">
-				 	 <i class="close icon"></i>
+				<div class="ui negative message" id="idFailAlert" style="margin-top:100%; width:430px;height:70px;position:absolute; visibility:hidden;">
+				 	 <i class="close icon" data-dismiss="modal" aria-label="Close"></i>
 				 	 <div class="header">
 						아이디 찾기 실패!
 				  	 </div>
-				     <p style="font-size : 20px;"><strong id="failText"></strong></p>
+				     <p style="font-size : 16px;"><strong id="failText"></strong></p>
 			    </div>
       
        </div>
@@ -105,41 +105,38 @@
 	}
 	
 	// 아이디를 찾아주는 함수
-	$('#findIdBtn').on('click', function(){
+	function findId(){
 		$.ajax({
 			url : "/semi/searchId.do",
 			type : "post",
 			data : {userName: $('#userName').val(), userSSN1: $('#userSSN1').val(), userSSN2: $('#userSSN2').val()},
 			success : function(data){
-				
+		
 				var emailRegEx = /@+/;
-			
+				console.log(data);
 				if(emailRegEx.test(data)){
-					$('#myModal').modal('show');
+					
 					$('#successText').html(data); 
 					$('#idAlert').css('visibility','visible');
 				}else{
-					console.log($('#myModal').attr(modal));
-					if($('#myModal').attr(modal) == 'show')
-					$('#myModal').modal('show');
+					
 					$('#failText').html(data);
 					$('#idFailAlert').css('visibility','visible');
 				}
 				
-			
 			}, error : function(){
 				alert("아이디 찾기에서 에러");
 			}
 	
 		});
 
+ }
+	
+	$('i').on('click',function(){ 
+		$('#idAlert').css('visibility','hidden');
+		$('#idFailAlert').css('visibility','hidden');
 	});
 	
-	// 팝업 메세지를 닫아주는 함수
-	$('.close').on('click',function(){
-		$('#myModal').modal('hide');
-	
-	});
 	
 </script>
 

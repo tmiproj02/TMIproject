@@ -94,7 +94,6 @@
 
 <script>
 
-
 	var emailDupCheckNum = -1;
 	// SNS 가입 시 이메일 자동 채움 함수
 	$(function(){
@@ -104,11 +103,16 @@
 			 $('#email').attr({
 				 'value' : email,
 				 readonly : true
+				 
 			 });
+			 
 			 // 이메일 중복확인 키 무효화
 			 $('#emailDupCheckBtn').attr('disabled',true);
 		 	 
 			 $('#isSNS').attr('value','Y');
+			 
+			 // 이메일 중복확인 유효성체크
+			 this.emailDupCheckNum = 0;
 		}
 		
 	 });
@@ -134,7 +138,7 @@
 						return true;
 					}
 				},
-				
+
 				error : function(data){
 					console.log("에러!");
 					
@@ -250,7 +254,7 @@
 				alert("올바르지 않은 형식의 주민등록번호입니다.");
 				return false;
 			}
-			
+
 			if(!$('#term1').prop('checked')|| !$('#term2').prop('checked')){
 		
 				return false;
