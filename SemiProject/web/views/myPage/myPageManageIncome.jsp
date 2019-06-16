@@ -11,7 +11,8 @@
   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="/semi/resources/js/semantic.min.js"></script>
-<title>판매관리</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<title>수익관리</title>
 <style>
 	.font-noto{
 		font-family: 'Noto Sans KR', sans-serif;
@@ -127,6 +128,77 @@
 		width:100%;
 		
 	}
+
+	.select{
+		background-color: #BDD4F2;
+		color : #000;
+	}
+	
+	.ad-request{
+		border-radius: 4px;
+		padding: 5px 10px;
+		color: #4d4d4d;
+	    background-color: #fff;
+	    display: inline-block;
+	    margin-bottom: 0;
+	    text-align: center;
+	    vertical-align: middle;
+	    touch-action: manipulation;
+	    cursor: pointer;;
+	    border: 1px solid #e6e6e6;	    
+	    font-size: 13px;
+	    line-height: 1.5438;
+	    user-select: none;
+	}
+	.ad-request:hover{
+	    color: #4d4d4d;
+	    background: #f0f0f0;
+	    border-color: #c7c7c7;
+	}
+	.ad-request>h5{
+		color:#666;
+	}
+	.income-box{
+	    padding: 8px;
+	    box-shadow: 0 0 10px 0 #E6E6E6;
+	}
+	.withdraw-income{
+	    border-right: solid #E6E6E6 1px;
+	    padding-left: 25px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        width: 50%;
+        overflow:hidden;
+        float:left;
+	}
+	.row{
+		overflow:hidden;
+	}
+	.row>div{
+		display:inline-block;
+	}
+	.predict-income{
+	    border-right: solid #E6E6E6 1px;
+	    margin-bottom: 10px;
+        margin-top: 10px;
+        width: 25%;
+		float:left;
+        text-align:center;
+        
+	}
+	.margin-10{
+		margin:10px 0;
+	}
+	.plain{
+		font-family: 'Noto Sans KR', sans-serif;
+		font-weight:400;	
+		text-decoration: none;
+    	color: #4d4d4d;	
+	}
+	.NGB{
+		font-family: 'Noto Sans KR', sans-serif;
+		font-weight:500;
+	}
 	.sell-ing{
 		padding-bottom : 15px;
 		 border-bottom:solid #E6E6E6 1px;
@@ -151,14 +223,6 @@
 		padding : 85px 0;
 		text-align : center;
 		margin-top : 20px;
-	}
-	.selling-history{
-	    vertical-align: 1px;
-	    font-size: 11px;
-	    color: #878787;
-	    padding: 1px 6px;
-	    background-color: #ddd;
-	    border-radius: 500px !important;
 	}
 	.active{
 		background:#E8F0F5;
@@ -206,11 +270,11 @@
 					<div class="menu-box">
 						<div class="padding-15">
 							<div class="menu-line" style="text-align:center">
-								<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;">							
+								<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
 									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
 									<h6>판매관리</h6>							
 								</div></a>
-								<a href="/semi/views/myPage/myPageManageIncome.jsp"><div class="padding-all-15 menu-slot">
+								<a href="/semi/views/myPage/myPageManageIncome.jsp"><div class="padding-all-15 menu-slot active">
 									<div><img src="/semi/resources/images/profits_new_active.png" alt="" /></div>
 									<h6>수익관리</h6>			
 								</div></a>
@@ -232,47 +296,75 @@
 				
 			</div>
 			<div class="scontainer3 width-75per" style="float:left">
-				<div class="padding-15">
-					<h3 class="font-noto" style="font-weight:700">판매관리</h3>
+				<div class="row">
+					<div class="padding-15" style="width:66.66667%; float:left">
+						<h3 class="font-noto" style="font-weight:700;margin-top:5px;">수익관리</h3>
+					</div>
+					<div class="padding-15" style="width:33.33333%; float:left; text-align:right;">
+						<a href="" class="ad-request">
+							<h5>광고 신청</h5>
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="padding-15" style="width:100%">
+						<div style="margin-top:10px;margin-bottom:20px;">
+							<div class="income-box">
+								<div class="row">
+									<div class="withdraw-income">
+										<div style="width:25%;float:left"><img width=80% src="/semi/resources/images/profits_new_active.png" alt="" /></div>
+										<div style="width:75%;padding-right:15px;float:left">
+											<h5 class="font-noto" style="margin-top:5px;margin-bottom:10px">출금가능 수익금</h5>
+											<h2 class="font-noto" style="margin:0;margin-bottom:10px">0원</h2>
+										</div>
+									</div>
+									<div class="predict-income padding-15">
+										<h6 class="margin-10">예상 수익금</h6>
+										<h5 class="margin-10" style="margin-bottom:10px">0원</h5>
+									</div>
+									<div class="predict-income padding-15" style="border-right:none;">
+										<h6 class="margin-10">출금 완료 수익금</h6>
+										<h5 class="margin-10" style="margin-bottom:10px">0원</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="padding-15" style="text-align:right;width:100%">
+						<a href="" class="plain NGB">월별</a> &nbsp;
+						<a href="" class="plain">일별</a>		
+					</div>
+					
 				</div>
 				<div style="margin-top:20px">
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000" href="">요청사항 미작성 &nbsp; <span class="selling-history select">0</span></a>
+								<a style="color:#000" href="">수익금 내역 &nbsp;</a>
 							</li>
 							<li>
-								<a href="">진행중 &nbsp; <span class="selling-history">0</span></a>
+								<a href="">출금내역 &nbsp;</a>
 							</li>
 							<li>
-								<a href="">발송중 &nbsp; <span class="selling-history">0</span></a>
-							</li>
-							<li>
-								<a href="">완료 &nbsp; <span class="selling-history">0</span></a>
-							</li>
-							<li>
-								<a href="">취소 &nbsp; <span class="selling-history">0</span></a>
+								<a href="">월별 수수료 세금계산서 &nbsp;</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div style="margin-top:20px">
 					<div class="padding-15 font-noto">
-						<div class="ui right action left icon input">
-					  <i class="search icon"></i>
-					  <input type="text" placeholder="검색">
-					  <div class="ui basic floating dropdown button">
-					    <div class="text font-noto">닉네임</div>
-					    <i class="dropdown icon"></i>
-					    <div class="menu">
-					      <div class="item font-noto">닉네임</div>
-					      <div class="item font-noto">주문번호</div>
-					      <div class="item font-noto">이름</div>
-					      <div class="item font-noto">전화번호</div>
-					      <div class="item font-noto">이메일</div>
-					    </div>
-					  </div>
-					</div>
+						<div class="ui compact selection dropdown" style="width:85px">
+						  <i class="dropdown icon"></i>
+						  <div class="text">전체</div>
+						  <div class="menu">
+						   	  <div class="item">전체</div>
+						      <div class="item">완료</div>
+						      <div class="item">진행중</div>
+						      <div class="item">취소</div>
+						  </div>
+						</div>
 					<script>
             			$('.ui.dropdown').dropdown();
         			</script>
@@ -288,6 +380,7 @@
 						</div>
 					</div>
 				</div>	
+				
 			</div>
 		</div>
 	</div>

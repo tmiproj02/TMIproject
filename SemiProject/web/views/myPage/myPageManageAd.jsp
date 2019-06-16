@@ -11,7 +11,10 @@
   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="/semi/resources/js/semantic.min.js"></script>
-<title>판매관리</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+<title>광고관리</title>
 <style>
 	.font-noto{
 		font-family: 'Noto Sans KR', sans-serif;
@@ -127,6 +130,59 @@
 		width:100%;
 		
 	}
+
+	.select{
+		background-color: #BDD4F2;
+		color : #000;
+	}
+	
+	.ad-request{
+		border-radius: 4px;
+		padding: 5px 10px;
+		color: #4d4d4d;
+	    background-color: #fff;
+	    display: inline-block;
+	    margin-bottom: 0;
+	    text-align: center;
+	    vertical-align: middle;
+	    touch-action: manipulation;
+	    cursor: pointer;;
+	    border: 1px solid #e6e6e6;	    
+	    font-size: 13px;
+	    line-height: 1.5438;
+	    user-select: none;
+	}
+	.ad-request:hover{
+	    color: #4d4d4d;
+	    background: #f0f0f0;
+	    border-color: #c7c7c7;
+	}
+	.ad-request>h5{
+		color:#666;
+	}
+	.income-box{
+	    padding: 8px;
+	    box-shadow: 0 0 10px 0 #E6E6E6;
+	}
+	.withdraw-income{
+	    border-right: solid #E6E6E6 1px;
+	    padding-left: 25px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        width: 65%;
+        overflow:hidden;
+        float:left;
+	}
+	.row{
+		overflow:hidden;
+	}
+	.row>div{
+		display:inline-block;
+	}
+	
+	.margin-10{
+		margin:10px 0;
+	}
 	.sell-ing{
 		padding-bottom : 15px;
 		 border-bottom:solid #E6E6E6 1px;
@@ -152,14 +208,6 @@
 		text-align : center;
 		margin-top : 20px;
 	}
-	.selling-history{
-	    vertical-align: 1px;
-	    font-size: 11px;
-	    color: #878787;
-	    padding: 1px 6px;
-	    background-color: #ddd;
-	    border-radius: 500px !important;
-	}
 	.active{
 		background:#E8F0F5;
 	}
@@ -167,10 +215,26 @@
 		background-color: #BDD4F2;
 		color : #000;
 	}
+	.date-setting{
+		margin-top:20px;
+		width:83.33333%;
+	}
+	.date-setting>div{
+		float:left;
+
+	}
 </style>
 </head>
 <body>
 	<%@ include file="../common/cateheader2.jsp" %>
+	<script>
+		$(function() {
+		    $( "#testDatepicker1" ).datepicker({
+		    });
+		    $( "#testDatepicker2" ).datepicker({
+		    });
+		});
+	</script>
 	<div class="my-page-sell">
 		<div class="scontainer">
 			<div class="scontainer1">
@@ -206,7 +270,7 @@
 					<div class="menu-box">
 						<div class="padding-15">
 							<div class="menu-line" style="text-align:center">
-								<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;">							
+								<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
 									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
 									<h6>판매관리</h6>							
 								</div></a>
@@ -216,7 +280,7 @@
 								</div></a>
 							</div>
 							<div class="menu-line" style="text-align:center;border-bottom:solid #E6E6E6 1px;">
-								<a href="/semi/views/myPage/myPageManageAd.jsp"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
+								<a href="/semi/views/myPage/myPageManageAd.jsp"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;">							
 									<div><img src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 									<h6>광고관리</h6>							
 								</div></a>
@@ -232,52 +296,65 @@
 				
 			</div>
 			<div class="scontainer3 width-75per" style="float:left">
-				<div class="padding-15">
-					<h3 class="font-noto" style="font-weight:700">판매관리</h3>
+				<div class="row">
+					<div class="padding-15" style="width:100%; float:left">
+						<h3 class="font-noto" style="font-weight:700;margin-top:5px;">광고관리</h3>
+					</div>
+					
 				</div>
-				<div style="margin-top:20px">
-					<div class="padding-15">
-						<ul class="sell-ing">
-							<li>
-								<a style="color:#000" href="">요청사항 미작성 &nbsp; <span class="selling-history select">0</span></a>
-							</li>
-							<li>
-								<a href="">진행중 &nbsp; <span class="selling-history">0</span></a>
-							</li>
-							<li>
-								<a href="">발송중 &nbsp; <span class="selling-history">0</span></a>
-							</li>
-							<li>
-								<a href="">완료 &nbsp; <span class="selling-history">0</span></a>
-							</li>
-							<li>
-								<a href="">취소 &nbsp; <span class="selling-history">0</span></a>
-							</li>
-						</ul>
+				<div class="row">
+					<div class="padding-15" style="width:100%">
+						<div style="margin-top:10px;margin-bottom:20px;">
+							<div class="income-box">
+								<div class="row">
+									<div class="withdraw-income">
+										<div style="width:20%;float:left"><img width=65px src="/semi/resources/images/advertisement_active.png" alt="" /></div>
+										<div style="width:80%;padding-right:15px;float:left">
+											<h5 class="font-noto" style="margin-top:5px;margin-bottom:10px">현재 광고중인 상품</h5>
+											<h2 class="font-noto" style="margin:0;margin-bottom:10px">0 개</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div style="margin-top:20px">
+				<div class="row">
+					<div class="padding-15" style="margin-top:20px;width:16.66667%;float:left;">
 					<div class="padding-15 font-noto">
-						<div class="ui right action left icon input">
-					  <i class="search icon"></i>
-					  <input type="text" placeholder="검색">
-					  <div class="ui basic floating dropdown button">
-					    <div class="text font-noto">닉네임</div>
-					    <i class="dropdown icon"></i>
-					    <div class="menu">
-					      <div class="item font-noto">닉네임</div>
-					      <div class="item font-noto">주문번호</div>
-					      <div class="item font-noto">이름</div>
-					      <div class="item font-noto">전화번호</div>
-					      <div class="item font-noto">이메일</div>
-					    </div>
-					  </div>
+						<div class="ui compact selection dropdown" style="width:85px">
+						  <i class="dropdown icon"></i>
+						  <div class="text">전체</div>
+						  <div class="menu">
+						   	  <div class="item">전체</div>
+						      <div class="item">완료</div>
+						      <div class="item">진행중</div>
+						      <div class="item">취소</div>
+						  </div>
+						</div>
+						<script>
+	            			$('.ui.dropdown').dropdown();
+	        			</script>
+						</div>
 					</div>
-					<script>
-            			$('.ui.dropdown').dropdown();
-        			</script>
+					<div class="date-setting">
+						<div class="ui input">
+						  <input type="text" id="testDatepicker1" value="2019-03-16" style="width:120px">						
+						</div>
+						<div style="margin-top:5px;padding:0 10px;">
+							~
+						</div>
+						<div class="ui input">
+						  <input type="text" id="testDatepicker2" value="2019-06-16" style="width:120px">
+						</div>
+						<div style="margin-left:10px;margin-top:1px">
+							<button class="ui button" style="background:#364559;color:white">조회</button>
+						</div>					
 					</div>
+					
 				</div>
+				
+				
 				<div>
 					<div class="padding-15" style="margin-top:10px">
 						<div class="detail-box">
@@ -288,6 +365,7 @@
 						</div>
 					</div>
 				</div>	
+				
 			</div>
 		</div>
 	</div>

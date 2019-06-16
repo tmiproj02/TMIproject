@@ -11,7 +11,7 @@
   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="/semi/resources/js/semantic.min.js"></script>
-<title>판매관리</title>
+<title>나의 서비스</title>
 <style>
 	.font-noto{
 		font-family: 'Noto Sans KR', sans-serif;
@@ -142,10 +142,6 @@
 		font-family: 'Noto Sans KR', font;
 		font-weight : 500;
 	}
-	.detail-box{
-		border-top: solid #E6E6E6 1px !important;
-	    border-bottom: solid #E6E6E6 1px !important;
-	}
 	.detail-list{
 		border: solid #E6E6E6 1px !important;
 		padding : 85px 0;
@@ -206,7 +202,7 @@
 					<div class="menu-box">
 						<div class="padding-15">
 							<div class="menu-line" style="text-align:center">
-								<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;">							
+								<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
 									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
 									<h6>판매관리</h6>							
 								</div></a>
@@ -220,7 +216,7 @@
 									<div><img src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 									<h6>광고관리</h6>							
 								</div></a>
-								<a href="/semi/views/myPage/myPageMyService.jsp"><div class="padding-all-15 menu-slot">
+								<a href="/semi/views/myPage/myPageMyService.jsp"><div class="padding-all-15 menu-slot active">
 									<div><img src="/semi/resources/images/my_gigs_active.png" alt="" /></div>
 									<h6>나의 서비스</h6>			
 								</div></a>
@@ -233,57 +229,40 @@
 			</div>
 			<div class="scontainer3 width-75per" style="float:left">
 				<div class="padding-15">
-					<h3 class="font-noto" style="font-weight:700">판매관리</h3>
+					<h3 class="font-noto" style="font-weight:700">나의 서비스</h3>
 				</div>
 				<div style="margin-top:20px">
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000" href="">요청사항 미작성 &nbsp; <span class="selling-history select">0</span></a>
+								<a style="color:#000" href="">전체 &nbsp; <span class="selling-history select">0</span></a>
 							</li>
 							<li>
-								<a href="">진행중 &nbsp; <span class="selling-history">0</span></a>
+								<a href="">판매중 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 							<li>
-								<a href="">발송중 &nbsp; <span class="selling-history">0</span></a>
+								<a href="">승인대기중 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 							<li>
-								<a href="">완료 &nbsp; <span class="selling-history">0</span></a>
+								<a href="">판매중지 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 							<li>
-								<a href="">취소 &nbsp; <span class="selling-history">0</span></a>
+								<a href="">비승인 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 						</ul>
-					</div>
-				</div>
-				<div style="margin-top:20px">
-					<div class="padding-15 font-noto">
-						<div class="ui right action left icon input">
-					  <i class="search icon"></i>
-					  <input type="text" placeholder="검색">
-					  <div class="ui basic floating dropdown button">
-					    <div class="text font-noto">닉네임</div>
-					    <i class="dropdown icon"></i>
-					    <div class="menu">
-					      <div class="item font-noto">닉네임</div>
-					      <div class="item font-noto">주문번호</div>
-					      <div class="item font-noto">이름</div>
-					      <div class="item font-noto">전화번호</div>
-					      <div class="item font-noto">이메일</div>
-					    </div>
-					  </div>
-					</div>
-					<script>
-            			$('.ui.dropdown').dropdown();
-        			</script>
 					</div>
 				</div>
 				<div>
 					<div class="padding-15" style="margin-top:10px">
 						<div class="detail-box">
 							<div class="detail-list">
-								<div><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
-								<h5 class="font-noto" style="margin:10px 0;">내역이 없습니다.</h5>
+								<div>
+									<h5 class="font-noto" style="color:#878787">
+									등록한 서비스가 없습니다.<br> 서비스를 등록하여 판매를 시작해보세요!
+                                    </h5>
+								</div>
+								<button class="ui button" style="background:#364559;color:white;margin-top:5px;">판매 시작하기
+								</button>
 							</div>
 						</div>
 					</div>

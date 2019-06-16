@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>cateheader2</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <style>
@@ -273,17 +271,19 @@ nav{
                         <li clase="talent-category">
 	                        <div class="cate" id="cate1"><a href="">구매관리</a></div>
                         	<ul class="downmenu" id="downmenu1">
+                        		<li><a href="">구매관리</a></li>
                         		<li><a href="">TMI캐시</a></li>
                             	<li><a href="">캐시충전</a></li>
                             	<li><a href="">쿠폰</a></li>
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate2"><a href="">판매관리</a></div>
+                        	<div class="cate" id="cate2"><a href="/semi/views/myPage/myPageManageSell.jsp">판매관리</a></div>
                         	<ul class="downmenu" id="downmenu2">
-	                        	<li><a href="">나의서비스</a></li>
-	                            <li><a href="">수익관리</a></li>
-	                            <li><a href="">광고등록</a></li>
+                        		<li><a href="/semi/views/myPage/myPageManageSell.jsp">판매관리</a></li>
+	                        	<li><a href="/semi/views/myPage/myPageMyService.jsp">나의서비스</a></li>
+	                            <li><a href="/semi/views/myPage/myPageManageIncome.jsp">수익관리</a></li>
+	                            <li><a href="/semi/views/myPage/myPageManageAd.jsp">광고등록</a></li>
 	                        </ul>
                         </li>
                         <li clase="talent-category">
