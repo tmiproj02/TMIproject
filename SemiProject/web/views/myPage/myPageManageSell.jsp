@@ -5,9 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="/semi/resources/js/semantic.min.js"></script>
 <title>판매관리</title>
 <style>
 	.font-noto{
@@ -15,41 +18,46 @@
     	font-weight: 400;
 	}
 	.my-page-sell{
-		border : 1px solid red;
 		margin:0 auto;
 	}
 	.scontainer{
-		border : 1px solid blue;
+
 		width : 1024px;
 		margin:0 auto;
+		overflow : hidden;
 	}
 	.scontainer1{
-		border : 1px solid black;
 		padding-left : 15px;
 		padding-right : 15px;
 		margin:0 auto;
 	}
 	.scontainer2{
-		border : 1px solid black;
+
 		margin:0 auto;
+		float : left;
 	}
-	.scontainer2>div{
-		display:inline-block;
+	
+	.profile{
+		margin-top:20px;
 	}
 	.width-25per{
 		width:25%;
-		border : 1px solid green;
+
 	}
 	.width-75per{
 		width:75%;
-		border : 1px solid yellow;
+
 	}
 	.user-profile-body{
+		border: solid #E6E6E6 1px;
+		border-bottom:none;
 		text-align : center;
 	}
 	.user-profile-box>li{
-		border : 1px solid lightgreen;
+		border: solid #E6E6E6 1px;
+		border-bottom:none;
 		list-style : none;
+		overflow : hidden;
 	}
 	
 	.sell{
@@ -91,6 +99,65 @@
 		padding-right:15px; 
 		padding-left:0;
 	}
+	.menu-line{
+		border: solid #E6E6E6 1px;
+		border-bottom:none;
+		overflow:hidden;
+	}
+	.menu-line>a{
+		display : inline-block;
+		width:50%;
+		margin-bottom : 0;
+		float:left;
+	}
+	.menu-box img{
+		width : 40px;
+	}
+	.menu-box{
+	
+	}
+	.menu-box>div>div{
+
+	}
+	.padding-all-15{
+		padding : 15px;
+	}
+	.menu-slot{
+		width:100%;
+		
+	}
+	.sell-ing{
+		padding-bottom : 15px;
+		 border-bottom:solid #E6E6E6 1px;
+	}
+	.sell-ing>li{
+		list-style: none;
+		display : inline-block;
+		margin-right : 15px;
+	}
+	.sell-ing>li>a{
+		color : #878787;
+		font-family: 'Noto Sans KR', sans-serif;
+    	font-weight: 400;
+	}
+	.detail-box{
+		border-top: solid #E6E6E6 1px !important;
+	    border-bottom: solid #E6E6E6 1px !important;
+	}
+	.detail-list{
+		border: solid #E6E6E6 1px !important;
+		padding : 85px 0;
+		text-align : center;
+		margin-top : 20px;
+	}
+	.selling-history{
+	    vertical-align: 1px;
+	    font-size: 11px;
+	    color: #878787;
+	    padding: 1px 6px;
+	    background-color: #ddd;
+	    border-radius: 500px !important;
+	}
 </style>
 </head>
 <body>
@@ -102,34 +169,116 @@
 					<h3>판매</h3>
 				</div>
 			</div>
-			<div class="scontainer2">
-				<div class="width-25per padding-15">
-					<div class="user-profile-body">
-						<img src="/semi/resources/images/myprofile.png" alt="" />
+			<div class="scontainer2 width-25per">
+					<div class="profile">
+						<div class="padding-15">
+						<div class="user-profile-body">
+							<img src="/semi/resources/images/myprofile.png" alt="" />
+						</div>
+						<ul class="user-profile-box">
+							<li style=" border-top:none;"><div style="text-align : center; margin-bottom:20px;">
+								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href="">회원닉네임</a></div>
+								<div><label for="" class="seller-check font-noto">전문가 인증</label></div>
+							</div></li>
+							<li><div class="income-out">
+								<div class="income-out-div">
+									<div class="font-noto">출금가능 수익금</div>
+								</div>
+								<div class="font-noto won"><b>원</b></div>
+							</div></li>
+							<li><div class="income-out">
+								<div class="income-out-div">
+									<div class="font-noto">회원 보유캐시</div>
+								</div>
+								<div class="font-noto won"><b>원</b></div>
+							</div></li>
+						</ul>
 					</div>
-					<ul class="user-profile-box">
-						<li><div style="text-align : center">
-							<div><a href="">회원닉네임</a></div>
-							<label for="" class="seller-check">전문가 인증</label>
-						</div></li>
-						<li><div class="income-out">
-							<div class="income-out-div">
-								<div class="font-noto">출금가능 수익금</div>
+					<div class="menu-box">
+						<div class="padding-15">
+							<div class="menu-line" style="text-align:center">
+								<a href=""><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
+									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
+									<h6>판매관리</h6>							
+								</div></a>
+								<a href=""><div class="padding-all-15 menu-slot">
+									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
+									<h6>수익관리</h6>			
+								</div></a>
 							</div>
-							<div class="font-noto won"><b>원</b></div>
-						</div></li>
-						<li><div class="income-out">
-							<div class="income-out-div">
-								<div class="font-noto">회원 보유캐시</div>
+							<div class="menu-line" style="text-align:center;border-bottom:solid #E6E6E6 1px;">
+								<a href=""><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
+									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
+									<h6>판매관리</h6>							
+								</div></a>
+								<a href=""><div class="padding-all-15 menu-slot">
+									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
+									<h6>수익관리</h6>			
+								</div></a>
 							</div>
-							<div class="font-noto won"><b>원</b></div>
-						</div></li>
-					</ul>
+						</div>
+					</div>
+					
 				</div>
-				<div class="width-75per">
+				
+			</div>
+			<div class="scontainer3 width-75per" style="float:left">
+				<div class="padding-15">
+					<h3 class="font-noto">판매관리</h3>
 				</div>
+				<div style="margin-top:20px">
+					<div class="padding-15">
+						<ul class="sell-ing">
+							<li>
+								<a href="">요청사항 미작성 &nbsp; <span class="selling-history">0</span></a>
+							</li>
+							<li>
+								<a href="">진행중 &nbsp; <span class="selling-history">0</span></a>
+							</li>
+							<li>
+								<a href="">발송중 &nbsp; <span class="selling-history">0</span></a>
+							</li>
+							<li>
+								<a href="">완료 &nbsp; <span class="selling-history">0</span></a>
+							</li>
+							<li>
+								<a href="">취소 &nbsp; <span class="selling-history">0</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div style="margin-top:20px">
+					<div class="padding-15 font-noto">
+						<div class="ui right action left icon input">
+					  <i class="search icon"></i>
+					  <input type="text" placeholder="검색">
+					  <div class="ui basic floating dropdown button">
+					    <div class="text">닉네임</div>
+					    <i class="dropdown icon"></i>
+					    <div class="menu">
+					      <div class="item">This Organization</div>
+					      <div class="item">Entire Site</div>
+					    </div>
+					  </div>
+					</div>
+					<script>
+            			$('.ui.dropdown').dropdown();
+        			</script>
+					</div>
+				</div>
+				<div>
+					<div class="padding-15" style="margin-top:10px">
+						<div class="detail-box">
+							<div class="detail-list">
+								<div><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
+								<h5 class="font-noto" style="margin:10px 0;">내역이 없습니다.</h5>
+							</div>
+						</div>
+					</div>
+				</div>	
 			</div>
 		</div>
 	</div>
+	<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>

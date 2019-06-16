@@ -107,9 +107,6 @@ div.head_input{
 }
 
 .right-head{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
     width: 58.33333%;
     height: 80px;
 }
@@ -122,10 +119,9 @@ div.head_input{
 
 .info{
     font-size: 14px;
-    width: 303.766px;
-    height: 61.75px;
+	float:right;
 }
-.info div{
+.info>div{
     display: inline-block;
 }
 div a{
@@ -229,6 +225,9 @@ nav{
 .talent-category{
 	background : #fff;
 }
+.mylog a>div{
+	display:inline-block;
+}
 </style>
 </head>
 <body>
@@ -251,10 +250,16 @@ nav{
                         </div>
                     </div>
                     <div class="right-head paddinghead">
-                        <div class="info flex-center">
+                        <div class="info">
                             <div class="padding-20px"><a href="/">판매 시작하기</a></div>
-                            <div class="padding-15px"><a href="/">로그인</a></div>
-                            <div class="padding-15px"><a class="btn" href="/">무료 회원가입</a></div>
+                            <div class="padding-15px"><a href="/">구매</a></div>
+                            <div class="padding-15px"><a href="/">메시지</a></div>
+                            <div class="padding-15px"><a href="/">찜한 서비스</a></div>
+                            <div class="mylog padding-15px"><a href="/">
+                            	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important;"/></div>
+                            	<div><h5>회원닉네임</h5></div>
+                            	</a></div>
+                            
                         </div>
                     </div>
                 </div>
