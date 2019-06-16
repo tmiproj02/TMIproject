@@ -256,7 +256,7 @@ nav{
                             <div class="padding-15px"><a href="/">메시지</a></div>
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>
                             <div class="mylog padding-15px"><a href="/">
-                            	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important;"/></div>
+                            	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important; vertical-align: middle;"/></div>
                             	<div><h5>회원닉네임</h5></div>
                             	</a></div>
                             

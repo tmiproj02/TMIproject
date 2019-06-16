@@ -52,6 +52,7 @@
 		border: solid #E6E6E6 1px;
 		border-bottom:none;
 		text-align : center;
+		padding-top : 20px;
 	}
 	.user-profile-box>li{
 		border: solid #E6E6E6 1px;
@@ -173,7 +174,7 @@
 					<div class="profile">
 						<div class="padding-15">
 						<div class="user-profile-body">
-							<img src="/semi/resources/images/myprofile.png" alt="" />
+							<img src="/semi/resources/images/myprofile.png" style="border-radius: 500px;width:100px;height:100px"/>
 						</div>
 						<ul class="user-profile-box">
 							<li style=" border-top:none;"><div style="text-align : center; margin-bottom:20px;">
