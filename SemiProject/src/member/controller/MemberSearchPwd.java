@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
@@ -32,7 +34,7 @@ public class MemberSearchPwd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("sEmail");
 		String userName = request.getParameter("sName");
-		String memberSSN = String.join("-", request.getParameter("sSsn1"),request.getParameter("sSsn2"));
+		String memberSSN = String.join("-", request.getParameter("sSSN1"),request.getParameter("sSSN2"));
 		
 		Member m = new Member();
 		
@@ -43,11 +45,13 @@ public class MemberSearchPwd extends HttpServlet {
 		String result = ms.searchPwd(m);		
 		
 		if(result != null) {
-			request.setAttribute("email", result);
-			request.getRequestDispatcher("views/searchPwdSuccess.jsp").forward(request, response);
+			response.setContentType("application/json; charset=UTF-8");
+			new Gson().toJson(result, response.getWriter());
+		
 		} else {
-			request.setAttribute("msg", "해당되는 이메일이 없습니다.");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			String resultMsg = "입력하신 정보와 일치하는 계정이 없습니다.";
+			response.setContentType("application/json; charset=UTF-8");
+			new Gson().toJson(resultMsg, response.getWriter());
 		}
 		
 	}

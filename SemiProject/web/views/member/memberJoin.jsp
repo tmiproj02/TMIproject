@@ -95,6 +95,7 @@
 <script>
 
 	var emailDupCheckNum = -1;
+	
 	// SNS 가입 시 이메일 자동 채움 함수
 	$(function(){
 		var email = "<%=request.getParameter("email")%>";
@@ -112,7 +113,7 @@
 			 $('#isSNS').attr('value','Y');
 			 
 			 // 이메일 중복확인 유효성체크
-			 this.emailDupCheckNum = 0;
+			 window.emailDupCheckNum = 0;
 		}
 		
 	 });
@@ -130,10 +131,10 @@
 					if(isDup == 1){
 						alert("이미 사용 중인 이메일입니다!");
 						$('#email').val("").select();
-						emailDupCheckNum = 1;
+						window.emailDupCheckNum = 1;
 						return false;
 					}else{
-						emailDupCheckNum = 0;
+						window.emailDupCheckNum = 0;
 						alert("사용 가능한 이메일입니다.");
 						return true;
 					}
@@ -227,7 +228,7 @@
 			var ssn2 = $('#memberSSN2').val();
 			
 			
-			
+			console.log("서브밋 시점의 듀프체크 값 : " + emailDupCheckNum);
 			// 이메일 중복 체크
 			if(emailDupCheckNum == 1){
 				alert("이미 사용 중인 이메일입니다!");

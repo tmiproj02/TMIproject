@@ -44,21 +44,28 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			m = ms.selectMemeber(m);
-			if(m.getEmailVerification().equals("0")) {
-				request.setAttribute("msg", "메일인증이 되지않은 계정입니다.");
-				request.getRequestDispatcher("views/loginFail.jsp").forward(request, response);
-			} else {
+			
+			// 관리자 계정일 경우 관리자 페이지로 보낸다.
+			if(m.getEmail().equals("tmicor@naver.com")) {
+				System.out.println("관리자 계정 로그인");
+				HttpSession session = request.getSession();
+				session.setAttribute("admin", m);
+				response.sendRedirect("views/adminPages/gentelella-master/production/memberManage.jsp");
+			}// 관리자가 아닐 경우 메일인증 여부 확인
+			else if(m.getEmailVerification().equals("0")) {
+				request.setAttribute("errorMsg", "메일인증이 되지않은 계정입니다.");
+				request.getRequestDispatcher("views/LoginForm.jsp").forward(request, response);
+			} else { // 메일인증 된 회원이면 로그인
 			HttpSession session = request.getSession();
 			session.setAttribute("member", m);
 			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);
 			}
 			
+		  // 아이디 & 비밀번호가 틀릴 경우 에러메세지
 		} catch (Exception e) {
 			request.setAttribute("errorMsg", "아이디 또는 비밀번호를 다시 확인하세요.<br> TMI에 등록되지 않은 아이디이거나, 비밀번호를 잘못 입력하셨습니다.");
 			request.getRequestDispatcher("views/LoginForm.jsp").forward(request, response);
-			
-			// 로그인 실패!
 		
 		}
 		
