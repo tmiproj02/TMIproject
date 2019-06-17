@@ -1,6 +1,7 @@
 package member.model.service;
 
 import static member.common.JDBCTemplete.close;
+
 import static member.common.JDBCTemplete.commit;
 import static member.common.JDBCTemplete.getConnection;
 import static member.common.JDBCTemplete.rollback;
