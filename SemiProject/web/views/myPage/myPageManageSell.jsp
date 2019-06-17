@@ -114,12 +114,7 @@
 	.menu-box img{
 		width : 40px;
 	}
-	.menu-box{
 	
-	}
-	.menu-box>div>div{
-
-	}
 	.padding-all-15{
 		padding : 15px;
 	}
