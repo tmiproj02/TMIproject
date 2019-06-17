@@ -93,6 +93,12 @@ public class Member implements Serializable {
 		this.userPwd = userPwd;
 		this.phone = phone;
 	}
+	
+	// 캐시 충전할 때 사용할 생성자
+	public Member(int cash) {
+		super();
+		this.cash = cash;
+	}
 
 	
 

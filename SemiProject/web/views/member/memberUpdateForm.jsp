@@ -18,11 +18,8 @@
 <script src="/semi/resources/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<%@ include file="../common/myHeader.jsp" %>
+	<%@ include file="../common/cateheader2.jsp" %>
 	
-	<nav style="background-color:gold">
-    	<h1>계정 설정</h1>
-    </nav>
 	
 	<section>
 	<h3>기본 정보</h3>
