@@ -42,7 +42,7 @@ public class MemberDeleteServlet extends HttpServlet {
 		MemberService ms = new MemberService();
 		int result = ms.deleteMember(userEmail);
 		
-		if(result >0) {
+		if(result > 0) {
 			// 회원 삭제 성공
 	
 			RequestDispatcher view = request.getRequestDispatcher("index.jsp");

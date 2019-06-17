@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 	
 		Member m = new Member(userEmail,userPwd);
 		m.setIsSNS(isSNS);
-		System.out.println("로그인 시 isSNS: " + m.getIsSNS());
+		
 		
 		MemberService ms = new MemberService();
 		
@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 				System.out.println("관리자 계정 로그인");
 				HttpSession session = request.getSession();
 				session.setAttribute("admin", m);
-				response.sendRedirect("views/adminPages/gentelella-master/production/memberManage.jsp");
+				response.sendRedirect("memberSelect");
 			}// 관리자가 아닐 경우 메일인증 여부 확인
 			else if(m.getEmailVerification().equals("0")) {
 				request.setAttribute("errorMsg", "메일인증이 되지않은 계정입니다.");
