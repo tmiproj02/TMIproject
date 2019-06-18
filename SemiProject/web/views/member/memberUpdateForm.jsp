@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.model.vo.*" %>
-
-<% Member m = (Member)session.getAttribute("member"); %>
-
+<%@ page import="member.model.vo.Member"%>
+<% 
+	Member m = (Member)session.getAttribute("member");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 <script src="/semi/resources/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<%@ include file="../common/cateheader2.jsp" %>
+	<%@ include file="../common/cateheader1.jsp" %>
 	
 	
 	<section>

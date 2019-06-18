@@ -34,6 +34,10 @@
 	</h3>
 	
 	<h3>
+		<a href="views/myPage/myPageManageSell.jsp">5. 판매 관리</a>
+	</h3>
+	
+	<h3>
 		<a href="/semi/logout.do">로그아웃 하기 </a>
 	</h3>
 	
