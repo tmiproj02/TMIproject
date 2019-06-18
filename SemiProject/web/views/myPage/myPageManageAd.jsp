@@ -257,7 +257,7 @@
 								<div class="income-out-div">
 									<div class="font-noto">출금가능 수익금</div>
 								</div>
-								<div class="font-noto won"><b>원</b></div>
+								<div class="font-noto won"><b><%=s.getIncome() %>원</b></div>
 							</div></li>
 							<li><div class="income-out">
 								<div class="income-out-div">
