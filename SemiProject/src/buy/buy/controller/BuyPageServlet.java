@@ -1,6 +1,7 @@
-package buy.controller;
+package buy.buy.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import buy.model.exception.BoardException;
-import buy.model.service.BoardService;
-import buy.model.vo.Board;
+import buy.buy.model.exception.BoardException;
+import buy.buy.model.service.BoardService;
+import buy.buy.model.vo.Board;
+import buy.comment.model.service.BoardCommentService;
+import buy.comment.model.vo.BoardComment;
 
 /**
  * Servlet implementation class BuyPageServlet
@@ -36,15 +39,23 @@ public class BuyPageServlet extends HttpServlet {
 		
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		
-		Board b = new Board();
+		Board b;
 		String page = "";
 		
 		BoardService bs = new BoardService();
 		
 
-		page = "views/board/boardDetail.jsp";
-		request.setAttribute("board", b);
+		try {
+			b = new BoardService().selectOne(bno);
+			page = "views/board/boardDetail.jsp";
+			request.setAttribute("board", b);
+			request.setAttribute("clist", clist);
+		} catch (BoardException e) {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시글 상세 보기 실패");
+		}
 
 		
 		

@@ -1,4 +1,4 @@
- package buy.model.vo;
+ package buy.buy.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;

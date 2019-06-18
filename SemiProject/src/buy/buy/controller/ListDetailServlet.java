@@ -1,4 +1,4 @@
-package buy.controller;
+package buy.buy.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import buy.model.exception.BoardException;
-import buy.model.service.BoardService;
-import buy.model.vo.Board;
+import buy.buy.model.exception.BoardException;
+import buy.buy.model.service.BoardService;
+import buy.buy.model.vo.Board;
 
 
 

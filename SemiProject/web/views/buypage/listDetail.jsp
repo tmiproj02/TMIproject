@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="buy.buy.model.vo.* ,buy.comment.model.vo.*, java.util.*" %>
+<%@ page import="buy.buy.model.vo.* ,buy.comment.model.vo.*, java.util.*, member.model.vo.*" %>
 
 <% Board b = (Board)request.getAttribute("board"); 
-ArrayList<BoardComment> clist = (ArrayList<BoardComment>)request.getAttribute("clist");%>
+ArrayList<BoardComment> clist = (ArrayList<BoardComment>)request.getAttribute("clist");
+Member m = (Member)request.getAttribute("userName");%>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,6 @@ ArrayList<BoardComment> clist = (ArrayList<BoardComment>)request.getAttribute("c
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
 
-<link rel="stylesheet" href="../resources/css/listDetail.css">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
 
 <title>Insert title here</title>
@@ -178,6 +178,7 @@ $( document ).ready( function() {
 </head>
 <body>
 
+<%@ include file="../common/cateheader1.jsp" %>
 
 <section class="detailbox container1 clearFix">
 	<div class="detailbox1">
@@ -334,43 +335,8 @@ $( document ).ready( function() {
 	 		</div>
 	 		
 	 		<div class="tabcontent4" style="margin-bottom:1000px;">
-	 		<p>서비스 설명
-1. 기업부설연구소/연구개발전담부서/디자인연구소 인증 컨설팅을 해드립니다. <br>
-
-기업부설연구소/연구개발전담부서/디자인연구소 인증을 통해 법인기업 및 개인사업자의 <br>
-
-세금혜택 외에도 각종 정부지원사업 지원 및 기업평가시 가산점을 획득할 수 있으나<br>
-
-설립요건 및 인증 심사의 까다로움으로 전문가의 도움을 받는것이 필요합니다.<br>
-
-* 오랜기간 전문인력이 부족한 중소기업을 위해 각종기업인증(연구소,벤처,이노비즈 등) 및<br>
-
-정책자금 컨설팅을 수행해 온 경험과 노하우로 최소의 비용으로 최적의 컨설팅을 약속<br>
-
-드립니다.<br>
-
-* 연구소설립시 지원혜택 : https://www.koita.or.kr/certificate/rndsupport.aspx <br>
-
-
-
-2. 컨설팅 절차<br>
-
-(1) 전화상담 : 기업의 대략적인 정보와 현황 파악<br>
-
-(2) 자료수령 : 인증에 필요한 서류를 이메일로 수령<br>
-
-(3) 방문상담 및 실사 : 고객사를 방문하여 구체적인 상담 및 실사 후 인증업무 진행<br>
-
-(4) 인증완료 : 인증서 발급 및 사후관리 안내<br>
-
-
-
-3. 컨설팅비용<br>
-
-550,000원(수도권 기준이며 지역에따라 별도의 출장비 발생할 수 있음)<br>
-
-전화상담은 횟수 제한없이 가능합니다.</p>
-	      		<%-- <div id="replySelectArea">
+	 		
+	      		<div id="replySelectArea">
       		<!-- 게시글의 댓글을 보여주는 부분 -->
       		<% if (clist != null){%>
       			<% for(BoardComment bco : clist){ %>
@@ -380,7 +346,7 @@ $( document ).ready( function() {
 	               <td><b><%= bco.getCwriter() %></b></td>
 	               <td><%= bco.getCdate() %></td>
 	               <td align="center">
-	               <%if(m.getUserId().equals(bco.getCwriter())) { %>
+	               <%if(m.getUserName().equals(bco.getCwriter())) { %>
 	                  <input type="hidden" name="cno" value="<%=bco.getCno()%>"/>
 	                       
 	                  <button type="button" class="updateBtn" 
@@ -393,23 +359,12 @@ $( document ).ready( function() {
 	                  <button type="button" class="deleteBtn"
 	                     onclick="deleteReply(this);">삭제하기</button>
 	                     
-	               <% } else if( bco.getClevel() < 3) { %>
-	                  <input type="hidden" name="writer" value="<%=m.getUserId()%>"/>
-	                  <input type="hidden" name="refcno" value="<%= bco.getCno() %>" />
-	                  <input type="hidden" name="clevel" value="<%=bco.getClevel() %>" />
-	                  <button type="button" class="insertBtn" 
-	                      onclick="reComment(this);">댓글 달기</button>&nbsp;&nbsp;
-	                      
-	                  <button type="button" class="insertConfirm"
-	                     onclick="reConfirm(this);"
-	                     style="display:none;" >댓글 추가 완료</button> 
-	                     
-	               <% } else {%>
+	              <% } else {%>
 	                  <span> 마지막 레벨입니다.</span>
 	               <% } %>
 	               </td>
 	            </tr>
-	            <tr class="comment replyList<%=bco.getClevel()%>">
+	            <tr class="comment replyList">
 	               <td colspan="3" style="background : transparent;">
 	               <textarea class="reply-content" cols="105" rows="3"
 	                readonly="readonly"><%= bco.getCcontent() %></textarea>
@@ -420,11 +375,11 @@ $( document ).ready( function() {
       		 <p>현재 등록된 댓글이 없습니다.</p>
       		<%} %>
          </div>
-         <--%>
+         
 	 		</div> 
-		</div>
 		
-	
+		
+	</div>
 	</div>
 	
 	

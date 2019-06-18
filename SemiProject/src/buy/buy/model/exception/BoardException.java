@@ -1,4 +1,4 @@
-package buy.model.exception;
+package buy.buy.model.exception;
 
 public class BoardException extends Exception {
 	

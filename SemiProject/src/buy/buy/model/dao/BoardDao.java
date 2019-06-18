@@ -1,6 +1,6 @@
-package buy.model.dao;
+package buy.buy.model.dao;
 
-import static buy.common.JDBCTemplate.close;
+import static buy.buy.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,11 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import buy.model.exception.BoardException;
+import buy.buy.model.exception.BoardException;
 
-import buy.model.dao.BoardDao;
+import buy.buy.model.dao.BoardDao;
 
-import buy.model.vo.Board;
+import buy.buy.model.vo.Board;
 
 public class BoardDao {
 	

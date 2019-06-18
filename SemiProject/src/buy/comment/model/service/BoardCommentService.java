@@ -1,11 +1,12 @@
-package comment.model.service;
+package buy.comment.model.service;
+
+import static buy.buy.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import static buy.common.JDBCTemplate.*;
-import comment.model.dao.BoardCommentDao;
-import comment.model.vo.BoardComment;
+import buy.comment.model.dao.BoardCommentDao;
+import buy.comment.model.vo.BoardComment;
 
 public class BoardCommentService {
 private BoardCommentDao bcDao = new BoardCommentDao();

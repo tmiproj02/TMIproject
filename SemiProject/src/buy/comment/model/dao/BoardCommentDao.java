@@ -1,6 +1,6 @@
-package comment.model.dao;
+package buy.comment.model.dao;
 
-import static buy.common.JDBCTemplate.close;
+import static buy.buy.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,9 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import comment.model.dao.*;
+import buy.comment.model.dao.*;
 
-import comment.model.vo.BoardComment;
+import buy.comment.model.vo.BoardComment;
 
 public class BoardCommentDao {
 	

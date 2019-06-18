@@ -1,14 +1,14 @@
-package buy.model.service;
+package buy.buy.model.service;
 
-import static buy.common.JDBCTemplate.*;
+import static buy.buy.common.JDBCTemplate.*;
 
 
 import java.sql.Connection;
 
 
-import buy.model.dao.BoardDao;
-import buy.model.exception.BoardException;
-import buy.model.vo.Board;
+import buy.buy.model.dao.BoardDao;
+import buy.buy.model.exception.BoardException;
+import buy.buy.model.vo.Board;
 
 
 public class BoardService {

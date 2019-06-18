@@ -1,4 +1,4 @@
-package comment.model.vo;
+package buy.comment.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
