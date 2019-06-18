@@ -140,38 +140,21 @@
       </div>
     </div>
   
-
+	<label id="test">아아</label>
 </body>
 	
 	<script>
-		function deleteFn(){
-		console.log($(this).next('td'));
-			console.log("와아");
-			/* $.ajax({
-				url : "mDelete.admin",
-				type : "get",
-				data : {email : $(this).parent().nth-child(2).val() }
-				
-				
-				
-			}); */
-			
-			
-		}
+		$('#test').html("와아아아");
 	
+		
+		
 	
 	</script>
 
 
 
-
-
-
-
-
-
    <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/semi/resources/js/jquery-3.4.1.min.js"></script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->

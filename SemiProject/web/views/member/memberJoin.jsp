@@ -24,7 +24,7 @@
 
 <style>
 
-	input{margin-bottom: 18px;}
+	input{margin-bottom: 9px;}
 	.term-box{
 		width:350px;
 		height:150px;
@@ -43,14 +43,14 @@
 	</nav>
 	
 	
-  <div id="memberJoinContainer" style="width:900px; height:500px; margin:0 auto; display:flex; position: absolute; top:20%;left:50%; margin-left:-450px; margin-top:10px;">
+  <div id="memberJoinContainer" style="width:900px; height:500px; margin:0 auto; display:flex; position: absolute; top:20%;left:50%; margin-left:-450px;">
   	
   	<div id="form-container" style="width:500px;border-right:1px solid gray; margin-right:40px; padding-right:20px; ">
 		<form action="/semi/mInsert.do" method="post" onsubmit="return validate();">
 				
 				<label>이메일</label><br>
 				<input type="email" name="email" id="email" style="width :300px; height:40px; display:inline-block;" required="required" placeholder="이메일을 입력해주세요" class="form-control"/>
-				<button id="emailDupCheckBtn" style="margin: -2px 0px 0px 15px; height:40px;" class="btn btn-primary">중복 확인</button>
+				<button id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px;" class="btn btn-primary">중복 확인</button>
 				<input type="hidden" name="isSNS" id="isSNS" value="N">
 				<label>비밀번호</label><br>
 				<input type="password" name="userPwd" id="userPwd" style="width : 200px;  height:40px;" required="required" placeholder="비밀번호를 입력해주세요" class="form-control"/>
@@ -60,9 +60,12 @@
 				<label>이름</label>
 				<input type="text" name="userName" style="width : 80px; height:30px;" required="required" class="form-control"/>
 		     	<label>주민등록번호</label><br>
-			    <input type="text" name="memberSSN1" id="memberSSN1" style="width :85px; height:30px; display:inline; margin-bottom:0px;" required="required" class="form-control"/> - <input type="password" name="memberSSN2" id="memberSSN2" style="width : 85px; height:30px; display:inline; margin-bottom:0px;" required="required" class="form-control"/>
-				<br>
-				<label id="ssnResult"></label><br>
+			    <input type="text" name="memberSSN1" id="memberSSN1" style="width :85px; height:30px; display:inline; margin-bottom:0px;" required="required" class="form-control"/> - <input type="password" name="memberSSN2" id="memberSSN2" style="width : 85px; height:30px; display:inline; margin-bottom:0px;" required="required" class="form-control"/><br>
+			    <label id="ssnResult"></label><br>
+			    <label>닉네임</label><br>
+			    <input type="text" name="nickName" id="nickName" class="form-control" required="required" style="width:110px;height:30px;"/>
+				
+				
 				<label>연락처</label>
 				<br>
 				<input type="tel" name="phone1" required="required" style="width:65px; height:30px; display:inline;" class="form-control"/>&nbsp- &nbsp<input type="tel" name="phone2" required="required" style="width:65px; height:30px; display:inline;" class="form-control"/>&nbsp-&nbsp<input type="tel" name="phone3" required="required" style="width:65px; height:30px; display:inline;" class="form-control"/>
@@ -274,6 +277,8 @@
 						$('#submitBtn').attr('disabled',true);		
 					}
 		}
+		
+		$('#test').html("와아아아");
 </script>
 
 
