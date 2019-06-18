@@ -7,7 +7,13 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+<link rel="stylesheet" href="../dist/css/swiper.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+
 <title>디자인 카테고리 페이지</title>
+
 <style>
 *{
 	font-family: 'Noto Sans KR', sans-serif;
@@ -22,27 +28,27 @@
 }
 .content1{
 	width : 1200px;
-	height:280px;
 	margin:0 auto;
 	background: #f3f4f8;;
-	padding: 20px 15px;
-
+	padding:15px;
+	display: inline-block;
 }
 .content1>div{
 	display: inline-block;
+	float:left;
+	
 }
 .use{
 	width:190px;
-	padding: 5px 10px; 
+	padding: 8px 10px; 
 	border: 1px solid #d2d5e3; 
 	text-align:center;
 	background: #fff;
     border-radius: 2px;
-    margin-botton: 30px;
 }
 .usestep{
-	width:220px;
-	padding-top:15px;
+	width:210px;
+	padding-top:5px;
 }
 .row1>div{
 	display: inline-block;
@@ -50,20 +56,24 @@
 .row2>div{
 	display: inline-block;
 }
-.row2>div{
+.row3>div{
 	display: inline-block;
 }
 .right-side{
 	margin: 0 auto;
 }
 .coupon{
-	width: 174px;
-	height: 80px;
+	
 	border: 1px solid #d2d5e3; 
 	text-align:center;
 	background: #fff;
     border-radius: 2px;
 }
+.coupon>div{
+	display: inline-block;
+	 margin:0 auto;
+}
+
 .content2{
 	width: 1200px;
     margin: 0 auto;
@@ -103,6 +113,29 @@
     margin:0;
 }
 
+ .swiper-container {
+      width:650px;
+      height:230px;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+    
 
 </style>
 </head>
@@ -113,7 +146,7 @@
 <div class="section1">
 	<div class="section2">
 		<div class="content1">
-			<div class="c1" style="width:20%; padding: 15px; ">
+			<div class="c1" style="padding: 10px; width:20%;">
 				
 					<div class="use"><b>TMI 이용방법</b></div>
 					<div class="usestep">
@@ -135,11 +168,11 @@
 								<div class="step2" style="font-size:12px;">판매금액에 맞춰 주문하세요.</div>
 							</div>
 						</div>
-						<div class="row3" style="padding:10px;">
-							<div class="list1" style="margin-right:10px; float:left">
+						<div class="row3" style="padding:10px; ">
+							<div class="list1" style="margin-right:10px;">
 								<img src="/semi/resources/images/bat.png" style="width:30px; height:30px;">
 							</div>
-							<div class="list2" style="float:left">
+							<div class="list2">
 								<div class="step1" style="font-size:14px;"><b>작업물 받기</b></div>
 								<div class="step2" style="font-size:12px;">최종 작업물을 받으세요.</div>
 							</div>
@@ -148,12 +181,47 @@
 				
 			</div>
 			
-			<div class="c2" style="wfidth:60%; padding: 15px; ">
-				
-				  
-			</div>
 			
-			<div class="c3" style="width:20% padding: 15px; ">
+			
+			
+			
+			<div class="c2" style="padding: 5px; width:60%">
+					<div class="swiper-container">
+					    <div class="swiper-wrapper">
+					      <div class="swiper-slide">Slide 1</div>
+					      <div class="swiper-slide">Slide 2</div>
+					      <div class="swiper-slide">Slide 3</div>
+					    </div>
+					    <!-- Add Pagination -->
+					    <div class="swiper-pagination"></div>
+					    <!-- Add Arrows -->
+					    <div class="swiper-button-next" style="color:#red;"></div>
+					    <div class="swiper-button-prev"></div>
+					  </div>
+					
+					  <!-- Swiper JS -->
+					  <script src="../dist/js/swiper.min.js"></script>
+					
+					  <!-- Initialize Swiper -->
+					  <script>
+					    var swiper = new Swiper('.swiper-container', {
+					      slidesPerView: 1,
+					      spaceBetween: 30,
+					      loop: true,
+					      pagination: {
+					        el: '.swiper-pagination',
+					        clickable: true,
+					      },
+					      navigation: {
+					        nextEl: '.swiper-button-next',
+					        prevEl: '.swiper-button-prev',
+					      },
+					    });
+					  </script>
+			</div>		
+			
+			
+			<div class="c3" style="padding: 5px; width:20%">
 				<div class="right-side">
 					<div class="user" style="padding:10px;">
 						<div class="user1" style="font-size:16px; margin-bottom: 5px;"><b>반가워요!</b></div>
@@ -161,30 +229,32 @@
 					</div>
 					<div class="progress" style="padding:10px;">
 						<div class="progress1" style="font-size:14px; margin-bottom: 5px;">안 읽은 메세지 
-							<a href="" style="margin-left: 34px;">
+							<a href="" style="margin-left: 49px;">
 							<span style="color:#f1c40f;">0</span>
 							</a>건
 						</div>
 						<div class="progress2" style="font-size:14px; margin-bottom: 5px;">구매 진행중 
-						<a href="" style="margin-left: 50px;">
+						<a href="" style="margin-left: 65px;">
 							<span style="color:#f1c40f;">0</span>
 							</a>건
 						</div>
 						<div class="progress3" style="font-size:14px; margin-bottom: 5px;">판매 진행중 
-						<a href="" style="margin-left: 50px;">
+						<a href="" style="margin-left: 65px;">
 							<span style="color:#f1c40f;">0</span>
 							</a>건
 						</div>
 					</div>
-					<div class="coupon" >
-						<div class="coupon1" style="margin-right:10px;">
-							 <img src="/semi/resources/images/pic.jpg" style="width:40px; height:40px;">
+					<a href="">
+					<div class="coupon" style="padding:15px;text-align:center">
+						<div class="coupon1" style="vertical-align:middle;margin-right:10px;">
+							 <img src="/semi/resources/images/pic.jpg" style="width:40px; height:40px;  border-radius: 8px; vertical-align:middle;">
 						</div>
-						<div class="coupon2" style="float:left">
+						<div class="coupon2" style="vertical-align:middle;">
 							<div class="step1" style="font-size:14px;">친구초대하면</div>
 							<div class="step2" style="font-size:16px;"><b>5,000원</b>할인</div>
 						</div>
 					</div>
+					</a>
 				</div>
 			</div>
 		</div>
