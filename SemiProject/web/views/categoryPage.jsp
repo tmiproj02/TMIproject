@@ -22,7 +22,7 @@
 .sbody{
 	width : 1200px;
 	margin:0 auto;
-position: relative;
+	position: relative;
 	z-index: 1;
 	
 }
@@ -43,16 +43,13 @@ position: relative;
 .cb3{
 	text-align:right;
 	margin-top: 50px;
-	z-index:999;
-}
-.cb3 div{
-	
+	z-index:0;
 }
 
 .scontent{
 	margin:0 auto;
 	background:transparent;
-	z-index:1;
+	
 }
 .left-menu{
 	width:18%;

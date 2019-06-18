@@ -341,7 +341,7 @@ footer{
 
                 <div class="category">
                     <ul>
-                        <li><a href="../serviceCategoryPage.jsp">
+                        <li><a href="../categoryPage.jsp">
                             <img src="/semi/resources/images/edit.png"> <br>
                             <span>디자인</span>
                         </a></li>
