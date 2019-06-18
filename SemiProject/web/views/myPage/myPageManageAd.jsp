@@ -263,7 +263,7 @@
 								<div class="income-out-div">
 									<div class="font-noto">회원 보유캐시</div>
 								</div>
-								<div class="font-noto won"><b>원</b></div>
+								<div class="font-noto won"><b><%= m.getCash() %>원</b></div>
 							</div></li>
 						</ul>
 					</div>

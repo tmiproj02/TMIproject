@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.Member"%>
+<% 
+	Member m = (Member)session.getAttribute("member");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>cateheader1</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <style>
@@ -107,9 +109,6 @@ div.head_input{
 }
 
 .right-head{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
     width: 58.33333%;
     height: 80px;
 }
@@ -122,10 +121,9 @@ div.head_input{
 
 .info{
     font-size: 14px;
-    width: 303.766px;
-    height: 61.75px;
+	float:right;
 }
-.info div{
+.info>div{
     display: inline-block;
 }
 div a{
@@ -229,6 +227,9 @@ nav{
 .talent-category{
 	background : #fff;
 }
+.mylog a>div{
+	display:inline-block;
+}
 </style>
 </head>
 <body>
@@ -251,11 +252,24 @@ nav{
                         </div>
                     </div>
                     <div class="right-head paddinghead">
+                        <% if(m == null){ %>
                         <div class="info flex-center">
                             <div class="padding-20px"><a href="/">판매 시작하기</a></div>
                             <div class="padding-15px"><a href="/">로그인</a></div>
                             <div class="padding-15px"><a class="btn" href="/">무료 회원가입</a></div>
                         </div>
+                        <%} else{ %>
+                        <div class="info">
+                            <div class="padding-20px"><a href="/">판매 시작하기</a></div>
+                            <div class="padding-15px"><a href="/">구매</a></div>
+                            <div class="padding-15px"><a href="/">메시지</a></div>
+                            <div class="padding-15px"><a href="/">찜한 서비스</a></div>
+                            <div class="mylog padding-15px"><a href="/">
+                            	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important; vertical-align: middle;"/></div>
+                            	<div><h5><%= m.getUserName() %></h5></div>
+                            	</a></div>
+                        </div>
+                        <%} %>
                     </div>
                 </div>
             </div>

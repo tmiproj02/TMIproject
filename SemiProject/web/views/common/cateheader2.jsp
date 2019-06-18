@@ -290,6 +290,7 @@ nav{
 	                            <li><a href="/semi/views/myPage/myPageManageAd.jsp">광고등록</a></li>
 	                        </ul>
                         </li>
+                        
                         <li clase="talent-category">
                         	<div class="cate" id="cate3"><a href="">메시지</a></div>
                         </li>

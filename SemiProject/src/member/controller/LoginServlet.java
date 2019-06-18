@@ -56,10 +56,17 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("errorMsg", "메일인증이 되지않은 계정입니다.");
 				request.getRequestDispatcher("views/LoginForm.jsp").forward(request, response);
 			} else { // 메일인증 된 회원이면 로그인
-			HttpSession session = request.getSession();
-			session.setAttribute("member", m);
-			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-			view.forward(request, response);
+				if(m.getIsSeller()=="Y") {
+					HttpSession session = request.getSession();
+					session.setAttribute("member", m);
+					RequestDispatcher view = request.getRequestDispatcher("/semi/seller.do");
+					view.forward(request, response);
+				}else {
+					HttpSession session = request.getSession();
+					session.setAttribute("member", m);
+					RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+					view.forward(request, response);
+				}
 			}
 			
 		  // 아이디 & 비밀번호가 틀릴 경우 에러메세지
