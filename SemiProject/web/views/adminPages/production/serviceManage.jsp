@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="admin.serviceManage.model.service.SellerBoard" %>
+    
+<%
+	ArrayList<SellerBoard> sList = (ArrayList<SellerBoard>)session.getAttribute("sList");	
+	System.out.println("jsp상 sList : " + sList);
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,150 +108,7 @@
                      
                       
                         </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                         <tr>
-                          <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
-                          <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
-                     
-                      
-                        </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                         <tr>
-                          <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
-                          <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
-                     
-                      
-                        </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                         <tr>
-                          <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
-                          <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
-                     
-                      
-                        </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                         <tr>
-                          <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
-                          <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
-                     
-                      
-                        </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
+                    
                        
                       </tbody>
                     </table>

@@ -32,7 +32,7 @@ public class MemberSelectServlet extends HttpServlet {
 			MemberManageService mms = new MemberManageService();
 			mList = mms.selectMember();
 			page = "views/adminPages/production/memberManage.jsp";
-			System.out.println("서블릿의 mList : " + mList);
+	
 			request.setAttribute("mList", mList);
 			
 			}catch(Exception e ){

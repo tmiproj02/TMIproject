@@ -117,9 +117,9 @@ public class MemberDao {
 					// 1. 결과를 행의 순서대로 가져올 경우( 1, 2, 3 . . .) 
 					// 2. 컬럼명으로 직접 선언하여 가져오는 경우
 												// 3번째 컬럼 값을 가져온다
-					result.setUserName(rset.getString("nickname"));
+					result.setUserName(rset.getString("userName"));
 											// 컬럼명으로 가져온다
-					
+					result.setNickName(rset.getString("nickName"));
 					result.setPhone(rset.getString("phone"));
 					result.setEnrollDate(rset.getDate("enrollDate"));
 					result.setEmailVerification(rset.getString("emailYN"));
@@ -252,12 +252,10 @@ public class MemberDao {
 				pstmt.setString(1, m.getUserName());
 				pstmt.setString(2, m.getMemberSSN());
 				
-				System.out.println("DAO 입니다.");
 				rset = pstmt.executeQuery();
-				System.out.println(rset);
 				if (rset.next()) {
 					result = rset.getString("email");
-					System.out.println(result);
+					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -5,7 +5,7 @@
     
 <%
 	ArrayList<Member> mList = (ArrayList<Member>)session.getAttribute("mList");	
-	System.out.println("jsp상 mList : " + mList);
+	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -86,7 +86,7 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>이메일</th>
+                          <th >이메일</th>
                           <th>닉네임</th>
                           <th>작성한 게시물 수</th>
                           <th>가입일자</th>
@@ -101,12 +101,12 @@
                       	
                         <tr>
                           <td>1</td>
-                          <td><%=m.getEmail()%></td>
-                          <td><%=m.getUserName()%></td>
+                          <td class="email"><%=m.getEmail()%>123</td>
+                          <td><%=m.getUserName()%>123</td>
                           <td>30</td>
                           <td><%=m.getEnrollDate()%></td>
                           <td class="a-right a-right "> <a class="btn btn-primary btn-xs" ><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last"><a class="btn btn-danger btn-xs" onclick="deleteFn()"><i class="fa fa-trash-o"></i> 삭제 </a>
+                          <td class=" last"><a class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
                      
                         </tr>
                     	
@@ -140,21 +140,12 @@
       </div>
     </div>
   
-	<label id="test">아아</label>
+
 </body>
 	
-	<script>
-		$('#test').html("와아아아");
 	
-		
-		
-	
-	</script>
-
-
-
    <!-- jQuery -->
-    <script src="/semi/resources/js/jquery-3.4.1.min.js"></script>
+  <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -206,9 +197,41 @@
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    
+    <script>
+    	$(function(){
+    		  $('a').on('change',function(){
+    			  
+    				console.log($(this).parent('tr').children().val());
+    			  });
+    		  
+    	});
+
+    	// 멤버 삭제 ajax
+    	$.ajax({
+    		url : mDelete.admin,
+    		type : "get",
+    		data : {email : } ,
+    		success : function(){
+    			location.href = "memberManage.jsp";
+    		},
+    		error : function(){
+    			alert("어드인 회원삭제에서 오류");
+    		}
+    		
+    		
+    		
+    		
+    	});
+    	
+    	
+    	
+		
+		
+	</script>
+    
     
     
     
