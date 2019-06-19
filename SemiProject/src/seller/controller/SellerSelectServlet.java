@@ -16,7 +16,7 @@ import seller.model.vo.Seller;
 /**
  * Servlet implementation class SellerSelectServlet
  */
-@WebServlet("/seller.do")
+@WebServlet("/seller.so")
 public class SellerSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

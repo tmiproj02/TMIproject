@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 					System.out.println(m.getIsSeller()+"판매자 실행");
 					HttpSession session = request.getSession();
 					session.setAttribute("member", m);
-					RequestDispatcher view = request.getRequestDispatcher("seller.do");
+					RequestDispatcher view = request.getRequestDispatcher("seller.so");
 					view.forward(request, response);
 				}else {
 					

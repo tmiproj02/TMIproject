@@ -41,12 +41,12 @@ public class MemberInsertServlet extends HttpServlet {
 			String email = request.getParameter("email");
 			String userPwd = request.getParameter("userPwd");
 			String userName = request.getParameter("userName");
+			String nickName = request.getParameter("nickName");
 			String phone = String.join("-", request.getParameter("phone1"),request.getParameter("phone2"),request.getParameter("phone3"));
 			String memberSSN = String.join("-", request.getParameter("memberSSN1"),request.getParameter("memberSSN2"));
 			String isSNS = request.getParameter("isSNS");
-			System.out.println("서블릿 이메일 : " + email);
-			System.out.println("서블릿 비번 : " + userPwd);
-			Member m = new Member(email,userPwd,userName,phone,memberSSN,isSNS);
+			
+			Member m = new Member(email,userPwd,userName,nickName,phone,memberSSN,isSNS);
 			
 			// 회원 가입 서비스 실행
 			MemberService ms = new MemberService();

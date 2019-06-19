@@ -20,7 +20,7 @@
     	font-weight: 400;
 	}
 	.my-page-sell{
-		margin:0 auto;
+		margin:0 auto; 
 	}
 	.scontainer{
 

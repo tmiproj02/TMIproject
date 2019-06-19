@@ -18,7 +18,9 @@ public class Member implements Serializable {
 	private String userPwd; // 사용자 비밀번호
 	private String userName; // 사용자 이름
 	private String memberSSN; // 사용자 주민번호
+	private String nickName;
 	private String phone; // 전화번호
+	
 	private Date enrollDate; // 가입날짜(java.sql.Date ==> DB로 보내기 위한 Date 클래스)
 	private String emailVerification;
 	private int cash;
@@ -50,7 +52,7 @@ public class Member implements Serializable {
 	
 
 	// 3-2 회원 가입용 생성자
-	public Member(String email, String userPwd, String userName, String phone, String memberSSN, String isSNS) {
+	public Member(String email, String userPwd, String userName, String nickName, String phone, String memberSSN, String isSNS) {
 		super();
 		this.email = email;
 		this.userPwd = userPwd;
@@ -58,6 +60,7 @@ public class Member implements Serializable {
 		this.phone = phone;
 		this.memberSSN = memberSSN;
 		this.isSNS = isSNS;
+		this.nickName = nickName;
 	}
 	
 	
@@ -67,7 +70,7 @@ public class Member implements Serializable {
 	// 사용하나?
 	public Member(String email, String userPwd, String userName, String memberSSN, String phone, Date enrollDate,
 			String emailVerification, int cash, String isSeller, String profileImage, String callTime, String isAlive,
-			String coupon) {
+			String coupon, String nickName) {
 		super();
 		this.email = email;
 		this.userPwd = userPwd;
@@ -82,6 +85,7 @@ public class Member implements Serializable {
 		this.callTime = callTime;
 		this.isAlive = isAlive;
 		this.coupon = coupon;
+		this.nickName = nickName;
 	}
 
 	
@@ -92,12 +96,6 @@ public class Member implements Serializable {
 		this.email = email;
 		this.userPwd = userPwd;
 		this.phone = phone;
-	}
-	
-	// 캐시 충전할 때 사용할 생성자
-	public Member(int cash) {
-		super();
-		this.cash = cash;
 	}
 
 	
@@ -139,6 +137,16 @@ public class Member implements Serializable {
 		return enrollDate;
 	}
 	
+	public String getNickName() {
+		return nickName;
+	}
+
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+
 	public String getEmailVerification() {
 		
 		return emailVerification;
