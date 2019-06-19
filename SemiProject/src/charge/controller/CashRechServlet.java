@@ -11,19 +11,20 @@ import javax.servlet.http.HttpSession;
 
 import charge.model.exception.CashRechargeException;
 import charge.model.service.CashRechargeService;
+import charge.model.vo.Cash;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class CashRechargeServlet
+ * Servlet implementation class CashRechServlet
  */
-@WebServlet("/mCashRec.bo")
-public class CashRechargeServlet extends HttpServlet{
+@WebServlet("/insertRech.bo")
+public class CashRechServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CashRechargeServlet() {
+    public CashRechServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,33 +34,40 @@ public class CashRechargeServlet extends HttpServlet{
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//2
+		//1
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		HttpSession session = request.getSession(false);//세션
+
+		int mno = ((Member)session.getAttribute("member")).getMno();
+
 		
-		int Cash = (int)(request.getAttribute("price"));
-		String email = (String) request.getAttribute("email");
-		System.out.println("Cash : " + Cash);
-		Member m = new Member(Cash);
+		int cp = Integer.parseInt(request.getParameter("price"));
 		
-		m.setEmail(email);
+		String email = request.getParameter("email");
+
 		
+		Cash csh = new Cash(mno, cp, "충전");
+
 		CashRechargeService crs = new CashRechargeService();
+
 		
 		try {
-
-			HttpSession session = request.getSession(false);
-			Member changeMember = (Member)session.getAttribute("member");
-			changeMember.setCash(crs.insertCash(m)); 
+			crs.chargeInsert(csh);
 			
-			session.setAttribute("member", changeMember);
-			
-			response.sendRedirect("/semi/views/personBUY/billingHistory.jsp");
+			request.setAttribute("price", cp);
+			request.setAttribute("email", email);
 
+			
+			request
+			.getRequestDispatcher("/mCashRec.bo")
+			.forward(request, response); 
+			
+			
 		} catch(CashRechargeException e) {
 
-			request.setAttribute("msg", "캐시 충전 중 에러 발생!!");
+			request.setAttribute("msg", "캐시 내역 넣을 때 에러 발생!!");
 			request.setAttribute("exception", e);
 		
 			request
@@ -68,6 +76,10 @@ public class CashRechargeServlet extends HttpServlet{
 		}
 		
 		
+				
+				
+				
+				
 	}
 
 	/**
