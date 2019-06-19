@@ -1,26 +1,49 @@
 package seller.model.vo;
 
 public class Seller {
-	private int sno;
-	private int mno;
-	private String bankname;
-	private String banknumber;
-	private int income;
-	private String careerdate1;
-	private String careerdate2;
-	private String careerdate3;
-	private String career1;
-	private String career2;
-	private String career3;
-	private String certificat1;
-	private String certificat2;
-	private String certificat3;
-	private String introtext;
-	private int cpcount;
-	private int sevaluation;
+
+	private static final long serialVersionUID = 1L;
+
+	private int sno;					//판매자번호(PK)
+    private int mno;					//회원 번호(FK)
+    private String bankname;			//계좌은행
+    private String banknumber;			//계좌번호
+    private int income;					//수익금
+    private String careerdate1;			//경력기간1
+    private String careerdate2;			//경력기간2
+    private String careerdate3;			//경력기간3
+    private String career1;				//경력사항1
+    private String career2;				//경력사항2
+    private String career3;				//경력사항3
+    private String certificat1;			//자격증1
+    private String certificat2;			//자격증2
+    private String certificat3;			//자격증3
+    private String introtext;			//소개글
+    private int cpcount;				//작업 완료 건수
+    private int sevaluation;			//판매자 평점
 	
-	public Seller(){
-		
+    
+    //참고사항 - 자격증(certificate)는 이미 DB에서 사용되고있는 이름이어서 e를 뺏다.
+    
+    public Seller() {
+	}
+
+    //사용자가 직접 입력하는 것을 따로 받음
+	public Seller(String bankname, String banknumber, String careerdate1, String careerdate2, String careerdate3,
+			String career1, String career2, String career3, String certificat1, String certificat2, String certificat3, String introtext) {
+		super();
+		this.bankname = bankname;
+		this.banknumber = banknumber;
+		this.careerdate1 = careerdate1;
+		this.careerdate2 = careerdate2;
+		this.careerdate3 = careerdate3;
+		this.career1 = career1;
+		this.career2 = career2;
+		this.career3 = career3;
+		this.certificat1 = certificat1;
+		this.certificat2 = certificat2;
+		this.certificat3 = certificat3;
+		this.introtext = introtext;
 	}
 
 	public Seller(int sno, int mno, String bankname, String banknumber, int income, String careerdate1,
@@ -46,13 +69,19 @@ public class Seller {
 		this.sevaluation = sevaluation;
 	}
 
-	public Seller(int sno, int mno, int income) {
-		super();
-		this.sno = sno;
-		this.mno = mno;
-		this.income = income;
+	//객체 이름으로 모든 내용 조회하기
+	@Override
+	public String toString() {
+		return "Seller [sno=" + sno + ", mno=" + mno + ", bankname=" + bankname + ", banknumber=" + banknumber
+				+ ", income=" + income + ", careerdate1=" + careerdate1 + ", careerdate2=" + careerdate2
+				+ ", careerdate3=" + careerdate3 + ", career1=" + career1 + ", career2=" + career2 + ", career3="
+				+ career3 + ", certificat1=" + certificat1 + ", certificat2=" + certificat2 + ", certificat3="
+				+ certificat3 + ", introtext=" + introtext + ", cpcount=" + cpcount + ", sevaluation=" + sevaluation
+				+ "]";
 	}
 
+	
+	//필드 변수에 대한 Getter Setter
 	public int getSno() {
 		return sno;
 	}
@@ -189,20 +218,8 @@ public class Seller {
 		this.sevaluation = sevaluation;
 	}
 
-	@Override
-	public String toString() {
-		return "Seller [sno=" + sno + ", mno=" + mno + ", bankname=" + bankname + ", banknumber=" + banknumber
-				+ ", income=" + income + ", careerdate1=" + careerdate1 + ", careerdate2=" + careerdate2
-				+ ", careerdate3=" + careerdate3 + ", career1=" + career1 + ", career2=" + career2 + ", career3="
-				+ career3 + ", certificat1=" + certificat1 + ", certificat2=" + certificat2 + ", certificat3="
-				+ certificat3 + ", introtext=" + introtext + ", cpcount=" + cpcount + ", sevaluation=" + sevaluation
-				+ "]";
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	
-	
-	
-	
-	
-	
-} 
+}

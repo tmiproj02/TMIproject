@@ -42,11 +42,10 @@
 
 	<div class="jumbotron" style = "position: absolute; top:100px; left:200px; width:800px; height:auto;" align="center">
 
-		<p class="lead">판매자 등록이 완료되었습니다!!<br>판매를 시작해보세요</p>
+		<p class="lead">판매 등록이 완료되었습니다!!</p>
 		<hr class="my-4">
 		<div align="right">
 			<a class="btn btn-primary btn-lg" id="backButton" role="button" href="#">메인으로가기</a>
-			<a class="btn btn-primary btn-lg" id="backButton" role="button" href="/semi/views/seller/ServiceRegistration.jsp">판매하러가기</a>
 		</div>
 	</div>
 		
