@@ -5,8 +5,8 @@
 <%@ page import="sellerboard.model.vo.SellerBoard" %>
     
 <%
-	ArrayList<SellerBoard> sList = (ArrayList<SellerBoard>)session.getAttribute("sList");	
-	
+	ArrayList<SellerBoard> docList = (ArrayList<SellerBoard>)session.getAttribute("docList");	
+	String nickName = (String)session.getAttribute("nickName");
 %>    
     
 <!DOCTYPE html>
@@ -57,12 +57,12 @@
           <div class="row tile_count">
          	 <div class="x_content">
 
-                    	<h3><b>서비스 관리</b></h3>
+                    	<h3><b>작성글 보기</b></h3>
 				 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                 
-                    <h2 style="height:22px; margin: 3px 0px 3px 0px;">승인 대기 중인 서비스 목록</h2>
+                    <h2 style="height:22px; margin: 3px 0px 3px 0px;"><b><%=nickName%></b>님의 게시물</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -86,26 +86,37 @@
                       <thead>
                   		<tr>
                   			<th>No</th>
-                  			<th>서비스 제목</th>
-                  			<th>신청자</th>
-                  			<th>신청일</th>
+                  			<th>제목</th>
+                  			<th>1차 카테고리</th>
+                  			<th>2차 카테고리</th>
+                  			<th>작성일</th>
                   			<th>상세보기</th>
-                  			<th>관리</th>
+                  		
                   		</tr>
                       </thead>
                       <tbody>
-                       	<% 
+                       	<% if(docList != null) {
                        	int num = 1;
-                       	for(SellerBoard sb : sList){ %>
+                       	for(SellerBoard sb : docList){ %>
                       	  <tr>
                           <td><%=num %></td>
                           <td><%=sb.getBtitle()%></td>
-                          <td><%=sb.getBcontent()%></td>
-                          <td><%=sb.getBdate() %></td>
+                          <td><%=sb.getCategory1_name()%></td>
+                          <td><%=sb.getCategory2_name() %></td>
+                          <td><%=sb.getBdate()%></td>
                           <td class="a-right a-right "> <a class="btn btn-primary btn-xs" ><i class="fa fa-search"></i> 상세보기 </a></td>
-                          <td class=" last"><a class="btn btn-success btn-xs"><i class="fa fa-check"></i>승인</a><a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-trash-o"></i>거절 </a></td>
+                          
                         </tr>
-           				<%  num++; } %>	
+           				<%  num++; } 
+                       	} else{ %>
+                       		<tr>
+                            <td>데이터</td>
+                            <td>없음</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            </tr>
+                     	 <% } %>	
                       
                        
                       </tbody>

@@ -55,12 +55,11 @@ public class MemberManageDao {
 				mList.add(m);
 			}
 			
-			System.out.println("들어간 멤버 확인 : " + mList);
+		
 			
 			return mList;
 			
 		} catch (SQLException e) {
-			
 			
 			e.printStackTrace();
 		}finally {
@@ -81,7 +80,6 @@ public class MemberManageDao {
 			pstmt.setString(1, email);
 			
 			pstmt.executeUpdate();
-			System.out.println("회원삭제 DAO 실행");
 			
 			
 		}catch(SQLException e) {

@@ -4,9 +4,7 @@
 <%@ page import="member.model.vo.Member" %>
     
 <%
-	
 	ArrayList<Member> mList = (ArrayList<Member>)session.getAttribute("mList");	
-	System.out.println("서블릿이 받은 멤버리스트 : " + mList);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -98,21 +96,24 @@
                       </thead>
                       <tbody>
                     
-                      	<% for(Member m : mList){ %>
+                      	<%
+                      	int num = 1;
+                      	for(Member m : mList){ %>
                       	
                         <tr>
-                          <td>1</td>
+                          <td><%=num %></td>
                           <td class="email"><%=m.getEmail()%></td>
                           <td><%=m.getUserName()%></td>
                           <td>30</td>
                           <td><%=m.getEnrollDate()%></td>
-                          <td class="a-right a-right "> <a class="btn btn-primary btn-xs" ><i class="fa fa-search"></i> 보기 </a></td>
+                          <td class="a-right a-right "> <a class="btn btn-primary btn-xs docBtn" ><i class="fa fa-search"></i> 보기 </a></td>
                           <td class=" last"><a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-trash-o"></i> 삭제 </a>
                      
                         </tr>
                     	
-                      <%} 
-                   
+                      <% num++;
+                           } 
+                   	
                       %>
                       </tbody>
                     </table>
@@ -204,8 +205,6 @@
     <script>
 	
     // 멤버 삭제 ajax
-    	
-    	
     		$('.deleteBtn').each(function(index, item){
         		
     			$(this).click(function(){
@@ -215,8 +214,8 @@
 		        		type : "get",
 		        		data : {email : $(this).parent().parent().find('td').eq(1).text()} ,
 		        		success : function(data){
-		        			console.log("ajax 석세스!");
-		        			location.href = "memberManage.jsp";
+		        			
+		        			location.href = "/semi/memberSelect";
 		        		},
 		        		error : function(){
 		        			alert("어드인 회원삭제에서 오류");
@@ -229,16 +228,18 @@
         		});
     		
         	});
-    		
-    		
-   
-    	
-   	
     
-    	    	
-    	
-		
-		
+    
+    	$('.docBtn').each(function(index, item){
+    		$(this).click(function(){
+    			var email = $(this).parent().parent().find('td').eq(1).text();
+    			var nickName = $(this).parent().parent().find('td').eq(2).text();
+    			console.log(email);
+    			console.log(nickName);
+    			location.href="/semi/docList.admin?email="+email+"&nickName="+nickName;
+    		});
+    		
+    	});
 	</script>
     
     

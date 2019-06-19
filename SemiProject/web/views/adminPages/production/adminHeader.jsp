@@ -33,7 +33,7 @@
                   
                   <li><a><i class="fa fa-desktop"></i> 서비스 관리(Forms) <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="serviceManage.jsp">판매 서비스 관리(General Form)</a></li>
+                      <li><a href="/semi/serviceList.admin">판매 서비스 관리(General Form)</a></li>
                       <li><a href="adManage.jsp">광고 관리(Advanced Components)</a></li>
                       <li><a href="form_validation.html">Form Validation</a></li>
                       <li><a href="form_wizards.html">Form Wizard</a></li>

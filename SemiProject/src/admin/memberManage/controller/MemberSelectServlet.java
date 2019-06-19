@@ -37,8 +37,8 @@ public class MemberSelectServlet extends HttpServlet {
 			mList = mms.selectMember();
 			page = "views/adminPages/production/memberManage.jsp";
 	
-			request.setAttribute("mList", mList);
 			
+		
 			}catch(Exception e ){
 				System.out.println("멤버 조회 중 문제 발생!");
 				e.printStackTrace();
