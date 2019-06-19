@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet {
 					System.out.println(m.getIsSeller());
 					HttpSession session = request.getSession();
 					session.setAttribute("member", m);
-					RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+					RequestDispatcher view = request.getRequestDispatcher("mainheader2.jsp");
 					view.forward(request, response);
 				}
 			}

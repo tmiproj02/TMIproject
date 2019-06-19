@@ -78,8 +78,8 @@
 	margin-bottom: 20px;
 }
 .post-row{
-position: relative;
-z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 
 .posting>div{
