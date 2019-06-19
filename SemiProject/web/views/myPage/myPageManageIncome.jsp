@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.text.DecimalFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,6 @@
 		margin:0 auto; 
 	}
 	.scontainer{
-
 		width : 1024px;
 		margin:0 auto;
 		overflow : hidden;
@@ -34,7 +34,6 @@
 		margin:0 auto;
 	}
 	.scontainer2{
-
 		margin:0 auto;
 		float : left;
 	}
@@ -44,11 +43,9 @@
 	}
 	.width-25per{
 		width:25%;
-
 	}
 	.width-75per{
 		width:75%;
-
 	}
 	.user-profile-body{
 		border: solid #E6E6E6 1px;
@@ -120,7 +117,6 @@
 	
 	}
 	.menu-box>div>div{
-
 	}
 	.padding-all-15{
 		padding : 15px;
@@ -129,7 +125,6 @@
 		width:100%;
 		
 	}
-
 	.select{
 		background-color: #BDD4F2;
 		color : #000;
@@ -258,13 +253,18 @@
 								<div class="income-out-div">
 									<div class="font-noto">출금가능 수익금</div>
 								</div>
-								<div class="font-noto won"><b><%=s.getIncome() %>원</b></div>
+								
+								<%
+								  String income = dc.format(s.getIncome()); 	  
+								  String cash = dc.format(m.getCash());
+								%>
+								<div class="font-noto won"><b><%=income %>원</b></div>
 							</div></li>
 							<li><div class="income-out">
 								<div class="income-out-div">
 									<div class="font-noto">회원 보유캐시</div>
 								</div>
-								<div class="font-noto won"><b><%= m.getCash() %>원</b></div>
+								<div class="font-noto won"><b><%= cash %>원</b></div>
 							</div></li>
 						</ul>
 					</div>
@@ -316,7 +316,7 @@
 										<div style="width:25%;float:left"><img width=80% src="/semi/resources/images/profits_new_active.png" alt="" /></div>
 										<div style="width:75%;padding-right:15px;float:left">
 											<h5 class="font-noto" style="margin-top:5px;margin-bottom:10px">출금가능 수익금</h5>
-											<h2 class="font-noto" style="margin:0;margin-bottom:10px">0원</h2>
+											<h2 class="font-noto" style="margin:0;margin-bottom:10px"><%=income %>원</h2>
 										</div>
 									</div>
 									<div class="predict-income padding-15">

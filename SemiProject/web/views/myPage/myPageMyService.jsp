@@ -21,7 +21,6 @@
 		margin:0 auto;
 	}
 	.scontainer{
-
 		width : 1024px;
 		margin:0 auto;
 		overflow : hidden;
@@ -32,7 +31,6 @@
 		margin:0 auto;
 	}
 	.scontainer2{
-
 		margin:0 auto;
 		float : left;
 	}
@@ -42,11 +40,9 @@
 	}
 	.width-25per{
 		width:25%;
-
 	}
 	.width-75per{
 		width:75%;
-
 	}
 	.user-profile-body{
 		border: solid #E6E6E6 1px;
@@ -118,7 +114,6 @@
 	
 	}
 	.menu-box>div>div{
-
 	}
 	.padding-all-15{
 		padding : 15px;
@@ -189,13 +184,17 @@
 								<div class="income-out-div">
 									<div class="font-noto">출금가능 수익금</div>
 								</div>
-								<div class="font-noto won"><b><%=s.getIncome() %>원</b></div>
+								<%
+								  String income = dc.format(s.getIncome()); 	  
+								  String cash = dc.format(m.getCash());
+								%>
+								<div class="font-noto won"><b><%=income %>원</b></div>
 							</div></li>
 							<li><div class="income-out">
 								<div class="income-out-div">
 									<div class="font-noto">회원 보유캐시</div>
 								</div>
-								<div class="font-noto won"><b><%= m.getCash() %>원</b></div>
+								<div class="font-noto won"><b><%= cash %>원</b></div>
 							</div></li>
 						</ul>
 					</div>

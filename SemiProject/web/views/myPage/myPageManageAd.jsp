@@ -24,7 +24,6 @@
 		margin:0 auto;
 	}
 	.scontainer{
-
 		width : 1024px;
 		margin:0 auto;
 		overflow : hidden;
@@ -35,7 +34,6 @@
 		margin:0 auto;
 	}
 	.scontainer2{
-
 		margin:0 auto;
 		float : left;
 	}
@@ -45,11 +43,9 @@
 	}
 	.width-25per{
 		width:25%;
-
 	}
 	.width-75per{
 		width:75%;
-
 	}
 	.user-profile-body{
 		border: solid #E6E6E6 1px;
@@ -121,7 +117,6 @@
 	
 	}
 	.menu-box>div>div{
-
 	}
 	.padding-all-15{
 		padding : 15px;
@@ -130,7 +125,6 @@
 		width:100%;
 		
 	}
-
 	.select{
 		background-color: #BDD4F2;
 		color : #000;
@@ -174,7 +168,7 @@
         float:left;
 	}
 	.row{
-		overflow:hidden;
+		
 	}
 	.row>div{
 		display:inline-block;
@@ -216,12 +210,11 @@
 		color : #000;
 	}
 	.date-setting{
-		margin-top:20px;
+		margin-top:6px;
 		width:83.33333%;
 	}
 	.date-setting>div{
 		float:left;
-
 	}
 </style>
 </head>
@@ -257,13 +250,17 @@
 								<div class="income-out-div">
 									<div class="font-noto">출금가능 수익금</div>
 								</div>
-								<div class="font-noto won"><b><%=s.getIncome() %>원</b></div>
+								<%
+								  String income = dc.format(s.getIncome()); 	  
+								  String cash = dc.format(m.getCash());
+								%>
+								<div class="font-noto won"><b><%=income %>원</b></div>
 							</div></li>
 							<li><div class="income-out">
 								<div class="income-out-div">
 									<div class="font-noto">회원 보유캐시</div>
 								</div>
-								<div class="font-noto won"><b><%= m.getCash() %>원</b></div>
+								<div class="font-noto won"><b><%= cash %>원</b></div>
 							</div></li>
 						</ul>
 					</div>
@@ -306,7 +303,7 @@
 					<div class="padding-15" style="width:100%">
 						<div style="margin-top:10px;margin-bottom:20px;">
 							<div class="income-box">
-								<div class="row">
+								<div class="row" style="overflow:hidden;">
 									<div class="withdraw-income">
 										<div style="width:20%;float:left"><img width=65px src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 										<div style="width:80%;padding-right:15px;float:left">
@@ -320,7 +317,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="padding-15" style="margin-top:20px;width:16.66667%;float:left;">
+					<div class="padding-15" style="margin-top:6px;width:16.66667%;float:left;">
 					<div class="padding-15 font-noto">
 						<div class="ui compact selection dropdown" style="width:85px">
 						  <i class="dropdown icon"></i>
