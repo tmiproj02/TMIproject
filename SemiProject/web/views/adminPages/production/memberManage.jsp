@@ -101,12 +101,12 @@
                       	
                         <tr>
                           <td>1</td>
-                          <td class="email"><%=m.getEmail()%>123</td>
-                          <td><%=m.getUserName()%>123</td>
+                          <td class="email"><%=m.getEmail()%></td>
+                          <td><%=m.getUserName()%></td>
                           <td>30</td>
                           <td><%=m.getEnrollDate()%></td>
                           <td class="a-right a-right "> <a class="btn btn-primary btn-xs" ><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last"><a class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
+                          <td class=" last"><a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-trash-o"></i> 삭제 </a>
                      
                         </tr>
                     	
@@ -201,32 +201,40 @@
     <script src="../build/js/custom.min.js"></script>
     
     <script>
-    	$(function(){
-    		  $('a').on('change',function(){
-    			  
-    				console.log($(this).parent('tr').children().val());
-    			  });
-    		  
-    	});
-
-    	/* // 멤버 삭제 ajax
-    	$.ajax({
-    		url : mDelete.admin,
-    		type : "get",
-    		data : {email : } ,
-    		success : function(){
-    			location.href = "memberManage.jsp";
-    		},
-    		error : function(){
-    			alert("어드인 회원삭제에서 오류");
-    		}
-    		
-    		
-    		
-    		
-    	}); */
+	
+    // 멤버 삭제 ajax
     	
     	
+    		$('.deleteBtn').each(function(index, item){
+        		
+    			$(this).click(function(){
+        			
+					
+					$.ajax({
+						url : "/semi/mDelete.admin",
+		        		type : "get",
+		        		data : {email : $(this).parent().parent().find('td').eq(1).text()} ,
+		        		success : function(){
+		        			location.href = "memberManage.jsp";
+		        		},
+		        		error : function(){
+		        			alert("어드인 회원삭제에서 오류");
+		        		}
+						
+						
+					});
+					
+					
+        		});
+    		
+        	});
+    		
+    		
+   
+    	
+   	
+    
+    	    	
     	
 		
 		

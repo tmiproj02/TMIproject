@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import admin.memberManage.model.dao.MemberManageDao;
-import admin.serviceManage.model.service.SellerBoard;
+import sellerboard.model.vo.SellerBoard;
 
 
 public class ServiceManageDao {
@@ -50,13 +50,9 @@ public class ServiceManageDao {
 			rset = stmt.executeQuery(sql);
 			
 			while(rset.next()) {
-//				m = new Member();
-//				m.setEmail(rset.getString("email"));
-//				m.setUserName(rset.getString("nickName"));
-//				m.setEnrollDate(rset.getDate("enrolldate"));
-//	
-//				mList.add(m);
+					
 			}
+			
 			
 		
 			

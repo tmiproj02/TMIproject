@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import admin.memberManage.model.service.MemberManageService;
 
 
-@WebServlet("/mdelete.admin")
+@WebServlet("/mDelete.admin")
 public class MemberDeleteByAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -21,7 +21,9 @@ public class MemberDeleteByAdmin extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
+		System.out.println(email);
 		try {
+			
 		new MemberManageService().deleteMember(email);
 		}catch(Exception e) {
 			e.printStackTrace();
