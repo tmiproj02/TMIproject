@@ -169,11 +169,16 @@ public class Member implements Serializable {
 		this.isSNS = isSNS;
 	}
 
+
+	
 	@Override
 	public String toString() {
-		return "Member [email=" + email + ", userPwd=" + userPwd + ", userName=" + userName + ", phone=" + phone
-				+ ", enrollDate=" + enrollDate + "]";
+		return "Member [email=" + email + ", userPwd=" + userPwd + ", userName=" + userName + ", memberSSN=" + memberSSN
+				+ ", nickName=" + nickName + ", phone=" + phone + ", enrollDate=" + enrollDate + ", emailVerification="
+				+ emailVerification + ", cash=" + cash + ", isSeller=" + isSeller + ", profileImage=" + profileImage
+				+ ", callTime=" + callTime + ", isAlive=" + isAlive + ", coupon=" + coupon + ", isSNS=" + isSNS + "]";
 	}
+
 
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
