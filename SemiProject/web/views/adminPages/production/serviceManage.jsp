@@ -97,17 +97,19 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                       	<% for(SellerBoard sb : sList){ %>
+                      	  <tr>
                           <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
+                          <td class="email"><%-- <%=m.getEmail()%> --%></td>
+                          <td><%-- <%=m.getUserName()%> --%></td>
                           <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
+                          <td><%-- <%=m.getEnrollDate()%> --%></td>
+                          <td class="a-right a-right "> <a class="btn btn-primary btn-xs" ><i class="fa fa-search"></i> 보기 </a></td>
+                          <td class=" last"><a class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
                      
-                      
                         </tr>
+           
+                      <%} 
                     
                        
                       </tbody>
