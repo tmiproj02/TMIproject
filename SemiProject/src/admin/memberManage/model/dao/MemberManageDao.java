@@ -76,12 +76,16 @@ public class MemberManageDao {
 		String sql = prop.getProperty("deleteMember");		
 		
 		try {
+			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
 			pstmt.executeUpdate();
-			System.out.println("회원삭제완료");
+			System.out.println("회원삭제 DAO 실행");
 			
 			
 		}catch(SQLException e) {
+			
 			e.printStackTrace();
 		}finally {
 			close(pstmt);

@@ -25,9 +25,21 @@ public class MemberManageService {
 
 
 	public void deleteMember(String email) {
-		con = getConnection();
 		
-		mDao.deleteMember(email,con);
+		try {
+			con = getConnection();
+			mDao.deleteMember(email,con);
+			commit(con);
+		}catch(Exception e) {
+			rollback(con);
+			e.printStackTrace();
+			
+		}
+		
+		
+		
+		
+	
 		
 	}
 

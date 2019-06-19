@@ -4,8 +4,9 @@
 <%@ page import="member.model.vo.Member" %>
     
 <%
-	ArrayList<Member> mList = (ArrayList<Member>)session.getAttribute("mList");	
 	
+	ArrayList<Member> mList = (ArrayList<Member>)session.getAttribute("mList");	
+	System.out.println("서블릿이 받은 멤버리스트 : " + mList);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -208,13 +209,13 @@
     		$('.deleteBtn').each(function(index, item){
         		
     			$(this).click(function(){
-        			
-					
+        		
 					$.ajax({
 						url : "/semi/mDelete.admin",
 		        		type : "get",
 		        		data : {email : $(this).parent().parent().find('td').eq(1).text()} ,
-		        		success : function(){
+		        		success : function(data){
+		        			console.log("ajax 석세스!");
 		        			location.href = "memberManage.jsp";
 		        		},
 		        		error : function(){

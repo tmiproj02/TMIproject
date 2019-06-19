@@ -1,6 +1,6 @@
 package admin.serviceManage.model.service;
 
-import static member.common.JDBCTemplete.getConnection;
+import static member.common.JDBCTemplete.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -19,9 +19,12 @@ public class ServiceManageService {
 		con = getConnection();
 		
 		try {
+			
 			sList = sDao.selectServiceList(con);
+			commit(con);
 		
 		}catch(Exception e) {
+			rollback(con);
 			e.printStackTrace();
 		}
 		

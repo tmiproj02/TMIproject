@@ -24,6 +24,10 @@ public class MemberSelectServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			HttpSession session = request.getSession();
+			session.removeAttribute("mList");
+			
 			ArrayList<Member> mList = null;
 			String page ="";
 			
@@ -39,7 +43,7 @@ public class MemberSelectServlet extends HttpServlet {
 				System.out.println("멤버 조회 중 문제 발생!");
 				e.printStackTrace();
 			}
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("mList", mList);
 			response.sendRedirect(page);
 			
