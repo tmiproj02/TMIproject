@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.Member"%>
+<%@ page import="seller.model.vo.Seller"%>
+<% 
+	Member m = (Member)session.getAttribute("member");
+	Seller s = (Seller)session.getAttribute("seller");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -235,7 +241,7 @@ nav{
                 <div class="container">
                     <div class="left-head paddinghead">
                         <div class="logo">
-                            <a href="/">
+                            <a href="/semi/views/common/mainheader.jsp">
                                 <img class="logoImg" src="/semi/resources/images/TMI1.png" width=80px>
                             </a>
                         </div>
@@ -255,7 +261,7 @@ nav{
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>
                             <div class="mylog padding-15px"><a href="/">
                             	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important; vertical-align: middle;"/></div>
-                            	<div><h5>회원닉네임</h5></div>
+                            	<div><h5><%= m.getUserName() %></h5></div>
                             	</a></div>
                             
                         </div>
@@ -286,6 +292,7 @@ nav{
 	                            <li><a href="/semi/views/myPage/myPageManageAd.jsp">광고등록</a></li>
 	                        </ul>
                         </li>
+                        
                         <li clase="talent-category">
                         	<div class="cate" id="cate3"><a href="">메시지</a></div>
                         </li>

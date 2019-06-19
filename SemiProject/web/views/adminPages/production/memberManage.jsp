@@ -209,7 +209,7 @@
     		  
     	});
 
-    	// 멤버 삭제 ajax
+    	/* // 멤버 삭제 ajax
     	$.ajax({
     		url : mDelete.admin,
     		type : "get",
@@ -224,7 +224,7 @@
     		
     		
     		
-    	});
+    	}); */
     	
     	
     	

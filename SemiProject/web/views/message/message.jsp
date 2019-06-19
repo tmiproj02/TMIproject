@@ -6,18 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	nav, section {
-        float: left;
-    }
+
 
 </style>
 </head>
 <body>
-	<%@ include file="/views/common/myHeader.jsp" %>
+	<%@ include file="/views/common/cateheader2.jsp" %>
 
-	<nav style="background-color:gold">
-    	<h1>메세지</h1>
-    </nav>
 	
 	<section>
             <article>

@@ -38,9 +38,9 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/cateheader1.jsp" %>
+	<%@ include file="/views/common/cateheader1.jsp" %>
 
-	<div class="jumbotron" style = "position: absolute; top:10%;left:20%; width:800px; height:auto;" align="center">
+	<div class="jumbotron" style = "position: absolute; top:100px; left:200px; width:800px; height:auto;" align="center">
 
 		<p class="lead">판매자 등록이 완료되었습니다!!<br>판매를 시작해보세요</p>
 		<hr class="my-4">

@@ -6,22 +6,17 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <style>
-	nav, section {
-        float: left;
-    }
+
 
 </style>
 </head>
 <body>
-	<%@ include file="/views/common/myHeader.jsp" %>
+	<%@ include file="/views/common/cateheader2.jsp" %>
 
-	<nav style="background-color:gold">
-    	<h1>마이페이지</h1>
-    </nav>
 	
 	<section>
 
-
+	마이페이지 구현 섹션
 
     </section>
 

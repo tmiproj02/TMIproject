@@ -250,20 +250,20 @@
 						</div>
 						<ul class="user-profile-box">
 							<li style=" border-top:none;"><div style="text-align : center; margin-bottom:20px;">
-								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href="">회원닉네임</a></div>
+								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href=""><%= m.getUserName() %></a></div>
 								<div><label for="" class="seller-check font-noto">전문가 인증</label></div>
 							</div></li>
 							<li><div class="income-out">
 								<div class="income-out-div">
 									<div class="font-noto">출금가능 수익금</div>
 								</div>
-								<div class="font-noto won"><b>원</b></div>
+								<div class="font-noto won"><b><%=s.getIncome() %>원</b></div>
 							</div></li>
 							<li><div class="income-out">
 								<div class="income-out-div">
 									<div class="font-noto">회원 보유캐시</div>
 								</div>
-								<div class="font-noto won"><b>원</b></div>
+								<div class="font-noto won"><b><%= m.getCash() %>원</b></div>
 							</div></li>
 						</ul>
 					</div>

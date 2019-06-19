@@ -4,9 +4,10 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
-<title>Document</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<title>메인페이지</title>
 <style>
 *{
     font-family: 'Noto Sans KR', sans-serif;
@@ -155,7 +156,7 @@ div a{
    
 }
 .search-btn{
-    margin-left:550px; 
+    margin-left:510px; 
     margin-top: -45px;
     cursor: pointer;
 }
@@ -195,7 +196,7 @@ div a{
 }
 .indexTitle1{
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 100px;
     color: #rgba(51, 51, 51, 0.801);
 
 }
@@ -341,49 +342,49 @@ footer{
 
                 <div class="category">
                     <ul>
-                        <li><a href="../serviceCategoryPage.jsp">
+                        <li><a href="/semi/views/designCategoryPage.jsp">
                             <img src="/semi/resources/images/edit.png"> <br>
                             <span>디자인</span>
                         </a></li>
                     </ul>
                 
                     <ul>
-                        <li><a href="#">
+                        <li><a href="/semi/views/itCategoryPage.jsp">
                             <img src="/semi/resources/images/television.png"><br>
                             <a href="">IT/프로그래밍</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="#">
+                        <li><a href="/semi/views/marketingCategoryPage.jsp">
                             <img src="/semi/resources/images/bar-chart.png"><br>
                             <a href="">마케팅</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="#">
+                        <li><a href="/semi/views/contentCategoryPage.jsp">
                             <img src="/semi/resources/images/play-button.png"><br>
                             <a href="">콘텐츠 제작</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="#">
+                        <li><a href="/semi/views/transCategoryPage.jsp">
                             <img src="/semi/resources/images/microphone.png"><br>
                             <a href="">번역/통역</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="#">
+                        <li><a href="/semi/views/textCategoryPage.jsp">
                             <img src="/semi/resources/images/file.png"><br>
                             <a href="">문서/취업</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="#">
+                        <li><a href="/semi/views/giftCategoryPage.jsp">
                             <img src="/semi/resources/images/gift.png"><br>
                             <a href="">기프트/커스텀</a>
                         </a></li>
@@ -407,45 +408,422 @@ footer{
 
             <div class="slider1 clearFix">
                 <div class="sildercon">
-                    <div style="width:224px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:224px; height: 300px;  margin:-1px;">
+                    	
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    	
+                    	
+                    </div>
                 </div>
                 <div class="sildercon">
-                    <div style="width:224px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:224px; height: 300px; margin:-1px;">
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    </div>
                 </div>
                 <div class="sildercon">
-                    <div style="width:224px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:224px; height: 300px; margin:-1px;">
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    </div>
                 </div>
                 <div class="sildercon">
-                    <div style="width:223px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:223px; height: 300px; margin:-1px;">
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    </div>
                 </div>
                 <div class="sildercon1">
-                    <div style="width:223px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:223px; height: 300px; margin:-1px;">
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    </div>
                 </div>
 
             </div>
         </div>
         </section>
-        <section>
-            <div class="container">
+         <section>
+        <div class="container">
+            
             <div class="indexTitle">
-                <p><b>IT/프로그래밍 카테고리</b>에서 인기있어요!</p> 
+                 <p><b>IT/프로그래밍 카테고리</b>에서 인기있어요!</p> 
             </div>
 
             <div class="slider1 clearFix">
                 <div class="sildercon">
-                    <div style="width:224px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:224px; height: 300px;  margin:-1px;">
+                    	
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    	
+                    	
+                    </div>
                 </div>
                 <div class="sildercon">
-                    <div style="width:224px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:224px; height: 300px; margin:-1px;">
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    </div>
                 </div>
                 <div class="sildercon">
-                    <div style="width:224px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:224px; height: 300px; margin:-1px;">
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    </div>
                 </div>
                 <div class="sildercon">
-                    <div style="width:223px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:223px; height: 300px; margin:-1px;">
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    </div>
                 </div>
                 <div class="sildercon1">
-                    <div style="width:223px; height: 300px; border: 1px solid #0f0; margin:-1px;"></div>
+                    <div style="width:223px; height: 300px; margin:-1px;">
+                    	<div style="width:224px; ">
+						 	
+						 	<div class="ui card" style="margin:0;">
+							  <div class="image" style="height:170px;">
+							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							  </div>
+							  <div class="content" style="height:120px;">
+							    <a class="header1">Kristy</a>
+							    <div class="meta">
+							      <span class="date">Joined in 2013</span>
+							    </div>
+							    <div class="description">
+							      Kristy is an art director living in New York.
+							    </div>
+							  </div>
+							  <div class="extra content">
+							    <a>
+							      <i class="ui" style="height:33px;"></i>
+							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
+							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							    </a>
+							  </div>
+							</div>
+							<script>
+							$('.special.cards .image').dimmer({
+								  on: 'hover'
+								});
+							$('.ui.rating')
+							  .rating({
+							    initialRating: 3,
+							    maxRating: 5
+							  })
+							;
+							</script>
+						 	
+						 </div>
+                    </div>
                 </div>
 
             </div>
