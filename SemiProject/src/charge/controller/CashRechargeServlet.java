@@ -55,7 +55,7 @@ public class CashRechargeServlet extends HttpServlet{
 			
 			session.setAttribute("member", changeMember);
 			
-			response.sendRedirect("/semi/views/personBUY/billingHistory.jsp");
+			response.sendRedirect("/semi/views/personBUY/buyingcontrol.jsp");
 
 		} catch(CashRechargeException e) {
 

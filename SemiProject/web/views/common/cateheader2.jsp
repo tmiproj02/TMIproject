@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.Member"%>
 <%@ page import="seller.model.vo.Seller"%>
+<%@ page import="java.text.DecimalFormat"%>
 <% 
 	Member m = (Member)session.getAttribute("member");
 	Seller s = (Seller)session.getAttribute("seller");
@@ -249,7 +250,7 @@ nav{
                             <input type="text" name="keyword" maxlength="15" class="search-input" placeholder="어떤 서비스를 찾고계신가요?">
                             <div class="search-btn">
                                 <img class="width-15px margin-right-10 cursor" src="/semi/resources/images/cancel-button2.png" style="display: none">
-                                <img class="width-20px cursor" src="/semi/resources/images/search2.png" style="vertical-align: inherit">
+                                <img class="width-20px cursor" src="/semi/resources/images/searching.png" style="vertical-align: inherit">
                             </div>
                         </div>
                     </div>

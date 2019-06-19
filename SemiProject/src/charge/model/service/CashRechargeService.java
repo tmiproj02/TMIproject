@@ -25,38 +25,64 @@ public class CashRechargeService  {
 	
 	
 
-	//캐시 내역에서 '충전'으로 보여줄 부분
-	public int chargeInsert(Cash csh) throws CashRechargeException, FileNotFoundException, IOException {
-		
-		con = getConnection();
-		int result = crDao.insertRecharge(con, csh);
-		
-		if(result > 0) commit(con);
-		else rollback(con);
-		
-		close(con);
-		
-		return result;
-
-	}
-
-	
-	
-	//member에서 현재 캐시 보여줄 부분
-		public int insertCash(Member m) throws CashRechargeException, FileNotFoundException, IOException {
-			// TODO Auto-generated method stub
+	//캐시 내역에서 '충전'으로 DB에 들어갈 부분
+		public int chargeInsert(Cash csh) throws CashRechargeException, FileNotFoundException, IOException {
 			
 			con = getConnection();
-			int result = crDao.updateCash(con, m);
+			int result = crDao.insertRecharge(con, csh);
 			
 			if(result > 0) commit(con);
-			else rollback(con); 
+			else rollback(con);
 			
 			close(con);
 			
 			return result;
-			
+
 		}
+
+	
+	
+		//member에서 현재 캐시 +로 들어가는 부분
+				public int insertCash(Member m) throws CashRechargeException, FileNotFoundException, IOException {
+					// TODO Auto-generated method stub
+					
+					con = getConnection();
+
+					int result = crDao.updateCash(con, m);
+					int recentCash = 0;
+					
+					/*
+					 * if(result>0){
+					 * commit(con);
+					 * else
+					 * rollback(con);
+					 * 이 원래꺼!
+					 */
+					
+					//현재 캐시가 변경되었으니 변경된 값을 화면에 부르기 위함(select)
+					// no no no, just get the cash(int value) here
+					// then change member's cash value to setter in session
+					// in servlet
+					if(result > 0) {
+						commit(con);
+						
+						// int value
+						recentCash = crDao.selectCash(con, m); 
+						
+						if(recentCash != 0) {
+							commit(con);
+						} else {
+							rollback(con);
+							throw new CashRechargeException("Exception, because the cash not charge!");
+						}
+						
+					}
+					
+					close(con);
+					
+					return recentCash;
+					
+				}
 	
 		
 	//캐시 사용내역 조회리스트

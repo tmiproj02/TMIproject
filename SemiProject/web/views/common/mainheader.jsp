@@ -15,43 +15,7 @@
     padding: 0;
    
 }
-.float{
-    position: fixed; 
-    left: 85%; 
-    top: 600px;
-    padding: 20px; 
-    text-align:center; 
-    width: 60px;
-    height: 160px;
-    background: rgba(240, 233, 233, 0.904);
-    color: #333;
-}
-.float1{
-    position: fixed; 
-    right: 205px; 
-    top: 620px; 
-    margin: 20px;
-    margin-top: 10px; 
-    text-align:center; 
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-    background: #f1c40f;
-    color: #333;
-    box-sizing: border-box;
-}
-.float2{
-    position: fixed; 
-    right: 205px; 
-    top: 720px; 
-    text-align:center; 
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-    background: #f1c40f;
-    color: #333;
-    box-sizing: border-box;
-}
+
 header{
     margin: 0 auto;
     background-image: url('/semi/resources/images/night-sky.jpg');
@@ -246,10 +210,13 @@ div a{
      /* border: 1px solid #ccc; */
     
 }
+.scontent1{
+	padding-top:14px;
+}
 .scontent1 p{
     text-align: center;
     font-size: 18px;
-    margin: 10px 0;  
+    margin-top: 10px;  
     color: #333;  
 }
 .first{
@@ -309,9 +276,11 @@ footer{
 </head>
 
 <body>
+
     <div class="wrap">
         
         <header>
+        
             <div class="container1">
                 
                 <div class="header">
@@ -336,7 +305,7 @@ footer{
                     <input type="hidden" name="type" value="gigs">
                     <input type="text" name="find" maxlength="15" class="search-input" placeholder="원하는 서비스를 검색하세요!">
                     <div class="search-btn">
-                        <img class="width-30px" src="/semi/resources/images/search.png">
+                        <img class="width-30px" src="/semi/resources/images/searching.png">
                     </div>
                 </div>
 
@@ -397,9 +366,8 @@ footer{
     </div>
 
     <section>
-            <div class="faq">
-        	
-            </div>
+        	<%@include file= "/views/common/faq.jsp"%>
+ 		   
         <div class="container">
             
             <div class="indexTitle">
@@ -981,14 +949,6 @@ footer{
             </div>
         </footer>
         
-    	<div class="float">
-            <div class="float1">
-                <a href="">구매방법</a>
-            </div>
-
-            <div class="float2">
-                <a href="">FAQ </a>
-            </div>
-        </div>
+    	
 </body>
 </html>

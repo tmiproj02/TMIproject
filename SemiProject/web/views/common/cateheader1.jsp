@@ -12,6 +12,12 @@
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+
+
 <style>
 *{
     margin: 0;
@@ -247,7 +253,7 @@ nav{
                             <input type="text" name="keyword" maxlength="15" class="search-input" placeholder="어떤 서비스를 찾고계신가요?">
                             <div class="search-btn">
                                 <img class="width-15px margin-right-10 cursor" src="/semi/resources/images/cancel-button2.png" style="display: none">
-                                <img class="width-20px cursor" src="/semi/resources/images/search2.png" style="vertical-align: inherit">
+                                <img class="width-20px cursor" src="/semi/resources/images/searching.png" style="vertical-align: inherit">
                             </div>
                         </div>
                     </div>

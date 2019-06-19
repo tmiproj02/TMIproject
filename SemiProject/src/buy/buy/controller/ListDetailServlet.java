@@ -1,6 +1,8 @@
 package buy.buy.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import buy.buy.model.exception.BoardException;
 import buy.buy.model.service.BoardService;
 import buy.buy.model.vo.Board;
+import buy.comment.model.service.BoardCommentService;
+import buy.comment.model.vo.BoardComment;
 
 
 
@@ -36,7 +40,7 @@ public class ListDetailServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		
+		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		Board b;
 		String page = "";
 		
@@ -44,7 +48,7 @@ public class ListDetailServlet extends HttpServlet {
 			b = new BoardService().selectOne(bno);
 			page = "views/listDetail.jsp";
 			request.setAttribute("board", b);
-			
+			request.setAttribute("clist", clist);
 		} catch (BoardException e) {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세 보기 실패");

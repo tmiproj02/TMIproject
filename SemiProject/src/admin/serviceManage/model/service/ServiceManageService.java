@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import admin.serviceManage.model.dao.ServiceManageDao;
+import sellerboard.model.vo.SellerBoard;
 
 
 public class ServiceManageService {

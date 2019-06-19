@@ -46,11 +46,11 @@ public class CashListServlet extends HttpServlet {
 		try {
 			
 			rechargeList = crs.selectList(m);
-			System.out.println("2");
+			
 			page = "views/personBUY/billingHistory.jsp";
-			System.out.println("3");
+			
 			request.setAttribute("rechargeList", rechargeList);
-			System.out.println("4");
+			
 			request.getRequestDispatcher(page).forward(request, response);
 		} catch(CashRechargeException e) {
 			page = "/semi/views/common/errorPage.jsp";

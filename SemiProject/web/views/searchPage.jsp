@@ -92,55 +92,26 @@ z-index: 2;
 	text-align: center;
 	font-size: 0;
 }
-.paging a,
-.paging strong {
-	display: inline-block;
-	width: 20px;
-	height: 18px;
-	margin: 0 1px;
-	border: 1px solid #dbdbdb;
-	color: #767676;
-	font-size: 11px;
-	font-weight: bold;
-	line-height: 20px;
-	vertical-align: middle;
-  text-decoration: none;
-}
-.paging a:hover,
-.paging a:active,
-.paging a:focus {
-	border: 1px solid #4c8500;	
-}
-.paging strong {
-	color: #fff;
-	background: #4c8500;
-	border: 1px solid #4c8500;
-}
-.paging .direction {
-	background: url('http://leroro.net/images/ui/sp_btn_paging.gif') no-repeat;
-}
-.paging .direction.first {
-	background-position: left top;
-}
-.paging .direction.prev {
-	margin: 0 12px 0 1px;
-	background-position: -20px 0;
-}
-.paging .direction.next {
-	margin: 0 1px 0 12px;
-	background-position: -40px 0;
-}
-.paging .direction.last {
-	background-position: right top;
-}
-.paging .direction span {
-	position: absolute;
-	display: block;
-	width: 20px;
-	height: 18px;
-	overflow: hidden;
-	z-index: -1;
-}
+
+.paging .hide {display:block;height:0;width:0;font-size:0;line-height:0;margin:0;padding:0;overflow:hidden;}
+
+.paging{padding:19px;text-align:center;margin-left:150px;}
+
+.paging a{display:inline-block;width:23px;height:23px;padding-top:2px;vertical-align:middle;}
+
+.paging a:hover{text-decoration:underline;}
+
+.paging .btn_arr{text-decoration:none;}
+
+.paging .btn_arr, .paging .on{margin:0 3px;padding-top:0;border:1px solid #ddd; border-radius:30px;
+
+/* background:url(/front/img/com/btn_paging.png) no-repeat; */}
+
+.paging .on{padding-top:1px;height:22px;color:#fff;font-weight:bold;background:rgb(54, 69, 89);}
+
+.paging .on:hover{text-decoration:none;}
+
+
 </style>
 
 </head>
@@ -153,9 +124,9 @@ z-index: 2;
 			<div class='search_input' >
 				<input type="hidden" name="type">
                 <input type="text" name="keyword" maxlength="15" class="search-input1" placeholder="어떤 서비스를 찾고 계신가요?">
-               	 <div class="search-btn" style="top: 93px;right: 260px; cursor: pointer; vertical-align: top;">
-                   <img class="cursor1" src="/semi/resources/images/x.png" style="width:25px; height: 25px; margin-right:15px;">
-                   <img class="cursor2" src="/semi/resources/images/search2.png" style="width:25px; height: 25px;">
+               	 <div class="search-btn" style="top: 88px;right: 270px; cursor: pointer; vertical-align: top;">
+                   <img class="cursor1" src="/semi/resources/images/x.png" style="width:23px; height: 23px; margin-right:10px;margin-bottom:5px;">
+                   <img class="cursor2" src="/semi/resources/images/searching.png" style="width:33px; height: 33px;">
                	 </div>
             </div>
 		</div>
@@ -886,20 +857,17 @@ z-index: 2;
 				</div>
 				
 				<div class="paging">
-	<a href="#" class="direction fisrt"><span>처음</span></a>
-	<a href="#" class="direction prev"><span>이전</span></a>
-	<a href="#">1</a>
-	<a href="#">2</a>
-	<a href="#">3</a>
-	<a href="#">4</a>
-	<strong>5</strong>
-	<a href="#">6</a>
-	<a href="#">7</a>
-	<a href="#">8</a>
-	<a href="#">9</a>
-	<a href="#" class="direction next"><span>다음</span></a>
-	<a href="#" class="direction last"><span>끝</span></a>
-</div><!-- //paging -->
+ 
+				  <a href="#" class="btn_arr first"><span class="hide">처음페이지</span></a>            
+				  <a href="#" class="btn_arr prev"><span class="hide">이전페이지</span></a>     
+				  <a href="#" class="on">1</a><!-- D : 활성화페이지일 경우 : on 처리 -->
+				  <a href="#">2</a>
+				  <a href="#">3</a>
+				  <a href="#">4</a>
+				  <a href="#">5</a>
+				  <a href="#" class="btn_arr next"><span class="hide">다음페이지</span></a>            
+				  <a href="#" class="btn_arr last"><span class="hide">마지막페이지</span></a>           
+				</div>
 			</div>	
 		
 	</div>

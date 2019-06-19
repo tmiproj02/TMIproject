@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="buy.buy.model.vo.*" %>
+<%
+Board b = (Board)request.getAttribute("board");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/buypage.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <style>
 @charset "UTF-8";
 
@@ -177,14 +183,14 @@ table td:nth-child(4){
 				<img src="../../resources/images/buyimg.jpg"
 					style="width: 120px; height: 90px; display: inline-block; float:left;" />
 				<div class="buytit clearFix">
-					<p>타이틀타이틀타이틀타이틀타이틀타이틀</p>
-					<p>아이디아이디</p>
+					<p><%=b.getBtitle() %></p>
+					<p><%=m.getNickName() %></p>
 				</div>
 
 				<table>
 					<thead>
 						<tr>
-							<th>기본항목</th>
+							<th><input type="checkbox" id="checkall1" />기본항목</th>
 							<th>수량선택</th>
 							<th>작업일</th>
 							<th>가격</th>
@@ -192,7 +198,7 @@ table td:nth-child(4){
 					</thead>
 					<tbody>
 						<tr>
-							<td>이미지</td>
+							<td><input type="checkbox" name="check" value="30000"/>이미지</td>
 							<td>1</td>
 							<td>2일</td>
 							<td>30,000원</td>
@@ -203,7 +209,7 @@ table td:nth-child(4){
 				<table>
 					<thead>
 						<tr>
-							<th>옵션항목</th>
+							<th><input type="checkbox" id="checkall1" />옵션항목</th>
 							<th>수량선택</th>
 							<th>작업일</th>
 							<th>가격</th>
@@ -234,7 +240,9 @@ table td:nth-child(4){
 		</div>
 
 	</section>
-
+	
+	
+	
 	<section>
 		<div class="container2" style="margin-top:20px;">
 			<div class="payment">
@@ -250,27 +258,28 @@ table td:nth-child(4){
 
 					<div class="clearFix">
 						<p style="display:inline-block;">총 서비스 금액</p>
-						<p style="float:right">30,000원</p>
+						<p style="float:right" class="sum">0원</p>
 					</div>
 					<div class="clearFix">
-						<p>캐쉬사용(보유중인캐쉬:0원)</p>
-						<input type="text" />
-						<button style="float:right">전액사용</button>
+						<p>캐쉬사용(보유중인캐쉬:<%=m.getCash()%>원)
+						<button style="float: right;" onclick="location.href='/semi/views/personBUY/cash.jsp'">캐시충전</button></p>
 					</div>
 				</div>
 				<div class="sumbox">
 					<p>총 결제금액(VAT 포함)</p>
-					<p>30,000원</p>
+					<p class="sum">0원</p>
 				</div>
 			</div>
-
+			<script>
+			
+			</script>
 		</div>
 	</section>
 
 	<section>
 		
 			<div class="shildbox container1 clearFix" style="margin-top: 20px;">
-				<img src="../../resources/img/shild.png" alt=""
+				<img src="../../resources/images/shild.png" alt=""
 					style="float: left; margin-left: 10px;">
 				<div class="buybtntext">
 					<p>TMI는 안전한 거래 환경을 제공합니다.</p>
@@ -283,6 +292,36 @@ table td:nth-child(4){
 
 
 	</section>
-
+	<script>
+	$("#checkall1").click(function(){
+        //클릭되었으면
+        if($("#checkall1").prop("checked")){
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+            $("input[name=check]").prop("checked",true);
+            //클릭이 안되있으면
+        }else{
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+            $("input[name=check]").prop("checked",false);
+        }
+    });
+	
+	
+	 $('input[name=check]').click(function() {
+		var price = Number($("input:checkbox[name=check]:checked").val());
+		console.log(price);
+		$('.sum').text(price+"원");
+	})
+	
+	 $('input[name=check]').click(function() {
+            console.log($(this).val());
+            var total;
+            $('input[name=check]:checked').each(function(i, e) {
+               total += $('.sum' + $(this).val());
+               $('.sum').text(total+"원");
+            });
+            
+            
+         });
+	</script>
 </body>
 </html>

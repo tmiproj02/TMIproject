@@ -41,7 +41,7 @@ public class SellerboardController extends HttpServlet {
 		String btitle = request.getParameter("btitle");										//제목
 		String bcontent = request.getParameter("bcontent");									//상세 설명
 		String erecontent = request.getParameter("erecontent");								//수정 및 재진행 안내
-		String requesttobuyer = request.getParameter("request");							//작업 전 요청사항
+		String requesttobuyer = request.getParameter("requesttobuyer");						//작업 전 요청사항
 		String category1_code = request.getParameter("category1_code");						//상위 카테고리
 		String category2_code = request.getParameter("category2_code");						//하위 카테고리
 		int price = Integer.parseInt(request.getParameter("price"));						//가격

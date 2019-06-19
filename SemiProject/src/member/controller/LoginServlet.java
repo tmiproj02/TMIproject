@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 			
 			// 관리자 계정일 경우 관리자 페이지로 보낸다.
 			if(m.getEmail().equals("tmicor@naver.com")) {
-				System.out.println("관리자 계정 로그인");
+				
 				HttpSession session = request.getSession();
 				session.setAttribute("admin", m);
 				response.sendRedirect("memberSelect");
@@ -56,6 +56,7 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("errorMsg", "메일인증이 되지않은 계정입니다.");
 				request.getRequestDispatcher("views/LoginForm.jsp").forward(request, response);
 			} else { // 메일인증 된 회원이면 로그인
+
 				System.out.println(11);
 				if(m.getIsSeller().equals("Y")) {
 					System.out.println(m.getIsSeller()+"판매자 실행");
