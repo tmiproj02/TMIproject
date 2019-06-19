@@ -39,7 +39,7 @@
 	
 }
 .use{
-	width:190px;
+	width:210px;
 	padding: 8px 10px; 
 	border: 1px solid #d2d5e3; 
 	text-align:center;
@@ -71,7 +71,7 @@
 }
 .coupon>div{
 	display: inline-block;
-	 margin:0 auto;
+	margin:0 auto;
 }
 
 .content2{
@@ -185,7 +185,7 @@
 			
 			
 			
-			<div class="c2" style="padding: 5px; width:60%">
+			<div class="c2" style="padding: 5px; width:60%;">
 					<div class="swiper-container">
 					    <div class="swiper-wrapper">
 					      <div class="swiper-slide">Slide 1</div>
@@ -692,25 +692,6 @@
 		
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <%@include file= "/views/common/footer.jsp"%>

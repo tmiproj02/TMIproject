@@ -277,7 +277,7 @@ nav{
                 <div class="navsize">
                     <ul class='nav_ul'>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate0"><a href="">디자인</a></div>
+                        	<div class="cate" id="cate0"><a href="/semi/views/designCategoryPage.jsp">디자인</a></div>
                         	<ul class="downmenu" id="downmenu0">
                         		<li><a href="">로고디자인</a></li>
                             	<li><a href="">의류디자인</a></li>
@@ -287,7 +287,7 @@ nav{
                         	</ul>
                         </li>
                         <li clase="talent-category">
-	                        <div class="cate" id="cate1"><a href="">IT/프로그래밍</a></div>
+	                        <div class="cate" id="cate1"><a href="/semi/views/itCategoryPage.jsp">IT/프로그래밍</a></div>
 	                        <ul class="downmenu" id="downmenu1">
 	                        	<li><a href="">웹사이트 개발</a></li>
 	                            <li><a href="">프로그램 개발</a></li>
@@ -297,7 +297,7 @@ nav{
 	                        </ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate2"><a href="">마케팅</a></div>
+                        	<div class="cate" id="cate2"><a href="/semi/views/marketingCategoryPage.jsp">마케팅</a></div>
                         	<ul class="downmenu" id="downmenu2">
                         		<li><a href="">sns마켓팅</a></li>
 	                            <li><a href="">종합광고대행</a></li>
@@ -307,7 +307,7 @@ nav{
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate3"><a href="">콘텐츠 제작</a></div>
+                        	<div class="cate" id="cate3"><a href="/semi/views/contentCategoryPage.jsp">콘텐츠 제작</a></div>
                         	<ul class="downmenu" id="downmenu3">
 	                        	<li><a href="">영상</a></li>
 	                            <li><a href="">더빙/녹음</a></li>
@@ -317,7 +317,7 @@ nav{
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate4"><a href="">번역/통역</a></div>
+                        	<div class="cate" id="cate4"><a href="/semi/views/transCategoryPage.jsp">번역/통역</a></div>
 	                        <ul class="downmenu" id="downmenu4">
 		                        <li><a href="">번역</a></li>
 	                            <li><a href="">영상번역</a></li>
@@ -325,7 +325,7 @@ nav{
 	                        </ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate5"><a href="">문서/취업</a></div>
+                        	<div class="cate" id="cate5"><a href="/semi/views/textCategoryPage.jsp">문서/취업</a></div>
                         	<ul class="downmenu" id="downmenu5">
                         		<li><a href="">논문</a></li>
 	                            <li><a href="">타이핑</a></li>
@@ -335,7 +335,7 @@ nav{
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate6"><a href="">기프트/커스텀</a></div>
+                        	<div class="cate" id="cate6"><a href="/semi/views/giftCategoryPage.jsp">기프트/커스텀</a></div>
                         	<ul class="downmenu"  id="downmenu6">
                         		<li><a href="">라이프</a></li>
                             	<li><a href="">패션</a></li>
