@@ -14,6 +14,8 @@ import buy.buy.model.service.BoardService;
 import buy.buy.model.vo.Board;
 import buy.comment.model.service.BoardCommentService;
 import buy.comment.model.vo.BoardComment;
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class BuyPageServlet
@@ -37,33 +39,20 @@ public class BuyPageServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
-		
+		int bno = 1;
 		Board b;
 		String page = "";
 		
-		BoardService bs = new BoardService();
-		
-
 		try {
 			b = new BoardService().selectOne(bno);
-			page = "views/board/boardDetail.jsp";
+			page = "views/buypage/buy.jsp";
 			request.setAttribute("board", b);
-			request.setAttribute("clist", clist);
+//			request.setAttribute("clist", clist);
 		} catch (BoardException e) {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세 보기 실패");
+			
 		}
-
-		
-		
-		
-		request.getRequestDispatcher(page).forward(request, response);
-		
-		
-		
 		
 	}
 

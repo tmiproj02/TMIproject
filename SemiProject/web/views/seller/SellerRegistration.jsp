@@ -42,6 +42,12 @@
 		-webkit-border-radius: 3px; 
 	}
 
+	footer {
+		position: absolute;
+		bottom: -500px;
+		left: 0;
+	}
+
 	
 </style>
 </head>
@@ -336,7 +342,7 @@ TMI 서비스에는 기본적으로 본 약관이 적용됩니다만 TMI가 다�
 			}
         });
 
-	</script>	
+	</script>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

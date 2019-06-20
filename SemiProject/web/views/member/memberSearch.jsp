@@ -44,6 +44,7 @@
 	            </div>
 		</div>   
 	  
+	  
 		<div class="panel panel-info" style="width:300px; height:301px;">
 	            <div class="panel-heading">
 	              <h3 class="panel-title">비밀번호 찾기</h3>
@@ -97,35 +98,33 @@
        </div>
    </div>
    
-   <!-- Modal -->
-<div class="modal fade" id="resetPwdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" style="width:500px;">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle" style="display:inline-block">새 비밀번호 설정</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       	 <label>새 비밀번호</label><br>
-       	 <input type="password" id="newPwd1" class="form-control" style="width:200px;"><br>
-       	 <label>비밀번호 확인</label><br>
-       	 <input type="password" id="newPwd2" class="form-control" style="width:200px"><br>
-       	 <label id="pwdResult" style="font-size:12px;"></label>
-       	 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary" id="resetPwdBtn">확인</button>
-      </div>
-    </div>
-  </div>
-</div>
+	   <!-- Modal -->
+	<div class="modal fade" id="resetPwdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content" style="width:500px;">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalCenterTitle" style="display:inline-block">새 비밀번호 설정</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	       	 <label>새 비밀번호</label><br>
+	       	 <input type="password" id="newPwd1" class="form-control" style="width:200px;"><br>
+	       	 <label>비밀번호 확인</label><br>
+	       	 <input type="password" id="newPwd2" class="form-control" style="width:200px"><br>
+	       	 <label id="pwdResult" style="font-size:12px;"></label>
+	       	 
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	        <button type="button" class="btn btn-primary" id="resetPwdBtn">확인</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
    
-	
-	
 </div>
 
 

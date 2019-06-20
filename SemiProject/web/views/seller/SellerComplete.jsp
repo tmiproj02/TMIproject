@@ -34,13 +34,18 @@
 		text-align: right;
 	}
 
+	footer {
+		position: absolute;
+		bottom: -500px;
+		left: 0;
+	}
 	
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/cateheader1.jsp" %>
 
-	<div class="jumbotron" style = "position: absolute; top:100px; left:200px; width:800px; height:auto;" align="center">
+	<div class="jumbotron" style = "top:100px; left:200px; width:800px; height:auto;" align="center">
 
 		<p class="lead">판매자 등록이 완료되었습니다!!<br>판매를 시작해보세요</p>
 		<hr class="my-4">

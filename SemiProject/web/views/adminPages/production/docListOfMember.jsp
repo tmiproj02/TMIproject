@@ -5,6 +5,7 @@
 <%@ page import="sellerboard.model.vo.SellerBoard" %>
     
 <%
+	
 	ArrayList<SellerBoard> docList = (ArrayList<SellerBoard>)session.getAttribute("docList");	
 	String nickName = (String)session.getAttribute("nickName");
 %>    
@@ -84,8 +85,7 @@
                  
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
-                  		<tr>
-                  			
+                  		<tr>    			
                   			<th>No</th>
                   			<th>제목</th>
                   			<th>1차 카테고리</th>
@@ -244,12 +244,7 @@
         });	
     	
     	});
-    
-    
-    
-    
+
 	</script>
-
-
 
 </html>

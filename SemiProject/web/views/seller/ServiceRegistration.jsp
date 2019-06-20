@@ -48,13 +48,19 @@
 		-webkit-border-radius: 3px; 
 	}
 	
+	footer {
+		position: absolute;
+		bottom: -700px;
+		left: 0;
+	}
+	
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/cateheader1.jsp" %>
 
 <!-- 완료버튼이 눌렸을때 servlet로 가야 하지만 보기 편하게 바로 완료페이지로 가게 만들었다. -->
-<form action="/semi/sellerboard.do" method="post" style="margin-top:100px;">
+<form action="/semi/sellerboard.do" method="post" style="margin-top:100px;" onsubmit="postForm()">
 	<div id="Servicerg" class="jumbotron" style = "position: absolute; top:100px;left:30%; width:800px; height:auto;" align="center">
 	<p class="lead">판매를 시작하여 수익을 올려보세요!!</p>
 	<hr class="my-4">
@@ -71,12 +77,12 @@
 			
 			<div class="column">
 			    <div class="ui input focus">
-					<input type="text" id="mainTitle" placeholder="예) 마음을 담아 재미있고 개성있는 캐리커쳐를 그려 드립니다." style="position: relative; left:-200px; width:500px; height:40px;" value="">
+					<input type="text" id="mainTitle" name="btitle" placeholder="예) 마음을 담아 재미있고 개성있는 캐리커쳐를 그려 드립니다." style="position: relative; left:-200px; width:500px; height:40px;" value="">
 				</div>
 				<br><br><br>
 			    <h5 class="modal-title" style="position: relative; left:-200px; width:500px; height:40px;">상위카테고리</h5>
 			    <div class="col-auto my-1">
-					<select class="custom-select mr-sm-2" id="category1" style="position: relative; left:-200px; width:250px; height:40px;">
+					<select class="custom-select mr-sm-2" id="category1" name="category1_code" style="position: relative; left:-200px; width:250px; height:40px;">
 						<!-- selected value="0" 으로 둔것은 밑에 유효성 검사를 할때 사용하기 위함이다 -->
 						<option selected value="0">선택해주세요</option>
 						<option value="10">디자인</option>
@@ -91,7 +97,7 @@
 				
 			    <h5 class="modal-title" id=submu style="position: relative; left:-200px; width:500px; height:40px; display: none;">하위카테고리</h5>
 			    <div class="col-auto my-1">
-					<select class="custom-select mr-sm-2" id="category21" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
+					<select class="custom-select mr-sm-2" id="category21" name="category2_code"style="position: relative; left:-200px; width:250px; height:40px; display: none;">
 						<option selected value="0">선택해주세요</option>
 						<option value="11">로고 디자인</option>
 						<option value="12">의류 디자인</option>
@@ -100,7 +106,7 @@
 						<option value="15">웹툰</option>
 					</select>
 					
-					<select class="custom-select mr-sm-2" id="category22" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
+					<select class="custom-select mr-sm-2" id="category22" name="category2_code" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
 						<option selected value="0">선택해주세요</option>
 						<option value="21">웹 사이트 개발</option>
 						<option value="22">프로그램 개발</option>
@@ -109,7 +115,7 @@
 						<option value="25">모바일웹</option>
 					</select>
 					
-					<select class="custom-select mr-sm-2" id="category23" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
+					<select class="custom-select mr-sm-2" id="category23" name="category2_code" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
 						<option selected value="0">선택해주세요</option>
 						<option value="31">sns 마케팅</option>
 						<option value="32">종합 광고 대행</option>
@@ -118,7 +124,7 @@
 						<option value="35">유투브 크리에이터</option>
 					</select>
 					
-					<select class="custom-select mr-sm-2" id="category24" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
+					<select class="custom-select mr-sm-2" id="category24" name="category2_code" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
 						<option selected value="0">선택해주세요</option>
 						<option value="41">영상</option>
 						<option value="42">더빙/녹음</option>
@@ -127,14 +133,14 @@
 						<option value="45">사진</option>
 					</select>
 					
-					<select class="custom-select mr-sm-2" id="category25" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
+					<select class="custom-select mr-sm-2" id="category25" name="category2_code" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
 						<option selected value="0">선택해주세요</option>
 						<option value="51">번역</option>
 						<option value="52">영상번역</option>
 						<option value="53">통역</option>
 					</select>
 					
-					<select class="custom-select mr-sm-2" id="category26" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
+					<select class="custom-select mr-sm-2" id="category26" name="category2_code" style="position: relative; left:-200px; width:250px; height:40px; display: none;">
 						<option selected value="0">선택해주세요</option>
 						<option value="21">논문</option>
 						<option value="22">타이핑</option>
@@ -167,7 +173,7 @@
 				<br>
 				<div class="column">
 				    <div class="ui input focus" style="position: relative; left:-200px; width:200px; height:40px;">
-						₩ &nbsp;&nbsp; <input type="text" id="sellerAmount" placeholder="예) 1000" value="">
+						₩ &nbsp;&nbsp; <input type="text" id="sellerAmount" name="price" placeholder="예) 1000" value="">
 					</div>
 				</div>
 				<br>
@@ -177,7 +183,7 @@
 				</div>
 				<div class="column">
 				    <div class="ui input focus" style="position: relative; left:-180px; width:180px; height:40px;">
-						<input type="text" id="editCount" placeholder="예) 1" value=""> &nbsp;&nbsp;회
+						<input type="text" id="editCount" name="editablecount" placeholder="예) 1" value=""> &nbsp;&nbsp;회
 					</div>
 				</div>
 				<br>
@@ -187,7 +193,7 @@
 				</div>
 				<div class="column">
 				    <div class="ui input focus" style="position: relative; left:-180px; width:180px; height:40px;">
-						<input type="text" id="dueDate" placeholder="예) 30" value=""> &nbsp;&nbsp;일
+						<input type="text" id="dueDate" name="duedate" placeholder="예) 30" value=""> &nbsp;&nbsp;일
 					</div>
 				</div>
 				
@@ -205,27 +211,45 @@
 				<div class="column">
 					<div class="col-auto my-1">
 						<!-- 빠른작업 -->
-						<select class="custom-select mr-sm-2" name="speed" style="position: relative; left:-200px; width:250px; height:40px;">
-							<option selected value="0">원하시는 항목을 선택해 주세요</option>
-							<option value="1">10,000원 추가시 작업기간 20% 단축</option>
-							<option value="2">20,000원 추가시 작업기간 40% 단축</option>
-							<option value="3">50,000원 추가시 작업기간 70% 단축</option>
-							<option value="4">100,000원 추가시 작업기간 90% 단축</option>
-							<option value="5">판매자와 상의하세요</option>
+						<select class="custom-select mr-sm-2" name="speed" style="position: relative; left:-200px; width:150px; height:40px;">
+							<option selected value="0">가격선택</option>
+							<option value="10000">10,000원</option>
+							<option value="20000">20,000원</option>
+							<option value="30000">30,000원</option>
+							<option value="50000">50,000원 </option>
+							<option value="판매자">판매자와 상의하세요</option>
 						</select>
+						
+						
+						<div class="column">
+							<label style="position:absolute; top :10px; left:-10px;">추가시</label>
+						    <div class="ui input focus" style="position:absolute; top :0px; left:60px; width:140px; height:40px;">
+								<input type="text" id="extradate1" name="extradate1" placeholder="예) 10" value=""> &nbsp;&nbsp;일
+							</div>
+						</div>
+			
 						<br><br><br><br>
 						<!-- 추가수정 부분 -->
-						<select class="custom-select mr-sm-2" name="plusedit" style="position: relative; left:-200px; width:250px; height:40px;">
+						<select class="custom-select mr-sm-2" name="plusedit" style="position: relative; left:-200px; width:150px; height:40px;">
 							<!-- selected value="0" 으로 둔것은 밑에 유효성 검사를 할때 사용하기 위함이다 -->
-							<option selected value="0">원하시는 항목을 선택해 주세요</option>
-							<option value="1">10,000원 추가시 1번 추가수정</option>
-							<option value="2">20,000원 추가시 2번 추가수정</option>
-							<option value="3">50,000원 추가시 5번 추가수정</option>
-							<option value="4">100,000원 추가시 10번 추가수정</option>
-							<option value="5">판매자와 상의하세요</option>
+							<option selected value="0">가격선택</option>
+							<option value="10000">10,000원</option>
+							<option value="20000">20,000원</option>
+							<option value="30000">30,000원</option>
+							<option value="50000">50,000원</option>
+							<option value="판매자">판매자와 상의하세요</option>
 						</select>
-						<br><br>
+						
+						<div class="column">
+							<label style="position:absolute; top :125px; left:-10px;">추가시</label>
+						    <div class="ui input focus" style="position:absolute; top :115px; left:60px; width:140px; height:40px;">
+								<input type="text" id="extradate2" name="extradate2" placeholder="예) 3" value=""> &nbsp;&nbsp;회
+							</div>
+						</div>
+						
+						
 					</div>
+					
 				</div>
 			</div>	
 		</div>
@@ -245,24 +269,24 @@
 		<h5 class="modal-title">작업 전 요청사항</h5>
 		<div class="ui segment">
 			<div class="inline field">
-				<textarea rows="2" name="request" placeholder="작업 전 구매자에게 알려줄 내용을 입력해 주세요~" style="width:700px; height:80px;"></textarea>
+				<textarea rows="2" id="requesttobuyer" name="requesttobuyer" placeholder="작업 전 구매자에게 알려줄 내용을 입력해 주세요~" style="width:700px; height:80px;"></textarea>
 				<div align="right" style="position: relative; left:-50px;">
-					<label id="textCount">0</label>/1500
+					<label id="textCount1">0</label>/1500
 				</div>
 				
 				<!-- 글자수를 표시하는 텍스트 -->
 				<script>
 			        $(function(){
-			            $('textarea').keydown(function(){
-			                var inputLength = $(this).val().length;
+			            $('#requesttobuyer').keydown(function(){
+			                var inputLength1 = $(this).val().length;
 			
-			                $('#textCount').html(inputLength);
+			                $('#textCount1').html(inputLength1);
 			
-			                if(inputLength >= 1500){
-			                    $('#textCount').css('color','red');
+			                if(inputLength1 >= 1500){
+			                    $('#textCount1').css('color','red');
 			                    alert("허용된 글자수를 초과하였습니다.");
 			                }else {
-			                    $('#textCount').css('color','black');
+			                    $('#textCount1').css('color','black');
 			                }
 			
 			            });
@@ -271,7 +295,35 @@
 			</div>
 		</div>
 		
-		
+		<!-- 수정 및 재진행 안내 -->
+		<h5 class="modal-title">수정 및 재진행 안내</h5>
+		<div class="ui segment">
+			<div class="inline field">
+				<textarea rows="2" id="erecontent" name="erecontent" placeholder="수정 및 재진행에 관한 규정을 설명해 주세요~" style="width:700px; height:80px;"></textarea>
+				<div align="right" style="position: relative; left:-50px;">
+					<label id="textCount2">0</label>/1500
+				</div>
+				
+				<!-- 글자수를 표시하는 텍스트 -->
+				<script>
+			        $(function(){
+			            $('#erecontent').keydown(function(){
+			                var inputLength2 = $(this).val().length;
+			
+			                $('#textCount2').html(inputLength2);
+			
+			                if(inputLength2 >= 1500){
+			                    $('#textCount2').css('color','red');
+			                    alert("허용된 글자수를 초과하였습니다.");
+			                }else {
+			                    $('#textCount2').css('color','black');
+			                }
+			
+			            });
+			        });
+			    </script>
+			</div>
+		</div>
 		<h5 class="modal-title">&nbsp;&nbsp;취소 및 환불 규정</h5>
 		<div class="ui segment">
 			<div class="ui two column very relaxed grid">
@@ -384,8 +436,18 @@
 		<div class="ui segment">
 			<h5 class="modal-title">본문 내용</h5>
 			<br><br>
+			<textarea name="bcontent" style="display: none;"></textarea>
 			<div id="summernote"></div>
 		</div>
+		<!-- summer note 를 사용하기 위함 -->
+		<!-- form에 postForm()을 실행하여 값을 DB에 저장한다.  -->
+		<script>
+			$(document).ready(function() { $('#summernote').summernote(); });
+		
+			function postForm() {
+			    $('textarea[name="bcontent"]').val($('#summernote').summernote('code'));
+			}
+		</script>
 		
 		<br><br>
 		<a class="btn btn-primary btn-lg" id="backButton3" role="button" href="#">뒤로가기</a>
@@ -421,7 +483,7 @@
 				var value1 = $('option:selected').val(); 
 				console.log(value1);
 				checkSelectValue = value1;
-				
+
 				//선택되었을때 View에 표시해줄것들 case구문으로 구현했었는데 문제가 값을 받아오는데 내머리가 터질것같아서 이렇게 구현함
 				if(value1 == 10) {
 					submu.style.display ="";
@@ -492,6 +554,8 @@
 						}
 					});
 				console.log(value2.val());
+				//category2_code 에 하위 카테고리값을 집어 넣어준다
+				$('[name*=category2_code]').val(value2.val());
 				checkSubSelectValue = value2;
 			}
 	

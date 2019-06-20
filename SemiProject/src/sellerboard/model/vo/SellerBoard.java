@@ -27,6 +27,8 @@ public class SellerBoard implements Serializable {
 	private int adexpire; 					//광고 만료일
 	private Date bdate; 					//작성일
 	private String state; 					//진행 상태
+	private int extradate1; 				//빠른 작업 일수
+	private int extradate2; 				//추가 수정 회수
 	
 	
 	public SellerBoard() {
@@ -35,7 +37,7 @@ public class SellerBoard implements Serializable {
 
 	//사용자가 직접 입력하는 것을 따로 받음
 	public SellerBoard(String btitle, String bcontent, String erecontent, String request, String category1_code,
-			String category2_code, int price, String images, int editablecount, int duedate, int speed, int plusedit) {
+			String category2_code, int price, String images, int editablecount, int duedate, int speed, int plusedit, int extradate1, int extradate2) {
 		super();
 		this.btitle = btitle;
 		this.bcontent = bcontent;
@@ -49,6 +51,8 @@ public class SellerBoard implements Serializable {
 		this.duedate = duedate;
 		this.speed = speed;
 		this.plusedit = plusedit;
+		this.extradate1 = extradate1;
+		this.extradate2 = extradate2;
 	}
 	
 	
@@ -87,6 +91,7 @@ public class SellerBoard implements Serializable {
 				+ category2_name + ", price=" + price + ", bevaluation=" + bevaluation + ", images=" + images
 				+ ", editablecount=" + editablecount + ", duedate=" + duedate + ", speed=" + speed + ", plusedit="
 				+ plusedit + ", ad=" + ad + ", adexpire=" + adexpire + ", bdate=" + bdate + ", state=" + state + "]";
+
 	}
 
 	public int getBno() {
@@ -259,26 +264,18 @@ public class SellerBoard implements Serializable {
 
 	public void setCategory2_name(String category2_name) {
 		this.category2_name = category2_name;
+
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 
+	public void setExtradate1(int extradate1) {
+		this.extradate1 = extradate1;
+	}
+
+	public int getExtradate2() {
+		return extradate2;
+	}
+
+	public void setExtradate2(int extradate2) {
+		this.extradate2 = extradate2;
+	}
 }

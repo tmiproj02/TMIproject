@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import charge.model.exception.CashRechargeException;
 import charge.model.service.CashRechargeService;
@@ -32,26 +33,32 @@ public class CashRechargeServlet extends HttpServlet{
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 1. 인코딩
+		//2
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		int Cash = Integer.parseInt(request.getParameter("price"));
-		String email = request.getParameter("email");
-
+		
+		int Cash = (int)(request.getAttribute("price"));
+		String email = (String) request.getAttribute("email");
+		System.out.println("Cash : " + Cash);
 		Member m = new Member(Cash);
+		
 		m.setEmail(email);
 		
 		CashRechargeService crs = new CashRechargeService();
 		
 		try {
 
-			crs.insertCash(m);
+			HttpSession session = request.getSession(false);
+			Member changeMember = (Member)session.getAttribute("member");
+			changeMember.setCash(crs.insertCash(m)); 
 			
-			response.sendRedirect("/semi/views/personBUY/billingHistory.jsp");
+			session.setAttribute("member", changeMember);
+			
+			response.sendRedirect("/semi/views/personBUY/buyingcontrol.jsp");
 
 		} catch(CashRechargeException e) {
-			
+
 			request.setAttribute("msg", "캐시 충전 중 에러 발생!!");
 			request.setAttribute("exception", e);
 		

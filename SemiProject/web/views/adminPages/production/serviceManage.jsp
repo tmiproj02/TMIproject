@@ -98,7 +98,7 @@
                        	int num = 1;
                        	for(SellerBoard sb : sList){ %>
                       	  <tr>
-                      	  <td style="visibility:hidden"><input type="text" id="bno" value="<%=sb.getBno()%>"/></td>
+                      	  <td style="display:none"><input type="hidden" id="bno" value="<%=sb.getBno()%>"/></td>
                           <td><%=num %></td>
                           <td><%=sb.getBtitle()%></td>
                           <td><%=sb.getBcontent()%></td>
@@ -232,7 +232,7 @@
     
     
     
-    		
+
     		
 	</script>
 

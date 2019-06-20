@@ -47,16 +47,17 @@ public class BoardDao {
 			System.out.println("dao의 bno : " + bno);
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
-			
+			System.out.println("111");
 			pstmt.setInt(1, bno);
-			
+			System.out.println("111");
 			rset = pstmt.executeQuery();
-			
+			System.out.println("111");
 			if(rset.next()) {
 				b = new Board();
 				b.setBno(bno);
 				b.setBtitle(rset.getString("BTITLE"));
 				b.setBcontent(rset.getString("BCONTENT"));
+				b.setErecontent(rset.getString("ERECONTENT"));
 				b.setRequest(rset.getString("REQUEST"));
 				b.setPrice(rset.getInt("PRICE"));
 				b.setBevaluation(rset.getInt("BEVALUATION"));

@@ -31,7 +31,7 @@ public class Member implements Serializable {
 	private String coupon;
 	private String isSNS;
 
-	
+	private int mno;
 	
 	
 	
@@ -98,6 +98,11 @@ public class Member implements Serializable {
 		this.phone = phone;
 	}
 
+	// 캐시 충전할 때 사용할 생성자
+		public Member(int cash) {
+			super();
+			this.cash = cash;
+		}
 	
 
 
@@ -171,12 +176,16 @@ public class Member implements Serializable {
 
 
 	
+	
+
+
 	@Override
 	public String toString() {
 		return "Member [email=" + email + ", userPwd=" + userPwd + ", userName=" + userName + ", memberSSN=" + memberSSN
 				+ ", nickName=" + nickName + ", phone=" + phone + ", enrollDate=" + enrollDate + ", emailVerification="
 				+ emailVerification + ", cash=" + cash + ", isSeller=" + isSeller + ", profileImage=" + profileImage
-				+ ", callTime=" + callTime + ", isAlive=" + isAlive + ", coupon=" + coupon + ", isSNS=" + isSNS + "]";
+				+ ", callTime=" + callTime + ", isAlive=" + isAlive + ", coupon=" + coupon + ", isSNS=" + isSNS
+				+ ", mno=" + mno + "]";
 	}
 
 
@@ -259,7 +268,14 @@ public class Member implements Serializable {
 		this.coupon = coupon;
 	}
 	
-	
+	public int getMno() {
+		return mno;
+	}
+
+
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 	
 	
 	
