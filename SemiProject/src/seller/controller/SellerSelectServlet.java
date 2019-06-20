@@ -47,7 +47,7 @@ public class SellerSelectServlet extends HttpServlet {
 			System.out.println("판매자 입니다.");
 			
 			session.setAttribute("seller", result);
-			response.sendRedirect("/semi/views/common/mainheader2.jsp");
+			response.sendRedirect("/semi/mainheader2.jsp");
 			
 		} catch (SellerException e) {
 			request.setAttribute("msg", "판매자 식별 실패");

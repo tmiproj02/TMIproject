@@ -84,7 +84,8 @@
 		<div class="section2">
 			
 			<div class="loginDiv">
-				<div class="login1" action="/semi/login.do" method="post"">
+				<div class="login1">
+					<form action="/semi/login.do" method="post"> 
 						&nbsp;<p><b>로그인</b></p>
 						<input type="text" name="userEmail" class="form-control" placeholder="이메일을 입력하세요" style="width:300px;height:50px; margin-bottom:10px;"><br>
 						&nbsp;<label>비밀번호</label>
