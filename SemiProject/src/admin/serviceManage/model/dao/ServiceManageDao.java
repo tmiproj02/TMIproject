@@ -2,17 +2,18 @@ package admin.serviceManage.model.dao;
 
 import static member.common.JDBCTemplete.close;
 
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import admin.memberManage.model.dao.MemberManageDao;
 import sellerboard.model.vo.SellerBoard;
 
 
@@ -21,7 +22,7 @@ public class ServiceManageDao {
 		
 	public ServiceManageDao() {
 		prop = new Properties();
-		String filePath = MemberManageDao.class.getResource("/config/admin-query.properties").getPath();
+		String filePath = ServiceManageDao.class.getResource("/config/admin-query.properties").getPath();
 	
 		try {
 			prop.load(new FileReader(filePath));
@@ -50,13 +51,15 @@ public class ServiceManageDao {
 			rset = stmt.executeQuery(sql);
 			
 			while(rset.next()) {
-					
+				
+				sb = new SellerBoard();
+				sb.setBtitle(rset.getString("Btitle"));
+				sb.setBdate(rset.getDate("BDATE"));
+				sb.setBcontent(rset.getString("NickName"));
+				
+				sList.add(sb);
 			}
 			
-			
-		
-			
-			return sList;
 			
 		} catch (SQLException e) {
 			
@@ -68,6 +71,71 @@ public class ServiceManageDao {
 		}
 		
 		return sList;
+	}
+
+
+
+	public void refuseService(String bTitle, String nickName, Connection con) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("refuseService");		
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bTitle);
+			pstmt.setString(2, nickName);
+			
+			pstmt.executeUpdate();
+			
+			
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}
+		
+	}
+
+
+
+	public ArrayList<SellerBoard> selectDocList(String email,Connection con) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDocList");
+		SellerBoard sb = null;
+		ArrayList<SellerBoard> docList = new ArrayList<SellerBoard>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				
+				sb = new SellerBoard();
+				sb.setBtitle(rset.getString("BTITLE"));
+				sb.setCategory1_name(rset.getString("Category1_name"));
+				sb.setCategory2_name(rset.getString("Category2_name"));
+				sb.setBdate(rset.getDate("BDATE"));
+				
+				docList.add(sb);
+				
+			}
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		
+	
+		return docList;
 	}
 		
 }

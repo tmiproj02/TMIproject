@@ -1,4 +1,4 @@
-package buy.common;
+package buy.buy.common;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

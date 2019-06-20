@@ -55,12 +55,11 @@ public class MemberManageDao {
 				mList.add(m);
 			}
 			
-			System.out.println("들어간 멤버 확인 : " + mList);
+		
 			
 			return mList;
 			
 		} catch (SQLException e) {
-			
 			
 			e.printStackTrace();
 		}finally {
@@ -76,12 +75,15 @@ public class MemberManageDao {
 		String sql = prop.getProperty("deleteMember");		
 		
 		try {
+			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
 			pstmt.executeUpdate();
-			System.out.println("회원삭제완료");
 			
 			
 		}catch(SQLException e) {
+			
 			e.printStackTrace();
 		}finally {
 			close(pstmt);

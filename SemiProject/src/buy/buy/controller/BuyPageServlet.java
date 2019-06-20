@@ -39,10 +39,20 @@ public class BuyPageServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		int bno = 1;
+		Board b;
+		String page = "";
 		
-		
-		
-		
+		try {
+			b = new BoardService().selectOne(bno);
+			page = "views/buypage/buy.jsp";
+			request.setAttribute("board", b);
+//			request.setAttribute("clist", clist);
+		} catch (BoardException e) {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시글 상세 보기 실패");
+			
+		}
 		
 	}
 

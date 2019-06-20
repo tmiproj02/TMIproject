@@ -14,58 +14,41 @@ import admin.serviceManage.model.service.ServiceManageService;
 import sellerboard.model.vo.SellerBoard;
 
 
-@WebServlet("/serviceList.admin")
-public class ServiceListServlet extends HttpServlet {
+@WebServlet("/docList.admin")
+public class DocListOfMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
-    public ServiceListServlet() {
+   
+    public DocListOfMemberServlet() {
         super();
-       
+        
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.removeAttribute("sList");
-		
-		ArrayList<SellerBoard> sList = null;
-		String page ="";
-		
-		try {
-		
-		ServiceManageService sms = new ServiceManageService();
-		sList = sms.selectServiceList();
-	
-		session.setAttribute("sList", sList);
-		page = "views/adminPages/production/serviceManage.jsp";
-		
-		
-		
-		}
-		catch(Exception e ){
-			System.out.println("서비스 조회 중 문제 발생!");
-			e.printStackTrace();
-		}
-		
-	
-		response.sendRedirect(page);
+			HttpSession session = request.getSession();
+			session.removeAttribute("sbList");
+			session.removeAttribute("nickName");
+			String email = request.getParameter("email");
+			String nickName = request.getParameter("nickName");
+			ArrayList<SellerBoard> docList = null;
 			
+			try {
+				docList = new ServiceManageService().selectDocList(email);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("게시물 리스트 불러오는 도중 실패! [서블릿]");
+			}
+			
+			session.setAttribute("docList", docList);
+			session.setAttribute("nickName", nickName);
 		
-		
-		
-		
-	}
+			response.sendRedirect("views/adminPages/production/docListOfMember.jsp");
+				}
 
 	
-	
-	
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-		
 		
 		doGet(request, response);
 	}

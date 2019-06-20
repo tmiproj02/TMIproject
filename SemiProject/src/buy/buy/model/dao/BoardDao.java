@@ -24,7 +24,7 @@ public class BoardDao {
 		prop = new Properties();
 		
 		String filePath = BoardDao.class
-				.getResource("/config/board-query.properties").getPath();
+				.getResource("/buy/buy/config/board-query.properties").getPath();
 		
 		try {
 			
@@ -45,16 +45,17 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			
+			System.out.println("111");
 			pstmt.setInt(1, bno);
-			
+			System.out.println("111");
 			rset = pstmt.executeQuery();
-			
+			System.out.println("111");
 			if(rset.next()) {
 				b = new Board();
 				b.setBno(bno);
 				b.setBtitle(rset.getString("BTITLE"));
 				b.setBcontent(rset.getString("BCONTENT"));
+				b.setErecontent(rset.getString("ERECONTENT"));
 				b.setRequest(rset.getString("REQUEST"));
 				b.setPrice(rset.getInt("PRICE"));
 				b.setBevaluation(rset.getInt("BEVALUATION"));
@@ -62,7 +63,7 @@ public class BoardDao {
 				b.setEditablecount(rset.getInt("EDITABLECOUNT"));
 				b.setDuedate(rset.getInt("DUEDATE"));
 				
-				
+				System.out.println("111");
 				
 				
 				

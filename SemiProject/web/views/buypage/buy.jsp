@@ -183,7 +183,7 @@ table td:nth-child(4){
 				<img src="../../resources/images/buyimg.jpg"
 					style="width: 120px; height: 90px; display: inline-block; float:left;" />
 				<div class="buytit clearFix">
-					<p><%=b.getBtitle() %></p>
+					<p><%-- <%=b.getBtitle() %> --%>타이틀타이틀타이틀</p>
 					<p><%=m.getNickName() %></p>
 				</div>
 
@@ -305,14 +305,21 @@ table td:nth-child(4){
         }
     });
 	
-	
-	 $('input[name=check]').click(function() {
-		var price = Number($("input:checkbox[name=check]:checked").val());
+	$('#checkall1').click(function() {
+		 var price = 0;
+		price = Number($("input:checkbox[name=check]:checked").val());
 		console.log(price);
 		$('.sum').text(price+"원");
 	})
 	
-	 $('input[name=check]').click(function() {
+	 /* $('input[name=check]').click(function() {
+		 var price = 0;
+		price = Number($("input:checkbox[name=check]:checked").val());
+		console.log(price);
+		$('.sum').text(price+"원");
+	}) */
+	
+	 /* $('input[name=check]').click(function() {
             console.log($(this).val());
             var total;
             $('input[name=check]:checked').each(function(i, e) {
@@ -321,7 +328,7 @@ table td:nth-child(4){
             });
             
             
-         });
+         }); */
 	</script>
 </body>
 </html>
