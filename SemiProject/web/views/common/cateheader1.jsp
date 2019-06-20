@@ -233,8 +233,45 @@ nav{
 .talent-category{
 	background : #fff;
 }
-.mylog a>div{
+.mylog{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.mylog>a>div{
 	display:inline-block;
+}
+.mylogmenu{
+	margin:0 auto;
+}
+.mylogmenu a>div{
+	padding:12px 20px;
+	
+}
+.downmymenu{
+	border : 1px solid #BDD4F2; 
+	position: absolute;
+	background:#fff;
+	display : none;
+}
+.downmymenu:after{
+	border-top:0 solid transparent;
+	border-left:10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom : 10px solid #fff;
+	content:"";
+	position:absolute;
+	top:-10px;
+	left:30px;
+}
+.downmymenu:before{
+	border-top:0 solid transparent;
+	border-left:10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom : 10px solid #BDD4F2;
+	content:"";
+	position:absolute;
+	top:-11px;
+	left:30px;
 }
 </style>
 </head>
@@ -273,7 +310,25 @@ nav{
                             <div class="mylog padding-15px"><a href="/">
                             	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important; vertical-align: middle;"/></div>
                             	<div><h5><%= m.getUserName() %></h5></div>
-                            	</a></div>
+                            	</a>
+                            	<div class="downmymenu">
+		                           	<ul class="mylogmenu" style="list-style:none;margin:5px 0;">
+		                           		<li><a href=""><div><h5>나의TMI</h5></div></a></li>
+		                           		<li><a href=""><div><h5>친구초대</h5></div></a></li>
+		                           		<li><a href=""><div><h5>정보수정</h5></div></a></li>
+		                           		<li><a href=""><div><h5>로그아웃</h5></div></a></li>
+		                           	</ul>
+                       			</div>
+                            </div>
+                            <script>
+                            	$('.mylog,.downmymenu').mouseenter(function(){
+                            		$('.downmymenu').css("display","block");
+                            	});
+                            	$('.mylog,.downmymenu').mouseleave(function(){
+                            		$('.downmymenu').css("display","none");
+                            	});
+                            	
+                            </script>
                         </div>
                         <%} %>
                     </div>
