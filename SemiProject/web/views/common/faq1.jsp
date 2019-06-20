@@ -9,12 +9,7 @@
 <div class="ui segment" id="example1" style="width:80px;left: 1500px; position:fixed; bottom:167px;" >
       <div class="ui sticky">
 	      <div style="cursor:pointer;">
-	      <img class="notice" src="/semi/resources/images/info.png" style="width: 50px !important; height: 50px !important; margin-top:5px;margin-bottom:10px">
-	      </div>
-	      
-	      <div style="cursor:pointer;" onclick="triggerChatFn()">
-	      <img class="chat" src="/semi/resources/images/chat.png" style="width: 50px !important; height: 50px !important;">
-	      <button id="popUpChatBox" data-toggle="modal" data-target="#resetPwdModal" style="display:none;"></button>
+	      <img class="notice" src="/semi/resources/images/info.png" style="width: 50px !important; height: 50px !important; margin-top:5px;">
 	      </div>
       
  

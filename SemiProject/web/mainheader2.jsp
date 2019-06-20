@@ -140,8 +140,9 @@
 </style>
 </head>
 <body>
-
+<%@include file= "/views/common/faq.jsp"%>
 <%@include file= "/views/common/cateheader1.jsp"%>
+
 <%-- <% if(m == null){
   	response.sendRedirect("index.jsp");
  } %> --%>
@@ -168,9 +169,11 @@
 	  }
 	}; */
  </script>   -->
+ 
 <div class="section1">
-	<div class="section2">
+	<div class="section2">	
 		<div class="content1">
+		
 			<div class="c1" style="padding: 10px; width:20%;">
 				
 					<div class="use"><b>TMI 이용방법</b></div>
@@ -205,9 +208,6 @@
 					</div>
 				
 			</div>
-			
-			
-			
 			
 			
 			<div class="c2" style="padding: 5px; width:60%;">

@@ -398,7 +398,7 @@ footer{
     </div>
 
     <section>
-        	<%@include file= "/views/common/faq.jsp"%>
+        	<%@include file= "/views/common/faq1.jsp"%>
  		   
         <div class="container">
             
