@@ -1,14 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="member.model.vo.ClientRequest" %>
+    
+<%
+	ArrayList<ClientRequest> crList = (ArrayList<ClientRequest>)session.getAttribute("crList");
+%>
 <!DOCTYPE html>
-<html lang ="ko">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+    <title>TMI - Admin Page</title>
+
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -31,24 +40,29 @@
     <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+	
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
-<title>TMI - 1:1 문의</title>
 
-</head>
-
-<body class="nav-md">
-	<div class="container body">
+  <body class="nav-md">
+  	<div class="container body">
       <div class="main_container">
-	
-	<%@ include file="adminHeader.jsp" %>
-		
-		 <!-- page content -->
+  
+ 
+   		<%@ include file="adminHeader.jsp" %>
+   		
+   		
+   		
+        <!-- page content -->
          <div class="right_col" role="main">
+          <div class="">
+           
+
+            <div class="clearfix"></div>
+            
           <!-- top tiles -->
-          <div class="row tile_count">
-         	 <div class="x_content">
+       
 
                     	<h3><b>회원 관리</b></h3>
 				 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -57,195 +71,59 @@
                 
                     <h2 style="height:22px; margin: 3px 0px 3px 0px;">회원 목록</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                     
+                      <li><a class="collapse-link" style="margin-left:55px;"><i class="fa fa-chevron-up"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+                  
+                  <!-- 여기부터 테이블 -->
                   <div class="x_content">
                  
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>이메일</th>
+                          <th>제목</th>
+                          <th>문의 내용</th>
+                          <th>Email</th>
                           <th>닉네임</th>
-                          <th>작성한 게시물 수</th>
-                          <th>가입일자</th>
-                          <th>작성글</th>
-                          <th>회원관리</th>
-                        
-                          
+                          <th>답변여부</th>
+                      	  <th>관리</th>
                         </tr>
                       </thead>
                       <tbody>
+                    
+                      	<%
+                      	int num = 1;
+                      	for(ClientRequest cr : crList){ %>
+                      	
                         <tr>
-                          <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
-                          <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
-                     
+                          <td><%=num %></td>
+                          <td><%=cr.getrTitle()%></td>
+                          <td><%=cr.getrContent()%></td>
+                          <td class="email"><%=cr.getEmail() %></td>
+                          <td><%=cr.getNickName()%></td>
+                          <td>
+                          <%if(cr.getReply().equals("Y")){ %>
+                          	    답변 완료
+                          <%}else{ %> 
+                          	    미답변
+                          <% }%>
+                          </td>
+                          <td class="last">
+                          <a class="btn btn-primary btn-xs replyBtn"><i class="fa fa-send-o"></i>&nbsp;답변</a>
+                          <a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-trash-o"></i>&nbsp;삭제 </a>
                       
-                        </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                         <tr>
-                          <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
-                          <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
+                          </td>
                      
-                      
                         </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                         <tr>
-                          <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
-                          <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
-                     
-                      
-                        </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                         <tr>
-                          <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
-                          <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
-                     
-                      
-                        </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                         <tr>
-                          <td>1</td>
-                          <td>max6383@naver.com</td>
-                          <td>나른한 댕댕이</td>
-                          <td>30</td>
-                          <td>2019-06-15</td>
-                          <td class="a-right a-right "> <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last">  <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a>
-                     
-                      
-                        </tr>
-                        <tr>
-                          <td>Garrett</td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                       
-                        </tr>
-                        
-                        <tr>
-                          <td>Ashton</td>
-                          <td>Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                       
+                    	
+                      <% num++;
+                           } 
+                   	
+                      %>
                       </tbody>
                     </table>
 					
@@ -258,28 +136,19 @@
           <!-- /top tiles -->
 
           
-     
         </div>
         <!-- /page content -->
 
 
-
-
-
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
       </div>
     </div>
+  
 
-    <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+</body>
+	
+	
+   <!-- jQuery -->
+  <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -331,13 +200,52 @@
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
-
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-		
-
-
-
-</body>
+    
+    <script>
+	
+    // 1:1 문의 삭제 ajax
+    		$('.deleteBtn').each(function(index, item){
+        		
+    			$(this).click(function(){
+        		
+					$.ajax({
+						url : "/semi/mDelete.admin",
+		        		type : "get",
+		        		data : {email : $(this).parent().parent().find('td').eq(1).text()} ,
+		        		success : function(data){
+		        			
+		        			location.href = "/semi/requestList.admin";
+		        		},
+		        		error : function(){
+		        			alert("어드인 회원삭제에서 오류");
+		        		}
+						
+						
+					});
+					
+					
+        		});
+    		
+        	});
+    
+    
+    	$('.docBtn').each(function(index, item){
+    		$(this).click(function(){
+    			var email = $(this).parent().parent().find('td').eq(1).text();
+    			var nickName = $(this).parent().parent().find('td').eq(2).text();
+    			console.log(email);
+    			console.log(nickName);
+    			location.href="/semi/docList.admin?email="+email+"&nickName="+nickName;
+    		});
+    		
+    	});
+	</script>
+    
+    
+    
+    
+    
+	
 </html>

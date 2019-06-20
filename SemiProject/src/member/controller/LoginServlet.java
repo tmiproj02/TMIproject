@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("admin", m);
-				response.sendRedirect("memberSelect");
+				response.sendRedirect("memberSelect.admin");
 			}// 관리자가 아닐 경우 메일인증 여부 확인
 			else if(m.getEmailVerification().equals("0")) {
 				request.setAttribute("errorMsg", "메일인증이 되지않은 계정입니다.");

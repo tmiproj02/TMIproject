@@ -35,11 +35,11 @@ public class ServiceManageService {
 		
 	}
 
-	public void refuseService(String bTitle, String nickName) {
+	public void refuseService(int bno) {
 
 		try {
 			con = getConnection();
-			sDao.refuseService(bTitle,nickName,con);
+			sDao.refuseService(bno,con);
 			commit(con);
 		}catch(Exception e) {
 			rollback(con);
@@ -61,6 +61,19 @@ public class ServiceManageService {
 		}
 		
 		return docList;
+	}
+
+	public void approveService(int bno) {
+		con = getConnection();
+		try {
+			sDao.approveService(bno,con);
+			commit(con);
+		}catch(Exception e) {
+			rollback(con);
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 

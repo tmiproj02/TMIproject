@@ -7,8 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import admin.memberManage.model.service.MemberManageService;
 import member.model.vo.ClientRequest;
+import member.model.vo.Member;
 
 @WebServlet("/clientRequest.do")
 public class ClientRequestServlet extends HttpServlet {
@@ -22,10 +25,22 @@ public class ClientRequestServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			ClientRequest cr = null;
+			
+			HttpSession session = request.getSession();
+			Member m = (Member)session.getAttribute("member");
+			
+			String email = "이메일입니당.";
+			String nickName = "닉네임입니당.";
 			String rTitle = request.getParameter("rTitle");
 			String rContent = request.getParameter("rContent");
 			
+			try {
+				ClientRequest cr = new ClientRequest(email,rTitle,rContent,nickName);	
+				new MemberManageService().sendRequest(cr);
+			}catch(Exception e) {
+				
+				e.printStackTrace();
+			}
 			
 		
 		

@@ -27,9 +27,9 @@ public class DocListOfMemberServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			request.getSession().invalidate();
 			HttpSession session = request.getSession();
-			session.removeAttribute("sbList");
-			session.removeAttribute("nickName");
+			
 			String email = request.getParameter("email");
 			String nickName = request.getParameter("nickName");
 			ArrayList<SellerBoard> docList = null;

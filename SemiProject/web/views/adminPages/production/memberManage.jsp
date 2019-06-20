@@ -5,6 +5,7 @@
     
 <%
 	ArrayList<Member> mList = (ArrayList<Member>)session.getAttribute("mList");	
+	System.out.println("mList: " + mList);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -47,24 +48,19 @@
 
   <body class="nav-md">
   	<div class="container body">
-      <div class="main_container">
+      <div class="main_container" style="margin-bottom:2%;">
   
- 
    		<%@ include file="adminHeader.jsp" %>
    		
    		
    		
         <!-- page content -->
          <div class="right_col" role="main">
-          <div class="">
-           
-
+          <div class="" >
             <div class="clearfix"></div>
             
           <!-- top tiles -->
-       
-
-                    	<h3><b>회원 관리</b></h3>
+      		<h3><b>회원 관리</b></h3>
 				 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -126,19 +122,11 @@
           </div>
           <!-- /top tiles -->
 
-          
         </div>
         <!-- /page content -->
 
 
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+  
       </div>
     </div>
   
@@ -234,8 +222,6 @@
     		$(this).click(function(){
     			var email = $(this).parent().parent().find('td').eq(1).text();
     			var nickName = $(this).parent().parent().find('td').eq(2).text();
-    			console.log(email);
-    			console.log(nickName);
     			location.href="/semi/docList.admin?email="+email+"&nickName="+nickName;
     		});
     		

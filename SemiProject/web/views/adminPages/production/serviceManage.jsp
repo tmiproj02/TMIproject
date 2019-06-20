@@ -64,19 +64,9 @@
                 
                     <h2 style="height:22px; margin: 3px 0px 3px 0px;">승인 대기 중인 서비스 목록</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      <li><a class="collapse-link" style="margin-left:55px;"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                    
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -104,7 +94,7 @@
                           <td><%=sb.getBcontent()%></td>
                           <td><%=sb.getBdate() %></td>
                           <td class="a-right a-right "> <a class="btn btn-primary btn-xs docDetailBtn" ><i class="fa fa-search"></i> 상세보기 </a></td>
-                          <td class=" last"><a class="btn btn-success btn-xs"><i class="fa fa-check"></i>승인</a><a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-trash-o"></i>거절 </a></td>
+                          <td class=" last"><a class="btn btn-success btn-xs approveBtn"><i class="fa fa-check"></i>승인</a><a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-close"></i> 거절 </a></td>
                         </tr>
            				<%  num++; } %>	
                       
@@ -128,14 +118,7 @@
 
 
 
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+  
       </div>
     </div>
     </div>
@@ -205,7 +188,7 @@
 					$.ajax({
 						url : "/semi/sRefuse.admin",
 		        		type : "get",
-		        		data : {title :$(this).parent().parent().find('td').eq(1).text(), nickName: $(this).parent().parent().find('td').eq(2).text()} ,
+		        		data : {bno : $(this).parent().parent().find('input').val()} ,
 		        		success : function(data){
 		        			location.href = "/semi/serviceList.admin";
 		        		},
@@ -223,17 +206,35 @@
     		// 게시물 상세보기 버튼
     		$('.docDetailBtn').each(function(index, item){
     			$(this).click(function(){
-					var bno = $(this).parent().parent().find('#bno').val();
-    			
-					window.open("listDetail.bo?bno="+bno);
-					
-        	});
-    	});
-    
-    
-    
-
+					var bno = $(this).parent().parent().find('input').val();
+				
+					 window.open("/semi/listDetail.bo?bno="+bno); 
+    				
+       			 });	
+    	
+           });
     		
+    	   // 서비스 승인 버튼
+    	   $('.approveBtn').each(function(index, item){
+    			$(this).click(function(){
+								
+					$.ajax({
+						url : "/semi/serviceApv.admin",
+		        		type : "get",
+		        		data : {bno : $(this).parent().parent().find('input').val()},
+		        		success : function(data){
+		        			location.href = "/semi/serviceList.admin";
+		        		},
+		        		error : function(){
+		        			alert("서비스 삭제 오류");
+		        		}
+						
+					});
+					
+       			 });	
+    	
+           });
+ 
 	</script>
 
 

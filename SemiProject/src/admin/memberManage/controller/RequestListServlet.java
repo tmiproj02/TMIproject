@@ -1,4 +1,4 @@
-package admin.serviceManage.controller;
+package admin.memberManage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,38 +10,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import admin.serviceManage.model.service.ServiceManageService;
-import sellerboard.model.vo.SellerBoard;
+import admin.memberManage.model.service.MemberManageService;
+import member.model.vo.ClientRequest;
 
 
-@WebServlet("/serviceList.admin")
-public class ServiceListServlet extends HttpServlet {
+@WebServlet("/requestList.admin")
+public class RequestListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
-    public ServiceListServlet() {
+    public RequestListServlet() {
         super();
        
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.getSession().invalidate();
 		HttpSession session = request.getSession();
 		
-		ArrayList<SellerBoard> sList = null;
+		
+		ArrayList<ClientRequest> crList = null;
 		String page ="";
 		
 		try {
 		
-		ServiceManageService sms = new ServiceManageService();
-		sList = sms.selectServiceList();
-	
-		session.setAttribute("sList", sList);
-		page = "views/adminPages/production/serviceManage.jsp";
+		MemberManageService mms = new MemberManageService();
+		crList = mms.selectRequestList();
 		
-		
-		
+		System.out.println("crList : " + crList);
+		session.setAttribute("crList", crList);
+		page = "views/adminPages/production/memberRequest.jsp";
+
 		}
 		catch(Exception e ){
 			System.out.println("서비스 조회 중 문제 발생!");
@@ -50,23 +51,10 @@ public class ServiceListServlet extends HttpServlet {
 		
 	
 		response.sendRedirect(page);
-			
-		
-		
-		
-		
+
 	}
-
-	
-	
-	
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-		
-		
+
 		doGet(request, response);
 	}
 

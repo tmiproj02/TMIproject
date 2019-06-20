@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 import static member.common.JDBCTemplete.*;
+
+import member.model.vo.ClientRequest;
 import member.model.vo.Member;
 
 public class MemberManageDao {
@@ -54,11 +56,7 @@ public class MemberManageDao {
 	
 				mList.add(m);
 			}
-			
-		
-			
-			return mList;
-			
+
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -92,11 +90,62 @@ public class MemberManageDao {
 		
 		
 	}
+
+	public void sendRequest(ClientRequest cr, Connection con) {
+			
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("sendRequest");
+			System.out.println(sql);
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, cr.getEmail());
+				pstmt.setString(2, cr.getNickName());
+				pstmt.setString(3, cr.getrTitle());
+				pstmt.setString(4, cr.getrContent());
+				
+				pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+		
+		
+		
+	}
+
+	public ArrayList<ClientRequest> selectRequestList(Connection con) {
+		ClientRequest cr = null;
+		ArrayList<ClientRequest> crList = new ArrayList<ClientRequest>();
+		ResultSet rset = null;
+		Statement stmt = null;
+		String sql = prop.getProperty("selectRequestList");
+		
+		try {
+		
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				cr = new ClientRequest();
+				cr.setEmail(rset.getString("email"));
+				cr.setNickName(rset.getString("nickName"));
+				cr.setrTitle(rset.getString("rTitle"));
+				cr.setrContent(rset.getString("rContent"));
+				cr.setrDate(rset.getDate("rDate"));
+				cr.setReply(rset.getString("reply"));
+				crList.add(cr);
+			}
 	
-	
-	
-	
-	
-	
-	
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		return crList;
+	}
+
 }

@@ -53,7 +53,19 @@
 	}
 	
 	function submitFn(){
-			location.href="clientRequest.do?rTitle="+$('#rTitle').val()+"&rContent="+$('#rContent').text();
+		$.ajax({
+			url : "clientRequest.do",
+			type : "post",
+			data : {rTitle : $('#rTitle').val(), rContent: $('#rContent').val()},
+			success : function(){
+				alert("문의가 접수되었습니다.");
+			},
+			error : function(){
+				alert("전송실패");
+			}
+	
+		});
+			
 	}
 	
 

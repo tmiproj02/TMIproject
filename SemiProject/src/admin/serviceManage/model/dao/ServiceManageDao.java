@@ -77,15 +77,15 @@ public class ServiceManageDao {
 
 
 
-	public void refuseService(String bTitle, String nickName, Connection con) {
+	public void refuseService(int bno, Connection con) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("refuseService");		
 		
 		try {
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bTitle);
-			pstmt.setString(2, nickName);
+			pstmt.setInt(1, bno);
+			
 			
 			pstmt.executeUpdate();
 			
@@ -140,6 +140,23 @@ public class ServiceManageDao {
 		
 	
 		return docList;
+	}
+
+
+
+	public void approveService(int bno, Connection con) {
+				PreparedStatement pstmt = null;
+				String sql = prop.getProperty("approveService");
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, bno);
+				pstmt.executeUpdate();
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+				
 	}
 		
 }
