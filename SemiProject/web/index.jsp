@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.Member"%>
+<%@ page import="seller.model.vo.Seller"%>
+<% 
+	Member m = (Member)session.getAttribute("member");
+	Seller s = (Seller)session.getAttribute("seller");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -274,10 +280,35 @@ footer{
     color: #ccc;
 }
 </style>
+<%-- <% if(m != null){
+  	response.sendRedirect("mainheader2.jsp");
+ } %> --%>
 </head>
-
+ 
 <body>
-
+<!-- 
+<script>
+	<% if(m == null) {  %>
+		
+		sessionStorage.setItem('memberLoginChk', '0');
+		
+	<% } %>
+	
+ 	window.onbeforeunload = function(e) {
+	 
+	};
+	
+	window.onload = function() {
+		if (sessionStorage.getItem('reloadChk') != 1){
+			sessionStorage.setItem('reloadChk', 1);
+			if (sessionStorage.getItem('memberLoginChk') != 0) {
+			    location.href = 'mainheader2.jsp';
+			}
+		} else {
+			sessionStorage.setItem('reloadChk', 0);
+		}
+	}
+ </script> -->
     <div class="wrap">
         
         <header>
@@ -312,49 +343,49 @@ footer{
 
                 <div class="category">
                     <ul>
-                        <li><a href="/semi/views/designCategoryPage.jsp">
+                        <li><a href="/semi/views/categoryPage/designCategoryPage.jsp">
                             <img src="/semi/resources/images/edit.png"> <br>
                             <span>디자인</span>
                         </a></li>
                     </ul>
                 
                     <ul>
-                        <li><a href="/semi/views/itCategoryPage.jsp">
+                        <li><a href="/semi/views/categoryPage/itCategoryPage.jsp">
                             <img src="/semi/resources/images/television.png"><br>
                             <a href="">IT/프로그래밍</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/marketingCategoryPage.jsp">
+                        <li><a href="/semi/views/categoryPage/marketingCategoryPage.jsp">
                             <img src="/semi/resources/images/bar-chart.png"><br>
                             <a href="">마케팅</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/contentCategoryPage.jsp">
+                        <li><a href="/semi/views/categoryPage/contentCategoryPage.jsp">
                             <img src="/semi/resources/images/play-button.png"><br>
                             <a href="">콘텐츠 제작</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/transCategoryPage.jsp">
+                        <li><a href="/semi/views/categoryPage/transCategoryPage.jsp">
                             <img src="/semi/resources/images/microphone.png"><br>
                             <a href="">번역/통역</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/textCategoryPage.jsp">
+                        <li><a href="/semi/views/categoryPage/textCategoryPage.jsp">
                             <img src="/semi/resources/images/file.png"><br>
                             <a href="">문서/취업</a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/giftCategoryPage.jsp">
+                        <li><a href="/semi/views/categoryPage/giftCategoryPage.jsp">
                             <img src="/semi/resources/images/gift.png"><br>
                             <a href="">기프트/커스텀</a>
                         </a></li>

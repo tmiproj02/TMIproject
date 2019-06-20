@@ -142,7 +142,32 @@
 <body>
 
 <%@include file= "/views/common/cateheader1.jsp"%>
-
+<%-- <% if(m == null){
+  	response.sendRedirect("index.jsp");
+ } %> --%>
+<!-- <script>
+	<% if(m != null) {  %>
+		
+		sessionStorage.setItem('memberLoginChk', '1');
+		
+	<% } %>
+	window.onload = function() {
+		if (sessionStorage.getItem('reloadChk') != 1){
+			sessionStorage.setItem('reloadChk', 1);
+			if (sessionStorage.getItem('memberLoginChk') != 1) {
+			    location.href = 'index.jsp';
+			}
+		} else {
+			sessionStorage.setItem('reloadChk', 0);
+		}
+	}
+	/* 
+ 	window.onbeforeunload = function(e) {
+	  if (sessionStorage.getItem('memberLoginChk') != 1) {
+	    location.href = 'index.jsp';
+	  }
+	}; */
+ </script>   -->
 <div class="section1">
 	<div class="section2">
 		<div class="content1">
@@ -229,17 +254,17 @@
 					</div>
 					<div class="progress" style="padding:10px;">
 						<div class="progress1" style="font-size:14px; margin-bottom: 5px;">안 읽은 메세지 
-							<a href="" style="margin-left: 49px;">
+							<a href="" style="margin-left: 89px;">
 							<span style="color:#f1c40f;">0</span>
 							</a>건
 						</div>
 						<div class="progress2" style="font-size:14px; margin-bottom: 5px;">구매 진행중 
-						<a href="" style="margin-left: 65px;">
+						<a href="" style="margin-left: 106px;">
 							<span style="color:#f1c40f;">0</span>
 							</a>건
 						</div>
 						<div class="progress3" style="font-size:14px; margin-bottom: 5px;">판매 진행중 
-						<a href="" style="margin-left: 65px;">
+						<a href="" style="margin-left: 106px;">
 							<span style="color:#f1c40f;">0</span>
 							</a>건
 						</div>
