@@ -43,7 +43,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="/mainheader2.jsp" %>
+	<%@ include file="/views/common/cateheader1.jsp" %>
 
 	<div class="jumbotron" style = "top:100px; left:200px; width:800px; height:auto;" align="center">
 

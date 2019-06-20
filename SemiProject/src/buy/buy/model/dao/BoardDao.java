@@ -14,7 +14,7 @@ import buy.buy.model.exception.BoardException;
 
 import buy.buy.model.dao.BoardDao;
 
-import buy.buy.model.vo.Board;
+import buy.buy.model.vo.SellerBoard;
 
 public class BoardDao {
 	
@@ -36,8 +36,8 @@ public class BoardDao {
 		
 	}
 	
-	public Board selectOne(Connection con, int bno) throws BoardException {
-		Board b = null;
+	public SellerBoard selectOne(Connection con, int bno) throws BoardException {
+		SellerBoard b = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -45,28 +45,29 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			System.out.println("111");
+			System.out.println(bno);
 			pstmt.setInt(1, bno);
-			System.out.println("111");
+			System.out.println(sql);
 			rset = pstmt.executeQuery();
-			System.out.println("111");
+		
 			if(rset.next()) {
-				b = new Board();
+				b = new SellerBoard();
 				b.setBno(bno);
 				b.setBtitle(rset.getString("BTITLE"));
 				b.setBcontent(rset.getString("BCONTENT"));
 				b.setErecontent(rset.getString("ERECONTENT"));
 				b.setRequest(rset.getString("REQUEST"));
+				b.setCategory1_code(rset.getString("CATEGORY1_CODE"));
+				b.setCategory2_code(rset.getString("CATEGORY2_CODE"));
 				b.setPrice(rset.getInt("PRICE"));
-				b.setBevaluation(rset.getInt("BEVALUATION"));
 				b.setImages(rset.getString("IMAGES"));
+				b.setBevaluation(rset.getInt("BEVALUATION"));
 				b.setEditablecount(rset.getInt("EDITABLECOUNT"));
 				b.setDuedate(rset.getInt("DUEDATE"));
-				
-				System.out.println("111");
-				
-				
-				
+				b.setSpeed(rset.getInt("SPEED"));
+				b.setPlusedit(rset.getInt("PLUSEDIT"));
+			
+				System.out.println(b);
 				
 				
 		

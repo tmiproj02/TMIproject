@@ -57,20 +57,20 @@ public class SellerBoardDao {
 			
 			
 			System.out.println("값을 잘전달받는지 확인하기위함");
-			System.out.println(sb.getBtitle());					//제목
-			System.out.println(sb.getBcontent());				//상세 설명
-			System.out.println(sb.getErecontent());				//수정 및 재진행 안내
-			System.out.println(sb.getRequest());				//작업 전 요청사항	
-			System.out.println(sb.getCategory1_code());			//상위 카테고리
-			System.out.println(sb.getCategory2_code());			//하위 카테고리
-			System.out.println(sb.getPrice());					//가격
-			System.out.println(sb.getImages());					//이미지들
-			System.out.println(sb.getEditablecount());			//수정 횟수
-			System.out.println(sb.getDuedate());				//작업기간
-			System.out.println(sb.getSpeed());					//빠른작업(옵션)
-			System.out.println(sb.getExtradate1());
-			System.out.println(sb.getPlusedit());				//추가수정(옵션)
-			System.out.println(sb.getExtradate2());
+			System.out.println("제목 :"+sb.getBtitle());					//제목
+			System.out.println("상세설명 :"+sb.getBcontent());				//상세 설명
+			System.out.println("수정및 재진행 :"+sb.getErecontent());				//수정 및 재진행 안내
+			System.out.println("작업전 요청 :"+sb.getRequest());				//작업 전 요청사항	
+			System.out.println("상위카테 :"+sb.getCategory1_code());			//상위 카테고리
+			System.out.println("하위카테 :"+sb.getCategory2_code());			//하위 카테고리
+			System.out.println("가격 :"+sb.getPrice());					//가격
+			System.out.println("이미지 :"+sb.getImages());					//이미지들
+			System.out.println("수정횟수 :"+sb.getEditablecount());			//수정 횟수
+			System.out.println("작업기간 :"+sb.getDuedate());				//작업기간
+			System.out.println("빠른작업 :"+sb.getSpeed());					//빠른작업(옵션)
+			System.out.println("빠른작업세부 :"+sb.getExtradate1());
+			System.out.println("추가수정 :"+sb.getPlusedit());				//추가수정(옵션)
+			System.out.println("추가수정세부 :"+sb.getExtradate2());
 			
 			// ? 에 해당하는 값을 추가 함
 			pstmt.setString(1, sb.getBtitle());					//제목

@@ -8,7 +8,7 @@ import java.sql.Connection;
 
 import buy.buy.model.dao.BoardDao;
 import buy.buy.model.exception.BoardException;
-import buy.buy.model.vo.Board;
+import buy.buy.model.vo.SellerBoard;
 
 
 public class BoardService {
@@ -16,16 +16,16 @@ public class BoardService {
 	private BoardDao bDao = new BoardDao();
 
 
-	public Board buyOne(int bno) {
+	public SellerBoard buyOne(int bno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Board selectOne(int bno) throws BoardException {
+	public SellerBoard selectOne(int bno) throws BoardException {
 		Connection con = getConnection();
 		
-		Board b= bDao.selectOne(con, bno);
-
+		SellerBoard b= bDao.selectOne(con, bno);
+		System.out.println(bno);
 		close(con);
 		return b;
 	}

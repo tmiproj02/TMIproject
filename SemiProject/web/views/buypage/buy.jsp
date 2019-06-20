@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="buy.buy.model.vo.*" %>
+<%@ page import="buy.buy.model.vo.* , java.util.*, member.model.vo.*" %>
 <%
-Board b = (Board)request.getAttribute("board");
+SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
 %>
 <!DOCTYPE html>
 <html>
@@ -172,7 +172,7 @@ table td:nth-child(4){
 </head>
 <body>
 	<%@ include file="/views/common/cateheader1.jsp"%>
-
+	
 	<div class="container1">
 		<h3 class="order">주문하기</h3>
 	</div>
@@ -180,10 +180,10 @@ table td:nth-child(4){
 	<section>
 		<div class="container2">
 			<div class="buyBox clearFix">
-				<img src="../../resources/images/buyimg.jpg"
+				<img src="/semi/resources/images/<%=b.getImages()%>"
 					style="width: 120px; height: 90px; display: inline-block; float:left;" />
 				<div class="buytit clearFix">
-					<p><%-- <%=b.getBtitle() %> --%>타이틀타이틀타이틀</p>
+					<p><%=b.getBtitle() %></p>
 					<p><%=m.getNickName() %></p>
 				</div>
 
@@ -191,7 +191,6 @@ table td:nth-child(4){
 					<thead>
 						<tr>
 							<th><input type="checkbox" id="checkall1" />기본항목</th>
-							<th>수량선택</th>
 							<th>작업일</th>
 							<th>가격</th>
 						</tr>
@@ -199,9 +198,8 @@ table td:nth-child(4){
 					<tbody>
 						<tr>
 							<td><input type="checkbox" name="check" value="30000"/>이미지</td>
-							<td>1</td>
 							<td>2일</td>
-							<td>30,000원</td>
+							<td id="price">30,000원</td>
 						</tr>
 					</tbody>
 				</table>
@@ -209,31 +207,23 @@ table td:nth-child(4){
 				<table>
 					<thead>
 						<tr>
-							<th><input type="checkbox" id="checkall1" />옵션항목</th>
-							<th>수량선택</th>
+							<th><input type="checkbox" id="checkall2" />옵션항목</th>
 							<th>작업일</th>
 							<th>가격</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>추가수정</td>
-							<td>1</td>
+							<td><input type="checkbox" name="check2" value="30000"/>빠른 작업</td>
 							<td>2일</td>
-							<td>30,000원</td>
+							<td id="price">30,000원</td>
 						</tr>
 						<tr>
-							<td>추가시안</td>
-							<td>1</td>
+							<td><input type="checkbox" name="check2" value="30000"/>추가 수정</td>
 							<td>2일</td>
-							<td>30,000원</td>
+							<td id="price">30,000원</td>
 						</tr>
-						<tr>
-							<td>원본파일제공</td>
-							<td>1</td>
-							<td>2일</td>
-							<td>30,000원</td>
-						</tr>
+				
 					</tbody>
 				</table>
 			</div>
@@ -267,7 +257,7 @@ table td:nth-child(4){
 				</div>
 				<div class="sumbox">
 					<p>총 결제금액(VAT 포함)</p>
-					<p class="sum">0원</p>
+					<p id="totalPrice">0원</p>
 				</div>
 			</div>
 			<script>
@@ -279,15 +269,22 @@ table td:nth-child(4){
 	<section>
 		
 			<div class="shildbox container1 clearFix" style="margin-top: 20px;">
-				<img src="../../resources/images/shild.png" alt=""
+				<img src="/semi/resources/images/shild.png" alt=""
 					style="float: left; margin-left: 10px;">
 				<div class="buybtntext">
 					<p>TMI는 안전한 거래 환경을 제공합니다.</p>
 					<p>TMI를 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</p>
 				</div>
+				
+				<% if(m != null ) { %>
 				<div class="buybtnbox">
 					<a href="">결제하기</a>
 				</div>
+				<%}else{ %>
+					<div class="buybtnbox">
+						<a href="/semi/LoginForm.jsp">로그인하기</a>
+					</div>
+				<%} %>
 			</div>
 
 
@@ -304,13 +301,63 @@ table td:nth-child(4){
             $("input[name=check]").prop("checked",false);
         }
     });
+	$("#checkall2").click(function(){
+        //클릭되었으면
+        if($("#checkall2").prop("checked")){
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+            $("input[name=check2]").prop("checked",true);
+            //클릭이 안되있으면
+        }else{
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+            $("input[name=check2]").prop("checked",false);
+        }
+    });
 	
-	$('#checkall1').click(function() {
+	// 선택된 체크박스의 상품의 가격 합계 구하는 함수
+    $('#checkall1').click(function(){
+       
+       console.log($(this).val());
+       
+       var total=0;
+       $('input[name=check]:checked').each(function(i, e) {
+          console.log(Number($('#price' + $(this).val()).text()));
+          total += Number($('#price' + $(this).val()).text());
+          //console.log($('#price' + $(this).val()));
+       });
+       
+        $('#totalPrice').text(total); 
+    
+    });
+
+	
+	
+	
+	
+	
+	/* $('#checkall1').click(function() {
 		 var price = 0;
 		price = Number($("input:checkbox[name=check]:checked").val());
 		console.log(price);
 		$('.sum').text(price+"원");
 	})
+	$('input:checkbox[name=check]').click(function() {
+		 var price = 0;
+		price = Number($("input:checkbox[name=check]:checked").val());
+		console.log(price);
+		$('.sum').text(price+"원");
+	})
+	$('#checkall2').click(function() {
+		 var price = 0;
+		price += Number($("input:checkbox[name=check2]:checked").val());
+		console.log(price);
+		$('.sum').text(price+"원");
+	})
+	$('input:checkbox[name=check2]').click(function() {
+		 var price = 0;
+		price += Number($("input:checkbox[name=check2]:checked").val());
+		console.log(price);
+		$('.sum').text(price+"원");
+	}) */
 	
 	 /* $('input[name=check]').click(function() {
 		 var price = 0;

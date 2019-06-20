@@ -4,7 +4,7 @@
 	import="buy.buy.model.vo.* ,buy.comment.model.vo.*, java.util.*, member.model.vo.*"%>
 
 <%
-	Board b = (Board)request.getAttribute("board");
+SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
 	/* ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist"); */
 %>
 
@@ -26,7 +26,7 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap"
 	rel="stylesheet">
 
-<title>Insert title here</title>
+<title><%=b.getBtitle()%></title>
 
 <style>
 @charset "UTF-8";
@@ -328,7 +328,7 @@ margin: 10px 10px;
 
 			<div class="pricebox" style="border: 1px solid #e6e6e6;">
 				<p>거래설명</p>
-				<a href="<%= request.getContextPath() %>/buyPage.bo?bno='+<%=b.getBno()%>"
+				<a href="<%= request.getContextPath() %>/buyPage.bo?bno=<%=b.getBno()%>"
 					style="">구매하기(<%=b.getPrice() %>원)</a>
 			</div>
 

@@ -5,6 +5,7 @@
 <%@ page import="sellerboard.model.vo.SellerBoard" %>
     
 <%
+	
 	ArrayList<SellerBoard> docList = (ArrayList<SellerBoard>)session.getAttribute("docList");	
 	String nickName = (String)session.getAttribute("nickName");
 %>    
@@ -84,7 +85,7 @@
                  
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
-                  		<tr>
+                  		<tr>    			
                   			<th>No</th>
                   			<th>제목</th>
                   			<th>1차 카테고리</th>
@@ -97,14 +98,17 @@
                       <tbody>
                        	<% if(docList != null) {
                        	int num = 1;
-                       	for(SellerBoard sb : docList){ %>
+                       	for(SellerBoard sb : docList){
+                       		System.out.println(sb.getBno());
+                       		%>
                       	  <tr>
-                          <td><%=num %></td>
+                      	  <td style="display:none"><input type="hidden" id="bno" value="<%=sb.getBno()%>"/></td>
+                          <td><%=num %></td>	
                           <td><%=sb.getBtitle()%></td>
                           <td><%=sb.getCategory1_name()%></td>
                           <td><%=sb.getCategory2_name() %></td>
                           <td><%=sb.getBdate()%></td>
-                          <td class="a-right a-right "> <a class="btn btn-primary btn-xs" ><i class="fa fa-search"></i> 상세보기 </a></td>
+                          <td class="a-right a-right "> <a class="btn btn-primary btn-xs docDetailBtn" ><i class="fa fa-search"></i> 상세보기 </a></td>
                           
                         </tr>
            				<%  num++; } 
@@ -209,7 +213,7 @@
     <script src="../build/js/custom.min.js"></script>
 
 	<script>
-    // 멤버 삭제 ajax
+   	 	// 게시물 삭제 버튼
     		$('.deleteBtn').each(function(index, item){
     			$(this).click(function(){
 					$.ajax({
@@ -230,9 +234,17 @@
     		
         	});
     		
-    		
+    	// 게시물 상세보기 버튼
+    	$('.docDetailBtn').each(function(index, item){
+    			$(this).click(function(){
+					var bno = $(this).parent().parent().find('input').val();
+				
+				 window.open("/semi/listDetail.bo?bno="+bno); 
+    				
+        });	
+    	
+    	});
+
 	</script>
-
-
 
 </html>

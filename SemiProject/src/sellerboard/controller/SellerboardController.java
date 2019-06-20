@@ -1,19 +1,22 @@
 package sellerboard.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-//import com.oreilly.servlet.MultipartRequest;
-//import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 
 import sellerboard.model.exception.SellerboardException;
 import sellerboard.model.service.SellerboardService;
 import sellerboard.model.vo.SellerBoard;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 
 
 /**
@@ -39,17 +42,9 @@ public class SellerboardController extends HttpServlet {
 		//인코딩
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType(" text/html; charset=UTF-8"); 
-		/*
-		if(!ServletFileUpload.isMultipartContent(request)) {//여러개를 보내지 않았느냐?
-			//만약 multipart/form-data 로 보내지 않았으면 에러 발생
-			
-			request.setAttribute("msg", "멀티파트 폼으로 전송해야 합니다.");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			
-			//에러페이지에 대한 Exception을 남기지 않았기 때문에 에러가 났을시 nullpoint가뜬다.
-		}
 		
 		//IMG 처리 부분
+		//IMG를 처리하기전에 cos.jar을 라이브러리에 넣어줘야 한다.
 		// 1. 전송할 파일 크기 설정하기
 		int maxSize = 1024*1024*10;	//10MB
 		
@@ -77,28 +72,29 @@ public class SellerboardController extends HttpServlet {
 														);
 		
 		
-		*/
 		//form 버튼이 눌렸을 때 getParameter로 값을 받아온다 
 		//
-		String btitle = request.getParameter("btitle");										//제목
-		String bcontent = request.getParameter("bcontent");									//상세 설명
-		String erecontent = request.getParameter("erecontent");								//수정 및 재진행 안내
-		String requesttobuyer = request.getParameter("requesttobuyer");						//작업 전 요청사항
-		String category1_code = request.getParameter("category1_code");						//상위 카테고리
-		String category2_code = request.getParameter("category2_code");						//하위 카테고리
-		int price = Integer.parseInt(request.getParameter("price"));						//가격
-		String images = request.getParameter("images");										//이미지들
-		int editablecount = Integer.parseInt(request.getParameter("editablecount"));		//수정 횟수
-		int duedate = Integer.parseInt(request.getParameter("duedate"));					//작업 기간
-		int speed = Integer.parseInt(request.getParameter("speed"));						//빠른 작업(옵션)
-		int plusedit = Integer.parseInt(request.getParameter("plusedit"));					//추가 수정(옵션)
-		int extradate1 = Integer.parseInt(request.getParameter("extradate1"));					//추가 수정(옵션)
-		int extradate2 = Integer.parseInt(request.getParameter("extradate2"));					//추가 수정(옵션)
+		String btitle = mrequest.getParameter("btitle");										//제목
+		String bcontent = mrequest.getParameter("bcontent");									//상세 설명
+		String erecontent = mrequest.getParameter("erecontent");								//수정 및 재진행 안내
+		String requesttobuyer = mrequest.getParameter("requesttobuyer");						//작업 전 요청사항
+		String category1_code = mrequest.getParameter("category1_code");						//상위 카테고리
+		String category2_code = mrequest.getParameter("category2_code");						//하위 카테고리
+		int price = Integer.parseInt(mrequest.getParameter("price"));						//가격
+		String images = mrequest.getFilesystemName("thumbnailImg1");										//이미지들
+		int editablecount = Integer.parseInt(mrequest.getParameter("editablecount"));		//수정 횟수
+		int duedate = Integer.parseInt(mrequest.getParameter("duedate"));					//작업 기간
+		int speed = Integer.parseInt(mrequest.getParameter("speed"));						//빠른 작업(옵션)
+		int plusedit = Integer.parseInt(mrequest.getParameter("plusedit"));					//추가 수정(옵션)
+		int extradate1 = Integer.parseInt(mrequest.getParameter("extradate1"));					//추가 수정(옵션)
+		int extradate2 = Integer.parseInt(mrequest.getParameter("extradate2"));					//추가 수정(옵션)
 		
-		
-		
+		System.out.println(images);
 		//request를 가져오려했는데 이미 요청받는 request와 겹쳐서 requesttobuyer로 받았음
-	
+		
+		//이미지 이름을 가져오기
+		System.out.println("이미지 이름 :"+mrequest.getFilesystemName(images));
+		
 		SellerBoard sb = new SellerBoard(btitle, bcontent, erecontent, requesttobuyer, category1_code, category2_code, price, images, editablecount, duedate, speed, plusedit,extradate1,extradate2);
 		
 		SellerboardService sbs = new SellerboardService();
