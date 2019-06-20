@@ -24,7 +24,7 @@ public class BoardDao {
 		prop = new Properties();
 		
 		String filePath = BoardDao.class
-				.getResource("/config/board-query.properties").getPath();
+				.getResource("/buy/buy/config/board-query.properties").getPath();
 		
 		try {
 			
@@ -44,6 +44,8 @@ public class BoardDao {
 		String sql = prop.getProperty("selectOne");
 		
 		try {
+			System.out.println("dao의 bno : " + bno);
+			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, bno);
@@ -62,13 +64,6 @@ public class BoardDao {
 				b.setEditablecount(rset.getInt("EDITABLECOUNT"));
 				b.setDuedate(rset.getInt("DUEDATE"));
 				
-				
-				
-				
-				
-				
-				
-		
 			}
 		} catch (SQLException e) {
 			

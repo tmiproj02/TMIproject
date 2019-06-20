@@ -98,11 +98,12 @@
                        	int num = 1;
                        	for(SellerBoard sb : sList){ %>
                       	  <tr>
+                      	  <td style="visibility:hidden"><input type="text" id="bno" value="<%=sb.getBno()%>"/></td>
                           <td><%=num %></td>
                           <td><%=sb.getBtitle()%></td>
                           <td><%=sb.getBcontent()%></td>
                           <td><%=sb.getBdate() %></td>
-                          <td class="a-right a-right "> <a class="btn btn-primary btn-xs" ><i class="fa fa-search"></i> 상세보기 </a></td>
+                          <td class="a-right a-right "> <a class="btn btn-primary btn-xs docDetailBtn" ><i class="fa fa-search"></i> 상세보기 </a></td>
                           <td class=" last"><a class="btn btn-success btn-xs"><i class="fa fa-check"></i>승인</a><a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-trash-o"></i>거절 </a></td>
                         </tr>
            				<%  num++; } %>	
@@ -218,6 +219,19 @@
         		});
     		
         	});
+    
+    		// 게시물 상세보기 버튼
+    		$('.docDetailBtn').each(function(index, item){
+    			$(this).click(function(){
+					var bno = $(this).parent().parent().find('#bno').val();
+    			
+					window.open("listDetail.bo?bno="+bno);
+					
+        	});
+    	});
+    
+    
+    
     		
     		
 	</script>

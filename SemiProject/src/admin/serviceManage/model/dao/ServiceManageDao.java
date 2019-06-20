@@ -53,6 +53,7 @@ public class ServiceManageDao {
 			while(rset.next()) {
 				
 				sb = new SellerBoard();
+				sb.setBno(rset.getInt("bno"));
 				sb.setBtitle(rset.getString("Btitle"));
 				sb.setBdate(rset.getDate("BDATE"));
 				sb.setBcontent(rset.getString("NickName"));
@@ -115,15 +116,16 @@ public class ServiceManageDao {
 			while(rset.next()) {
 				
 				sb = new SellerBoard();
+				sb.setBno(rset.getInt("bno"));
 				sb.setBtitle(rset.getString("BTITLE"));
 				sb.setCategory1_name(rset.getString("Category1_name"));
 				sb.setCategory2_name(rset.getString("Category2_name"));
 				sb.setBdate(rset.getDate("BDATE"));
-				
+			
 				docList.add(sb);
 				
 			}
-			
+
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

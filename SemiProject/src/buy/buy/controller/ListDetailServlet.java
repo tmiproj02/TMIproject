@@ -36,7 +36,7 @@ public class ListDetailServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		
+		System.out.println(bno);
 		Board b;
 		String page = "";
 		
@@ -46,6 +46,7 @@ public class ListDetailServlet extends HttpServlet {
 			request.setAttribute("board", b);
 			
 		} catch (BoardException e) {
+			e.printStackTrace();
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세 보기 실패");
 		}
