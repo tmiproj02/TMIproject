@@ -2,14 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "member.model.vo.Member"%>
 
-<% 			
-				// 오브젝트로 가져오기 때문에 다운캐스팅
-	Member m = (Member)session.getAttribute("member");
-	String errorMsg ="";
-	if(request.getAttribute("errorMsg")!=null) {
-		errorMsg = (String)request.getAttribute("errorMsg");
-	}
-	
+<%          
+            // 오브젝트로 가져오기 때문에 다운캐스팅
+   Member m = (Member)session.getAttribute("member");
+   String errorMsg ="";
+   if(request.getAttribute("errorMsg")!=null) {
+      errorMsg = (String)request.getAttribute("errorMsg");
+   }
+   
 %>
 <!DOCTYPE html>
 <html>
@@ -39,34 +39,42 @@
 
 <style>
 *{
-	font-family: 'Noto Sans KR', sans-serif;
+   font-family: 'Noto Sans KR', sans-serif;
 }
 .logo{
-	width: 500px;
-	text-align:center;
-	margin:0 auto;
+   width: 500px;
+   text-align:center;
+   margin:0 auto;
 }
 .section1{
-	margin:0 auto;
+   margin:0 auto;
 }
 .section2{
-	width : 1200px;
-	margin:0 auto;
-	margin-top: 50px;
+   width : 1200px;
+   margin:0 auto;
+   margin-top: 50px;
 }
 .loginDiv{
-	margin:0 auto;
-	position: relative; 
-	padding: 15px;
+   margin:0 auto;
+   position: relative; 
+   padding: 15px;
 }
 .loginDiv>div{
-	margin:0 auto;
+   margin:0 auto;
 }
 .login1{
-	width: 350px;
-	margin: 0 auto;
-	padding:20px;
-	
+   width: 350px;
+   margin: 0 auto;
+   padding:20px;
+}
+.login2{
+   width: 310px;
+   margin: 0 auto;
+}
+.login3{
+   width: 350px;
+   margin: 0 auto;
+   padding:20px;
 }
 </style>
 
@@ -75,198 +83,167 @@
 
 <body>
   <div class="Wrapper" style="margin: 0 auto; border-bottom: 4px solid #BDD4F2!important;">
-	<div class="logo">
-		<img src="/semi/resources/images/KakaoTalk_20190606_164601739.png" style="width:125px; cursor:pointer; margin-bottom: -9px;" onclick="toMain();">	
-	</div>
+   <div class="logo">
+      <img src="/semi/resources/images/KakaoTalk_20190606_164601739.png" style="width:125px; cursor:pointer; margin-bottom: -9px;" onclick="toMain();">   
+   </div>
   </div>
-	
+   
   <div class="section1">
-		<div class="section2">
-			
-			<div class="loginDiv">
-				<div class="login1">
-					<form action="/semi/login.do" method="post"> 
-						&nbsp;<p><b>로그인</b></p>
-						<input type="text" name="userEmail" class="form-control" placeholder="이메일을 입력하세요" style="width:300px;height:50px; margin-bottom:10px;"><br>
-						&nbsp;<label>비밀번호</label>
-						<input type="password" name="userPwd" class="form-control" placeholder="비밀번호를 입력하세요" style="width:300px;height:50px; margin-bottom:7px;">
-						<label id="isValid" style="font-size:11px; color:red;"><%=errorMsg %></label><br>
-						<button type="submit" class="btn btn-primary" style="width:350px; height:45px; margin-bottom:7px;">로그인</button>
-					</form>
-				</div>
-				
-				<div class="login2">
-				<a id="searchIPBtn" onclick="searchIP()" style="cursor:pointer;">아이디/비밀번호 찾기</a>
-				<a href="/semi/views/member/memberJoin.jsp" id="memberJoin" style="cursor:pointer; margin-left:160px;">회원 가입</a>
-				</div>
-				
-				<div class="login3">
-					<!-- 카카오톡 로그인 버튼 -->
-					<div style="margin-bottom:11px;">
-					<a id="kakao-login-btn"></a>
-					</div>
-					<!-- 네이버 로그인 버튼 -->
-					<div id="naverIdLogin"></div>
-				</div>
-				<a href="http://developers.kakao.com/logout"></a>
-		
-		
-		
-		
-		
-		
-		
-		</div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+      <div class="section2">
+         
+         <div class="loginDiv">
+            <div class="login1">
+               <form action="/semi/login.do" method="post"> 
+                  &nbsp;<p><b>로그인</b></p>
+                  <input type="text" name="userEmail" class="form-control" placeholder="이메일을 입력하세요" style="width:300px;height:50px;"><br>
+                  &nbsp;<label>비밀번호</label>
+                  <input type="password" name="userPwd" class="form-control" placeholder="비밀번호를 입력하세요" style="width:300px;height:50px; margin-bottom:7px;">
+                  <label id="isValid" style="font-size:11px; color:red;"><%=errorMsg %></label><br>
+                  <button type="submit" class="btn btn-primary" style="width:300px; height:50px; margin-bottom:-7px;  border: none;">로그인</button>
+               </form>
+            </div>
+            
+            <div class="login2" >
+            <a id="searchIPBtn" onclick="searchIP()" style="cursor:pointer;">아이디/비밀번호 찾기</a>
+            <a href="/semi/views/member/memberJoin.jsp" id="memberJoin" style="cursor:pointer; margin-left:90px;">회원 가입</a>
+            </div>
+            
+            <div class="login3" >
+               <!-- 카카오톡 로그인 버튼 -->
+               <div style="margin-bottom:11px; ">
+               <a id="kakao-login-btn" style="width:300px; height:50px;"></a>
+               </div>
+               <!-- 네이버 로그인 버튼 -->
+               <div id="naverIdLogin" style="width:300px;height:50px;">
+               
+               </div>
+            </div>
+            <a href="http://developers.kakao.com/logout"></a>
+      
+      
+      </div>
+   </div>
+   
     <a href="http://developers.kakao.com/logout"></a>
   </div>
-			
-	
-	
-	
-	
-	
+         
+   
+   
+   
+   
+   
 
 
 
 <script>
-	// 아이디 / 비밀번호 찾기 함수
-	function searchIP(){
-		location.href = '/semi/views/member/memberSearch.jsp';
-	}
-	
-	
-	// 로그아웃 함수
-	function logout(){
-		location.href = '/semi/logout.do';
-	}
-	
-	// 카카오 로그인
+   // 아이디 / 비밀번호 찾기 함수
+   function searchIP(){
+      location.href = '/semi/views/member/memberSearch.jsp';
+   }
+   
+   
+   // 로그아웃 함수
+   function logout(){
+      location.href = '/semi/logout.do';
+   }
+   
+   // 카카오 로그인
     Kakao.init('cc56a05cae8352b3084c302df2e23e3f');
     // 카카오 로그인 버튼을 생성합니다.
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
       success: function() {
    
-    	  Kakao.API.request({ 
+         Kakao.API.request({ 
               url: '/v2/user/me', 
               success: function(res) { 
-            	  var email = res.kakao_account.email;
-            	  $.ajax({
-            		 	url : "/semi/emailDupCheck.do",
-            		 	type : "post",
-            		 	data : {email : email},
+                 var email = res.kakao_account.email;
+                 $.ajax({
+                      url : "/semi/emailDupCheck.do",
+                      type : "post",
+                      data : {email : email},
                         success : function(data){
-                        		var isDup = data;
-                        		// 이미 가입된 메일이라는 뜻. 로그인 시켜준다.
-                        		if(isDup == 1){
-                        			location.href = '/semi/login.do?userEmail='+email+ '&userPwd=0&isSNS=Y';
-                        		} else{ // 가입자가 아니므로 가입절차 후 로그인
-                        			location.href = '/semi/views/member/memberJoin.jsp?email=' + email + '&isSNS=Y';
-                        		}
+                              var isDup = data;
+                              // 이미 가입된 메일이라는 뜻. 로그인 시켜준다.
+                              if(isDup == 1){
+                                 location.href = '/semi/login.do?userEmail='+email+ '&userPwd=0&isSNS=Y';
+                              } else{ // 가입자가 아니므로 가입절차 후 로그인
+                                 location.href = '/semi/views/member/memberJoin.jsp?email=' + email + '&isSNS=Y';
+                              }
                         },
                         error : function(){
-                        	console.log("카톡 로그인 중복체크에서 에러났어여");
+                           console.log("카톡 로그인 중복체크에서 에러났어여");
                         }
-            	  });
+                 });
                    
-             	}, 
+                }, 
              fail: function(error) { 
                    console.log(JSON.stringify(error)); 
-          	  } 
+               } 
   
-        	//location.href = '/semi/index.jsp';
-      	  });
-    	  
-    	  
-     	},
-     	 fail: function(err) {
+           //location.href = '/semi/index.jsp';
+           });
+         
+         
+        },
+         fail: function(err) {
          alert(JSON.stringify(err));
-      	 }
+          }
     });
-	
-	// 네이버 로그인
+   
+   // 네이버 로그인
 
-	var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "jO850s5j4AkPe49KkkVW",
-			callbackUrl: "http://localhost:8088/semi/views/LoginForm.jsp",
-			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-			loginButton: {color: "green", type: 3, width:350, height: 60} /* 로그인 버튼의 타입을 지정 */
-		}
-	);
-	
-	/* 설정정보를 초기화하고 연동을 준비 */
-	naverLogin.init();
-	
-	$('#naverIdLogin').on('click', function () {
-		naverLogin.getLoginStatus(function (status) {
-			if (status) {
-				/* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
-				var email = naverLogin.user.getEmail();
-				if( email == undefined || email == null) {
-					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-					/* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
-					naverLogin.reprompt();
-					return;
-				}
-				
-				 $.ajax({
-         		 	url : "/semi/emailDupCheck.do",
-         		 	type : "post",
-         		 	data : {email : email},
+   var naverLogin = new naver.LoginWithNaverId(
+      {
+         clientId: "jO850s5j4AkPe49KkkVW",
+         callbackUrl: "http://localhost:8088/semi/views/LoginForm.jsp",
+         isPopup: false, /* 팝업을 통한 연동처리 여부 */
+         loginButton: {color: "green", type: 3, width:350, height: 60} /* 로그인 버튼의 타입을 지정 */
+      }
+   );
+   
+   /* 설정정보를 초기화하고 연동을 준비 */
+   naverLogin.init();
+   
+   $('#naverIdLogin').on('click', function () {
+      naverLogin.getLoginStatus(function (status) {
+         if (status) {
+            /* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
+            var email = naverLogin.user.getEmail();
+            if( email == undefined || email == null) {
+               alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+               /* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
+               naverLogin.reprompt();
+               return;
+            }
+            
+             $.ajax({
+                   url : "/semi/emailDupCheck.do",
+                   type : "post",
+                   data : {email : email},
                      success : function(data){
-                     		var isDup = data;
-                     		// 이미 가입된 메일이라는 뜻. 로그인 시켜준다.
-                     		if(isDup == 1){
-                     			location.href = '/semi/login.do?userEmail='+email+ '&userPwd=0&isSNS=Y';
-                     		} else{ // 가입자가 아니므로 가입절차 후 로그인
-                     			location.href = '/semi/views/member/memberJoin.jsp?email=' + email + '&isSNS=Y';
-                     		}
+                           var isDup = data;
+                           // 이미 가입된 메일이라는 뜻. 로그인 시켜준다.
+                           if(isDup == 1){
+                              location.href = '/semi/login.do?userEmail='+email+ '&userPwd=0&isSNS=Y';
+                           } else{ // 가입자가 아니므로 가입절차 후 로그인
+                              location.href = '/semi/views/member/memberJoin.jsp?email=' + email + '&isSNS=Y';
+                           }
                      },
                      error : function(){
-                     	console.log("네이버 로그인 중복체크에서 에러났어여");
+                        console.log("네이버 로그인 중복체크에서 에러났어여");
                      }
-         	   });
-	
-			} else {
-				console.log("callback 처리에 실패하였습니다.");
-			}
-		});
-	});
-	
-	function toMain(){
-		location.href = "/semi/index.jsp";
-	}
+               });
+   
+         } else {
+            console.log("callback 처리에 실패하였습니다.");
+         }
+      });
+   });
+   
+   function toMain(){
+      location.href = "/semi/index.jsp";
+   }
     
 </script>
 

@@ -211,27 +211,45 @@
 				<div class="column">
 					<div class="col-auto my-1">
 						<!-- 빠른작업 -->
-						<select class="custom-select mr-sm-2" name="speed" style="position: relative; left:-200px; width:250px; height:40px;">
-							<option selected value="0">원하시는 항목을 선택해 주세요</option>
-							<option value="1">10,000원 추가시 작업기간 20% 단축</option>
-							<option value="2">20,000원 추가시 작업기간 40% 단축</option>
-							<option value="3">50,000원 추가시 작업기간 70% 단축</option>
-							<option value="4">100,000원 추가시 작업기간 90% 단축</option>
-							<option value="5">판매자와 상의하세요</option>
+						<select class="custom-select mr-sm-2" name="speed" style="position: relative; left:-200px; width:150px; height:40px;">
+							<option selected value="0">가격선택</option>
+							<option value="10000">10,000원</option>
+							<option value="20000">20,000원</option>
+							<option value="30000">30,000원</option>
+							<option value="50000">50,000원 </option>
+							<option value="판매자">판매자와 상의하세요</option>
 						</select>
+						
+						
+						<div class="column">
+							<label style="position:absolute; top :10px; left:-10px;">추가시</label>
+						    <div class="ui input focus" style="position:absolute; top :0px; left:60px; width:140px; height:40px;">
+								<input type="text" id="extradate1" name="extradate1" placeholder="예) 10" value=""> &nbsp;&nbsp;일
+							</div>
+						</div>
+			
 						<br><br><br><br>
 						<!-- 추가수정 부분 -->
-						<select class="custom-select mr-sm-2" name="plusedit" style="position: relative; left:-200px; width:250px; height:40px;">
+						<select class="custom-select mr-sm-2" name="plusedit" style="position: relative; left:-200px; width:150px; height:40px;">
 							<!-- selected value="0" 으로 둔것은 밑에 유효성 검사를 할때 사용하기 위함이다 -->
-							<option selected value="0">원하시는 항목을 선택해 주세요</option>
-							<option value="1">10,000원 추가시 1번 추가수정</option>
-							<option value="2">20,000원 추가시 2번 추가수정</option>
-							<option value="3">50,000원 추가시 5번 추가수정</option>
-							<option value="4">100,000원 추가시 10번 추가수정</option>
-							<option value="5">판매자와 상의하세요</option>
+							<option selected value="0">가격선택</option>
+							<option value="10000">10,000원</option>
+							<option value="20000">20,000원</option>
+							<option value="30000">30,000원</option>
+							<option value="50000">50,000원</option>
+							<option value="판매자">판매자와 상의하세요</option>
 						</select>
-						<br><br>
+						
+						<div class="column">
+							<label style="position:absolute; top :125px; left:-10px;">추가시</label>
+						    <div class="ui input focus" style="position:absolute; top :115px; left:60px; width:140px; height:40px;">
+								<input type="text" id="extradate2" name="extradate2" placeholder="예) 3" value=""> &nbsp;&nbsp;회
+							</div>
+						</div>
+						
+						
 					</div>
+					
 				</div>
 			</div>	
 		</div>

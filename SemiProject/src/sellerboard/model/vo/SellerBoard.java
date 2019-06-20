@@ -1,9 +1,8 @@
 package sellerboard.model.vo;
 
-import java.io.Serializable;
 import java.sql.Date;
 
-public class SellerBoard implements Serializable {
+public class SellerBoard {
 	private static final long serialVersionUID = 1L;
 
 	private int bno; 						//판매글 번호(PK)
@@ -12,10 +11,8 @@ public class SellerBoard implements Serializable {
 	private String bcontent; 				//상세 설명
 	private String erecontent; 				//수정 및 재진행 안내
 	private String request; 				//작업 전 요청사항
-	private String category1_code; 			//상위 카테고리 코드
-	private String category2_code; 			//하위 카테고리 코드
-	private String category1_name; 			//상위 카테고리 이름
-	private String category2_name; 			//하위 카테고리 이름 
+	private String category1_code; 			//상위 카테고리
+	private String category2_code; 			//하위 카테고리
 	private int price; 						//가격
 	private int bevaluation; 				//평점
 	private String images; 					//이미지들
@@ -27,6 +24,8 @@ public class SellerBoard implements Serializable {
 	private int adexpire; 					//광고 만료일
 	private Date bdate; 					//작성일
 	private String state; 					//진행 상태
+	private int extradate1; 				//빠른 작업 일수
+	private int extradate2; 				//추가 수정 회수
 	
 	
 	public SellerBoard() {
@@ -35,7 +34,7 @@ public class SellerBoard implements Serializable {
 
 	//사용자가 직접 입력하는 것을 따로 받음
 	public SellerBoard(String btitle, String bcontent, String erecontent, String request, String category1_code,
-			String category2_code, int price, String images, int editablecount, int duedate, int speed, int plusedit) {
+			String category2_code, int price, String images, int editablecount, int duedate, int speed, int plusedit, int extradate1, int extradate2) {
 		super();
 		this.btitle = btitle;
 		this.bcontent = bcontent;
@@ -49,6 +48,8 @@ public class SellerBoard implements Serializable {
 		this.duedate = duedate;
 		this.speed = speed;
 		this.plusedit = plusedit;
+		this.extradate1 = extradate1;
+		this.extradate2 = extradate2;
 	}
 	
 	
@@ -77,16 +78,14 @@ public class SellerBoard implements Serializable {
 		this.state = state;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "SellerBoard [bno=" + bno + ", sno=" + sno + ", btitle=" + btitle + ", bcontent=" + bcontent
 				+ ", erecontent=" + erecontent + ", request=" + request + ", category1_code=" + category1_code
-				+ ", category2_code=" + category2_code + ", category1_name=" + category1_name + ", category2_name="
-				+ category2_name + ", price=" + price + ", bevaluation=" + bevaluation + ", images=" + images
-				+ ", editablecount=" + editablecount + ", duedate=" + duedate + ", speed=" + speed + ", plusedit="
-				+ plusedit + ", ad=" + ad + ", adexpire=" + adexpire + ", bdate=" + bdate + ", state=" + state + "]";
+				+ ", category2_code=" + category2_code + ", price=" + price + ", bevaluation=" + bevaluation
+				+ ", images=" + images + ", editablecount=" + editablecount + ", duedate=" + duedate + ", speed="
+				+ speed + ", plusedit=" + plusedit + ", ad=" + ad + ", adexpire=" + adexpire + ", bdate=" + bdate
+				+ ", state=" + state + ", extradate1=" + extradate1 + ", extradate2=" + extradate2 + "]";
 	}
 
 	public int getBno() {
@@ -245,40 +244,19 @@ public class SellerBoard implements Serializable {
 		return serialVersionUID;
 	}
 
-	public String getCategory1_name() {
-		return category1_name;
+	public int getExtradate1() {
+		return extradate1;
 	}
 
-	public void setCategory1_name(String category1_name) {
-		this.category1_name = category1_name;
+	public void setExtradate1(int extradate1) {
+		this.extradate1 = extradate1;
 	}
 
-	public String getCategory2_name() {
-		return category2_name;
+	public int getExtradate2() {
+		return extradate2;
 	}
 
-	public void setCategory2_name(String category2_name) {
-		this.category2_name = category2_name;
+	public void setExtradate2(int extradate2) {
+		this.extradate2 = extradate2;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 
 }

@@ -68,7 +68,9 @@ public class SellerBoardDao {
 			System.out.println(sb.getEditablecount());			//수정 횟수
 			System.out.println(sb.getDuedate());				//작업기간
 			System.out.println(sb.getSpeed());					//빠른작업(옵션)
+			System.out.println(sb.getExtradate1());
 			System.out.println(sb.getPlusedit());				//추가수정(옵션)
+			System.out.println(sb.getExtradate2());
 			
 			// ? 에 해당하는 값을 추가 함
 			pstmt.setString(1, sb.getBtitle());					//제목
@@ -82,7 +84,10 @@ public class SellerBoardDao {
 			pstmt.setInt(9, sb.getEditablecount());				//수정 횟수
 			pstmt.setInt(10, sb.getDuedate());					//작업기간
 			pstmt.setInt(11, sb.getSpeed());					//빠른작업(옵션)
-			pstmt.setInt(12, sb.getPlusedit());					//추가수정(옵션)
+			pstmt.setInt(12, sb.getExtradate1());				//빠른작업(옵션)
+			pstmt.setInt(13, sb.getPlusedit());					//추가수정(옵션)
+			pstmt.setInt(14, sb.getExtradate2());				//추가수정(옵션)
+			
 			
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
