@@ -18,10 +18,6 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-
-
-
-
 <style>
 
 	input{margin-bottom: 9px;}
@@ -68,7 +64,7 @@
 				
 				<label>연락처</label>
 				<br>
-				<input type="tel" name="phone1" required="required" style="width:65px; height:30px; display:inline;" class="form-control"/>&nbsp- &nbsp<input type="tel" name="phone2" required="required" style="width:65px; height:30px; display:inline;" class="form-control"/>&nbsp-&nbsp<input type="tel" name="phone3" required="required" style="width:65px; height:30px; display:inline;" class="form-control"/>
+				<input type="tel" name="phone1" required="required" style="width:65px; height:30px; display:inline;" class="form-control"/>&nbsp- &nbsp<input type="tel" name="phone2" required="required" style="width:65px; height:30px; display:inline;" class="form-control"/>&nbsp;-&nbsp;<input type="tel" name="phone3" required="required" style="width:65px; height:30px; display:inline;" class="form-control"/>
 			    <input type="submit" id="submitBtn" value=" 동의 후 회원 가입" class="btn btn-primary" style="width: 350px; height:50px; position:absolute; top:80%; left:57.5%;" disabled/>
 	     </form>
 	  </div>
@@ -87,10 +83,14 @@
       		 <textarea class="term-box" readonly>국회의원과 정부는 법률안을 제출할 수 있다. 국회의 정기회는 법률이 정하는 바에 의하여 매년 1회 집회되며, 국회의 임시회는 대통령 또는 국회재적의원 4분의 1 이상의 요구에 의하여 집회된다. 국회의원은 그 지위를 남용하여 국가·공공단체 또는 기업체와의 계약이나 그 처분에 의하여 재산상의 권리·이익 또는 직위를 취득하거나 타인을 위하여 그 취득을 알선할 수 없다. 국회의원은 현행범인인 경우를 제외하고는 회기중 국회의 동의없이 체포 또는 구금되지 아니한다. 정기회의 회기는 100일을, 임시회의 회기는 30일을 초과할 수 없다. 타인의 범죄행위로 인하여 생명·신체에 대한 피해를 받은 국민은 법률이 정하는 바에 의하여 국가로부터 구조를 받을 수 있다.
 		     </textarea>
     	  </div>
-	      
+	      		
+	
+
 	  </div>
+
+	  
 	</div>
-</div>	
+</div>
 	 
 	<%@ include file="../common/footer.jsp" %>
 </body>
@@ -263,6 +263,12 @@
 		
 				return false;
 			}
+			
+			alert("회원가입이 완료되었습니다!");
+
+		
+			
+			
 		}
 		
 		function toMain(){
@@ -278,7 +284,7 @@
 					}
 		}
 		
-		$('#test').html("와아아아");
+		
 </script>
 
 

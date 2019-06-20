@@ -251,11 +251,11 @@ public class MemberDao {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, m.getUserName());
 				pstmt.setString(2, m.getMemberSSN());
-				
+				System.out.println(sql);
 				rset = pstmt.executeQuery();
 				if (rset.next()) {
 					result = rset.getString("email");
-					
+					System.out.println("result: " + result);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

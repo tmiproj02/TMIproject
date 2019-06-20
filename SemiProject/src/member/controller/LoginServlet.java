@@ -57,7 +57,6 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("views/LoginForm.jsp").forward(request, response);
 			} else { // 메일인증 된 회원이면 로그인
 
-				System.out.println(11);
 				if(m.getIsSeller().equals("Y")) {
 					System.out.println(m.getIsSeller()+"판매자 실행");
 					HttpSession session = request.getSession();

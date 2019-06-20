@@ -57,7 +57,7 @@
           <!-- top tiles -->
           <div class="row tile_count">
          	 <div class="x_content">
-
+			
                     	<h3><b>작성글 보기</b></h3>
 				 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">

@@ -56,8 +56,9 @@
    		
         <!-- page content -->
          <div class="right_col" role="main">
-          <div class="" >
-            <div class="clearfix"></div>
+               <div class="row tile_count">
+         	 <div class="x_content">
+                
             
           <!-- top tiles -->
       		<h3><b>회원 관리</b></h3>

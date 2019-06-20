@@ -168,6 +168,7 @@
                               if(isDup == 1){
                                  location.href = '/semi/login.do?userEmail='+email+ '&userPwd=0&isSNS=Y';
                               } else{ // 가입자가 아니므로 가입절차 후 로그인
+                            	  alert("카카오에 등록된 Email로 가입을 진행합니다. 추가정보를 입력해주세요.");
                                  location.href = '/semi/views/member/memberJoin.jsp?email=' + email + '&isSNS=Y';
                               }
                         },
@@ -227,7 +228,9 @@
                            if(isDup == 1){
                               location.href = '/semi/login.do?userEmail='+email+ '&userPwd=0&isSNS=Y';
                            } else{ // 가입자가 아니므로 가입절차 후 로그인
+                        	   
                               location.href = '/semi/views/member/memberJoin.jsp?email=' + email + '&isSNS=Y';
+                
                            }
                      },
                      error : function(){

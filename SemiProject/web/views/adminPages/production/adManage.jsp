@@ -49,12 +49,12 @@
           <div class="row tile_count">
          	 <div class="x_content">
 
-                    	<h3><b>회원 관리</b></h3>
+                    	<h3><b>광고 관리</b></h3>
 				 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                 
-                    <h2 style="height:22px; margin: 3px 0px 3px 0px;">회원 목록</h2>
+                    <h2 style="height:22px; margin: 3px 0px 3px 0px;">광고 목록</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link" style="margin-left:55px;"><i class="fa fa-chevron-up"></i></a>
                       </li>
