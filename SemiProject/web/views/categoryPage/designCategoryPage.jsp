@@ -385,7 +385,7 @@ z-index: 2;
 				</div>
 				
 				<div class="post">
-					<div class="post-row" style="z-index:-1">
+					<div class="post-row" style="z-index:0">
 						<div class="posting">
 						 <div style="width:210px; ">
 						 	
