@@ -67,10 +67,23 @@
 <head>
 <meta charset="UTF-8">
 <title>인증메일 전송 완료</title>
+<style>
+
+.logo{
+   width: 500px;
+   text-align:center;
+   margin:0 auto;
+}
+
+</style>
 </head>
 <body>
 	
-	<%@ include file="../common/header.jsp" %>	
+	<div class="Wrapper" style="margin: 0 auto; border-bottom: 4px solid #BDD4F2!important;">
+   <div class="logo">
+      <img src="/semi/resources/images/KakaoTalk_20190606_164601739.png" style="width:125px; cursor:pointer; margin-bottom: -9px;" onclick="toMain();">   
+   </div>
+  </div>
 	<h2>인증메일이 전송되었습니다!</h2>
 	<p>작성하신 이메일에서 인증버튼을 누르시면 회원가입이 완료됩니다.</p>
 
