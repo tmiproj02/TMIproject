@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ import="sellerboard.model.vo.SellerBoard" %>
+<%@ page import="sellerboard.model.vo.*, java.util.*" %>
 <%
-	
+	ArrayList<SellerBoard> list = (ArrayList<SellerBoard>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -64,8 +70,9 @@
 	display:inline-block;
 }
 .posting{
-	padding: 0 20px;
+	padding:0 20px;
 	margin-bottom: 20px;
+	
 }
 .post-row{
 position: relative;
@@ -389,23 +396,27 @@ z-index: 2;
 				</div>
 				
 				<div class="post">
-				
-					<div class="post-row" style="z-index:0">
-					
+					<%for(int i = 0; i<3;i++){ %>
+						<div class="post-row" style="z-index:0">
 						<div class="posting">
+						<%for(int j=(4*i);j<(4*(i+1));j++){
+							if(j>=list.size()) break;
+							SellerBoard b = list.get(j);%>
+						
 						 <div style="width:210px; ">
 						 	<div class="ui card" style="margin:0;">
 							  <div class="image" style="height:170px;">
 							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
 							  </div>
 							  <div class="content" style="height:120px;">
-							    <a class="header">Kristy</a>
+							    
 							    <div class="meta">
-							      <span class="date">Joined in 2013</span>
+							      <span class="date"><%=b.getSno() %></span>
 							    </div>
-							    <div class="description">
-							      Kristy is an art director living in New York.
+							    <div class="description" style="margin-bottom:5px">
+								      테스트입니다.
 							    </div>
+							    <a class="header" style="float:right"><%=b.getPrice() %>원</a>
 							  </div>
 							  <div class="extra content">
 							    <a>
@@ -427,23 +438,29 @@ z-index: 2;
 							;
 							</script>
 						 </div>
-						</div>
 						
+						<%} %>
+						</div>
 					</div>
-					
+					<%} %>
 				</div>
 				
 				<div class="paging">
  
 				  <a href="#" class="btn_arr first"><span class="hide">처음페이지</span></a>            
 				  <a href="#" class="btn_arr prev"><span class="hide">이전페이지</span></a>     
-				  <a href="#" class="on">1</a><!-- D : 활성화페이지일 경우 : on 처리 -->
-				  <a href="#">2</a>
-				  <a href="#">3</a>
-				  <a href="#">4</a>
-				  <a href="#">5</a>
+				  <%for(int p = startPage; p <= endPage; p++){
+						if(p==currentPage){  
+					%>
+				  	<a class="on"><%= p %></a>
+				  	<%}else{ %>
+				  	<a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>&no=1"><%=p%></a>
+				  	<%}
+				  	}	
+				  	%>
 				  <a href="#" class="btn_arr next"><span class="hide">다음페이지</span></a>            
-				  <a href="#" class="btn_arr last"><span class="hide">마지막페이지</span></a>           
+				  <a href="#" class="btn_arr last"><span class="hide">마지막페이지</span></a>
+				             
 				</div>
 			</div>			
 		</div>

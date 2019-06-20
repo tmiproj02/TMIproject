@@ -1,13 +1,16 @@
 package sellerboard.model.dao;
 
-import static member.common.JDBCTemplete.*;
+import static member.common.JDBCTemplete.close;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import seller.model.dao.SellerDao;
@@ -98,6 +101,94 @@ public class SellerBoardDao {
 		}
 		
 		return result;
+	}
+
+
+	public int getListCount(Connection con) {
+		int listCount=0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			if(rset.next()) {
+				
+				listCount = rset.getInt(1);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		
+		return listCount;
+	}
+
+
+	public ArrayList<SellerBoard> selectList(Connection con, int currentPage, int pageLimit, int boardLimit) {
+		ArrayList<SellerBoard> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectList");
+		try {
+			pstmt = con.prepareStatement(sql);
+		
+			int startRow = (currentPage - 1)*boardLimit +1;
+			int endRow = startRow+boardLimit-1;		
+			
+			System.out.println(startRow);
+			System.out.println(endRow);
+			
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset=pstmt.executeQuery();
+			
+			list=new ArrayList<SellerBoard>();
+			
+			while(rset.next()) {
+				SellerBoard b = new SellerBoard();
+				b.setBno(rset.getInt("BNO"));
+				b.setSno(rset.getInt("SNO"));
+				b.setBtitle(rset.getString("BTITLE"));
+				b.setBcontent(rset.getString("BCONTENT"));
+				b.setErecontent(rset.getString("ERECONTENT"));
+				b.setRequest(rset.getString("REQUEST"));
+				b.setCategory1_code(rset.getString("CATEGORY1_CODE"));
+				b.setCategory2_code(rset.getString("CATEGORY2_CODE"));
+				b.setPrice(rset.getInt("PRICE"));
+				b.setBevaluation(rset.getInt("BEVALUATION"));
+				b.setImages(rset.getString("IMAGES"));
+				b.setEditablecount(rset.getInt("EDITABLECOUNT"));
+				b.setDuedate(rset.getInt("DUEDATE"));
+				b.setSpeed(rset.getInt("SPEED"));
+				b.setExtradate1(rset.getInt("EXTRADATE1"));
+				b.setPlusedit(rset.getInt("PLUSEDIT"));
+				b.setExtradate2(rset.getInt("EXTRADATE2"));
+				b.setAd(rset.getString("AD"));
+				b.setAdexpire(rset.getInt("ADEXPIRE"));
+				b.setBdate(rset.getDate("BDATE"));
+				b.setState(rset.getString("STATE"));
+
+				list.add(b);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);	
+		}		
+		return list;
 	}
 
 }

@@ -34,7 +34,35 @@ public class SellerBoard implements Serializable {
 	public SellerBoard() {
 		super();
 	}
-
+	
+	public SellerBoard(int bno, int sno, String btitle, String bcontent, String erecontent, String request,
+			String category1_code, String category2_code, int price, int bevaluation, String images, int editablecount,
+			int duedate, int speed, int plusedit, String ad, int adexpire, Date bdate, String state, int extradate1,
+			int extradate2) {
+		super();
+		this.bno = bno;
+		this.sno = sno;
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.erecontent = erecontent;
+		this.request = request;
+		this.category1_code = category1_code;
+		this.category2_code = category2_code;
+		this.price = price;
+		this.bevaluation = bevaluation;
+		this.images = images;
+		this.editablecount = editablecount;
+		this.duedate = duedate;
+		this.speed = speed;
+		this.plusedit = plusedit;
+		this.ad = ad;
+		this.adexpire = adexpire;
+		this.bdate = bdate;
+		this.state = state;
+		this.extradate1 = extradate1;
+		this.extradate2 = extradate2;
+	}
+	
 	//사용자가 직접 입력하는 것을 따로 받음
 	public SellerBoard(String btitle, String bcontent, String erecontent, String request, String category1_code,
 			String category2_code, int price, String images, int editablecount, int duedate, int speed, int plusedit, int extradate1, int extradate2) {

@@ -345,7 +345,7 @@ nav{
                 <div class="navsize">
                     <ul class='nav_ul'>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate0"><a href="/semi/selectList.bo">디자인</a></div>
+                        	<div class="cate" id="cate0"><a href="<%=request.getContextPath()%>/selectList.bo?currentCate=designCategoryPage">디자인</a></div>
                         	<ul class="downmenu" id="downmenu0">
                         		<li><a href="">로고디자인</a></li>
                             	<li><a href="">의류디자인</a></li>
@@ -353,9 +353,10 @@ nav{
                             	<li><a href="">일러스트</a></li>
                             	<li><a href="">웹툰</a></li>
                         	</ul>
+                        	
                         </li>
                         <li clase="talent-category">
-	                        <div class="cate" id="cate1"><a href="/semi/views/categoryPage/itCategoryPage.jsp">IT/프로그래밍</a></div>
+	                        <div class="cate" id="cate1"><a href="/semi/selectList.bo?currentCate=itCategoryPage.jsp">IT/프로그래밍</a></div>
 	                        <ul class="downmenu" id="downmenu1">
 	                        	<li><a href="">웹사이트 개발</a></li>
 	                            <li><a href="">프로그램 개발</a></li>

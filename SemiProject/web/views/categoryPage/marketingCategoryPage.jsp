@@ -45,7 +45,6 @@
 	margin-top: 50px;
 	z-index:0;
 }
-
 .scontent{
 	margin:0 auto;
 	background:transparent;
@@ -67,7 +66,6 @@
 position: relative;
 z-index: 2;
 }
-
 .posting>div{
 	display:inline-block;
 	box-shadow: 5px 5px 10px 0 #E6E6E6;
@@ -79,23 +77,14 @@ z-index: 2;
 	font-size: 0;
 }
 .paging .hide {display:block;height:0;width:0;font-size:0;line-height:0;margin:0;padding:0;overflow:hidden;}
-
 .paging{padding:19px;text-align:center;margin-left:150px;}
-
 .paging a{display:inline-block;width:23px;height:23px;padding-top:2px;vertical-align:middle;}
-
 .paging a:hover{text-decoration:underline;}
-
 .paging .btn_arr{text-decoration:none;}
-
 .paging .btn_arr, .paging .on{margin:0 3px;padding-top:0;border:1px solid #ddd; border-radius:30px;
-
 /* background:url(/front/img/com/btn_paging.png) no-repeat; */}
-
 .paging .on{padding-top:1px;height:22px;color:#fff;font-weight:bold;background:rgb(54, 69, 89);}
-
 .paging .on:hover{text-decoration:none;}
-
 </style>
 
 </head>
@@ -390,20 +379,21 @@ z-index: 2;
 				<div class="post">
 					<div class="post-row" style="z-index:0">
 						<div class="posting">
-						 <div style="width:210px; ">
+						 <div style="width:210px;cursor:pointer">
 						 	
 						 	<div class="ui card" style="margin:0;">
 							  <div class="image" style="height:170px;">
 							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
 							  </div>
 							  <div class="content" style="height:120px;">
-							    <a class="header">Kristy</a>
+							    
 							    <div class="meta">
 							      <span class="date">Joined in 2013</span>
 							    </div>
-							    <div class="description">
+							    <div class="description" style="margin-bottom:5px">
 							      Kristy is an art director living in New York.
 							    </div>
+							    <a class="header" style="float:right">10000원</a>
 							  </div>
 							  <div class="extra content">
 							    <a>
@@ -412,7 +402,9 @@ z-index: 2;
 							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
 							    </a>
 							  </div>
+							  
 							</div>
+							
 							<script>
 							$('.special.cards .image').dimmer({
 								  on: 'hover'
@@ -424,7 +416,7 @@ z-index: 2;
 							  })
 							;
 							</script>
-						 	
+							
 						 </div>
 						 
 						 <div style="width:210px; ">

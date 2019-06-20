@@ -25,7 +25,7 @@
 
 header{
     margin: 0 auto;
-    background-image: url('/semi/resources/images/night-sky.jpg');
+    background-image: url('/semi/resources/images/back3.jpg');
     background-position:center top ;
     background-attachment: scroll;
     /* background-repeat:no-repeat;  */
@@ -322,8 +322,8 @@ footer{
                         </a>
                     </div>
                    <div class="flex-right">
-                            <div class="item1"><a href="/">판매 시작하기</a></div>
-                            <div class="item2"><a href="views/LoginForm.jsp">로그인</a></div>
+                            <div class="item1"><a href="/"><b>판매 시작하기</b></a></div>
+                            <div class="item2"><a href="views/LoginForm.jsp"><b>로그인</b></a></div>
                             <div class="item3"><a class="joinBtn" href="views/member/memberJoin.jsp" style="color: black">무료 회원가입</a></div>
                     </div>
                 </div>
@@ -345,49 +345,49 @@ footer{
                     <ul>
                         <li><a href="/semi/views/categoryPage/designCategoryPage.jsp">
                             <img src="/semi/resources/images/edit.png"> <br>
-                            <span>디자인</span>
+                            <span><b>디자인</b></span>
                         </a></li>
                     </ul>
                 
                     <ul>
                         <li><a href="/semi/views/categoryPage/itCategoryPage.jsp">
                             <img src="/semi/resources/images/television.png"><br>
-                            <a href="">IT/프로그래밍</a>
+                            <a href=""><b>IT/프로그래밍</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
                         <li><a href="/semi/views/categoryPage/marketingCategoryPage.jsp">
                             <img src="/semi/resources/images/bar-chart.png"><br>
-                            <a href="">마케팅</a>
+                            <a href=""><b>마케팅</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
                         <li><a href="/semi/views/categoryPage/contentCategoryPage.jsp">
                             <img src="/semi/resources/images/play-button.png"><br>
-                            <a href="">콘텐츠 제작</a>
+                            <a href=""><b>콘텐츠 제작</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
                         <li><a href="/semi/views/categoryPage/transCategoryPage.jsp">
                             <img src="/semi/resources/images/microphone.png"><br>
-                            <a href="">번역/통역</a>
+                            <a href=""><b>번역/통역</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
                         <li><a href="/semi/views/categoryPage/textCategoryPage.jsp">
                             <img src="/semi/resources/images/file.png"><br>
-                            <a href="">문서/취업</a>
+                            <a href=""><b>문서/취업</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
                         <li><a href="/semi/views/categoryPage/giftCategoryPage.jsp">
                             <img src="/semi/resources/images/gift.png"><br>
-                            <a href="">기프트/커스텀</a>
+                            <a href=""><b>기프트/커스텀</b></a>
                         </a></li>
                     </ul>
                 </div>

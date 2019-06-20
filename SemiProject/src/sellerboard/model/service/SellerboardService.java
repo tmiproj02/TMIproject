@@ -2,6 +2,7 @@ package sellerboard.model.service;
 
 import static member.common.JDBCTemplete.*;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import sellerboard.model.dao.SellerBoardDao;
 import sellerboard.model.exception.SellerboardException;
@@ -24,6 +25,22 @@ public class SellerboardService {
 				close(con);
 				
 				return result;
+	}
+
+	public int getListCount() {
+		con = getConnection();
+		int result = sbDao.getListCount(con);
+		close(con);
+		return result;
+	}
+
+	public ArrayList<SellerBoard> selectList(int currentPage, int pageLimit, int boardLimit) {
+		con = getConnection();
+		ArrayList<SellerBoard> list = sbDao.selectList(con,currentPage,pageLimit,boardLimit);
+		close(con);
+		
+		
+		return list;
 	}
 
 }
