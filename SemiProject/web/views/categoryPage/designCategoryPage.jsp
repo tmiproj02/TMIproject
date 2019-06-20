@@ -114,12 +114,16 @@ z-index: 2;
 	<div class="section2">
 			<div class="sbody">
 				<div class="cb1" style="width:18%" >
-					<h1 style="font-size:30px;">디자인</h1>		
+					<h1 style="font-size:25px;">디자인</h1>		
 				</div>
 			
 				<div class="cb2" style="width:50%;"> 
-					<h3 style="font-size:15px;display:inline-block;"><a href="../views/common/mainheader.jsp">홈 ></a></h3>
-					<h3 style="font-size:15px;display:inline-block;"><a href="../views/serviceCategoryPage.jsp">디자인</a></h3>		
+					<%if(m!=null){ %>
+						<h3 style="font-size:15px;display:inline-block;"><a href="/semi/mainheader2.jsp">홈</a></h3>
+					<%}else{ %>
+						<h3 style="font-size:15px;display:inline-block;"><a href="/semi/index.jsp">홈</a></h3>
+					<%} %>>
+					<h3 style="font-size:15px;display:inline-block;"><a href="/semi/selectList.bo?cate=designCategoryPage">디자인</a></h3>		
 				</div>
 
 				<div class="cb3" style="width:31%;padding:0 20px;">
@@ -447,19 +451,27 @@ z-index: 2;
 				
 				<div class="paging">
  
-				  <a href="#" class="btn_arr first"><span class="hide">처음페이지</span></a>            
-				  <a href="#" class="btn_arr prev"><span class="hide">이전페이지</span></a>     
+				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=1&cate=designCategoryPage" class="btn_arr first"><span class="hide">처음페이지</span></a>
+				  <%if(currentPage<=1){ %>
+				  	<a class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+				  <%} else{ %>          
+				  	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>&cate=designCategoryPage" class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+				  <%} %>   
 				  <%for(int p = startPage; p <= endPage; p++){
 						if(p==currentPage){  
 					%>
 				  	<a class="on"><%= p %></a>
 				  	<%}else{ %>
-				  	<a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>&no=1"><%=p%></a>
+				  	<a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>&cate=designCategoryPage"><%=p%></a>
 				  	<%}
 				  	}	
 				  	%>
-				  <a href="#" class="btn_arr next"><span class="hide">다음페이지</span></a>            
-				  <a href="#" class="btn_arr last"><span class="hide">마지막페이지</span></a>
+				  <%if(currentPage>=maxPage){ %>
+				  	<a class="btn_arr next"><span class="hide">다음페이지</span></a>
+				  <%}else{ %>
+				 	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>&cate=designCategoryPage" class="btn_arr next"><span class="hide">다음페이지</span></a> 
+				  <%} %>           
+				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=maxPage %>&cate=designCategoryPage" class="btn_arr last"><span class="hide">마지막페이지</span></a>
 				             
 				</div>
 			</div>			

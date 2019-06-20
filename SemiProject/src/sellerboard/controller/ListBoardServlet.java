@@ -38,8 +38,7 @@ public class ListBoardServlet extends HttpServlet {
 		
 		ArrayList<SellerBoard> list = null;
 		SellerboardService bs = new SellerboardService();
-		String currentCate = (String)request.getParameter("currentCate");
-		System.out.println(currentCate);
+		
 		int startPage;
 		int endPage;
 		int maxPage;
@@ -50,14 +49,13 @@ public class ListBoardServlet extends HttpServlet {
 		currentPage = 1;
 		pageLimit = 5;
 		boardLimit = 12;
-		
+		String cate = request.getParameter("cate");
+		System.out.println(cate);
 		
 		
 		if(request.getParameter("currentPage")!=null) {
 			currentPage
 			= Integer.parseInt(request.getParameter("currentPage"));
-			int no = Integer.parseInt(request.getParameter("no"));
-			System.out.println(no);
 		}
 		
 		int listCount = bs.getListCount();
@@ -67,7 +65,7 @@ public class ListBoardServlet extends HttpServlet {
 		
 		maxPage = (int)((double)listCount/boardLimit+0.99);
 		
-		startPage = (int)((double)currentPage/pageLimit)*pageLimit+1;
+		startPage = (int)((double)currentPage/(pageLimit+1))*pageLimit+1;
 		
 		endPage = startPage+pageLimit-1;
 		if(endPage>maxPage) {
@@ -78,7 +76,7 @@ public class ListBoardServlet extends HttpServlet {
 		
 		String page="";
 		if(list != null) {
-			page="views/categoryPage/designCategoryPage.jsp"; 
+			page="views/categoryPage/"+cate+".jsp"; 
 			request.setAttribute("list", list);
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit, maxPage, startPage, endPage);
