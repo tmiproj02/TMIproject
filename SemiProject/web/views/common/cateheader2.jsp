@@ -312,7 +312,7 @@ nav{
                             	</a>
                             	<div class="downmymenu">
 		                           	<ul class="mylogmenu" style="list-style:none;margin:5px 0;">
-		                           		<li><a href=""><div><h5>나의TMI</h5></div></a></li>
+		                           		<li><a href="/semi/views/myPage/myPageManageSell.jsp"><div><h5>나의TMI</h5></div></a></li>
 		                           		<li><a href=""><div><h5>친구초대</h5></div></a></li>
 		                           		<li><a href="views/member/memberUpdateForm.jsp"><div><h5>정보수정</h5></div></a></li>
 		                           		<li><a href="/semi/logout.do"><div><h5>로그아웃</h5></div></a></li>

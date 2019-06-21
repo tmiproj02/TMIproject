@@ -124,12 +124,12 @@ input{margin-bottom: 9px;}
                
                <p><b>연락처</b></p>
                <input type="tel" name="phone1" required="required" style="width:77px; height:37px; display:inline;" class="form-control"/>&nbsp - &nbsp<input type="tel" name="phone2" required="required" style="width:77px; height:37px; display:inline;" class="form-control"/>&nbsp - &nbsp<input type="tel" name="phone3" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>
-                
+                <input type="submit" id="submitBtn" value=" 동의 후 회원 가입" class="btn btn-primary" style="text-align:center;width: 351px; height:45px; margin-left: 56px; margin-top:-10px;background:#364559;left:601px;position:absolute" /> 
             </form>
             
          </div>
          <div class="join2">
-            <div class="check">
+            <div class="check" style="position:absolute;top:39px">
                <div class="custom-control custom-checkbox" style="margin-left:40px;font-family: 'Noto Sans KR', sans-serif;">
                   <input type="checkbox" class="custom-control-input" id="term1" onchange="isChecked();">
                    <label class="custom-control-label" for="term1">서비스 이용약관 동의 (필수)</label><br>   
@@ -144,11 +144,7 @@ input{margin-bottom: 9px;}
                  </textarea>
                    </div>
                 </div>
-                <div class="ok" style= "margin-top:-50px;">
-                   <form action="/semi/mInsert.do" method="post" onsubmit="return validate();">
-                  <input type="submit" id="submitBtn" value=" 동의 후 회원 가입" class="btn btn-primary" style="text-align:center;width: 351px; height:45px; margin-left: 56px; margin-top:-10px;background:#364559;" />
-                  </form>
-               </div>
+                
          </div>      
       </div>
    </div>

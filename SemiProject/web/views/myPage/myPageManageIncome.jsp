@@ -255,8 +255,11 @@
 								</div>
 								
 								<%
-								  String income = dc.format(s.getIncome()); 	  
-								  String cash = dc.format(m.getCash());
+								 String income = "0";
+								 String cash = dc.format(m.getCash());
+								if(s!=null){
+								  income = dc.format(s.getIncome()); 	  
+								} 
 								%>
 								<div class="font-noto won"><b><%=income %>원</b></div>
 							</div></li>

@@ -280,9 +280,9 @@ footer{
     color: #ccc;
 }
 </style>
-<%-- <% if(m != null){
+<% if(m != null){
   	response.sendRedirect("mainheader2.jsp");
- } %> --%>
+ } %>
 </head>
  
 <body>
