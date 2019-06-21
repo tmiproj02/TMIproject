@@ -129,6 +129,7 @@ public class MemberManageDao {
 			
 			while(rset.next()) {
 				cr = new ClientRequest();
+				cr.setRno(rset.getInt("rno"));
 				cr.setEmail(rset.getString("email"));
 				cr.setNickName(rset.getString("nickName"));
 				cr.setrTitle(rset.getString("rTitle"));
@@ -146,6 +147,31 @@ public class MemberManageDao {
 			close(stmt);
 		}
 		return crList;
+	}
+
+	public void deleteRequest(int rno, Connection con) {
+			
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteRequest");		
+		
+		try {
+			System.out.println(sql);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rno);
+			
+			pstmt.executeUpdate();
+			
+			
+		}catch(SQLException e) {
+		
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}
+		
+		
+		
 	}
 
 }

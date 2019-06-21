@@ -39,7 +39,7 @@ public class RequestListServlet extends HttpServlet {
 		MemberManageService mms = new MemberManageService();
 		crList = mms.selectRequestList();
 		
-		System.out.println("crList : " + crList);
+		
 		session.setAttribute("crList", crList);
 		page = "views/adminPages/production/memberRequest.jsp";
 

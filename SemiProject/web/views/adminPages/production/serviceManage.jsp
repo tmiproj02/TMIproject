@@ -72,7 +72,7 @@
                   </div>
                   <div class="x_content">
                  
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
                       <thead>
                   		<tr>
                   			<th>No</th>
@@ -87,15 +87,38 @@
                        	<% 
                        	int num = 1;
                        	for(SellerBoard sb : sList){ %>
-                      	  <tr>
+                      	  <tr id="trId">
                       	  <td style="display:none"><input type="hidden" id="bno" value="<%=sb.getBno()%>"/></td>
                           <td><%=num %></td>
                           <td><%=sb.getBtitle()%></td>
                           <td><%=sb.getBcontent()%></td>
                           <td><%=sb.getBdate() %></td>
                           <td class="a-right a-right "> <a class="btn btn-primary btn-xs docDetailBtn" ><i class="fa fa-search"></i> 상세보기 </a></td>
-                          <td class=" last"><a class="btn btn-success btn-xs approveBtn"><i class="fa fa-check"></i>승인</a><a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-close"></i> 거절 </a></td>
-                        </tr>
+                          <td class=" last"><a class="btn btn-success btn-xs approveBtn"><i class="fa fa-check"></i>승인</a>
+                          					<a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-close"></i> 거절 </a>
+                         
+                          <!-- Modal -->
+							<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-centered" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h3 class="modal-title" id="exampleModalCenterTitle">서비스 거절</h3>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							      	 <h4>정말로 해당 서비스 신청을 거절하시겠습니까?</h4>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+							        <button type="button" class="btn btn-primary deleteBtn">거절</button>
+							      </div>
+							    </div>
+							  </div>
+							</div> 
+						</td>
+                       </tr>
            				<%  num++; } %>	
                       
                        
@@ -182,13 +205,13 @@
     <script src="../build/js/custom.min.js"></script>
 
 	<script>
-    // 멤버 삭제 ajax
+    // 서비스 거절 Ajax
     		$('.deleteBtn').each(function(index, item){
     			$(this).click(function(){
 					$.ajax({
 						url : "/semi/sRefuse.admin",
 		        		type : "get",
-		        		data : {bno : $(this).parent().parent().find('input').val()} ,
+		        		data : {bno : $(this).parents('#trId').find('input').val()} ,
 		        		success : function(data){
 		        			location.href = "/semi/serviceList.admin";
 		        		},
