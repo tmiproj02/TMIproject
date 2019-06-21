@@ -199,6 +199,10 @@ margin: 20px 10px;
 	margin:0 10px;
 	font-size: 12px;
 }
+.imgbox>img{
+	width:550px;
+	height:500px;
+}
 </style>
 
 <script>
@@ -231,8 +235,8 @@ margin: 20px 10px;
 		<div class="detailbox1">
 
 			<div class="img">
-				<div class="imgbox" style="background: url('/semi/resources/images/<%=b.getImages()%>') no-repeat;">
-					
+				<div class="imgbox">
+					<img src="/semi/resources/selleruploadIMG/<%=b.getImages()%>" alt="" style="width:550px;height:500px;"/>
 
 				</div>
 

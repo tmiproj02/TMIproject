@@ -39,7 +39,7 @@ public class ListDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		int bno =1;
+		int bno = Integer.parseInt(request.getParameter("bno"));
 //		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		SellerBoard b;
 		String page = "";

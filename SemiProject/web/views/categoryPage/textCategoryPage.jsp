@@ -407,7 +407,7 @@ z-index: 2;
 							if(j>=list.size()) break;
 							SellerBoard b = list.get(j);%>
 						
-						 <div style="width:210px; ">
+						 <div style="width:210px; cursor:pointer;" onclick='location.href="/semi/listDetail.bo?bno=<%= b.getBno()%>"'>
 						 	<div class="ui card" style="margin:0;">
 							  <div class="image" style="height:170px;">
 							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">

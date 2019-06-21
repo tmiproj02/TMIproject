@@ -33,7 +33,36 @@ public class SellerBoard implements Serializable {
 	private Date dealdateB;					//구매내역 조회할 때 사용할 겁니다:) (구매날짜입니당)
 	private int dmcode;						//'' (주문번호)
 	private int mno;						//구매자
-	
+	private String introtext;			//seller소개
+	public String getIntrotext() {
+		return introtext;
+	}
+
+	public void setIntrotext(String introtext) {
+		this.introtext = introtext;
+	}
+
+	public int getCpcount() {
+		return cpcount;
+	}
+
+	public void setCpcount(int cpcount) {
+		this.cpcount = cpcount;
+	}
+
+	public int getSevaluation() {
+		return sevaluation;
+	}
+
+	public void setSevaluation(int sevaluation) {
+		this.sevaluation = sevaluation;
+	}
+
+	private int cpcount;					//seller 작업갯수
+	private int sevaluation;				//seller 평점
+	   
+	   
+	   
 	public int getNickName() {
 		return nickName;
 	}

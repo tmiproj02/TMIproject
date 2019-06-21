@@ -190,7 +190,7 @@ table td:nth-child(4){
 	<section>
 		<div class="container2">
 			<div class="buyBox clearFix">
-				<img src="/semi/resources/images/<%=b.getImages()%>"
+				<img src="/semi/resources/selleruploadIMG/<%=b.getImages()%>"
 					style="width: 120px; height: 90px; display: inline-block; float:left;" />
 				<div class="buytit clearFix">
 					<p><%=b.getBtitle() %></p>
