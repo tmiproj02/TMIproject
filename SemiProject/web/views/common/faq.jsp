@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
 
-<div class="ui segment" id="example1" style="width:80px;left: 1800px; position:fixed; bottom:167px;" >
+<div class="ui segment" id="example1" style="width:80px;left: 1600px; position:fixed; bottom:167px;" >
       <div class="ui sticky">
 	      <div style="cursor:pointer;">
 	      <img class="notice" src="/semi/resources/images/info.png" style="width: 50px !important; height: 50px !important; margin-top:5px;margin-bottom:10px">

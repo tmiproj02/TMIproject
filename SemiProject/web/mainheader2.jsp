@@ -213,9 +213,9 @@
 			<div class="c2" style="padding: 5px; width:60%;">
 					<div class="swiper-container">
 					    <div class="swiper-wrapper">
-					      <div class="swiper-slide">Slide 1</div>
-					      <div class="swiper-slide">Slide 2</div>
-					      <div class="swiper-slide">Slide 3</div>
+					      <div class="swiper-slide"><img src="/semi/resources/images/ad.PNG" style="width:650px; height:280px;"></div>
+					      <div class="swiper-slide"><img src="/semi/resources/images/ad1.PNG" style="width:650px; height:245px;"></div>
+					      <div class="swiper-slide"><img src="/semi/resources/images/ad2.PNG" style="width:650px; height:256px;"></div>
 					    </div>
 					    <!-- Add Pagination -->
 					    <div class="swiper-pagination"></div>

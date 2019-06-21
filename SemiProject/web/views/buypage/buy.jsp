@@ -167,6 +167,15 @@ table td:nth-child(4){
 }
 .shildbox{
 }
+
+.paymentbtn{
+	color: #fff;
+    background-color: #6364d8;
+    border-color: #6364d8;
+	padding: 5px 20px;
+	border-radius: 4px;
+}
+
 </style>
 
 </head>
@@ -175,7 +184,7 @@ table td:nth-child(4){
 	
 	<% if(m != null ) { %>
 	<div class="container1">
-		<h3 class="order">주문하기</h3>
+		<h3 class="order" style="margin:30px 0;">주문하기</h3>
 	</div>
 
 	<section>
@@ -244,7 +253,7 @@ table td:nth-child(4){
 				<div class="cuponbox clearFix">
 					<div class="clearFix">
 						<p style="display:inline-block;">쿠폰사용</p>
-						<button style="float:right">쿠폰선택</button>
+						<button class="paymentbtn" style="float:right">쿠폰선택</button>
 					</div>
 
 					<div class="clearFix">
@@ -253,7 +262,7 @@ table td:nth-child(4){
 					</div>
 					<div class="clearFix">
 						<p>캐쉬사용(보유중인캐쉬:<%=m.getCash()%>원)
-						<button style="float: right;" onclick="location.href='/semi/views/personBUY/cash.jsp'">캐시충전</button></p>
+						<button class="paymentbtn" style="float: right;" onclick="location.href='/semi/views/personBUY/cash.jsp'">캐시충전</button></p>
 					</div>
 				</div>
 				<div class="sumbox">

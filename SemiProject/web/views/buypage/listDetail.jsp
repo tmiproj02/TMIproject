@@ -179,13 +179,25 @@ margin: 20px 10px;
 	position: fixed;
 	top: 0px;
 }
+.pricedue{
+	display: inline-block;
+}
+
+.priceedit{
+	display: inline-block;
+	margin-left: 20px;
+}
+
+
 .pricedue p{
 	float: left;
-	margin:0;
+	margin:0 10px;
+	font-size: 12px;
 }
 .priceedit p{
 	float: left;
-	margin:0;
+	margin:0 10px;
+	font-size: 12px;
 }
 </style>
 
@@ -227,6 +239,7 @@ margin: 20px 10px;
 				<div class="starbox">
 					<div class="ui massive star rating" data-rating="3"
 						data-max-rating="5"></div>
+						<span><%=b.getBevaluation() %>점</span> 
 
 					<script>
 						$('.ui.rating').rating();
@@ -340,14 +353,14 @@ margin: 20px 10px;
 			<div class="pricebox" style="border: 1px solid #e6e6e6;">
 				<p><%=b.getBcontent() %></p>
 				
-				<div class="clearFix">
-					<div class="pricedue">
+				<div class="clearFix" style="margin-bottom: 20px;">
+					<div class="pricedue clearFix">
 						<img src="/semi/resources/images/calendar.png" alt="" style="width: 15px; height:15px; float: left;"/>
-						<p>작업일:<%=b.getDuedate() %>일</p>
+						<p>작업일: &nbsp;<%=b.getDuedate() %>일</p>
 					</div>
-					<div class="priceedit">
+					<div class="priceedit clearFix">
 						<img src="/semi/resources/images/tool.png" alt="" style="width: 15px; height:15px; float: left;"/>
-						<p>수정횟수: <%=b.getEditablecount() %>회</p>
+						<p>수정횟수: &nbsp;<%=b.getEditablecount() %>회</p>
 					</div>
 				</div>
 				<a href="<%= request.getContextPath() %>/buyPage.bo?bno=<%=b.getBno()%>"
@@ -371,23 +384,23 @@ margin: 20px 10px;
 				<div class="sellerpadding">
 					<div class="selleridbox1">
 						<img src="" alt="" />
-						<p>닉네임닉네임</p>
+						<p style="text-align:center;"><%=m.getNickName() %></p>
 					</div>
 
 					<div style="text-align: center;">
 						<div class="sellerinfo clearFix">
 							<div class="sellerwork">
-								<p>10건</p>
+								<p><%=b.getCpcount() %>건</p>
 								<p>작업갯수</p>
 							</div>
 							<div class="sellergrade">
-								<p>10</p>
+								<p><%=b.getSevaluation() %>점</p>
 								<p>평점</p>
 							</div>
 						</div>
 					</div>
 					<div class="sellerintrodu">
-						<p>소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글</p>
+						<p><%=b.getIntrotext() %></p>
 					</div>
 
 				</div>

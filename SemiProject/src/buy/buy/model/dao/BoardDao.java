@@ -66,6 +66,9 @@ public class BoardDao {
 				b.setPlusedit(rset.getInt("PLUSEDIT"));
 				b.setExtradate1(rset.getInt("EXTRADATE1"));
 				b.setExtradate2(rset.getInt("EXTRADATE2"));
+				b.setIntrotext(rset.getString("INTROTEXT"));
+				b.setCpcount(rset.getInt("CPCOUNT"));
+				b.setSevaluation(rset.getInt("SEVALUATION"));
 				
 				
 		

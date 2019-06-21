@@ -27,9 +27,71 @@ public class SellerBoard implements Serializable{
    private String state;                //진행 상태
    private int extradate1;             //빠른 작업 일수
    private int extradate2;             //추가 수정 회수
+   private String introtext;			//seller소개
+   private int cpcount;					//seller 작업갯수
+   private int sevaluation;				//seller 평점
    
    
-   public SellerBoard() {
+   
+   
+   
+   
+   public SellerBoard(int bno, int sno, String btitle, String bcontent, String erecontent, String request,
+		String category1_code, String category2_code, int price, int bevaluation, String images, int editablecount,
+		int duedate, int speed, int plusedit, String ad, int adexpire, Date bdate, String state, int extradate1,
+		int extradate2, String introtext, int cpcount, int sevaluation) {
+	super();
+	this.bno = bno;
+	this.sno = sno;
+	this.btitle = btitle;
+	this.bcontent = bcontent;
+	this.erecontent = erecontent;
+	this.request = request;
+	this.category1_code = category1_code;
+	this.category2_code = category2_code;
+	this.price = price;
+	this.bevaluation = bevaluation;
+	this.images = images;
+	this.editablecount = editablecount;
+	this.duedate = duedate;
+	this.speed = speed;
+	this.plusedit = plusedit;
+	this.ad = ad;
+	this.adexpire = adexpire;
+	this.bdate = bdate;
+	this.state = state;
+	this.extradate1 = extradate1;
+	this.extradate2 = extradate2;
+	this.introtext = introtext;
+	this.cpcount = cpcount;
+	this.sevaluation = sevaluation;
+}
+
+public String getIntrotext() {
+	return introtext;
+}
+
+public void setIntrotext(String introtext) {
+	this.introtext = introtext;
+}
+
+public int getCpcount() {
+	return cpcount;
+}
+
+public void setCpcount(int cpcount) {
+	this.cpcount = cpcount;
+}
+
+public int getSevaluation() {
+	return sevaluation;
+}
+
+public void setSevaluation(int sevaluation) {
+	this.sevaluation = sevaluation;
+}
+
+public SellerBoard() {
       super();
    }
 
@@ -80,14 +142,15 @@ public class SellerBoard implements Serializable{
    }
 
    @Override
-   public String toString() {
-      return "SellerBoard [bno=" + bno + ", sno=" + sno + ", btitle=" + btitle + ", bcontent=" + bcontent
-            + ", erecontent=" + erecontent + ", request=" + request + ", category1_code=" + category1_code
-            + ", category2_code=" + category2_code + ", price=" + price + ", bevaluation=" + bevaluation
-            + ", images=" + images + ", editablecount=" + editablecount + ", duedate=" + duedate + ", speed="
-            + speed + ", plusedit=" + plusedit + ", ad=" + ad + ", adexpire=" + adexpire + ", bdate=" + bdate
-            + ", state=" + state + ", extradate1=" + extradate1 + ", extradate2=" + extradate2 + "]";
-   }
+public String toString() {
+	return "SellerBoard [bno=" + bno + ", sno=" + sno + ", btitle=" + btitle + ", bcontent=" + bcontent
+			+ ", erecontent=" + erecontent + ", request=" + request + ", category1_code=" + category1_code
+			+ ", category2_code=" + category2_code + ", price=" + price + ", bevaluation=" + bevaluation + ", images="
+			+ images + ", editablecount=" + editablecount + ", duedate=" + duedate + ", speed=" + speed + ", plusedit="
+			+ plusedit + ", ad=" + ad + ", adexpire=" + adexpire + ", bdate=" + bdate + ", state=" + state
+			+ ", extradate1=" + extradate1 + ", extradate2=" + extradate2 + ", introtext=" + introtext + ", cpcount="
+			+ cpcount + ", sevaluation=" + sevaluation + "]";
+}
 
    public int getBno() {
       return bno;

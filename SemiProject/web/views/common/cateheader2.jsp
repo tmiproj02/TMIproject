@@ -341,7 +341,7 @@ nav{
                         <li clase="talent-category">
 	                        <div class="cate" id="cate1"><a href="">구매관리</a></div>
                         	<ul class="downmenu" id="downmenu1">
-                        		<li><a href="">구매관리</a></li>
+                        		<li><a href="/semi/views/personBUY/buyingcontrol.jsp">구매관리</a></li>
                         		<li><a href="">TMI캐시</a></li>
                             	<li><a href="">캐시충전</a></li>
                             	<li><a href="">쿠폰</a></li>
