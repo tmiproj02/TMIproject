@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 import seller.model.exception.SellerException;
 import seller.model.service.SellerService;
@@ -33,11 +37,31 @@ public class SellerRegistration extends HttpServlet {
 		System.out.println("판매 등록 서블릿과 연결 잘되었음");
 		//인코딩
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType(" text/html; charset=UTF-8"); 
+		response.setContentType("text/html; charset=UTF-8"); 
 		
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		
+		int mno=0;
+		
+		//똑같이 이메일과 패스워드로 MNO 폰번호를가져올것이다. 
+		String email = m.getEmail();
+		
+		try {
+			mno = new SellerService().findMno(email);
+			
+			
+
+		} catch (SellerException e) {
+			request.setAttribute("msg", "멤버번호 가져오는 도중에 에러발생했어");
+			request.setAttribute("exception", e);
+			
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);	
+		}
 		
 		//form 버튼이 눌렸을 때 getParameter로 값을 받아온다 
 		//
+
 		String introtext = request.getParameter("introtext");				//전문가 소개
 		String careerdate1 = request.getParameter("careerdate1");	//경력 날짜 1
 		String careerdate2 = request.getParameter("careerdate2");	//경력 날짜 2
@@ -51,7 +75,7 @@ public class SellerRegistration extends HttpServlet {
 		String bankname = request.getParameter("bankname");
 		String bankNumber = request.getParameter("bankNumber");
 		
-		Seller s = new Seller(bankname, bankNumber, careerdate1, careerdate2, careerdate3, career1, career2, career3, certificat1, certificat2, certificat3, introtext);
+		Seller s = new Seller(mno, bankname, bankNumber, careerdate1, careerdate2, careerdate3, career1, career2, career3, certificat1, certificat2, certificat3, introtext);
 		
 		SellerService ss = new SellerService();
 		

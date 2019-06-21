@@ -250,7 +250,7 @@
 				<div class="right-side">
 					<div class="user" style="padding:10px;">
 						<div class="user1" style="font-size:16px; margin-bottom: 5px;"><b>반가워요!</b></div>
-						<div class="user2" style="font-size:16px;">기분좋은 매미님!</div>
+						<div class="user2" style="font-size:16px;"><%=m.getNickName() %>님!</div>
 					</div>
 					<div class="progress" style="padding:10px;">
 						<div class="progress1" style="font-size:14px; margin-bottom: 5px;">안 읽은 메세지 

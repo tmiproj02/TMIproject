@@ -410,15 +410,15 @@ z-index: 2;
 						 <div style="width:210px;cursor:pointer;" onclick='location.href="/semi/listDetail.bo?bno=<%= b.getBno()%>"'>
 						 	<div class="ui card" style="margin:0;">
 							  <div class="image" style="height:170px;">
-							    <img src="/semi/resources/images/night-sky.jpg" style="height:170px;">
+							    <img src="/semi/resources/selleruploadIMG/<%=b.getImages() %>" style="height:170px;">
 							  </div>
 							  <div class="content" style="height:120px;">
 							    
 							    <div class="meta">
-							      <span class="date"><%=b.getSno() %></span>
+							      <span class="date">판매자닉네임</span>
 							    </div>
-							    <div class="description" style="margin-bottom:5px">
-								      테스트입니다.
+							    <div class="description" style="width:182px;height:50px;margin-bottom:5px;overflow:hidden;text-overflow: ellipsis; ">
+								   <p style="overflow:hidden;text-overflow: ellipsis;"><%= b.getBtitle() %></p>   
 							    </div>
 							    <a class="header" style="float:right"><%=b.getPrice() %>원</a>
 							  </div>
