@@ -43,7 +43,7 @@ public class SellerBoardDao {
 	}
 		
 		
-	public int insertSellerboard(Connection con, SellerBoard sb) throws SellerboardException{
+	public int insertSellerboard(Connection con, SellerBoard sb,int sno) throws SellerboardException{
 		// 결과 확인을 위한 변수 result 생성
 		int result = 0;
 				
@@ -76,24 +76,26 @@ public class SellerBoardDao {
 			System.out.println("추가수정세부 :"+sb.getExtradate2());
 			
 			// ? 에 해당하는 값을 추가 함
-			pstmt.setString(1, sb.getBtitle());					//제목
-			pstmt.setString(2, sb.getBcontent());				//상세 설명
-			pstmt.setString(3, sb.getErecontent());				//수정 및 재진행 안내
-			pstmt.setString(4, sb.getRequest());				//작업 전 요청사항
-			pstmt.setString(5, sb.getCategory1_code());			//상위 카테고리
-			pstmt.setString(6, sb.getCategory2_code());			//하위 카테고리
-			pstmt.setInt(7, sb.getPrice());						//가격
-			pstmt.setString(8, sb.getImages());					//이미지들
-			pstmt.setInt(9, sb.getEditablecount());				//수정 횟수
-			pstmt.setInt(10, sb.getDuedate());					//작업기간
-			pstmt.setInt(11, sb.getSpeed());					//빠른작업(옵션)
-			pstmt.setInt(12, sb.getExtradate1());				//빠른작업(옵션)
-			pstmt.setInt(13, sb.getPlusedit());					//추가수정(옵션)
-			pstmt.setInt(14, sb.getExtradate2());				//추가수정(옵션)
+			pstmt.setInt(1, sno);					//sno
+			pstmt.setString(2, sb.getBtitle());					//제목
+			pstmt.setString(3, sb.getBcontent());				//상세 설명
+			pstmt.setString(4, sb.getErecontent());				//수정 및 재진행 안내
+			pstmt.setString(5, sb.getRequest());				//작업 전 요청사항
+			pstmt.setString(6, sb.getCategory1_code());			//상위 카테고리
+			pstmt.setString(7, sb.getCategory2_code());			//하위 카테고리
+			pstmt.setInt(8, sb.getPrice());						//가격
+			pstmt.setString(9, sb.getImages());					//이미지들
+			pstmt.setInt(10, sb.getEditablecount());				//수정 횟수
+			pstmt.setInt(11, sb.getDuedate());					//작업기간
+			pstmt.setInt(12, sb.getSpeed());					//빠른작업(옵션)
+			pstmt.setInt(13, sb.getExtradate1());				//빠른작업(옵션)
+			pstmt.setInt(14, sb.getPlusedit());					//추가수정(옵션)
+			pstmt.setInt(15, sb.getExtradate2());				//추가수정(옵션)
 			
 			
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new SellerboardException(e.getMessage());
 			
 		} finally {

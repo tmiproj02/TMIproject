@@ -50,7 +50,7 @@
 		<p class="lead">판매 등록이 완료되었습니다!!</p>
 		<hr class="my-4">
 		<div align="right">
-			<a class="btn btn-primary btn-lg" id="backButton" role="button" href="#">메인으로가기</a>
+			<a class="btn btn-primary btn-lg" id="backButton" role="button" href="/semi/mainheader2.jsp">메인으로가기</a>
 		</div>
 	</div>
 		

@@ -13,10 +13,10 @@ public class SellerboardService {
 	private Connection con;
 	private SellerBoardDao sbDao = new SellerBoardDao();
 	
-	public int insertsellerBoard(SellerBoard sb) throws SellerboardException{
+	public int insertsellerBoard(SellerBoard sb,int sno) throws SellerboardException{
 		//Dao = data access object
 				con = getConnection();
-				int result = sbDao.insertSellerboard(con,sb);
+				int result = sbDao.insertSellerboard(con,sb,sno);
 				//실행하면 숫자가 나오는데 숫자만 돌려주면 된다.		
 				
 				if(result>0) commit(con);

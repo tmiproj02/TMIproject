@@ -108,7 +108,7 @@ public class SellerDao {
 			
 			result = new Seller();
 			if(rset.next()) {
-				
+				result.setSno(rset.getInt("SNO"));
 				result.setIncome(rset.getInt("INCOME"));
 				
 			}

@@ -29,8 +29,16 @@ public class SellerBoard implements Serializable {
 	private String state; 					//진행 상태
 	private int extradate1; 				//빠른 작업 일수
 	private int extradate2; 				//추가 수정 회수
+	private int nickName;
 	
-	
+	public int getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(int nickName) {
+		this.nickName = nickName;
+	}
+
 	public SellerBoard() {
 		super();
 	}
@@ -297,6 +305,10 @@ public class SellerBoard implements Serializable {
 
 	public void setExtradate1(int extradate1) {
 		this.extradate1 = extradate1;
+	}
+
+	public int getExtradate1() {
+		return extradate1;
 	}
 
 	public int getExtradate2() {

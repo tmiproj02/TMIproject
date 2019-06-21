@@ -60,7 +60,7 @@
 	<%@ include file="/views/common/cateheader1.jsp" %>
 
 <!-- 완료버튼이 눌렸을때 servlet로 가야 하지만 보기 편하게 바로 완료페이지로 가게 만들었다. -->
-<form action="/semi/sellerboard.do" method="post" style="margin-top:100px;" onsubmit="postForm()" enctype="multipart/form-data">
+<form action="/semi/sellerboard.do?sno=<%=s.getSno() %>" method="post" style="margin-top:100px;" onsubmit="postForm()" enctype="multipart/form-data">
 	<div id="Servicerg" class="jumbotron" style = "position: absolute; top:100px;left:30%; width:800px; height:auto;" align="center">
 	<p class="lead">판매를 시작하여 수익을 올려보세요!!</p>
 	<hr class="my-4">

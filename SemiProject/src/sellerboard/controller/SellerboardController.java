@@ -47,7 +47,8 @@ public class SellerboardController extends HttpServlet {
 		//IMG를 처리하기전에 cos.jar을 라이브러리에 넣어줘야 한다.
 		// 1. 전송할 파일 크기 설정하기
 		int maxSize = 1024*1024*10;	//10MB
-		
+		int sno = Integer.parseInt(request.getParameter("sno"));
+		System.out.println(sno);
 		//2. multipart/form-data 형식으로 전송되었는지 확인!
 		if(!ServletFileUpload.isMultipartContent(request)) {	//MultipartContent 형식으로 전달이 되지 않았느냐?
 			//만약 올바른  multipart/form-data로 전송되지 않았을 경우 에러페이지로 즉시 이동시킨다.
@@ -101,7 +102,7 @@ public class SellerboardController extends HttpServlet {
 		
 		
 		try {
-			sbs.insertsellerBoard(sb);
+			sbs.insertsellerBoard(sb,sno);
 			System.out.println("판매서비스 등록완료");
 		
 			response.sendRedirect("views/seller/SellerboardComplete.jsp");

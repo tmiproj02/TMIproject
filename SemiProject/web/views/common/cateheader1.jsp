@@ -320,7 +320,7 @@ nav{
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>
                             <div class="mylog padding-15px"><a href="/">
                             	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important; vertical-align: middle;"/></div>
-                            	<div><h5><%= m.getUserName() %></h5></div>
+                            	<div><h5><%= m.getNickName() %></h5></div>
                             	</a>
                             	<div class="downmymenu">
 		                           	<ul class="mylogmenu" style="list-style:none;margin:5px 0; z-index:1000;">
@@ -349,7 +349,7 @@ nav{
                 <div class="navsize">
                     <ul class='nav_ul'>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate0"><a href="selectList.bo?cate=designCategoryPage">디자인</a></div>
+                        	<div class="cate" id="cate0"><a href="/semi/selectList.bo?cate=designCategoryPage">디자인</a></div>
                         	<ul class="downmenu" id="downmenu0">
                         		<li><a href="">로고디자인</a></li>
                             	<li><a href="">의류디자인</a></li>
@@ -360,7 +360,7 @@ nav{
                         	
                         </li>
                         <li clase="talent-category">
-	                        <div class="cate" id="cate1"><a href="selectList.bo?cate=itCategoryPage">IT/프로그래밍</a></div>
+	                        <div class="cate" id="cate1"><a href="/semi/selectList.bo?cate=itCategoryPage">IT/프로그래밍</a></div>
 	                        <ul class="downmenu" id="downmenu1">
 	                        	<li><a href="">웹사이트 개발</a></li>
 	                            <li><a href="">프로그램 개발</a></li>
@@ -370,7 +370,7 @@ nav{
 	                        </ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate2"><a href="selectList.bo?cate=marketingCategoryPage">마케팅</a></div>
+                        	<div class="cate" id="cate2"><a href="/semi/selectList.bo?cate=marketingCategoryPage">마케팅</a></div>
                         	<ul class="downmenu" id="downmenu2">
                         		<li><a href="">sns마켓팅</a></li>
 	                            <li><a href="">종합광고대행</a></li>
@@ -380,7 +380,7 @@ nav{
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate3"><a href="selectList.bo?cate=contentCategoryPage">콘텐츠 제작</a></div>
+                        	<div class="cate" id="cate3"><a href="/semi/selectList.bo?cate=contentCategoryPage">콘텐츠 제작</a></div>
                         	<ul class="downmenu" id="downmenu3">
 	                        	<li><a href="">영상</a></li>
 	                            <li><a href="">더빙/녹음</a></li>
@@ -390,7 +390,7 @@ nav{
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate4"><a href="selectList.bo?cate=transCategoryPage">번역/통역</a></div>
+                        	<div class="cate" id="cate4"><a href="/semi/selectList.bo?cate=transCategoryPage">번역/통역</a></div>
 	                        <ul class="downmenu" id="downmenu4">
 		                        <li><a href="">번역</a></li>
 	                            <li><a href="">영상번역</a></li>
@@ -398,7 +398,7 @@ nav{
 	                        </ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate5"><a href="selectList.bo?cate=textCategoryPage">문서/취업</a></div>
+                        	<div class="cate" id="cate5"><a href="/semi/selectList.bo?cate=textCategoryPage">문서/취업</a></div>
                         	<ul class="downmenu" id="downmenu5">
                         		<li><a href="">논문</a></li>
 	                            <li><a href="">타이핑</a></li>
@@ -408,7 +408,7 @@ nav{
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate6"><a href="selectList.bo?cate=giftCategoryPage">기프트/커스텀</a></div>
+                        	<div class="cate" id="cate6"><a href="/semi/selectList.bo?cate=giftCategoryPage">기프트/커스텀</a></div>
                         	<ul class="downmenu"  id="downmenu6">
                         		<li><a href="">라이프</a></li>
                             	<li><a href="">패션</a></li>
