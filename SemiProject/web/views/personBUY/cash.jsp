@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.*" %>
-<% Member m = (Member)session.getAttribute("member"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +30,8 @@
 
 
 <style>
+
+
 .container1 {
 	width: 1200px;
 	margin: 0 auto;
@@ -38,14 +40,13 @@
 .refunding-box {
 	width: 700px;
 	margin: 0 auto;
-	border: 1px solid tomato;
+	border: 1px solid lightgray;
 	margin-top: 50px;
 	background-color: #dcdcdc;
 }
 
 .ref-info {
 	display: inline-block;
-	border: 1px solid blue;
 	margin-left: 20px;
 }
 
@@ -65,23 +66,23 @@
 	width: 700px;
 }
 
-footer {
-	clear: both;
-}
+
 
 .cashDoubleCheck {
-	display: inline-block;
+	padding-left : 15%;
+	padding-top : -10%;
 }
+
 
 .cashPriceCheck {
 	width: 280px;
-	margin-left: 30px;
+	
 	height: auto;
 	border: 1px solid lightgray;
 	background-color: lemonchiffon;
 }
 
-.cashPrice li {
+.cashPrice>li {
 	list-style: none;
 	border: 1px solid lightgray;
 	padding: 10px 5px;
@@ -93,7 +94,7 @@ footer {
 
 .cashBox {
 	border-top: 2px dotted #ff8c00;
-	width: 70%;
+	width: 100%;
 }
 
 .priceNum {
@@ -110,6 +111,7 @@ input[type='radio'] {
 	border-radius: 50%;
 	outline: none;
 	background: #e6e6e6;
+	margin-left:15%;
 }
 
 input[type='radio']:before {
@@ -138,141 +140,27 @@ input[type='radio']:checked:before {
 
 
 	<section>
-		<!-- 
+	
 		<div class="container1">
-        	<h3>캐시 충전</h3>
-        </div>
-
-		<div class="container1 cashPriceBox clearFix">
-			<table class="table table-hover" style="width : 300px;">
-		<thead>
-			<tr>
-				<th scope="col">충전 금액</th>
 			
-			</tr>
-		</thead>
-  <tbody>
-    <tr>
-      <th scope="row"><label style="display: block;"> <input type="radio" name="cPrice" value="10000" checked="checked">
-								<div class="awesome-radio-text" style="display: inline; padding-right: 300px;">
-									<b class="priceNum"><i class="won sign icon"></i>10,000</b> &nbsp;&nbsp;
-								</div>
-							</label></th>
-
-    </tr>
-    <tr>
-      <th scope="row"><label> <input type="radio" name="cPrice" value="30000">
-								<div class="awesome-radio-text" style="display: inline; padding-right: 300px;">
-									<b class="priceNum"><i class="won sign icon"></i>30,000</b> &nbsp;&nbsp;
-								</div>
-							</label></th>
-
-    </tr>
-    <tr>
-      <th scope="row"><label> <input type="radio" name="cPrice" value="50000">
-								<div class="awesome-radio-text" style="display: inline; padding-right: 300px;">
-									<b class="priceNum"><i class="won sign icon"></i>50,000</b> &nbsp;&nbsp;
-								</div>
-							</label></th>
-    </tr>
-    <tr>
-      <th scope="row"><label> <input type="radio" name="cPrice" value="100000">
-								<div class="awesome-radio-text" style="display: inline; padding-right: 300px;">
-									<b class="priceNum"><i class="won sign icon"></i>100,000</b> &nbsp;&nbsp;
-								</div>
-							</label></th>
-    </tr>
-    <tr>
-      <th scope="row"><label> <input type="radio" name="cPrice" value="300000">
-								<div class="awesome-radio-text" style="display: inline; padding-right: 300px;">
-									<b class="priceNum"><i class="won sign icon"></i>300,000</b> &nbsp;&nbsp;
-								</div>
-							</label></th>
-    </tr>
-    <tr>
-      <th scope="row"><label> <input type="radio" name="cPrice" value="500000">
-								<div class="awesome-radio-text" style="display: inline; padding-right: 300px;">
-									<b class="priceNum"><i class="won sign icon"></i>500,000</b> &nbsp;&nbsp;
-								</div>
-							</label></th>
-    </tr>
-    <tr>
-      <th scope="row"><label> <input type="radio" name="cPrice" value="1000000">
-								<div class="awesome-radio-text" style="display: inline; padding-right: 300px;">
-									<b class="priceNum"><i class="won sign icon"></i>1,000,000</b> &nbsp;&nbsp;
-								</div>
-							</label></th>
-    </tr>
-    <tr>
-      <th scope="row"><label> <input type="radio" name="cPrice" value="2000000" >
-								<div class="awesome-radio-text" style="display: inline; padding-right: 300px;">
-									<b class="priceNum"><i class="won sign icon"></i>2,000,000</b> &nbsp;&nbsp;
-								</div>
-							</label></th>
-    </tr>
-  </tbody>
-</table>
-
-			
-		
-
-			<div class="cashPriceCheck" >
-				<div class="cashDoubleCheck">
-					<img src="/semi/resources/images/cashIcon.png" width="50px"
-						height="50px">
-				</div>
-
-				<div class="cashDoubleCheck now">
-					<b>보유캐시</b>
-					<div class="nowCash" style="color: red; font-size: 16px;">OO원</div>
-				</div>
-				<hr class="cashBox">
-
-				<div class="wPrice">
-					<p style="padding-left: 20px; display: inline;">충전 금액</p>
-					<p style="text-align:right;">
-						<i class="won sign icon"></i>원</p>
-					<p style="padding-left:40px; display: inline;"><i class="plus icon"></i>충전 혜택</p>
-					<p style="text-align:right;"><i class="won sign icon"></i>0원</p>
-				<br>
-				<p style="padding-left:20px; display: inline;">총 충전 금액</p><p style="text-align:right;"><i class="won sign icon"></i>원</p>
-			</div>
-				<hr class="cashBox">
-				<b>총 결제 금액</b> <br>
-				<br>
-				<br>
-				<p style="font-size: 20px; color: red; text-align:right; font-weight: bold;">
-					<i class="won sign icon"></i>원
-				</p>
-
-			</div>
-			
-			<button class="ui red button">충전하기</button>
-
-
-		</div>
-</div> 
- -->
-		<div class="container1">
-			<div class="ui segment ">
-				<div class="ui two column very relaxed grid">
+				<div class="ui two column very relaxed grid" style="margin-top:3%;">
 					<div class="column">
-						<h2 class="modal-title">캐시</h2>
+						<h2 class="modal-title" style="padding-left:25%; margin-bottom:6%;">캐시</h2>
 						<div class="form-row align-items-center">
 							<div class="col-auto my-1"></div>
-							<table class="table table-hover" style="width: 300px;">
+							<table class="table table-hover" style="width: 400px; margin-left:30%;">
 								<thead>
 									<tr>
-										<th scope="col">충전 금액</th>
+										<th scope="col" style="text-align:center; font-size:17px;">충 전 가 능 금 액</th>
 
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<th scope="row"><label style="display: block;"> <input
-												type="radio" name="cPrice" value="100">
+												type="radio" name="cPrice" value="10000">
 												<div class="awesome-radio-text"
-													style="display: inline; padding-right: 300px;">
+													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
 													<b class="priceNum"><i class="won sign icon"></i>10,000</b>
 													&nbsp;&nbsp;
 												</div>
@@ -283,7 +171,7 @@ input[type='radio']:checked:before {
 										<th scope="row"><label> <input type="radio"
 												name="cPrice" value="30000">
 												<div class="awesome-radio-text"
-													style="display: inline; padding-right: 300px;">
+													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
 													<b class="priceNum"><i class="won sign icon"></i>30,000</b>
 													&nbsp;&nbsp;
 												</div>
@@ -294,7 +182,7 @@ input[type='radio']:checked:before {
 										<th scope="row"><label> <input type="radio"
 												name="cPrice" value="50000">
 												<div class="awesome-radio-text"
-													style="display: inline; padding-right: 300px;">
+													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
 													<b class="priceNum"><i class="won sign icon"></i>50,000</b>
 													&nbsp;&nbsp;
 												</div>
@@ -304,7 +192,7 @@ input[type='radio']:checked:before {
 										<th scope="row"><label> <input type="radio"
 												name="cPrice" value="100000">
 												<div class="awesome-radio-text"
-													style="display: inline; padding-right: 300px;">
+													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
 													<b class="priceNum"><i class="won sign icon"></i>100,000</b>
 													&nbsp;&nbsp;
 												</div>
@@ -314,7 +202,7 @@ input[type='radio']:checked:before {
 										<th scope="row"><label> <input type="radio"
 												name="cPrice" value="300000">
 												<div class="awesome-radio-text"
-													style="display: inline; padding-right: 300px;">
+													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
 													<b class="priceNum"><i class="won sign icon"></i>300,000</b>
 													&nbsp;&nbsp;
 												</div>
@@ -324,7 +212,7 @@ input[type='radio']:checked:before {
 										<th scope="row"><label> <input type="radio"
 												name="cPrice" value="500000">
 												<div class="awesome-radio-text"
-													style="display: inline; padding-right: 300px;">
+													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
 													<b class="priceNum"><i class="won sign icon"></i>500,000</b>
 													&nbsp;&nbsp;
 												</div>
@@ -334,7 +222,7 @@ input[type='radio']:checked:before {
 										<th scope="row"><label> <input type="radio"
 												name="cPrice" value="1000000">
 												<div class="awesome-radio-text"
-													style="display: inline; padding-right: 300px;">
+													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
 													<b class="priceNum"><i class="won sign icon"></i>1,000,000</b>
 													&nbsp;&nbsp;
 												</div>
@@ -344,12 +232,13 @@ input[type='radio']:checked:before {
 										<th scope="row"><label> <input type="radio"
 												name="cPrice" value="2000000">
 												<div class="awesome-radio-text"
-													style="display: inline; padding-right: 300px;">
+													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
 													<b class="priceNum"><i class="won sign icon"></i>2,000,000</b>
 													&nbsp;&nbsp;
 												</div>
 										</label></th>
 									</tr>
+									<tr><th></th></tr>
 								</tbody>
 							</table>
 							<div>
@@ -357,63 +246,75 @@ input[type='radio']:checked:before {
 							</div>
 						</div>
 					</div>
-					<div class="column">
+					<div class="column" style="padding-left:5%;">
 						<br>
 						<div class="ui form">
 							<div class="inline field">
 								<div class="cashPriceCheck">
-									<div class="cashDoubleCheck">
-										<img src="/semi/resources/images/cashIcon.png" width="50px"
-											height="50px">
+									<div class="cashDoubleCheck" style="margin-top:10%; display:inlne">
+										<img src="/semi/resources/images/cashIcon.png" width="65px" height="65px" >
 									</div>
 
-									<div class="cashDoubleCheck now">
-										<b>보유캐시</b>
-										<div class="nowCash" style="color: red; font-size: 16px;">OO원</div>
+									<div class="cashDoubleCheck now" style="display:inline-bolder; padding-left:45%; margin-top:-25%; margin-botton:10%;">
+										<p style="font-weight:bolder; font-size:20px;">보유캐시</p>
+										<div class="nowCash" style="color: red; font-size: 18px;"><%=m.getCash()%>원</div>
 									</div>
+									<br><br>
 									<hr class="cashBox">
+									<br>
 
 									<div class="wPrice">
-										<p style="padding-left: 20px; display: inline;">충전 금액</p>
-										<i class="won sign icon"></i>
-										<p style="text-align: right; display: inline;"
-											class="pricewon">0</p>
-										<span style="text-align: right; display: inline;">원</span>
-										<p style="padding-left: 40px;">
-											<i class="plus icon"></i>충전 혜택
+										<p style="padding-left: 20px; display: inline; font-size:20px; font-weight:bolder;">충전 금액 &nbsp; &nbsp; &nbsp;</p>
+										<div style="align-text:right; display:inline;" width="50px">
+											<i class="won sign icon" style="padding-left:12%;"></i>
+											<p style="font-size:20px; display:inline; padding-left:6%;" class="pricewon">0</p>
+											
+										</div>
+										<br>
+										<br>
+										<p style="padding-left: 40px; font-size:20px; font-weight:bolder; display: inline;">
+											<i class="plus icon"></i>충전 혜택 &nbsp; &nbsp; &nbsp;
 										</p>
-										<p style="text-align: right;">
-											<i class="won sign icon"></i>0원
-										</p>
+										<div style="align-text:right; display:inline;" width="50px">
+											<i class="won sign icon" style="margin-left:10%;"></i>
+											<p style="font-size:20px; display:inline; padding-left:1%;">0</p>
+											
+										</div>
+										<br>
+										<br>
+										
 
-										<p style="padding-left: 20px; display: inline;">총 충전 금액</p>
-										<i class="won sign icon"></i>
-										<p style="text-align: right; display: inline;"
-											class="pricewon">0</p>
-										<span style="text-align: right;">원</span>
-									</div>
-									<hr class="cashBox">
-									<b>총 결제 금액</b> <br> <br> <br> <i
-										class="won sign icon"></i>
-									<p
-										style="font-size: 20px; color: red; text-align: right; font-weight: bold; display: inline-block;"
-										class="pricewon">0</p>
-									<span
-										style="font-size: 20px; color: red; text-align: right; font-weight: bold; display: inline-block;">원</span>
+										<p style="padding-top:15%; padding-left: 20px; display: inline; font-size:20px; font-weight:bolder;">총 충전 금액 &nbsp; &nbsp; &nbsp;</p>
+										<div style="align-text:right; display:inline;" width="50px">
+											<i class="won sign icon" style="padding-left:3.5%;"></i>
+											<p style="font-size:20px; display:inline; padding-left:3%;" class="pricewon">0</p>
+											
+										</div>
+										
+								
+									</div> <br>
+									<hr class="cashBox"> <br><br><br>
+									<b style="font-size:20px; padding-left:20px;">총 결제 금액</b> <br> <br> <br>
+									<i class="won sign icon" style="padding-left:10px; font-size:40px;"></i>
+									<p style="font-size: 40px; color: red; font-weight: bold; display: inline-block; padding-left:7px;" class="pricewon">0</p>
+									<span style="font-size: 40px; color: red; font-weight: bold; display: inline-block;">원</span>
 
 								</div>
-
-								<button class="ui red button">충전하기</button>
-
+								<br><br>
+								<div>
+									<button class="ui red button" style="width:280px; font-size:20px;">충전하기</button>
+								</div>
 							</div>
 						</div>
 
 					</div>
 				</div>
-				<div class="ui vertical divider">★</div>
-			</div>
+				<!-- <div class="ui vertical divider">★</div> -->
+			
 		</div>
 
+
+<br><br><br>
 		<div class="refunding-box">
 			<h4>
 				<i class="exclamation triangle icon"></i>TMI 캐시 안내
@@ -423,7 +324,7 @@ input[type='radio']:checked:before {
 				<ul padding-left="0%">
 					<li style="font-weight: bolder">충전캐시</li>
 					<div class="refungding1"
-						style="margin-left: 15px; border: 1px solid yellowgreen;">
+						style="margin-left: 15px;">
 						<ol>
 							<li>회원이 직접 충전했거나 주문이 취소된 후 예치된 캐시입니다.</li>
 							<li>유효기간은 충전일로 5년이며, 서비스 구매 시 유효기간 만료일이 가까운 순서대로 사용됩니다.</li>
@@ -432,10 +333,10 @@ input[type='radio']:checked:before {
 					</div>
 					<li style="font-weight: bolder">적립캐시</li>
 					<div class="refunding2"
-						style="margin-left: 15px; border: 1px solid yellowgreen;">
+						style="margin-left: 15px;">
 						<ol>
 							<li>각종 이벤트 참여 등에 따른 리워드로 적립된 캐시입니다.</li>
-							<li>유혀기간은 통상적으로 1년이나, 프로모션 성격에 따라 유효기간이 다를 수 있습니다.</li>
+							<li>유효기간은 통상적으로 1년이나, 프로모션 성격에 따라 유효기간이 다를 수 있습니다.</li>
 							<li>적립캐시는 서비스 구매 시 유효기간 만료일이 가까운 순서대로 사용됩니다.</li>
 							<li>적립캐시는 비현금성으로 환불되지 않습니다.</li>
 						</ol>
@@ -443,7 +344,7 @@ input[type='radio']:checked:before {
 				</ul>
 			</div>
 		</div>
-		<table style="display: none;">
+		<table style="display:none;">
 			<!-- 결제 정보에 사용-->
 			<tr>
 				<td>이름 : <span id="userName" value="<%=m.getUserName()%>"><%=m.getUserName()%></span></td>
@@ -456,10 +357,7 @@ input[type='radio']:checked:before {
 			</tr>
 		</table>
 
-		<br>
-		<br>
-		<br>
-		<br> <a href="/semi/index.jsp">홈으로 돌아가기</a>
+
 	</section>
 
 
@@ -477,16 +375,48 @@ input[type='radio']:checked:before {
 	
 		var uname = $('#userName').text();
 		var uemail = $('#email').text();
-		var uphone = $('#phone').text();
 		console.log(uname);
 		console.log(uemail);
-		console.log(uphone);
-	
+
+		//--
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp75606853'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+
+		IMP.request_pay({
+    		pg : 'html5_inicis', // version 1.1.0부터 지원.
+    		pay_method : 'card',
+    		merchant_uid : 'merchant_' + new Date().getTime(),
+    		name : 'TMI 캐시 충전',
+    		amount :price,
+    		buyer_email : uemail,
+    		buyer_name : uname,
+    		buyer_tel : uphone,
+    		buyer_addr : '서울특별시 강남구 삼성동',
+    		buyer_postcode : '123-456',
+    		m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+		}, function(rsp) {
+    		if ( rsp.success ) {
+        		var msg = '결제가 완료되었습니다.';
+        		msg += '고유ID : ' + rsp.imp_uid;
+        		msg += '상점 거래ID : ' + rsp.merchant_uid;
+        		msg += '결제 금액 : ' + rsp.paid_amount;
+        		msg += '카드 승인번호 : ' + rsp.apply_num;
+   		
+        
+      			//성공 시 이동할 페이지 (MemberDB로 연결되어 캐시 충전으로 잔액에 플러스)
+        		location.href="<%=request.getContextPath()%>/insertRech.bo?price="+price+"&email="+uemail;
+        
+    		} else {
+       		 var msg = '결제에 실패하였습니다. 캐시 충전 창으로 이동합니다.\n';
+        		msg += '에러내용 : ' + rsp.error_msg;
+      			//실패 시 이동할 페이지
+        		location.href="<%=request.getContextPath()%>/views/personBUY/cash.jsp";
+        //--
 	
         //성공 시 이동할 페이지
         <%-- location.href="<%=request.getContextPath()%>/views/personBUY/billingHistory.jsp"; --%>
-        location.href="<%=request.getContextPath()%>/mCashRec.bo?price="+price+"&email="+uemail;
-        
+        <%--location.href="<%=request.getContextPath()%>/mCashRec.bo?price="+price+"&email="+uemail;--%> <%-- MemberDB로 넘어가서 캐시 충전 --%>
+        <%--location.href="<%=request.getContextPath()%>/insertRech.bo?price="+price+"&email="+uemail;  CashDB로 넘어가서 충전내역으로 남김 --%>
 	}); 
 
 	<%--
@@ -526,8 +456,8 @@ input[type='radio']:checked:before {
         		msg += '카드 승인번호 : ' + rsp.apply_num;
    		
         
-      			//성공 시 이동할 페이지
-        		location.href="<%=request.getContextPath()%>/mCashRec.bo?price="+price+"&email="+uemail;
+      			//성공 시 이동할 페이지 (MemberDB로 연결되어 캐시 충전으로 잔액에 플러스)
+        		location.href="<%=request.getContextPath()%>/insertRech.bo?price="+price+"&email="+uemail;
         
     		} else {
        		 var msg = '결제에 실패하였습니다. 캐시 충전 창으로 이동합니다.\n';

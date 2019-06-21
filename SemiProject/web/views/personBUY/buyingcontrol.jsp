@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.model.vo.*" %>
-<% Member m = (Member)session.getAttribute("member"); %>
+<%@ page import="java.util.*, member.model.vo.*, buyingctrl.model.vo.*, sellerboard.model.vo.*" %>
+<% 
+   ArrayList<SellerBoard> reqList = (ArrayList<SellerBoard>)request.getAttribute("nreqList");
+   System.out.println("(buyingcontrol.jsp)ArrayList<SellerBoard>:"+reqList); 
+
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,12 +33,12 @@
 	.listcontent{
 		padding-left : 5%;
 	}
-	<!-- ------------------------- -->
+	
 	.font-noto{
 		font-family: 'Noto Sans KR', sans-serif;
     	font-weight: 400;
 	}
-	.my-page-sell{
+	.my-page-buy{
 		margin:0 auto;
 	}
 	.scontainer{
@@ -157,6 +162,7 @@
 		color : #878787;
 		font-family: 'Noto Sans KR', font;
 		font-weight : 500;
+		cursor:pointer;
 	}
 	.detail-box{
 	    border-bottom: solid #E6E6E6 1px !important;
@@ -167,6 +173,38 @@
 		text-align : center;
 		margin-top : 20px;
 	}
+	
+	.detail-list2{
+		text-align : center;
+		margin-top : 20px;
+
+	}
+	
+	table {
+	border-radius: 5px;
+		border:3px solid #BDD4F2;		
+		width:100%;
+				margin-bottom : 20px;
+	}
+	
+	.bcthumb{
+		text-align:left;
+		padding-left : 30px;
+		width:180px;
+	}
+	
+	.bcinfo{
+		text-align:left;
+		color :gray;
+		font-size: 12px;
+		width:350px;
+	}
+	
+	.bcprice{
+		text-align:right;
+		padding-right:30px;
+	}
+	
 	.selling-history{
 	    vertical-align: 1px;
 	    font-size: 11px;
@@ -199,8 +237,10 @@
 		padding-left:20px;
 	}
 	
+	#bcNotList{
+		letter-spacing : -1.7px;
+	}
 
-	
 	
 	
 </style>
@@ -208,7 +248,7 @@
 <body>
 	<%@ include file="/views/common/cateheader2.jsp" %>
 
-	<div class="my-page-sell">
+	<div class="my-page-buy">
 		<div class="scontainer">
 			<div class="scontainer1">
 				<div class = "sell font-noto">
@@ -223,9 +263,10 @@
 						</div>
 						<ul class="user-profile-box">
 							<li style=" border-top:none;"><div style="text-align : center; margin-bottom:20px;">
-								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href="">회원닉네임</a></div>
+								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href="../member/memberUpdateForm.jsp"><%=m.getNickName() %></a></div>
+								<br>
 								<div class="font-color-lighter font-size-h6">TMI캐시</div>
-								<h3 class="margin-bottom-15 margin-top-5 link-color-blue NGB"><%=m.getCash()%> 원</h3>
+								<h3 class="margin-bottom-15 margin-top-5 link-color-blue NGB"><i class="won sign icon"></i><%=m.getCash()%> 원</h3>
 								<div>
 									<label class="seller-check font-noto" style="cursor:pointer;" onclick="lbcash();"><i class="credit card outline icon"></i>캐시충전</label>
 									
@@ -238,22 +279,22 @@
 					<div class="menu-box">
 						<div class="padding-15">
 							<div class="menu-line" style="text-align:center">
-								<a href="/semi/views/personBUY/buyingcontrol.jsp"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;">							
-									<div><img src="/semi/resources/images/buying_active.png" alt="" /></div>
+								<a style="cursor:pointer;"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;" onclick="nrequest();">							
+									<div><img src="/semi/resources/images/buying_active.png"/></div>
 									<h6>구매관리</h6>							
 								</div></a>
 								<a href="/semi/views/personBUY/cash.jsp"><div class="padding-all-15 menu-slot">
-									<div><img src="/semi/resources/images/cash_active.png" alt="" /></div>
+									<div><img src="/semi/resources/images/noun_won.png"/></div>
 									<h6>TMI캐시</h6>			
 								</div></a>
 							</div>
 							<div class="menu-line" style="text-align:center;border-bottom:solid #E6E6E6 1px;">
-								<a href="/semi/views/personBUY/billingHistory.jsp"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
-									<div><img src="/semi/resources/payment_active.png" alt="" /></div>
+								<a style="cursor:pointer;"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;" onclick="billHist();">							
+									<div><img src="/semi/resources/images/payment_active.png"/></div>
 									<h6>캐시내역</h6>							
 								</div></a>
 								<a href="/semi/views/personBUY/coupon.jsp"><div class="padding-all-15 menu-slot">
-									<div><img src="/semi/resources/coupon_active.png" alt="" /></div>
+									<div><img src="/semi/resources/images/coupon_active.png"/></div>
 									<h6>쿠폰</h6>			
 								</div></a>
 							</div>
@@ -265,271 +306,137 @@
 			</div>
 			<div class="scontainer3 width-75per" style="float:left">
 				<div class="padding-15">
-					<h3 class="font-noto" style="font-weight:700">구매관리</h3>
+					<h3 class="font-noto" style="font-weight:700; margin-top:3%">구매관리</h3>
 				</div>
 				<div style="margin-top:20px">
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000" href="">요청사항 미작성 &nbsp; <span class="selling-history select">0</span></a>
+								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp; <span class="selling-history select"><%=reqList.size() %></span></a>
 							</li>
 							<li>
-								<a href="">진행중 &nbsp; <span class="selling-history">0</span></a>
+								<a href="/semi/views/personBUY/buyingcontrolIng.jsp">진행중 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 							<li>
-								<a href="">발송중 &nbsp; <span class="selling-history">0</span></a>
+								<a href="/semi/views/personBUY/buyingcontrolFin.jsp">완료 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 							<li>
-								<a href="">완료 &nbsp; <span class="selling-history">0</span></a>
-							</li>
-							<li>
-								<a href="">취소 &nbsp; <span class="selling-history">0</span></a>
+								<a href="/semi/views/personBUY/buyingcontrolCc.jsp">취소 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div style="margin-top:20px">
-					
-				<div>
-					<div class="padding-15" style="margin-top:10px">
-						<div class="detail-box">
-							<div class="detail-list">
-								<div><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
-								<h5 class="font-noto" style="margin:10px 0;">내역이 없습니다.</h5>
-							</div>
+					<div class="font-noto" style="padding: 0 71.5%;">
+							<div class="ui icon input">
+  							<input type="text" placeholder="서비스 제목 검색">
+							<i class="inverted circular search link icon"></i>
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-xs-12 margin-top-15">
-                                      
-                        <div class="row">
+				
+				<% if (reqList.size()==0) { %>
+					<div class="padding-15" style="margin-top:10px">
+						<div class="detail-box">
+							<div class="detail-list">
+								<!-- 내역이 없을 때 -->
+								<div><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
+								<h5 class="font-noto" style="margin:10px 0;">내역이 없습니다.</h5>
+											
+							</div>
+						</div>
+					</div>
+					
+				<% } else {%>
+							
+						<div class="detail-list2 padding-15">
+							<!-- 내역이 있을 때 -->
+							<div class="tableArea">
+								
+								<br>
+								<%  for(SellerBoard sb : reqList) { %>
+								<table align="center" id="listArea">
+									<tr>
+										<th class="bcthumb"> <%-- <img src="/semi/resources/<%= sb.getBoardfile() %>" width="80px;">--%> <%=sb.getImages() %></th>
+										<th width="150px" class="bcinfo">
+											<p>주문번호 : <%=sb.getDmcode() %></p>
+											<p style="font-size:18px;"><%=sb.getBtitle()%></p>
+										</th>
+										
+										<th class="bcprice"><i class="won sign icon"></i><%=sb.getPrice()%>원</th>
+									</tr>
+									
+								</table>
+							
+						</div>
+					</div>
+					
+					
+					<% }} %>
+					
+					<br><br><br><br>
+					<div class="row" style="text-align:left;">
                             <div class="col-xs-12">
-                                <div class="panel bg-color-kmong-main profits-panel-border border-radius-0 border-solid">
-                                    <div class="panel-body">
-                                        <h6 class="NGB margin-all-0 padding-bottom-5">
-                                            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                <div class="padding-15 panel bg-color-main profits-panel-border border-radius-0 border-solid">
+                                    <div class="panel-body" style="border:1px solid lightgray; background-color:#dcdcdc; margin-top:50px;">
+
+                                        <h6 class="NGB margin-all-0 padding-bottom-5" style="font-size:17px;">
+                                            <i class="bullhorn icon"></i>
                                             <b>꼭 확인해주세요!</b>
                                         </h6>
                                         <ul class="font-color-light margin-top-5 margin-top-5 margin-bottom-0 font-size-h6 padding-left-20">
-                                            <li>세금계산서는 거래 주체인 전문가가 의뢰인에게 발행합니다.</li>
-                                            <li>
-                                                세금계산서는 사업자 인증 받은 기업전문가에게 요청하실 수 있습니다.
-                                            </li>
-                                            <li>
-                                                이벤트 쿠폰 사용 금액은 할인된 금액이기 때문에 세금계산서에 포함되지 않습니다.
-                                            </li>
-                                            <li>
-                                                거래명세서는 결제가 완료되었음을 증명하는 용도로만 활용 가능하며 세무상의 지출증빙 효력이 없습니다.
-                                            </li>
-                                            <li>
-                                                현금영수증은 개인의 소득공제용으로만 사용 가능하며, 결제 당시 지출 증빙용으로 선택하셨더라도 매입세액공제를 받으실 수 없습니다.
-                                            </li>
+                                            <li id="bcNotList">세금계산서는 거래 주체인 전문가가 의뢰인에게 발행합니다.</li>
+                                            <li id="bcNotList">세금계산서는 사업자 인증 받은 기업전문가에게 요청하실 수 있습니다.</li>
+                                            <li id="bcNotList">이벤트 쿠폰 사용 금액은 할인된 금액이기 때문에 세금계산서에 포함되지 않습니다.</li>
+                                            <li id="bcNotList">거래명세서는 결제가 완료되었음을 증명하는 용도로만 활용 가능하며 세무상의 지출증빙 효력이 없습니다.</li>
+                                            <li id="bcNotList">현금영수증은 개인의 소득공제용으로만 사용 가능하며, 결제 당시 지출 증빙용으로 선택하셨더라도 매입세액공제를 받으실 수 없습니다.</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-			</div>
-		</div>
-	</div>
-	<!-- --------------------------------------------------------------------------------------------- -->
-	<section>
-		<div class="container1">
-        <h3>구매 관리</h3>
-		</div>
-		
-		<div class="container1 clearFix">
-		
-		<div class="ui top attached tabular menu">
-			<a class="item active" id="bcorderList"> 주문목록 </a> <a class="item" id="progressing"> 진행중 </a> <a class="item" id="comp"> 완료 </a>
-
-		</div>
-		<div class="ui bottom attached segment">
-			<div id="olderlist-cont" style="border : 2px solid olive"> <!-- 주문목록 -->
-				<p>주문목록 넣는 자리할거고여 여기는 아래의 뭘 누르든 구매 주문 완료 페이지로 넘어갈 예정입니당~</p>
-				
-				<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				
-			</div>
-			
-			<div id="progressing-cont" style="border : 2px solid skyblue" hidden> <!-- 진행중 -->
-				<p>진행중인 주문목록 넣을 자리임당~</p>
-				
-				<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
-			
-			<div id="comp-cont" style="border : 2px solid lightpink" hidden> <!-- 완료 -->
-				<p>완료된 주문목록 넣을거여요~</p>
-				
-				<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
 					
 					
+					
+				</div>
+				<br><br>
 				
-			</div>
+				
+				
+			 </div>
 		</div>
 
+	
 
 
 
 
-		</div>
-
-		<br><br><br><br>
-            <a href="/semi/index.jsp">홈으로 돌아가기</a>
-    </section>
+    
 
 	<script>
-		document.getElementById("bcorderList").addEventListener("click", function() {
-		document.getElementById("olderlist-cont").hidden = false;
-		document.getElementById("progressing-cont").hidden = true;
-		document.getElementById("comp-cont").hidden = true;
-		document.getElementById("bcorderList").className = "item active";
-		document.getElementById("progressing").className = "item";
-		document.getElementById("comp").className = "item";
-		});
-
-		document.getElementById("progressing").addEventListener("click", function() {
-		document.getElementById("olderlist-cont").hidden = true;
-		document.getElementById("progressing-cont").hidden = false;
-		document.getElementById("comp-cont").hidden = true;
-		document.getElementById("bcorderList").className = "item";
-		document.getElementById("progressing").className = "item active";
-		document.getElementById("comp").className = "item";
-		});
-		
-		document.getElementById("comp").addEventListener("click", function() {
-		document.getElementById("olderlist-cont").hidden = true;
-		document.getElementById("progressing-cont").hidden = true;
-		document.getElementById("comp-cont").hidden = false;
-		document.getElementById("bcorderList").className = "item";
-		document.getElementById("progressing").className = "item";
-		document.getElementById("comp").className = "item active";
-		});
-		
 		function lbcash(){
 			location.href="cash.jsp";
 		}
+		
+		function billHist(){
+			location.href="/semi/cList.bo"
+		}
+		
+		function nrequest(){
+			location.href="/semi/nReq.bo"
+		}
+		
+		
+		
+		
+		
+		
 	</script>
 	
 	
 
 
-	<%@ include file="/views/common/footer.jsp" %>
+	 <%@include file="/views/common/footer.jsp" %>
 </body>
 </html>
