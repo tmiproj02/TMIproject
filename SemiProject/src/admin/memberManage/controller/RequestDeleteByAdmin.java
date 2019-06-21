@@ -1,7 +1,6 @@
 package admin.memberManage.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,29 +10,35 @@ import javax.servlet.http.HttpServletResponse;
 import admin.memberManage.model.service.MemberManageService;
 
 
-@WebServlet("/mDelete.admin")
-public class MemberDeleteByAdmin extends HttpServlet {
+@WebServlet("/rDelete.admin")
+public class RequestDeleteByAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public MemberDeleteByAdmin() {}
+  
+    public RequestDeleteByAdmin() {
+        super();
+       
+    }
 
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("email");
+			int rno = Integer.parseInt(request.getParameter("rno"));
+			System.out.println(rno);
 		try {
 			
-			System.out.println("email Delete : " +email);
-			new MemberManageService().deleteMember(email);
+			new MemberManageService().deleteRequest(rno);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-	
+		
+		
+		
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		doGet(request, response);
 	}
 

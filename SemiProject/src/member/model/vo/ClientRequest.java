@@ -9,6 +9,8 @@ public class ClientRequest implements Serializable{
 	
 	}
 	
+	
+		private int rno;
 		private String email;
 		private String rTitle;
 		private String rContent;
@@ -94,6 +96,22 @@ public class ClientRequest implements Serializable{
 
 		public void setReply(String reply) {
 			this.reply = reply;
+		}
+
+		
+		
+		
+		
+
+
+
+		public int getRno() {
+			return rno;
+		}
+
+
+		public void setRno(int rno) {
+			this.rno = rno;
 		}
 
 

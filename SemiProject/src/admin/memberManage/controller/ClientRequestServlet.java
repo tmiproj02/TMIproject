@@ -29,8 +29,8 @@ public class ClientRequestServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			Member m = (Member)session.getAttribute("member");
 			
-			String email = "이메일입니당.";
-			String nickName = "닉네임입니당.";
+			String email = m.getEmail();
+			String nickName = m.getNickName();
 			String rTitle = request.getParameter("rTitle");
 			String rContent = request.getParameter("rContent");
 			

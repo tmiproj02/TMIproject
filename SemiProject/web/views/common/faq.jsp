@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
 
-<div class="ui segment" id="example1" style="width:80px;left: 1600px; position:fixed; bottom:167px;" >
+<div class="ui segment" id="example1" style="width:80px;left: 1800px; position:fixed; bottom:167px;" >
       <div class="ui sticky">
 	      <div style="cursor:pointer;">
 	      <img class="notice" src="/semi/resources/images/info.png" style="width: 50px !important; height: 50px !important; margin-top:5px;margin-bottom:10px">
@@ -37,7 +37,7 @@
 	     
 	     <div class="actions">
    			 <button class="ui blue basic approve button" onclick="submitFn()">완료</button>
-		     <button class="ui red basic cancel button">취소</button>
+		     <button class="ui red basic button cancel ">취소</button>
   		 </div>
 	     
 	     
@@ -52,12 +52,19 @@
 			$('.small.modal').modal('show');
 	}
 	
+	$('.cancel').click(function(){
+		$('#rTitle').val(" ");
+		$('#rContent').val(" ");
+	});
+	
 	function submitFn(){
 		$.ajax({
 			url : "clientRequest.do",
 			type : "post",
 			data : {rTitle : $('#rTitle').val(), rContent: $('#rContent').val()},
 			success : function(){
+				$('#rTitle').val(" ");
+				$('#rContent').val(" ");
 				alert("문의가 접수되었습니다.");
 			},
 			error : function(){

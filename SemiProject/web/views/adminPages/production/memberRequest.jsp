@@ -84,7 +84,6 @@
                         <tr>
                           <th>No</th>
                           <th>제목</th>
-                          <th>문의 내용</th>
                           <th>Email</th>
                           <th>닉네임</th>
                           <th>답변여부</th>
@@ -97,10 +96,10 @@
                       	int num = 1;
                       	for(ClientRequest cr : crList){ %>
                       	
-                        <tr>
+                        <tr id="trId">
+                          <td style="display:none;"><input type="hidden" id="rno" value="<%=cr.getRno()%>"></td>
                           <td><%=num %></td>
                           <td><%=cr.getrTitle()%></td>
-                          <td><%=cr.getrContent()%></td>
                           <td class="email"><%=cr.getEmail() %></td>
                           <td><%=cr.getNickName()%></td>
                           <td>
@@ -110,10 +109,31 @@
                           	    미답변
                           <% }%>
                           </td>
+                          
                           <td class="last">
-                          <a class="btn btn-primary btn-xs replyBtn"><i class="fa fa-send-o"></i>&nbsp;답변</a>
-                          <a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-trash-o"></i>&nbsp;삭제 </a>
-                      
+	                          <a class="btn btn-primary btn-xs replyBtn"><i class="fa fa-send-o"></i>&nbsp;답변</a>
+	                          <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash-o"></i>&nbsp;삭제 </a>
+	                       <!-- Modal -->
+	                       
+							<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-centered" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h3 class="modal-title" id="exampleModalCenterTitle">1:1 문의 삭제</h3>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							      	 <h4>정말로 해당 문의 내용을 삭제하시겠습니까?</h4>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+							        <button type="button" class="btn btn-primary deleteBtn">삭제</button>
+							      </div>
+							    </div>
+							  </div>
+							</div> 
                           </td>
                      
                         </tr>
@@ -209,11 +229,10 @@
     			$(this).click(function(){
         		
 					$.ajax({
-						url : "/semi/mDelete.admin",
+						url : "/semi/rDelete.admin",
 		        		type : "get",
-		        		data : {email : $(this).parent().parent().find('td').eq(1).text()} ,
+		        		data : {rno : $(this).parents('#trId').find('input').val()} ,
 		        		success : function(data){
-		        			
 		        			location.href = "/semi/requestList.admin";
 		        		},
 		        		error : function(){

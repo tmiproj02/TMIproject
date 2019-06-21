@@ -35,25 +35,11 @@
                     <ul class="nav child_menu">
                       <li><a href="/semi/serviceList.admin">판매 서비스 관리</a></li>
                       <li><a href="adManage.jsp">광고 관리</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
                     </ul>
                   </li>
                   
-                  <li><a><i class="fa fa-comment"></i> 1:1 문의<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="general_elements.html">General Elements</a></li>
-                      <li><a href="media_gallery.html">Media Gallery</a></li>
-                      <li><a href="/semi/requestList.admin">1:1 문의(클론)</a></li>
-                      <li><a href="icons.html">Icons</a></li>
-                      <li><a href="glyphicons.html">sdf</a></li>
-                      <li><a href="widgets.html">Widgets</a></li>
-                      <li><a href="invoice.html">Invoice</a></li>
-                      <li><a href="inbox.html">Inbox</a></li>
-                      <li><a href="calendar.html">Calendar</a></li>
-                    </ul>
+                  <li><a href="/semi/requestList.admin"><i class="fa fa-comment"></i> 1:1 문의</a>
+                  
                   </li>
                   <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
