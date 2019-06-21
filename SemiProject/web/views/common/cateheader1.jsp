@@ -315,7 +315,7 @@ nav{
                             <%}else{ %>
                             	<div class="padding-20px"><a href="/semi/views/seller/ServiceRegistration.jsp">판매 시작하기</a></div>
                             <%} %>
-                            <div class="padding-15px"><a href="/semi/views/personBUY/buyingcontrol.jsp">구매</a></div>
+                            <div class="padding-15px"><a style="cursor:pointer" onclick="buyingctrl();">구매</a></div>
                             <div class="padding-15px"><a href="/">메시지</a></div>
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>
                             <div class="mylog padding-15px"><a href="/">
@@ -456,6 +456,10 @@ nav{
    				"background" : "none"
     		});
     	});
+    	
+    	function buyingctrl(){
+			location.href="/semi/nReq.bo";
+		}
     </script>
 </body>
 </html>

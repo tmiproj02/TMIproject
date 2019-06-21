@@ -1,7 +1,7 @@
 package buyingctrl.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,11 +34,9 @@ public class NoneRequestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("member");
-		
-		
 		
 		ArrayList<SellerBoard> nreqList = new ArrayList<SellerBoard>();
 		
@@ -55,7 +53,7 @@ public class NoneRequestServlet extends HttpServlet {
 			
 			request.getRequestDispatcher(page).forward(request, response);
 		} catch(buyingctrlException e) {
-				page = "/semi/views/common/errorPage.jsp";
+				page = "/views/common/errorPage.jsp";
 				request.setAttribute("msg", "요구사항이 없는 것 불러오기 에러!");
 				request.setAttribute("exception", e);
 				e.printStackTrace();
@@ -63,9 +61,7 @@ public class NoneRequestServlet extends HttpServlet {
 				request.getRequestDispatcher(page).forward(request, response);
 		}
 		
-		
-		
-		
+
 		
 		
 		

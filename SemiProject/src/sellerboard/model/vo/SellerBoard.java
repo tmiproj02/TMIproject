@@ -30,6 +30,9 @@ public class SellerBoard implements Serializable {
 	private int extradate1; 				//빠른 작업 일수
 	private int extradate2; 				//추가 수정 회수
 	private int nickName;
+	private Date dealdateB;					//구매내역 조회할 때 사용할 겁니다:) (구매날짜입니당)
+	private int dmcode;						//'' (주문번호)
+	private int mno;						//구매자
 	
 	public int getNickName() {
 		return nickName;
@@ -317,5 +320,30 @@ public class SellerBoard implements Serializable {
 
 	public void setExtradate2(int extradate2) {
 		this.extradate2 = extradate2;
+	}
+	
+
+	public Date getDealdateB() {
+		return dealdateB;
+	}
+
+	public void setDealdateB(Date dealdateB) {
+		this.dealdateB = dealdateB;
+	}
+
+	public int getDmcode() {
+		return dmcode;
+	}
+
+	public void setDmcode(int dmcode) {
+		this.dmcode = dmcode;
+	}
+
+	public int getMno() {
+		return mno;
+	}
+
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
 }

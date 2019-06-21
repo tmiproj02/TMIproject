@@ -7,8 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Properties;
+import java.util.*;
 
 import buyingctrl.model.exception.buyingctrlException;
 
@@ -67,9 +66,14 @@ public class DealMngDao {
 				SellerBoard sb = new SellerBoard();
 				
 				sb.setImages(rset.getString("images"));
+				System.out.println("1");
 				sb.setBtitle(rset.getString("btitle"));
+				System.out.println("2");
+//				sb.setDealdateB(rset.getDate("dealdateB"));
+//				System.out.println("3"); -->쿼리에서도 D.DEALDATEB 지워버림... select해야되는데ㅠㅠㅠㅠㅠㅠ아쒸ㅜㅜㅠㅠ
 				sb.setPrice(rset.getInt("price"));
-				sb.setDealdateB(rset.getDate("dealdateB"));
+				System.out.println("4");
+				
 				
 				nreqList.add(sb);
 				System.out.println("요구사항 없는 구매내역 조회 리스트(DealMngDao) : "+ nreqList);
@@ -87,6 +91,11 @@ public class DealMngDao {
 		
 		return nreqList;
 	}
+
+
+
+
+
 	
 	
 	

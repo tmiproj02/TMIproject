@@ -1,8 +1,7 @@
 package buyingctrl.model.service;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-
+import java.util.*;
 import buyingctrl.model.dao.DealMngDao;
 import buyingctrl.model.exception.buyingctrlException;
 import member.model.vo.Member;
@@ -27,6 +26,10 @@ public class DealMngService {
 		
 		return nreqList;
 	}
+
+
+
+
 	
 	
 	
