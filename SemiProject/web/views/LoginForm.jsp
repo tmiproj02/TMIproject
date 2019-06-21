@@ -52,7 +52,7 @@
 .section2{
    width : 1200px;
    margin:0 auto;
-   margin-top: 50px;
+   margin-top: 40px;
 }
 .loginDiv{
    margin:0 auto;
@@ -67,6 +67,10 @@
    margin: 0 auto;
    padding:20px;
 }
+.login1>form>p{
+   font-size:17px;
+   color:#364559
+}
 .login2{
    width: 310px;
    margin: 0 auto;
@@ -76,6 +80,18 @@
    margin: 0 auto;
    padding:20px;
 }
+
+.kakao>a>img{
+	width: 300px;
+	height: 55px;
+	margin-right : 10px;
+}
+
+.naver>a>img{
+	width: 300px;
+	height: 55px;
+}
+
 </style>
 
 </head>
@@ -95,26 +111,28 @@
             <div class="login1">
                <form action="/semi/login.do" method="post"> 
                   &nbsp;<p><b>로그인</b></p>
-                  <input type="text" name="userEmail" class="form-control" placeholder="이메일을 입력하세요" style="width:300px;height:50px;"><br>
-                  &nbsp;<label>비밀번호</label>
+                  <input type="text" name="userEmail" class="form-control" placeholder="이메일을 입력하세요" style="width:300px;height:50px; margin-bottom:-20px;"><br>
+                  &nbsp;<p><b>비밀번호</b></p>
                   <input type="password" name="userPwd" class="form-control" placeholder="비밀번호를 입력하세요" style="width:300px;height:50px; margin-bottom:7px;">
                   <label id="isValid" style="font-size:11px; color:red;"><%=errorMsg %></label><br>
-                  <button type="submit" class="btn btn-primary" style="width:300px; height:50px; margin-bottom:-7px;  border: none;">로그인</button>
+                  <button type="submit" class="btn btn-primary" style="text-align:center;width:300px; height:50px; background:#364559;margin-bottom:-7px;  border: none;">로그인</button>
                </form>
             </div>
             
             <div class="login2" >
-            <a id="searchIPBtn" onclick="searchIP()" style="cursor:pointer;">아이디/비밀번호 찾기</a>
-            <a href="/semi/views/member/memberJoin.jsp" id="memberJoin" style="cursor:pointer; margin-left:90px;">회원 가입</a>
+            <a id="searchIPBtn" onclick="searchIP()" style="cursor:pointer; color:#364559">아이디/비밀번호 찾기</a>
+            <a href="/semi/views/member/memberJoin.jsp" id="memberJoin" style="cursor:pointer; margin-left:90px;color:#364559">회원 가입</a>
             </div>
             
             <div class="login3" >
                <!-- 카카오톡 로그인 버튼 -->
-               <div style="margin-bottom:11px; ">
-               <a id="kakao-login-btn" style="width:300px; height:50px;"></a>
+               <div class="kakao" style="margin-bottom:11px; text-align:center;background:">
+               <a id="kakao-login-btn"></a>
+               
                </div>
                <!-- 네이버 로그인 버튼 -->
-               <div id="naverIdLogin" style="width:300px;height:50px;">
+               
+               <div class="naver" id="naverIdLogin" style="width:300px;height:50px;text-align:center;">
                
                </div>
             </div>
@@ -168,7 +186,7 @@
                               if(isDup == 1){
                                  location.href = '/semi/login.do?userEmail='+email+ '&userPwd=0&isSNS=Y';
                               } else{ // 가입자가 아니므로 가입절차 후 로그인
-                            	  alert("카카오에 등록된 Email로 가입을 진행합니다. 추가정보를 입력해주세요.");
+                            	  alert("카카오에 가입한 이메일로 가입을 진행합니다.<br> 추가 정보를 입력해주세요.");
                                  location.href = '/semi/views/member/memberJoin.jsp?email=' + email + '&isSNS=Y';
                               }
                         },
@@ -228,9 +246,8 @@
                            if(isDup == 1){
                               location.href = '/semi/login.do?userEmail='+email+ '&userPwd=0&isSNS=Y';
                            } else{ // 가입자가 아니므로 가입절차 후 로그인
-                        	   
+                        	   alert("네이버 이메일로 가입을 진행합니다.<br> 추가 정보를 입력해주세요.");
                               location.href = '/semi/views/member/memberJoin.jsp?email=' + email + '&isSNS=Y';
-                
                            }
                      },
                      error : function(){

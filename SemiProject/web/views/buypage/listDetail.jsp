@@ -4,7 +4,8 @@
 	import="buy.buy.model.vo.* ,buy.comment.model.vo.*, java.util.*, member.model.vo.*"%>
 
 <%
-	Board b = (Board)request.getAttribute("board");
+	SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
+	System.out.println("list JSP에서 Sellerboard : " + b);
 	/* ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist"); */
 %>
 
@@ -26,7 +27,7 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap"
 	rel="stylesheet">
 
-<title>Insert title here</title>
+<title><%=b.getBtitle()%></title>
 
 <style>
 @charset "UTF-8";
@@ -116,6 +117,7 @@ li {
 
 .pricebox {
 	border: 1px solid #e6e6e6;
+	padding: 20px;
 }
 
 .pricebox p {
@@ -124,8 +126,10 @@ li {
 }
 
 .pricebox a{
-padding: 10px 100px; background: #bdd4f2; border-radius: 8px;
-margin: 10px 10px;
+padding: 10px 100px; 
+background: #bdd4f2; 
+border-radius: 8px;
+margin: 20px 10px;
 }
 .shildbox {
 	border: 1px solid #e6e6e6;
@@ -176,6 +180,30 @@ margin: 10px 10px;
 	position: fixed;
 	top: 0px;
 }
+.pricedue{
+	display: inline-block;
+}
+
+.priceedit{
+	display: inline-block;
+	margin-left: 20px;
+}
+
+
+.pricedue p{
+	float: left;
+	margin:0 10px;
+	font-size: 12px;
+}
+.priceedit p{
+	float: left;
+	margin:0 10px;
+	font-size: 12px;
+}
+.imgbox>img{
+	width:550px;
+	height:500px;
+}
 </style>
 
 <script>
@@ -208,14 +236,15 @@ margin: 10px 10px;
 		<div class="detailbox1">
 
 			<div class="img">
-				<div class="imgbox" style="background: url('/semi/resources/images/<%=b.getImages()%>.jpg');"><%-- style="background : url('semi/resources/images/<%=b.getImages()%>.jpg');" --%>>
-					
+				<div class="imgbox">
+					<img src="/semi/resources/selleruploadIMG/<%=b.getImages()%>" alt="" style="width:550px;height:500px;"/>
 
 				</div>
 
 				<div class="starbox">
 					<div class="ui massive star rating" data-rating="3"
 						data-max-rating="5"></div>
+						<span><%=b.getBevaluation() %>점</span> 
 
 					<script>
 						$('.ui.rating').rating();
@@ -327,8 +356,19 @@ margin: 10px 10px;
 			
 
 			<div class="pricebox" style="border: 1px solid #e6e6e6;">
-				<p>거래설명</p>
-				<a href="<%= request.getContextPath() %>/buyPage.bo?bno='+<%=b.getBno()%>"
+				<p><%=b.getBcontent() %></p>
+				
+				<div class="clearFix" style="margin-bottom: 20px;">
+					<div class="pricedue clearFix">
+						<img src="/semi/resources/images/calendar.png" alt="" style="width: 15px; height:15px; float: left;"/>
+						<p>작업일: &nbsp;<%=b.getDuedate() %>일</p>
+					</div>
+					<div class="priceedit clearFix">
+						<img src="/semi/resources/images/tool.png" alt="" style="width: 15px; height:15px; float: left;"/>
+						<p>수정횟수: &nbsp;<%=b.getEditablecount() %>회</p>
+					</div>
+				</div>
+				<a href="<%= request.getContextPath() %>/buyPage.bo?bno=<%=b.getBno()%>"
 					style="">구매하기(<%=b.getPrice() %>원)</a>
 			</div>
 
@@ -349,23 +389,23 @@ margin: 10px 10px;
 				<div class="sellerpadding">
 					<div class="selleridbox1">
 						<img src="" alt="" />
-						<p>닉네임닉네임</p>
+						<p style="text-align:center;">이자식</p>
 					</div>
 
 					<div style="text-align: center;">
 						<div class="sellerinfo clearFix">
 							<div class="sellerwork">
-								<p>10건</p>
+								<p><%=b.getCpcount() %>건</p>
 								<p>작업갯수</p>
 							</div>
 							<div class="sellergrade">
-								<p>10</p>
+								<p><%=b.getSevaluation() %>점</p>
 								<p>평점</p>
 							</div>
 						</div>
 					</div>
 					<div class="sellerintrodu">
-						<p>소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글</p>
+						<p><%=b.getIntrotext() %></p>
 					</div>
 
 				</div>

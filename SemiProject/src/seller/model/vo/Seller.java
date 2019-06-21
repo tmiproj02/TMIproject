@@ -1,8 +1,10 @@
 package seller.model.vo;
 
-public class Seller {
+import java.io.Serializable;
 
-	private static final long serialVersionUID = 1L;
+public class Seller implements Serializable {
+
+	private static final long serialVersionUID = 1000L;
 
 	private int sno;					//판매자번호(PK)
     private int mno;					//회원 번호(FK)
@@ -29,9 +31,10 @@ public class Seller {
 	}
 
     //사용자가 직접 입력하는 것을 따로 받음
-	public Seller(String bankname, String banknumber, String careerdate1, String careerdate2, String careerdate3,
+	public Seller(int mno, String bankname, String banknumber, String careerdate1, String careerdate2, String careerdate3,
 			String career1, String career2, String career3, String certificat1, String certificat2, String certificat3, String introtext) {
 		super();
+		this.mno=mno;
 		this.bankname = bankname;
 		this.banknumber = banknumber;
 		this.careerdate1 = careerdate1;

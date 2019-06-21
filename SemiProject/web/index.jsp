@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.Member"%>
+<%@ page import="seller.model.vo.Seller"%>
+<% 
+	Member m = (Member)session.getAttribute("member");
+	Seller s = (Seller)session.getAttribute("seller");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,7 +25,7 @@
 
 header{
     margin: 0 auto;
-    background-image: url('/semi/resources/images/night-sky.jpg');
+    background-image: url('/semi/resources/images/back3.jpg');
     background-position:center top ;
     background-attachment: scroll;
     /* background-repeat:no-repeat;  */
@@ -274,10 +280,35 @@ footer{
     color: #ccc;
 }
 </style>
+<% if(m != null){
+  	response.sendRedirect("mainheader2.jsp");
+ } %>
 </head>
-
+ 
 <body>
-
+<!-- 
+<script>
+	<% if(m == null) {  %>
+		
+		sessionStorage.setItem('memberLoginChk', '0');
+		
+	<% } %>
+	
+ 	window.onbeforeunload = function(e) {
+	 
+	};
+	
+	window.onload = function() {
+		if (sessionStorage.getItem('reloadChk') != 1){
+			sessionStorage.setItem('reloadChk', 1);
+			if (sessionStorage.getItem('memberLoginChk') != 0) {
+			    location.href = 'mainheader2.jsp';
+			}
+		} else {
+			sessionStorage.setItem('reloadChk', 0);
+		}
+	}
+ </script> -->
     <div class="wrap">
         
         <header>
@@ -286,13 +317,13 @@ footer{
                 
                 <div class="header">
                     <div class="flex-left">
-                        <a href="../common/mainheader.jsp">
+                        <a href="index.jsp">
                             <img src="/semi/resources/images/tmi.png" width="110px">
                         </a>
                     </div>
                    <div class="flex-right">
-                            <div class="item1"><a href="/">판매 시작하기</a></div>
-                            <div class="item2"><a href="views/LoginForm.jsp">로그인</a></div>
+                            <div class="item1"><a href="/"><b>판매 시작하기</b></a></div>
+                            <div class="item2"><a href="views/LoginForm.jsp"><b>로그인</b></a></div>
                             <div class="item3"><a class="joinBtn" href="views/member/memberJoin.jsp" style="color: black">무료 회원가입</a></div>
                     </div>
                 </div>
@@ -312,51 +343,51 @@ footer{
 
                 <div class="category">
                     <ul>
-                        <li><a href="/semi/views/designCategoryPage.jsp">
+                        <li><a href="/semi/selectList.bo?cate=designCategoryPage">
                             <img src="/semi/resources/images/edit.png"> <br>
-                            <span>디자인</span>
+                            <a href="/semi/selectList.bo?cate=designCategoryPage"><b>디자인</b></a>
                         </a></li>
                     </ul>
                 
                     <ul>
-                        <li><a href="/semi/views/itCategoryPage.jsp">
+                        <li><a href="/semi/selectList.bo?cate=itCategoryPage">
                             <img src="/semi/resources/images/television.png"><br>
-                            <a href="">IT/프로그래밍</a>
+                            <a href="/semi/selectList.bo?cate=itCategoryPage"><b>IT/프로그래밍</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/marketingCategoryPage.jsp">
+                        <li><a href="/semi/selectList.bo?cate=marketingCategoryPage">
                             <img src="/semi/resources/images/bar-chart.png"><br>
-                            <a href="">마케팅</a>
+                            <a href="/semi/selectList.bo?cate=marketingCategoryPage"><b>마케팅</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/contentCategoryPage.jsp">
+                        <li><a href="/semi/selectList.bo?cate=contentCategoryPage">
                             <img src="/semi/resources/images/play-button.png"><br>
-                            <a href="">콘텐츠 제작</a>
+                            <a href="/semi/selectList.bo?cate=contentCategoryPage"><b>콘텐츠 제작</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/transCategoryPage.jsp">
+                        <li><a href="/semi/selectList.bo?cate=transCategoryPage">
                             <img src="/semi/resources/images/microphone.png"><br>
-                            <a href="">번역/통역</a>
+                            <a href="/semi/selectList.bo?cate=transCategoryPage"><b>번역/통역</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/textCategoryPage.jsp">
+                        <li><a href="/semi/selectList.bo?cate=textCategoryPage">
                             <img src="/semi/resources/images/file.png"><br>
-                            <a href="">문서/취업</a>
+                            <a href="/semi/selectList.bo?cate=textCategoryPage"><b>문서/취업</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/views/giftCategoryPage.jsp">
+                        <li><a href="/semi/selectList.bo?cate=giftCategoryPage">
                             <img src="/semi/resources/images/gift.png"><br>
-                            <a href="">기프트/커스텀</a>
+                            <a href="/semi/selectList.bo?cate=giftCategoryPage"><b>기프트/커스텀</b></a>
                         </a></li>
                     </ul>
                 </div>
@@ -367,7 +398,7 @@ footer{
     </div>
 
     <section>
-        	<%@include file= "/views/common/faq.jsp"%>
+        	<%@include file= "/views/common/faq1.jsp"%>
  		   
         <div class="container">
             

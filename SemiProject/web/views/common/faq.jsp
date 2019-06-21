@@ -37,7 +37,7 @@
 	     
 	     <div class="actions">
    			 <button class="ui blue basic approve button" onclick="submitFn()">완료</button>
-		     <button class="ui red basic cancel button">취소</button>
+		     <button class="ui red basic button cancel ">취소</button>
   		 </div>
 	     
 	     
@@ -52,12 +52,19 @@
 			$('.small.modal').modal('show');
 	}
 	
+	$('.cancel').click(function(){
+		$('#rTitle').val(" ");
+		$('#rContent').val(" ");
+	});
+	
 	function submitFn(){
 		$.ajax({
 			url : "clientRequest.do",
 			type : "post",
 			data : {rTitle : $('#rTitle').val(), rContent: $('#rContent').val()},
 			success : function(){
+				$('#rTitle').val(" ");
+				$('#rContent').val(" ");
 				alert("문의가 접수되었습니다.");
 			},
 			error : function(){

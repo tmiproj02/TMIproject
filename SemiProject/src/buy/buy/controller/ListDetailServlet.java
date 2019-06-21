@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import buy.buy.model.exception.BoardException;
 import buy.buy.model.service.BoardService;
-import buy.buy.model.vo.Board;
+import buy.buy.model.vo.SellerBoard;
 import buy.comment.model.service.BoardCommentService;
 import buy.comment.model.vo.BoardComment;
 
@@ -39,25 +39,22 @@ public class ListDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		System.out.println(bno);
-
-		Board b;
+//		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
+		SellerBoard b;
 		String page = "";
 		
 		try {
 			b = new BoardService().selectOne(bno);
 			page = "views/buypage/listDetail.jsp";
-			request.setAttribute("board", b);
+			request.setAttribute("sellerboard", b);
+			System.out.println(b);
 //			request.setAttribute("clist", clist);
 		} catch (BoardException e) {
-			e.printStackTrace();
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세 보기 실패");
 			
 		}
-
 		
 		request.getRequestDispatcher(page).forward(request, response);
 		

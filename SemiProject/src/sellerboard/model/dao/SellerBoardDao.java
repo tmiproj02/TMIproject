@@ -1,13 +1,16 @@
 package sellerboard.model.dao;
 
-import static member.common.JDBCTemplete.*;
+import static member.common.JDBCTemplete.close;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import seller.model.dao.SellerDao;
@@ -40,7 +43,7 @@ public class SellerBoardDao {
 	}
 		
 		
-	public int insertSellerboard(Connection con, SellerBoard sb) throws SellerboardException{
+	public int insertSellerboard(Connection con, SellerBoard sb,int sno) throws SellerboardException{
 		// 결과 확인을 위한 변수 result 생성
 		int result = 0;
 				
@@ -57,39 +60,42 @@ public class SellerBoardDao {
 			
 			
 			System.out.println("값을 잘전달받는지 확인하기위함");
-			System.out.println(sb.getBtitle());					//제목
-			System.out.println(sb.getBcontent());				//상세 설명
-			System.out.println(sb.getErecontent());				//수정 및 재진행 안내
-			System.out.println(sb.getRequest());				//작업 전 요청사항	
-			System.out.println(sb.getCategory1_code());			//상위 카테고리
-			System.out.println(sb.getCategory2_code());			//하위 카테고리
-			System.out.println(sb.getPrice());					//가격
-			System.out.println(sb.getImages());					//이미지들
-			System.out.println(sb.getEditablecount());			//수정 횟수
-			System.out.println(sb.getDuedate());				//작업기간
-			System.out.println(sb.getSpeed());					//빠른작업(옵션)
-			
-							//추가수정(옵션)
-		
+			System.out.println("제목 :"+sb.getBtitle());					//제목
+			System.out.println("상세설명 :"+sb.getBcontent());				//상세 설명
+			System.out.println("수정및 재진행 :"+sb.getErecontent());				//수정 및 재진행 안내
+			System.out.println("작업전 요청 :"+sb.getRequest());				//작업 전 요청사항	
+			System.out.println("상위카테 :"+sb.getCategory1_code());			//상위 카테고리
+			System.out.println("하위카테 :"+sb.getCategory2_code());			//하위 카테고리
+			System.out.println("가격 :"+sb.getPrice());					//가격
+			System.out.println("이미지 :"+sb.getImages());					//이미지들
+			System.out.println("수정횟수 :"+sb.getEditablecount());			//수정 횟수
+			System.out.println("작업기간 :"+sb.getDuedate());				//작업기간
+			System.out.println("빠른작업 :"+sb.getSpeed());					//빠른작업(옵션)
+			System.out.println("빠른작업세부 :"+sb.getExtradate1());
+			System.out.println("추가수정 :"+sb.getPlusedit());				//추가수정(옵션)
+			System.out.println("추가수정세부 :"+sb.getExtradate2());
 			
 			// ? 에 해당하는 값을 추가 함
-			pstmt.setString(1, sb.getBtitle());					//제목
-			pstmt.setString(2, sb.getBcontent());				//상세 설명
-			pstmt.setString(3, sb.getErecontent());				//수정 및 재진행 안내
-			pstmt.setString(4, sb.getRequest());				//작업 전 요청사항
-			pstmt.setString(5, sb.getCategory1_code());			//상위 카테고리
-			pstmt.setString(6, sb.getCategory2_code());			//하위 카테고리
-			pstmt.setInt(7, sb.getPrice());						//가격
-			pstmt.setString(8, sb.getImages());					//이미지들
-			pstmt.setInt(9, sb.getEditablecount());				//수정 횟수
-			pstmt.setInt(10, sb.getDuedate());					//작업기간
-			pstmt.setInt(11, sb.getSpeed());					//빠른작업(옵션)
-					//빠른작업(옵션)
-			pstmt.setInt(13, sb.getPlusedit());					//추가수정(옵션)
-		
+			pstmt.setInt(1, sno);					//sno
+			pstmt.setString(2, sb.getBtitle());					//제목
+			pstmt.setString(3, sb.getBcontent());				//상세 설명
+			pstmt.setString(4, sb.getErecontent());				//수정 및 재진행 안내
+			pstmt.setString(5, sb.getRequest());				//작업 전 요청사항
+			pstmt.setString(6, sb.getCategory1_code());			//상위 카테고리
+			pstmt.setString(7, sb.getCategory2_code());			//하위 카테고리
+			pstmt.setInt(8, sb.getPrice());						//가격
+			pstmt.setString(9, sb.getImages());					//이미지들
+			pstmt.setInt(10, sb.getEditablecount());				//수정 횟수
+			pstmt.setInt(11, sb.getDuedate());					//작업기간
+			pstmt.setInt(12, sb.getSpeed());					//빠른작업(옵션)
+			pstmt.setInt(13, sb.getExtradate1());				//빠른작업(옵션)
+			pstmt.setInt(14, sb.getPlusedit());					//추가수정(옵션)
+			pstmt.setInt(15, sb.getExtradate2());				//추가수정(옵션)
+			
 			
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new SellerboardException(e.getMessage());
 			
 		} finally {
@@ -97,6 +103,94 @@ public class SellerBoardDao {
 		}
 		
 		return result;
+	}
+
+
+	public int getListCount(Connection con) {
+		int listCount=0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			if(rset.next()) {
+				
+				listCount = rset.getInt(1);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		
+		return listCount;
+	}
+
+
+	public ArrayList<SellerBoard> selectList(Connection con, int currentPage, int pageLimit, int boardLimit) {
+		ArrayList<SellerBoard> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectList");
+		try {
+			pstmt = con.prepareStatement(sql);
+		
+			int startRow = (currentPage - 1)*boardLimit +1;
+			int endRow = startRow+boardLimit-1;		
+			
+			System.out.println(startRow);
+			System.out.println(endRow);
+			
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset=pstmt.executeQuery();
+			
+			list=new ArrayList<SellerBoard>();
+			
+			while(rset.next()) {
+				SellerBoard b = new SellerBoard();
+				b.setBno(rset.getInt("BNO"));
+				b.setSno(rset.getInt("SNO"));
+				b.setBtitle(rset.getString("BTITLE"));
+				b.setBcontent(rset.getString("BCONTENT"));
+				b.setErecontent(rset.getString("ERECONTENT"));
+				b.setRequest(rset.getString("REQUEST"));
+				b.setCategory1_code(rset.getString("CATEGORY1_CODE"));
+				b.setCategory2_code(rset.getString("CATEGORY2_CODE"));
+				b.setPrice(rset.getInt("PRICE"));
+				b.setBevaluation(rset.getInt("BEVALUATION"));
+				b.setImages(rset.getString("IMAGES"));
+				b.setEditablecount(rset.getInt("EDITABLECOUNT"));
+				b.setDuedate(rset.getInt("DUEDATE"));
+				b.setSpeed(rset.getInt("SPEED"));
+				b.setExtradate1(rset.getInt("EXTRADATE1"));
+				b.setPlusedit(rset.getInt("PLUSEDIT"));
+				b.setExtradate2(rset.getInt("EXTRADATE2"));
+				b.setAd(rset.getString("AD"));
+				b.setAdexpire(rset.getInt("ADEXPIRE"));
+				b.setBdate(rset.getDate("BDATE"));
+				b.setState(rset.getString("STATE"));
+
+				list.add(b);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);	
+		}		
+		return list;
 	}
 
 }

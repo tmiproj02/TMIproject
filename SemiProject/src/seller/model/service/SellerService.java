@@ -7,6 +7,7 @@ import static member.common.JDBCTemplete.rollback;
 
 import java.sql.Connection;
 
+
 import seller.model.dao.SellerDao;
 import seller.model.exception.SellerException;
 import seller.model.vo.Seller;
@@ -36,6 +37,20 @@ public class SellerService {
 		else rollback(con);
 		
 		close(con);
+		
+		return result;
+	}
+	
+	public int findMno(String email) throws SellerException{
+		con = getConnection();
+		
+		int result = sDao.findMno(con, email);
+		
+		close(con);
+		
+		System.out.println("SellerService에서 값 잘받아왔는지 확인" + result);
+		
+		if(result == 0) throw new SellerException("Mno를 가져오는 과정에서 문제발생");
 		
 		return result;
 	}

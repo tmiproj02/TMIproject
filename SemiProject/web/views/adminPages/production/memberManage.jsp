@@ -78,7 +78,7 @@
                   <!-- 여기부터 테이블 -->
                   <div class="x_content">
                  
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
                       <thead>
                         <tr>
                           <th>No</th>
@@ -97,15 +97,36 @@
                       	int num = 1;
                       	for(Member m : mList){ %>
                       	
-                        <tr>
+                        <tr id="trId">
                           <td><%=num %></td>
                           <td class="email"><%=m.getEmail()%></td>
                           <td><%=m.getUserName()%></td>
                           <td>30</td>
                           <td><%=m.getEnrollDate()%></td>
                           <td class="a-right a-right "> <a class="btn btn-primary btn-xs docBtn" ><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last"><a class="btn btn-danger btn-xs deleteBtn"><i class="fa fa-trash-o"></i> 삭제 </a>
-                     
+                          <td class=" last"><a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash-o"></i> 삭제 </a>
+                     	  
+                     	  <!-- Modal -->
+							<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-centered" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h3 class="modal-title" id="exampleModalCenterTitle">회원 삭제</h3>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							      	 <h4>정말로 해당 회원을 삭제하시겠습니까?</h4>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+							        <button type="button" class="btn btn-primary deleteBtn">삭제</button>
+							      </div>
+							    </div>
+							  </div>
+							</div> 
+                     	 	</td>
                         </tr>
                     	
                       <% num++;
@@ -122,8 +143,11 @@
 					
           </div>
           <!-- /top tiles -->
+			
 
         </div>
+        
+        
         <!-- /page content -->
 
 
@@ -197,14 +221,14 @@
     		$('.deleteBtn').each(function(index, item){
         		
     			$(this).click(function(){
-        		
+        			
 					$.ajax({
 						url : "/semi/mDelete.admin",
 		        		type : "get",
-		        		data : {email : $(this).parent().parent().find('td').eq(1).text()} ,
+		        		data : {email : $(this).parents('#trId').find('td').eq(1).text()} ,
 		        		success : function(data){
 		        			
-		        			location.href = "/semi/memberSelect";
+		        			location.href = "/semi/memberSelect.admin";
 		        		},
 		        		error : function(){
 		        			alert("어드인 회원삭제에서 오류");

@@ -140,12 +140,40 @@
 </style>
 </head>
 <body>
-
+<%@include file= "/views/common/faq.jsp"%>
 <%@include file= "/views/common/cateheader1.jsp"%>
 
+<%-- <% if(m == null){
+  	response.sendRedirect("index.jsp");
+ } %> --%>
+<!-- <script>
+	<% if(m != null) {  %>
+		
+		sessionStorage.setItem('memberLoginChk', '1');
+		
+	<% } %>
+	window.onload = function() {
+		if (sessionStorage.getItem('reloadChk') != 1){
+			sessionStorage.setItem('reloadChk', 1);
+			if (sessionStorage.getItem('memberLoginChk') != 1) {
+			    location.href = 'index.jsp';
+			}
+		} else {
+			sessionStorage.setItem('reloadChk', 0);
+		}
+	}
+	/* 
+ 	window.onbeforeunload = function(e) {
+	  if (sessionStorage.getItem('memberLoginChk') != 1) {
+	    location.href = 'index.jsp';
+	  }
+	}; */
+ </script>   -->
+ 
 <div class="section1">
-	<div class="section2">
+	<div class="section2">	
 		<div class="content1">
+		
 			<div class="c1" style="padding: 10px; width:20%;">
 				
 					<div class="use"><b>TMI 이용방법</b></div>
@@ -182,15 +210,12 @@
 			</div>
 			
 			
-			
-			
-			
 			<div class="c2" style="padding: 5px; width:60%;">
 					<div class="swiper-container">
 					    <div class="swiper-wrapper">
-					      <div class="swiper-slide">Slide 1</div>
-					      <div class="swiper-slide">Slide 2</div>
-					      <div class="swiper-slide">Slide 3</div>
+					      <div class="swiper-slide"><img src="/semi/resources/images/ad.PNG" style="width:650px; height:280px;"></div>
+					      <div class="swiper-slide"><img src="/semi/resources/images/ad1.PNG" style="width:650px; height:245px;"></div>
+					      <div class="swiper-slide"><img src="/semi/resources/images/ad2.PNG" style="width:650px; height:256px;"></div>
 					    </div>
 					    <!-- Add Pagination -->
 					    <div class="swiper-pagination"></div>
@@ -225,21 +250,21 @@
 				<div class="right-side">
 					<div class="user" style="padding:10px;">
 						<div class="user1" style="font-size:16px; margin-bottom: 5px;"><b>반가워요!</b></div>
-						<div class="user2" style="font-size:16px;">기분좋은 매미님!</div>
+						<div class="user2" style="font-size:16px;"><%=m.getNickName() %>님!</div>
 					</div>
 					<div class="progress" style="padding:10px;">
 						<div class="progress1" style="font-size:14px; margin-bottom: 5px;">안 읽은 메세지 
-							<a href="" style="margin-left: 49px;">
+							<a href="" style="margin-left: 89px;">
 							<span style="color:#f1c40f;">0</span>
 							</a>건
 						</div>
 						<div class="progress2" style="font-size:14px; margin-bottom: 5px;">구매 진행중 
-						<a href="" style="margin-left: 65px;">
+						<a href="" style="margin-left: 106px;">
 							<span style="color:#f1c40f;">0</span>
 							</a>건
 						</div>
 						<div class="progress3" style="font-size:14px; margin-bottom: 5px;">판매 진행중 
-						<a href="" style="margin-left: 65px;">
+						<a href="" style="margin-left: 106px;">
 							<span style="color:#f1c40f;">0</span>
 							</a>건
 						</div>

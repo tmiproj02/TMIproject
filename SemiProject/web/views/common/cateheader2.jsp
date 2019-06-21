@@ -288,7 +288,7 @@ nav{
                 <div class="container">
                     <div class="left-head paddinghead">
                         <div class="logo">
-                            <a href="/semi/views/common/mainheader.jsp">
+                            <a href="/semi/mainheader2.jsp">
                                 <img class="logoImg" src="/semi/resources/images/TMI1.png" width=80px>
                             </a>
                         </div>
@@ -303,7 +303,7 @@ nav{
                     <div class="right-head paddinghead">
                         <div class="info">
                             <div class="padding-20px"><a href="/">판매 시작하기</a></div>
-                            <div class="padding-15px"><a href="/">구매</a></div>
+                            <div class="padding-15px"><a style="cursor:pointer;" onclick="nrequest();">구매</a></div>
                             <div class="padding-15px"><a href="/">메시지</a></div>
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>
                             <div class="mylog padding-15px"><a href="/">
@@ -312,10 +312,10 @@ nav{
                             	</a>
                             	<div class="downmymenu">
 		                           	<ul class="mylogmenu" style="list-style:none;margin:5px 0;">
-		                           		<li><a href=""><div><h5>나의TMI</h5></div></a></li>
+		                           		<li><a href="/semi/views/myPage/myPageManageSell.jsp"><div><h5>나의TMI</h5></div></a></li>
 		                           		<li><a href=""><div><h5>친구초대</h5></div></a></li>
-		                           		<li><a href=""><div><h5>정보수정</h5></div></a></li>
-		                           		<li><a href=""><div><h5>로그아웃</h5></div></a></li>
+		                           		<li><a href="views/member/memberUpdateForm.jsp"><div><h5>정보수정</h5></div></a></li>
+		                           		<li><a href="/semi/logout.do"><div><h5>로그아웃</h5></div></a></li>
 		                           	</ul>
                        			</div>
                             </div>
@@ -341,10 +341,10 @@ nav{
                         <li clase="talent-category">
 	                        <div class="cate" id="cate1"><a href="">구매관리</a></div>
                         	<ul class="downmenu" id="downmenu1">
-                        		<li><a href="">구매관리</a></li>
-                        		<li><a href="">TMI캐시</a></li>
-                            	<li><a href="">캐시충전</a></li>
-                            	<li><a href="">쿠폰</a></li>
+                        		<li><a style="cursor:pointer;" onclick="nrequest();">구매관리</a></li>
+                        		<li><a style="cursor:pointer;" onclick="billHist();">TMI캐시</a></li>
+                            	<li><a href="/semi/views/personBUY/cash.jsp">캐시충전</a></li>
+                            	<li><a href="/semi/views/personBUY/coupon.jsp">쿠폰</a></li>
                         	</ul>
                         </li>
                         <li clase="talent-category">
@@ -410,6 +410,14 @@ nav{
    				"background" : "none"
     		});
     	});
+    	
+    	function billHist(){
+			location.href="/semi/cList.bo"
+		}
+    	
+    	function nrequest(){
+    		location.href="/semi/nReq.bo"
+    	}
     </script>
     
     

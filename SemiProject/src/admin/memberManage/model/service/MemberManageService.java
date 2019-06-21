@@ -69,6 +69,20 @@ public class MemberManageService {
 		return crList;
 	}
 
+
+	public void deleteRequest(int rno) {
+		try {
+			con = getConnection();
+			mDao.deleteRequest(rno,con);
+			commit(con);
+		}catch(Exception e) {
+			rollback(con);
+			e.printStackTrace();
+			
+		}
+		
+	}
+
 	
 	
 	

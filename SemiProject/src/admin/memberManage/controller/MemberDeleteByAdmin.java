@@ -23,7 +23,8 @@ public class MemberDeleteByAdmin extends HttpServlet {
 		String email = request.getParameter("email");
 		try {
 			
-		new MemberManageService().deleteMember(email);
+			System.out.println("email Delete : " +email);
+			new MemberManageService().deleteMember(email);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
