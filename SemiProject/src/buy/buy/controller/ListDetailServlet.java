@@ -48,6 +48,7 @@ public class ListDetailServlet extends HttpServlet {
 			b = new BoardService().selectOne(bno);
 			page = "views/buypage/listDetail.jsp";
 			request.setAttribute("sellerboard", b);
+			System.out.println(b);
 //			request.setAttribute("clist", clist);
 		} catch (BoardException e) {
 			page = "views/common/errorPage.jsp";

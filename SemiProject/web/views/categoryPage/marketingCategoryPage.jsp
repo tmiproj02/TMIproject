@@ -418,7 +418,7 @@ z-index: 2;
 							      <span class="date">판매자닉네임</span>
 							    </div>
 							    <div class="description" style="width:182px;height:50px;margin-bottom:5px;overflow:hidden;text-overflow: ellipsis; ">
-								   <p style="overflow:hidden;text-overflow: ellipsis;"><%= b.getBtitle() %></p>   
+								   <p style="width:182px;height:50px;overflow:hidden;text-overflow: ellipsis; white-space: nowrap;"><%= b.getBtitle() %></p>    
 							    </div>
 							    <a class="header" style="float:right"><%=b.getPrice() %>원</a>
 							  </div>

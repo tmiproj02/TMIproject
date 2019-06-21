@@ -5,6 +5,7 @@
 <% 
 	Member m = (Member)session.getAttribute("member");
 	Seller s = (Seller)session.getAttribute("seller");
+	
 %>
 <!DOCTYPE html>
 <html>

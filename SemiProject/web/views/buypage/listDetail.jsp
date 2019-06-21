@@ -4,7 +4,8 @@
 	import="buy.buy.model.vo.* ,buy.comment.model.vo.*, java.util.*, member.model.vo.*"%>
 
 <%
-SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
+	SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
+	System.out.println("list JSP에서 Sellerboard : " + b);
 	/* ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist"); */
 %>
 
@@ -388,7 +389,7 @@ margin: 20px 10px;
 				<div class="sellerpadding">
 					<div class="selleridbox1">
 						<img src="" alt="" />
-						<p style="text-align:center;"><%=m.getNickName() %></p>
+						<p style="text-align:center;">이자식</p>
 					</div>
 
 					<div style="text-align: center;">
