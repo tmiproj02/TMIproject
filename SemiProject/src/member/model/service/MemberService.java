@@ -109,12 +109,6 @@ public class MemberService {
 		con = getConnection();
 		String result = mDao.searchId(con, m);
 
-		if (result != null)
-			commit(con);
-		else
-			rollback(con);
-
-		close(con);
 
 		return result;
 	}
@@ -123,10 +117,8 @@ public class MemberService {
 		con = getConnection();
 		String result = mDao.searchPwd(con, m);
 
-		if (result != null)
-			commit(con);
-		else
-			rollback(con);
+		if (result != null) commit(con);
+		else rollback(con);
 
 		close(con);
 

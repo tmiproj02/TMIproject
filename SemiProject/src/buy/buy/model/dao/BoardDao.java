@@ -45,9 +45,7 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			System.out.println(bno);
 			pstmt.setInt(1, bno);
-			System.out.println(sql);
 			rset = pstmt.executeQuery();
 		
 			if(rset.next()) {
@@ -66,8 +64,8 @@ public class BoardDao {
 				b.setDuedate(rset.getInt("DUEDATE"));
 				b.setSpeed(rset.getInt("SPEED"));
 				b.setPlusedit(rset.getInt("PLUSEDIT"));
-			
-				System.out.println(b);
+				b.setExtradate1(rset.getInt("EXTRADATE1"));
+				b.setExtradate2(rset.getInt("EXTRADATE2"));
 				
 				
 		

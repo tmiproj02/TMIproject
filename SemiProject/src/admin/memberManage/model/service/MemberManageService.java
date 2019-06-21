@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import admin.memberManage.model.dao.MemberManageDao;
+import member.model.vo.ClientRequest;
 import member.model.vo.Member;
 import static member.common.JDBCTemplete.*;
 
@@ -15,10 +16,13 @@ public class MemberManageService {
 	
 
 	public ArrayList<Member> selectMember() {
-		
-		con = getConnection();
-		ArrayList<Member> mList = mDao.selectMember(con);
-		
+			ArrayList<Member> mList = null;
+		try {
+			con = getConnection();
+			mList = mDao.selectMember(con);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		return mList;
 	}
@@ -35,12 +39,34 @@ public class MemberManageService {
 			e.printStackTrace();
 			
 		}
+	}
+
+
+	public void sendRequest(ClientRequest cr) {
+		con = getConnection();
+		try {
+			mDao.sendRequest(cr,con);
+			commit(con);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(con);
+		}
 		
+	}
+
+
+	public ArrayList<ClientRequest> selectRequestList() {
+		ArrayList<ClientRequest> crList = null;
 		
+		try {
+			con = getConnection();
+			crList = mDao.selectRequestList(con);
 		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-	
-		
+		return crList;
 	}
 
 	

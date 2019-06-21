@@ -116,6 +116,7 @@ li {
 
 .pricebox {
 	border: 1px solid #e6e6e6;
+	padding: 20px;
 }
 
 .pricebox p {
@@ -124,8 +125,10 @@ li {
 }
 
 .pricebox a{
-padding: 10px 100px; background: #bdd4f2; border-radius: 8px;
-margin: 10px 10px;
+padding: 10px 100px; 
+background: #bdd4f2; 
+border-radius: 8px;
+margin: 20px 10px;
 }
 .shildbox {
 	border: 1px solid #e6e6e6;
@@ -176,6 +179,14 @@ margin: 10px 10px;
 	position: fixed;
 	top: 0px;
 }
+.pricedue p{
+	float: left;
+	margin:0;
+}
+.priceedit p{
+	float: left;
+	margin:0;
+}
 </style>
 
 <script>
@@ -208,7 +219,7 @@ margin: 10px 10px;
 		<div class="detailbox1">
 
 			<div class="img">
-				<div class="imgbox" style="background: url('/semi/resources/images/<%=b.getImages()%>.jpg');"><%-- style="background : url('semi/resources/images/<%=b.getImages()%>.jpg');" --%>>
+				<div class="imgbox" style="background: url('/semi/resources/images/<%=b.getImages()%>') no-repeat;">
 					
 
 				</div>
@@ -327,7 +338,18 @@ margin: 10px 10px;
 			
 
 			<div class="pricebox" style="border: 1px solid #e6e6e6;">
-				<p>거래설명</p>
+				<p><%=b.getBcontent() %></p>
+				
+				<div class="clearFix">
+					<div class="pricedue">
+						<img src="/semi/resources/images/calendar.png" alt="" style="width: 15px; height:15px; float: left;"/>
+						<p>작업일:<%=b.getDuedate() %>일</p>
+					</div>
+					<div class="priceedit">
+						<img src="/semi/resources/images/tool.png" alt="" style="width: 15px; height:15px; float: left;"/>
+						<p>수정횟수: <%=b.getEditablecount() %>회</p>
+					</div>
+				</div>
 				<a href="<%= request.getContextPath() %>/buyPage.bo?bno=<%=b.getBno()%>"
 					style="">구매하기(<%=b.getPrice() %>원)</a>
 			</div>

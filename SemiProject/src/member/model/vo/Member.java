@@ -30,7 +30,7 @@ public class Member implements Serializable {
 	private String isAlive;
 	private String coupon;
 	private String isSNS;
-
+	private int documentCnt;
 	private int mno;
 	
 	
@@ -177,6 +177,16 @@ public class Member implements Serializable {
 
 	
 	
+
+
+	public int getDocumentCnt() {
+		return documentCnt;
+	}
+
+
+	public void setDocumentCnt(int documentCnt) {
+		this.documentCnt = documentCnt;
+	}
 
 
 	@Override

@@ -9,63 +9,103 @@ public class ClientRequest implements Serializable{
 	
 	}
 	
-	
+		private String email;
 		private String rTitle;
 		private String rContent;
-		private String rNickName;
+		private String NickName;
 		private Date rDate;
+		private String reply;
 		
-		
-		
-		
-		public ClientRequest(String rTitle, String rContent, String rNickName, Date rDate) {
+		public ClientRequest(String email, String rTitle, String rContent, String nickName, Date rDate) {
 			super();
+			this.email = email;
 			this.rTitle = rTitle;
 			this.rContent = rContent;
-			this.rNickName = rNickName;
+			NickName = nickName;
 			this.rDate = rDate;
 		}
-		
-		
-		
-		
-		@Override
-		public String toString() {
-			return "ClientRequest [rTitle=" + rTitle + ", rContent=" + rContent + ", rNickName=" + rNickName
-					+ ", rDate=" + rDate + "]";
+
+
+		public ClientRequest(String email, String rTitle, String rContent, String nickName) {
+			super();
+			this.email = email;
+			this.rTitle = rTitle;
+			this.rContent = rContent;
+			NickName = nickName;
 		}
 
 
+		public String getEmail() {
+			return email;
+		}
+
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
 
 
 		public String getrTitle() {
 			return rTitle;
 		}
+
+
 		public void setrTitle(String rTitle) {
 			this.rTitle = rTitle;
 		}
+
+
 		public String getrContent() {
 			return rContent;
 		}
+
+
 		public void setrContent(String rContent) {
 			this.rContent = rContent;
 		}
-		public String getrNickName() {
-			return rNickName;
+
+
+		public String getNickName() {
+			return NickName;
 		}
-		public void setrNickName(String rNickName) {
-			this.rNickName = rNickName;
+
+
+		public void setNickName(String nickName) {
+			NickName = nickName;
 		}
+
+
 		public Date getrDate() {
 			return rDate;
 		}
+
+
 		public void setrDate(Date rDate) {
 			this.rDate = rDate;
 		}
-	
+
+		
+		
+
+		public String getReply() {
+			return reply;
+		}
+
+
+		public void setReply(String reply) {
+			this.reply = reply;
+		}
+
+
+		@Override
+		public String toString() {
+			return "ClientRequest [email=" + email + ", rTitle=" + rTitle + ", rContent=" + rContent + ", NickName="
+					+ NickName + ", rDate=" + rDate + "]";
+		}
 		
 		
 		
-	
-	
+		
+		
+
 }

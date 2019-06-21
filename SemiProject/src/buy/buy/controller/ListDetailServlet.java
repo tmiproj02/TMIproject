@@ -17,7 +17,6 @@ import buy.comment.model.vo.BoardComment;
 
 
 
-
 /**
  * Servlet implementation class ListDetailServlet
  */
@@ -40,25 +39,21 @@ public class ListDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		System.out.println(bno);
-
-		Board b;
+		int bno =1;
+//		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
+		SellerBoard b;
 		String page = "";
 		
 		try {
 			b = new BoardService().selectOne(bno);
 			page = "views/buypage/listDetail.jsp";
-			request.setAttribute("board", b);
+			request.setAttribute("sellerboard", b);
 //			request.setAttribute("clist", clist);
 		} catch (BoardException e) {
-			e.printStackTrace();
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세 보기 실패");
 			
 		}
-
 		
 		request.getRequestDispatcher(page).forward(request, response);
 		

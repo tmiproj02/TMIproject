@@ -8,7 +8,7 @@ SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title><%=b.getBtitle() %></title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -173,6 +173,7 @@ table td:nth-child(4){
 <body>
 	<%@ include file="/views/common/cateheader1.jsp"%>
 	
+	<% if(m != null ) { %>
 	<div class="container1">
 		<h3 class="order">주문하기</h3>
 	</div>
@@ -197,9 +198,9 @@ table td:nth-child(4){
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="checkbox" name="check" value="30000"/>이미지</td>
-							<td>2일</td>
-							<td id="price">30,000원</td>
+							<td><input type="checkbox" name="check" value="<%=b.getPrice() %>"/>이미지</td>
+							<td><%=b.getEditablecount() %>일</td>
+							<td id="price"><%=b.getPrice() %>원</td>
 						</tr>
 					</tbody>
 				</table>
@@ -214,14 +215,14 @@ table td:nth-child(4){
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="checkbox" name="check2" value="30000"/>빠른 작업</td>
-							<td>2일</td>
-							<td id="price">30,000원</td>
+							<td><input type="checkbox" name="check2" value="<%=b.getSpeed() %>"/>빠른 작업</td>
+							<td><%=b.getExtradate1() %>일</td>
+							<td id="price"><%=b.getSpeed() %>원</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="check2" value="30000"/>추가 수정</td>
-							<td>2일</td>
-							<td id="price">30,000원</td>
+							<td><input type="checkbox" name="check2" value="<%=b.getPlusedit() %>"/>추가 수정</td>
+							<td><%=b.getExtradate2() %>일</td>
+							<td id="price"><%=b.getPlusedit() %>원</td>
 						</tr>
 				
 					</tbody>
@@ -276,19 +277,89 @@ table td:nth-child(4){
 					<p>TMI를 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</p>
 				</div>
 				
-				<% if(m != null ) { %>
+				
 				<div class="buybtnbox">
 					<a href="">결제하기</a>
 				</div>
+				</div>
+				</section>
 				<%}else{ %>
-					<div class="buybtnbox">
-						<a href="/semi/LoginForm.jsp">로그인하기</a>
-					</div>
-				<%} %>
-			</div>
+				
+				<div class="container1">
+		<h3 class="order">주문하기</h3>
+	</div>
 
+	
+	<section>
+		<div class="container2">
+			<div class="buyBox clearFix">
+				<img src="/semi/resources/images/<%=b.getImages()%>"
+					style="width: 120px; height: 90px; display: inline-block; float:left;" />
+				<div class="buytit clearFix">
+					<p><%=b.getBtitle() %></p>
+					<p><%=m.getNickName() %></p>
+				</div>
+
+				<table>
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="checkall1" />기본항목</th>
+							<th>작업일</th>
+							<th>가격</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="checkbox" name="check" value="<%=b.getPrice() %>"/>이미지</td>
+							<td><%=b.getEditablecount() %>일</td>
+							<td id="price"><%=b.getPrice() %>원</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table>
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="checkall2" />옵션항목</th>
+							<th>작업일</th>
+							<th>가격</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="checkbox" name="check2" value="<%=b.getSpeed() %>"/>빠른 작업</td>
+							<td><%=b.getExtradate1() %>일</td>
+							<td id="price"><%=b.getSpeed() %>원</td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" name="check2" value="<%=b.getPlusedit() %>"/>추가 수정</td>
+							<td><%=b.getExtradate2() %>일</td>
+							<td id="price"><%=b.getPlusedit() %>원</td>
+						</tr>
+				
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 	</section>
+
+	<section>
+		
+			<div class="shildbox container1 clearFix" style="margin-top: 20px;">
+				<img src="/semi/resources/images/shild.png" alt=""
+					style="float: left; margin-left: 10px;">
+				<div class="buybtntext">
+					<p>TMI는 안전한 거래 환경을 제공합니다.</p>
+					<p>TMI를 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</p>
+				</div>
+					<div class="buybtnbox">
+						<a href="/semi/views/LoginForm.jsp">로그인하기</a>
+					</div>
+				</div>
+				</section>
+				<%} %>
+			
 	<script>
 	$("#checkall1").click(function(){
         //클릭되었으면
@@ -313,10 +384,10 @@ table td:nth-child(4){
         }
     });
 	
-	// 선택된 체크박스의 상품의 가격 합계 구하는 함수
+	/* // 선택된 체크박스의 상품의 가격 합계 구하는 함수
     $('#checkall1').click(function(){
        
-       console.log($(this).val());
+       
        
        var total=0;
        $('input[name=check]:checked').each(function(i, e) {
@@ -329,12 +400,22 @@ table td:nth-child(4){
     
     });
 
+    $('input[name=check]').click(function() {
+        console.log($(this).val());
+        var total=0;
+        $('input[name=check]:checked').each(function(i, e) {
+           console.log(Number($('#price' + $(this).val()).text()));
+           total += Number($('#price' + $(this).val()).text());
+           //console.log($('#price' + $(this).val()));
+        });
+        
+         $('#totalPrice').text(total); 
+     });
+	 */
 	
 	
 	
-	
-	
-	/* $('#checkall1').click(function() {
+	 $('#checkall1').click(function() {
 		 var price = 0;
 		price = Number($("input:checkbox[name=check]:checked").val());
 		console.log(price);
@@ -346,6 +427,8 @@ table td:nth-child(4){
 		console.log(price);
 		$('.sum').text(price+"원");
 	})
+	
+	
 	$('#checkall2').click(function() {
 		 var price = 0;
 		price += Number($("input:checkbox[name=check2]:checked").val());
@@ -357,16 +440,17 @@ table td:nth-child(4){
 		price += Number($("input:checkbox[name=check2]:checked").val());
 		console.log(price);
 		$('.sum').text(price+"원");
-	}) */
+	}) 
 	
-	 /* $('input[name=check]').click(function() {
+	
+	  $('input:checkbox[name=check]').click(function() {
 		 var price = 0;
 		price = Number($("input:checkbox[name=check]:checked").val());
 		console.log(price);
 		$('.sum').text(price+"원");
-	}) */
+	}) 
 	
-	 /* $('input[name=check]').click(function() {
+	  $('input:checkbox[name=check]').click(function() {
             console.log($(this).val());
             var total;
             $('input[name=check]:checked').each(function(i, e) {
@@ -374,8 +458,8 @@ table td:nth-child(4){
                $('.sum').text(total+"원");
             });
             
-            
-         }); */
+           
+         }); 
 	</script>
 </body>
 </html>
