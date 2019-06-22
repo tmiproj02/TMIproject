@@ -54,13 +54,13 @@ public class ServiceManageDao {
 				
 				sb = new SellerBoard();
 				sb.setBno(rset.getInt("bno"));
-
 				sb.setBtitle(rset.getString("Btitle"));
 				sb.setBdate(rset.getDate("BDATE"));
 				sb.setBcontent(rset.getString("NickName"));
 				
 				sList.add(sb);
 			}
+		
 			
 			
 		} catch (SQLException e) {

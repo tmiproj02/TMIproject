@@ -53,7 +53,9 @@ public class MemberManageDao {
 				m.setEmail(rset.getString("email"));
 				m.setUserName(rset.getString("nickName"));
 				m.setEnrollDate(rset.getDate("enrolldate"));
-	
+				m.setIsValid(rset.getString("ISVALID"));
+				m.setIsAlive(rset.getString("ISALIVE"));
+				m.setIsAdmin(rset.getString("ISADMIN"));
 				mList.add(m);
 			}
 
@@ -171,6 +173,44 @@ public class MemberManageDao {
 		}
 		
 		
+		
+	}
+
+	public void invalidateMember(Connection con, String email) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("invalidateMember");
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+	}
+
+	public void validateMember(Connection con, String email) {
+		PreparedStatement pstmt = null;
+	
+		String sql = prop.getProperty("validateMember");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
 		
 	}
 

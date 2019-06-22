@@ -5,7 +5,7 @@
     
 <%
 	ArrayList<Member> mList = (ArrayList<Member>)session.getAttribute("mList");	
-	System.out.println("mList: " + mList);
+
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -52,8 +52,6 @@
   
    		<%@ include file="adminHeader.jsp" %>
    		
-   		
-   		
         <!-- page content -->
          <div class="right_col" role="main">
                <div class="row tile_count">
@@ -81,13 +79,12 @@
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>No</th>
-                          <th >이메일</th>
-                          <th>닉네임</th>
-                          <th>작성한 게시물 수</th>
-                          <th>가입일자</th>
-                          <th>작성글</th>
-                          <th>회원관리</th>
+                          <th style="width:5%;">No</th>
+                          <th style="width:17%;">이메일</th>
+                          <th style="width:15%">닉네임</th>
+                          <th style="width:15%;">가입일자</th>
+                          <th style="width:12%;">작성글</th>
+                          <th style="width:12%;">회원관리</th>
                       
                         </tr>
                       </thead>
@@ -96,18 +93,21 @@
                       	<%
                       	int num = 1;
                       	for(Member m : mList){ %>
-                      	
+                      	<% 
+                      	if(m.getIsAlive().equals("Y") && m.getIsAdmin().equals("N")){ %>
                         <tr id="trId">
+                          <td style="display:none;"><input type="hidden" value="<%=m.getIsValid()%>"></td>
                           <td><%=num %></td>
                           <td class="email"><%=m.getEmail()%></td>
                           <td><%=m.getUserName()%></td>
-                          <td>30</td>
                           <td><%=m.getEnrollDate()%></td>
                           <td class="a-right a-right "> <a class="btn btn-primary btn-xs docBtn" ><i class="fa fa-search"></i> 보기 </a></td>
-                          <td class=" last"><a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash-o"></i> 삭제 </a>
+                          <td class=" last">
+                          <a class="btn btn-warning btn-xs validManageBtn"><i class="fa fa-ban"></i> <%if(m.getIsValid().equals("Y")){%>정지<%}else{%>정지 해제<%} %></a>
+                          <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModalCenter<%=num%>"><i class="fa fa-trash-o"></i> 삭제 </a>
                      	  
                      	  <!-- Modal -->
-							<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal fade" id="exampleModalCenter<%=num%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
@@ -129,33 +129,22 @@
                      	 	</td>
                         </tr>
                     	
-                      <% num++;
-                           } 
-                   	
-                      %>
+                      <% } %>
+                      <% num++; }  %>
                       </tbody>
                     </table>
-					
                   </div>
                 </div>
-              </div>	
-					
-					
+              </div>		
           </div>
           <!-- /top tiles -->
-			
-
         </div>
-        
-        
+
         <!-- /page content -->
 
-
-  
       </div>
     </div>
-  
-
+ </div>
 </body>
 	
 	
@@ -225,7 +214,7 @@
 					$.ajax({
 						url : "/semi/mDelete.admin",
 		        		type : "get",
-		        		data : {email : $(this).parents('#trId').find('td').eq(1).text()} ,
+		        		data : {email : $(this).parents('#trId').find('td').eq(2).text()} ,
 		        		success : function(data){
 		        			
 		        			location.href = "/semi/memberSelect.admin";
@@ -242,15 +231,27 @@
     		
         	});
     
-    
+     	// 해당 멤버 게시물 전체 조회 함수
     	$('.docBtn').each(function(index, item){
     		$(this).click(function(){
-    			var email = $(this).parent().parent().find('td').eq(1).text();
-    			var nickName = $(this).parent().parent().find('td').eq(2).text();
+    			var email = $(this).parent().parent().find('td').eq(2).text();
+    			var nickName = $(this).parent().parent().find('td').eq(3).text();
     			location.href="/semi/docList.admin?email="+email+"&nickName="+nickName;
     		});
     		
     	});
+    	
+    	$('.validManageBtn').each(function(){
+    		$(this).click(function(){
+    			var email = $(this).parent().parent().find('td').eq(2).text();
+    			var isValid = $(this).parent().parent().find('input').val();
+    			location.href="/semi/validateManage.admin?email="+email+"&isValid="+isValid;
+    			
+    		});
+    		
+    	});
+    	
+    	
 	</script>
     
     
