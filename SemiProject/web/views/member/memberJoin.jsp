@@ -102,7 +102,7 @@ input{margin-bottom: 9px;}
             
                <p><b>이메일</b></p>
                <input type="email" name="email" id="email" style="width :268px; height:40px; display:inline-block;" required="required" placeholder="이메일을 입력해주세요" class="form-control"/>
-               <button id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; background:#364559;" class="btn btn-primary">중복 확인</button>
+               <input type="button" value="중복확인" id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; background:#364559;" class="btn btn-primary"> 
                <input type="hidden" name="isSNS" id="isSNS" value="N">
                
                <p><b>비밀번호</b></p>
@@ -124,7 +124,7 @@ input{margin-bottom: 9px;}
                
                <p><b>연락처</b></p>
                <input type="tel" name="phone1" required="required" style="width:77px; height:37px; display:inline;" class="form-control"/>&nbsp - &nbsp<input type="tel" name="phone2" required="required" style="width:77px; height:37px; display:inline;" class="form-control"/>&nbsp - &nbsp<input type="tel" name="phone3" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>
-                <input type="submit" id="submitBtn" value=" 동의 후 회원 가입" class="btn btn-primary" style="text-align:center;width: 351px; height:45px; margin-left: 56px; margin-top:-10px;background:#364559;left:601px;position:absolute" /> 
+                <input type="submit" id="submitBtn" value=" 동의 후 회원 가입" class="btn btn-primary" style="text-align:center;width: 351px; height:45px; margin-left: 56px; margin-top:-10px;background:#364559;left:601px;position:absolute" disabled/> 
             </form>
             
          </div>
@@ -158,7 +158,7 @@ input{margin-bottom: 9px;}
 <script>
 
    var emailDupCheckNum = -1;
-   
+   var nickDupCheckNum = 0;
    // SNS 가입 시 이메일 자동 채움 함수
    $(function(){
       var email = "<%=request.getParameter("email")%>";
@@ -208,12 +208,44 @@ input{margin-bottom: 9px;}
                
             }
          });
-         
       }
+   
+   
    
       $("#emailDupCheckBtn").click(function(){
          isDupEmail();
       });
+   
+      // 닉네임 중복 체크 함수
+      function isDupNick(){
+    	
+    	  $.ajax({
+    		  url : "/semi/nickDupCheck",
+    		  type : "get",
+    		  data : {nickName:$('#nickName').val()},
+    		  success : function(data){
+    			  var isDup = data;
+    		
+    			  // 중복인 경우
+    			  if(isDup == 1){
+    				  window.nickDupCheckNum = 0;
+    				 
+    			  }else{
+    				  window.nickDupCheckNum = 1;
+    			
+    			  }
+    		  },
+    		  error : function(){
+    			  alert("닉네임 중복체크 ajax에러");
+    		  }
+    		  
+    	  });
+    	  
+    	  
+      }
+      
+      
+      
       
       // 비밀번호 유효성 체크 정규표현식 함수(영문,숫자,특수문자 8자리 이상 20자리 이하)
       function pwdRegEx(pwd){  
@@ -240,7 +272,7 @@ input{margin-bottom: 9px;}
             $('#pwdResult').html("비밀번호가 일치하지 않습니다.").css('color','red');
          }else if(!pwdRegEx(pwd2)){
             $('#pwdResult').html("");
-            $('#pwdResult').html("비밀번호는 숫자,영문 대소문자, 특수문자로 구성된 8자리 이상 20자리 이하이어야 합니다.").css('color','red');
+            $('#pwdResult').html("비밀번호는 숫자,영문 대소문자, 특수문자로 구성된<br> 8자리 이상 20자리 이하이어야 합니다.").css('color','red');
          }else{
             $('#pwdResult').html("사용 가능한 비밀번호입니다.").css('color','green');
          }
@@ -280,9 +312,13 @@ input{margin-bottom: 9px;}
       });
 
       
+      
+      
+      
+      
       // 제출 시 유효성 검사 함수
       function validate(){
-         
+    	  isDupNick();
          // 비밀번호
          var pwd1 = $('#userPwd').val();
          var pwd2 = $('#userPwd2').val();
@@ -290,8 +326,7 @@ input{margin-bottom: 9px;}
          var ssn1 = $('#memberSSN1').val();
          var ssn2 = $('#memberSSN2').val();
          
-         
-         console.log("서브밋 시점의 듀프체크 값 : " + emailDupCheckNum);
+    
          // 이메일 중복 체크
          if(emailDupCheckNum == 1){
             alert("이미 사용 중인 이메일입니다!");
@@ -320,8 +355,15 @@ input{margin-bottom: 9px;}
          }
 
          if(!$('#term1').prop('checked')|| !$('#term2').prop('checked')){
-      
             return false;
+         }
+         
+  
+         if(nickDupCheckNum == 0){
+        	 alert("이미 사용중인 닉네임입니다!");
+        	 return false;
+         }else{
+        	
          }
       }
       
@@ -338,7 +380,8 @@ input{margin-bottom: 9px;}
                }
       }
       
-      $('#test').html("와아아아");
+     
+     
 </script>
 
 

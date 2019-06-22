@@ -56,7 +56,7 @@ public class MemberDao {
 				}else { // SNS 회원가입이라면?
 					 sql = prop.getProperty("insertMemberSNS");
 				}
-				
+		
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, m.getEmail());
 				pstmt.setString(2, m.getUserPwd());
@@ -67,7 +67,7 @@ public class MemberDao {
 				
 				result = pstmt.executeUpdate();
 			
-				
+					
  			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
@@ -126,8 +126,9 @@ public class MemberDao {
 					result.setCash(rset.getInt("cash"));
 					result.setIsSeller(rset.getString("isSeller"));
 					result.setProfileImage(rset.getString("profileimage"));
-					
+					result.setIsValid(rset.getString("isValid"));
 					result.setIsAlive(rset.getString("isAlive"));
+					result.setIsAdmin(rset.getString("isAdmin"));
 					result.setCoupon(rset.getString("coupon"));
 					
 				}
@@ -223,14 +224,13 @@ public class MemberDao {
 				pstmt.setString(1, email);
 				
 				rset = pstmt.executeQuery();
-				rset.next();
-				
-				int count = rset.getInt("count(*)");
-				System.out.println(count);
-				
-				if(count == 0) isDup = 0; 
 				
 				
+				if(rset.next()) {
+					int count = rset.getInt("count(*)");
+					if(count == 0) isDup = 0; 
+				}
+			
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -251,11 +251,11 @@ public class MemberDao {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, m.getUserName());
 				pstmt.setString(2, m.getMemberSSN());
-				
+				System.out.println(sql);
 				rset = pstmt.executeQuery();
 				if (rset.next()) {
 					result = rset.getString("email");
-					
+					System.out.println("result: " + result);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -309,8 +309,7 @@ public class MemberDao {
 				pstmt.setString(2, m.getEmail());
 				
 				result = pstmt.executeUpdate();
-				
-				System.out.println("수정 완료");
+			
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -320,6 +319,35 @@ public class MemberDao {
 			
 		
 			return result;
+		}
+
+
+
+
+
+		public int nickNameDupCheck(Connection con, String nickName) {
+			int isDup = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			try {
+				String sql = prop.getProperty("nickNameDupCheck");
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nickName);
+				
+				rset = pstmt.executeQuery();
+				if(rset.next()) {
+					int count = rset.getInt("count(*)");
+					
+					if(count != 0) isDup = 1; 
+				}
+
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return isDup;
 		}
 	
 	

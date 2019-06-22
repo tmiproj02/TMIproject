@@ -143,4 +143,12 @@
 	<%@ include file="../common/footer.jsp" %>
 
 </body>
+<script>
+	function toMain(){
+		location.href="index.jsp";
+		
+	}
+
+</script>
+
 </html>

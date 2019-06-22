@@ -36,11 +36,9 @@ public class ServiceListServlet extends HttpServlet {
 		
 		ServiceManageService sms = new ServiceManageService();
 		sList = sms.selectServiceList();
-	
+		System.out.println(sList);
 		session.setAttribute("sList", sList);
 		page = "views/adminPages/production/serviceManage.jsp";
-		
-		
 		
 		}
 		catch(Exception e ){

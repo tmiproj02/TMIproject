@@ -83,6 +83,31 @@ public class MemberManageService {
 		
 	}
 
+
+	public void invalidateMember(String email) {
+		con = getConnection();
+		try {
+			mDao.invalidateMember(con,email);
+			commit(con);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(con);
+		}
+	}
+
+
+	public void validateMember(String email) {
+		con = getConnection();
+		try {
+			mDao.validateMember(con,email);
+			commit(con);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(con);
+		}
+		
+	}
+
 	
 	
 	
