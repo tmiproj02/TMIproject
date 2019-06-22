@@ -17,7 +17,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
- 
+ <style>
+ .logo{
+   width: 500px;
+   text-align:center;
+   margin:0 auto;
+}
+ </style>
  
  
  
@@ -25,28 +31,31 @@
 
 </head>
 <body>
-  <div id="Wrapper">
-   	<nav id="logo" style="height:100px; border-bottom: 2px solid gray; margin-bottom:20px;">
-		<img src="/semi/resources/images/KakaoTalk_20190606_164601739.png" style="width:130px;height:120px; position:absolute; left:50%; margin-left:-65px; cursor:pointer; " onclick="toMain();">	
-	</nav>	
+<div class="Wrapper" style="margin: 0 auto; border-bottom: 4px solid #BDD4F2!important;">
+   <div class="logo">
+      <img src="/semi/resources/images/KakaoTalk_20190606_164601739.png" style="width:125px; cursor:pointer; margin-bottom: -9px;" onclick="toMain();">   
+   </div>
+</div>
+
+ 	
 	<div id="serchContainer" style="display:flex;  align-items:center; flex-direction:column; margin-top:6%;">
 		 <div class="panel panel-info" style="width:300px; height:240px; margin-bottom:41px;">
-	            <div class="panel-heading">
+	            <div class="panel-heading" style="background:#BDD4F2;">
 	              <h3 class="panel-title">아이디 찾기</h3>
 	            </div>
-	            <div class="panel-body">
+	            <div class="panel-body"">
 	          	
 					<label for="sName">이름</label><br>
 		           	<input type ="text" id="userName" name = "sName" class="form-control" style="width:100px; height:30px;margin-bottom:6px;">
 		           	<label for="sSsn1">주민등록번호</label><br>
 		            <input type = "text" id="userSSN1" name = "sSsn1" class="form-control" style="width:80px; height:30px; display:inline;">&nbsp;-&nbsp;<input type = "password" id="userSSN2"name = "sSsn2" class="form-control" style="width:80px; height:30px; display:inline;">
-		            <input type="button" value="아이디 찾기" id="findIdBtn" class="btn btn-info"  data-toggle="modal" data-target=".bd-example-modal-sm" style="margin-top:14px;" onclick="findId();">
+		            <input type="button" value="아이디 찾기" id="findIdBtn" class="btn btn-info"  data-toggle="modal" data-target=".bd-example-modal-sm" style="margin-top:14px;background:#364559; border:none;" onclick="findId();">
 	            </div>
 		</div>   
 	  
 	  
 		<div class="panel panel-info" style="width:300px; height:301px;">
-	            <div class="panel-heading">
+	            <div class="panel-heading" style="background:#BDD4F2;">
 	              <h3 class="panel-title">비밀번호 찾기</h3>
 	            </div>
 	            <div class="panel-body">
@@ -58,7 +67,7 @@
 		            <label for="sName">주민등록번호</label><br>
 		            <input type = "text" name = "sSSn1" id="sSSN1"class="form-control" style="width:80px; height:30px; display:inline;">&nbsp;-&nbsp;<input type = "password" name = "sSSN2" id="sSSN2"class="form-control" style="width:80px; height:30px; display:inline;">
 		            
-		            <input type="button" value="비밀번호 찾기" style="margin-top:14px;" class="btn btn-info" onclick="isRightInfo()">
+		            <input type="button" value="비밀번호 찾기" style="height:33px;margin-top:14px;background:#364559; border:none;" class="btn btn-info" onclick="isRightInfo()">
 	      			<button id="popUpSetPwd" data-toggle="modal" data-target="#resetPwdModal" style="display:none;"></button>
 	      			<button id="popUpFailMsg" data-toggle="modal" data-target="#myModal" style="display:none;"></button>
 	            </div>
@@ -124,8 +133,7 @@
 	  </div>
 	</div>
 
-   
-</div>
+
 
 
 

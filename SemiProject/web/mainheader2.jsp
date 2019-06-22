@@ -233,6 +233,10 @@
 					      slidesPerView: 1,
 					      spaceBetween: 30,
 					      loop: true,
+					      autoplay: {
+					    	    delay: 1500,
+					    	  },
+					      speed: 200, 
 					      pagination: {
 					        el: '.swiper-pagination',
 					        clickable: true,
