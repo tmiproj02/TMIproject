@@ -276,8 +276,8 @@ input[type='radio']:checked:before {
 											<i class="plus icon"></i>충전 혜택 &nbsp; &nbsp; &nbsp;
 										</p>
 										<div style="align-text:right; display:inline;" width="50px">
-											<i class="won sign icon" style="margin-left:10%;"></i>
-											<p style="font-size:20px; display:inline; padding-left:1%;">0</p>
+											<i class="won sign icon" style="margin-left:-7%%;"></i>
+											<p style="font-size:20px; display:inline;" class="moremoney">0</p>
 											
 										</div>
 										<br>
@@ -287,7 +287,7 @@ input[type='radio']:checked:before {
 										<p style="padding-top:15%; padding-left: 20px; display: inline; font-size:20px; font-weight:bolder;">총 충전 금액 &nbsp; &nbsp; &nbsp;</p>
 										<div style="align-text:right; display:inline;" width="50px">
 											<i class="won sign icon" style="padding-left:3.5%;"></i>
-											<p style="font-size:20px; display:inline; padding-left:3%;" class="pricewon">0</p>
+											<p style="font-size:20px; display:inline; padding-left:3%;" class="totalprice">0</p>
 											
 										</div>
 										
@@ -365,18 +365,49 @@ input[type='radio']:checked:before {
 
 	$('th').click(function(){
 		var price = Number($("input:radio[name=cPrice]:checked").val());
+		var pricemore = price*0.1;
+		var tprice = price+pricemore;
 		console.log(price);
+		console.log(pricemore);
+		console.log(tprice);
 		$('.pricewon').text(price);
+		$('.moremoney').text(pricemore);
+		$('.totalprice').text(tprice);
 	})
-
+	
 	$('button').click(function(){ <%-- 이거 나중에 지우고 아래 주석처리 한 것을 올려야해욥(지금은 결제 막아놓음. 바로 결제완료로 감) --%>
 		var price = Number($("input:radio[name=cPrice]:checked").val()); //가격받는부분
-		console.log(price);
+		var pricemore = price*0.1; //혜택(10%)
+		var tprice = price+pricemore;
+		console.log("결제금액 : " + price);
 	
 		var uname = $('#userName').text();
 		var uemail = $('#email').text();
 		console.log(uname);
 		console.log(uemail);
+
+	
+	
+        //성공 시 이동할 페이지
+        <%-- location.href="<%=request.getContextPath()%>/views/personBUY/billingHistory.jsp"; --%>
+        <%--location.href="<%=request.getContextPath()%>/mCashRec.bo?price="+price+"&email="+uemail;--%> <%-- MemberDB로 넘어가서 캐시 충전 --%>
+        location.href="<%=request.getContextPath()%>/insertRech.bo?tprice="+tprice+"&email="+uemail; <%-- CashDB로 넘어가서 충전내역으로 남김 --%>
+       
+	}); 
+	
+	
+	<%-- 
+	$('button').click(function(){
+		var price = Number($("input:radio[name=cPrice]:checked").val()); //가격받는부분
+		var pricemore = price*0.1; //혜택(10%)
+		var tprice = price+pricemore;
+		console.log(price);
+	
+		var uname = $('#userName').text();
+		var uemail = $('#email').text();var uphone = $('#phone').text();
+		console.log(uname);
+		console.log(uemail);
+		console.log(uphone);
 
 		//--
 		var IMP = window.IMP; // 생략가능
@@ -402,74 +433,20 @@ input[type='radio']:checked:before {
         		msg += '결제 금액 : ' + rsp.paid_amount;
         		msg += '카드 승인번호 : ' + rsp.apply_num;
    		
+        		alert(msg);
         
-      			//성공 시 이동할 페이지 (MemberDB로 연결되어 캐시 충전으로 잔액에 플러스)
+        		//성공 시 이동할 페이지 (MemberDB로 연결되어 캐시 충전으로 잔액에 플러스)
         		location.href="<%=request.getContextPath()%>/insertRech.bo?price="+price+"&email="+uemail;
         
     		} else {
-       		 var msg = '결제에 실패하였습니다. 캐시 충전 창으로 이동합니다.\n';
-        		msg += '에러내용 : ' + rsp.error_msg;
       			//실패 시 이동할 페이지
-        		location.href="<%=request.getContextPath()%>/views/personBUY/cash.jsp";
-        //--
-	
-        //성공 시 이동할 페이지
-        <%-- location.href="<%=request.getContextPath()%>/views/personBUY/billingHistory.jsp"; --%>
-        <%--location.href="<%=request.getContextPath()%>/mCashRec.bo?price="+price+"&email="+uemail;--%> <%-- MemberDB로 넘어가서 캐시 충전 --%>
-        <%--location.href="<%=request.getContextPath()%>/insertRech.bo?price="+price+"&email="+uemail;  CashDB로 넘어가서 충전내역으로 남김 --%>
-	}); 
-
-	<%--
-	$('button').click(function(){
-		var price = Number($("input:radio[name=cPrice]:checked").val()); //가격받는부분
-		console.log(price);
-	
-		var uname = $('#userName').text();
-		var uemail = $('#email').text();
-		var uphone = $('#phone').text();
-		console.log(uname);
-		console.log(uemail);
-		console.log(uphone);
-	
-	
-		var IMP = window.IMP; // 생략가능
-		IMP.init('imp75606853'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-
-		IMP.request_pay({
-    		pg : 'html5_inicis', // version 1.1.0부터 지원.
-    		pay_method : 'card',
-    		merchant_uid : 'merchant_' + new Date().getTime(),
-    		name : 'TMI 캐시 충전',
-    		amount :price,
-    		buyer_email : uemail,
-    		buyer_name : uname,
-    		buyer_tel : uphone,
-    		buyer_addr : '서울특별시 강남구 삼성동',
-    		buyer_postcode : '123-456',
-    		m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-		}, function(rsp) {
-    		if ( rsp.success ) {
-        		var msg = '결제가 완료되었습니다.';
-        		msg += '고유ID : ' + rsp.imp_uid;
-        		msg += '상점 거래ID : ' + rsp.merchant_uid;
-        		msg += '결제 금액 : ' + rsp.paid_amount;
-        		msg += '카드 승인번호 : ' + rsp.apply_num;
-   		
-        
-      			//성공 시 이동할 페이지 (MemberDB로 연결되어 캐시 충전으로 잔액에 플러스)
-        		location.href="<%=request.getContextPath()%>/insertRech.bo?price="+price+"&email="+uemail;
-        
-    		} else {
-       		 var msg = '결제에 실패하였습니다. 캐시 충전 창으로 이동합니다.\n';
-        		msg += '에러내용 : ' + rsp.error_msg;
-      			//실패 시 이동할 페이지
-        		location.href="<%=request.getContextPath()%>/views/personBUY/cash.jsp";
+        		location.href="<%=request.getContextPath()%>/views/personBUY/failPay.jsp";
         
     		}
-    		alert(msg);
 		});
 	}); 
 	--%>
+	
 </script>
 
 	<%@ include file="/views/common/footer.jsp"%>

@@ -43,7 +43,7 @@ public class CashRechServlet extends HttpServlet {
 		int mno = ((Member)session.getAttribute("member")).getMno();
 
 		
-		int cp = Integer.parseInt(request.getParameter("price"));
+		int cp = Integer.parseInt(request.getParameter("tprice"));
 		
 		String email = request.getParameter("email");
 
@@ -56,7 +56,7 @@ public class CashRechServlet extends HttpServlet {
 		try {
 			crs.chargeInsert(csh);
 			
-			request.setAttribute("price", cp);
+			request.setAttribute("tprice", cp);
 			request.setAttribute("email", email);
 
 			

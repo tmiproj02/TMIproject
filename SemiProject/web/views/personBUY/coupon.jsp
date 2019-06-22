@@ -222,7 +222,7 @@
 							<li style=" border-top:none;"><div style="text-align : center; margin-bottom:20px;">
 								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href="../member/memberUpdateForm.jsp"><%=m.getNickName() %></a></div>
 								<br>
-								<div class="font-color-lighter font-size-h6">TMI캐시</div>
+								<div class="font-color-lighter font-size-h6 font-noto">TMI캐시</div>
 								<h3 class="margin-bottom-15 margin-top-5 link-color-blue NGB"><i class="won sign icon"></i><%=m.getCash()%> 원</h3>
 								<div>
 									<label class="buyer-check font-noto" style="cursor:pointer;" onclick="lbcash();"><i class="credit card outline icon"></i>캐시충전</label>
@@ -301,7 +301,7 @@
 <div class="purchaseListArea padding-15">
 				
 				<!-- 이 자리에 Arraylist로 반복문 넣어야 결제 내역이 목록화되어 나옴. -->
-				
+				<%--
 					<div class="container1 clearFix">
 			
 			<div class="coupontable">
@@ -336,7 +336,7 @@
   </tbody>
 </table>
 
-</div></div>
+</div></div> --%>
 					
 
 

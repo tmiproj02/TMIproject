@@ -4,8 +4,6 @@
 <% 
    ArrayList<SellerBoard> reqList = (ArrayList<SellerBoard>)request.getAttribute("nreqList");
    System.out.println("(buyingcontrol.jsp)ArrayList<SellerBoard>:"+reqList); 
-
-
 %>
 <!DOCTYPE html>
 <html>
@@ -265,7 +263,7 @@
 							<li style=" border-top:none;"><div style="text-align : center; margin-bottom:20px;">
 								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href="../member/memberUpdateForm.jsp"><%=m.getNickName() %></a></div>
 								<br>
-								<div class="font-color-lighter font-size-h6">TMI캐시</div>
+								<div class="font-color-lighter font-size-h6 font-noto">TMI캐시</div>
 								<h3 class="margin-bottom-15 margin-top-5 link-color-blue NGB"><i class="won sign icon"></i><%=m.getCash()%> 원</h3>
 								<div>
 									<label class="seller-check font-noto" style="cursor:pointer;" onclick="lbcash();"><i class="credit card outline icon"></i>캐시충전</label>
@@ -315,13 +313,13 @@
 								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp; <span class="selling-history select"><%=reqList.size() %></span></a>
 							</li>
 							<li>
-								<a href="/semi/views/personBUY/buyingcontrolIng.jsp">진행중 &nbsp; <span class="selling-history">0</span></a>
+								<a style="cursor:pointer;" onclick="prging();">진행중 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 							<li>
-								<a href="/semi/views/personBUY/buyingcontrolFin.jsp">완료 &nbsp; <span class="selling-history">0</span></a>
+								<a style="cursor:pointer;" onclick="finlist();">완료 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 							<li>
-								<a href="/semi/views/personBUY/buyingcontrolCc.jsp">취소 &nbsp; <span class="selling-history">0</span></a>
+								<a  style="cursor:pointer;" onclick="cclist();">취소 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 						</ul>
 					</div>
@@ -427,11 +425,17 @@
 			location.href="/semi/nReq.bo"
 		}
 		
+		function prging(){
+			location.href="/semi/prging.bo"
+		}
 		
+		function finlist(){
+			location.href="/semi/finished.bo"
+		}
 		
-		
-		
-		
+		function cclist(){
+			location.href="/semi/cced.bo"
+		}
 	</script>
 	
 	

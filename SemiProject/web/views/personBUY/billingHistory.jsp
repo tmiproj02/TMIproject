@@ -202,7 +202,7 @@
 							<li style=" border-top:none;"><div style="text-align : center; margin-bottom:20px;">
 								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href="../member/memberUpdateForm.jsp"><%=m.getNickName() %></a></div>
 								<br>
-								<div class="font-color-lighter font-size-h6">TMI캐시</div>
+								<div class="font-color-lighter font-size-h6 font-noto">TMI캐시</div>
 								<h3 class="margin-bottom-15 margin-top-5 link-color-blue NGB"><i class="won sign icon"></i><%=m.getCash()%> 원</h3>
 								<div>
 									<label class="buyer-check font-noto" style="cursor:pointer;" onclick="lbcash();"><i class="credit card outline icon"></i>캐시충전</label>
@@ -241,12 +241,12 @@
 				</div>
 				
 			</div>
-			<div class="scontainer3 width-75per" style="float:left">
+			<div class="scontainer3 width-75per padding-15" style="float:left">
 				<div class="padding-15">
 					<h3 class="font-noto" style="font-weight:700; margin-top:3%;">캐시내역</h3>
 				</div>
 
-				<div style="margin-top:20px; margin-left:73%;">
+				<div style="margin-top:20px; margin-left:71%;">
 					<div class="padding-15 font-noto">
 						
 					  <div class="ui basic floating dropdown button">
@@ -291,17 +291,18 @@
 				<!-- 이 자리에 Arraylist로 반복문 넣어야 결제 내역이 목록화되어 나옴. -->
 				<%  for(Cash c : rechargeList) { %>
 				
-					<div class="ui items" style="border:3px solid #BDD4F2; border-radius: 5px; padding:10px;">
+					<div class="ui items" style="border:3px solid #BDD4F2; border-radius: 5px; padding:10px; height:150px;">
 						<div class="item" >
 							<div class="pllist">
-								<p style="color:orange; font-size:30px"><%= c.getClassify() %></p>
+								<p style="color:orange; font-size:30px" class="font-noto"><%= c.getClassify() %></p>
 							</div>
 							<div class="listcontent">
 								<div class="meta">
-									<span class="price" style="color:orange; font-size:30px;"><i class="won sign icon"></i><%= c.getPayp() %>원</span>
+									<span class="price font-noto" style="color:orange; font-size:30px;"><i class="won sign icon"></i><%= c.getPayp() %>원</span>
 									
 								</div>
-									<p style="letter-spacing:2px;">결제일 : <%= c.getPaydate() %></p>
+									<p style="letter-spacing:2px;" class="font-noto">결제일 : <%= c.getPaydate() %></p>
+									<p class="font-noto">충전된 캐시는 충전 혜택(+10%)이 포함된 금액입니다.</p>
 								<div style="display:inlne; margin-left:230%; margin-top:-50%;">
 									<img  id="coins" src="/semi/resources/images/noun_Coins.png" style="width:90px;"/>
 									</div>
@@ -330,27 +331,8 @@
      			</div> 
 
 
+					</div>
 				</div>
-
-
-				
-
-					
-					
-                         
-                               
-                                  
-				                             
-                               
-                            
-                       
-					
-					
-					
-				</div>
-				
-				
-				
 			</div>
 		</div>
 	

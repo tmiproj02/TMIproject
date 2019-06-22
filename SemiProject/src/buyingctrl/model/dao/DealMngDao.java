@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 import buyingctrl.model.exception.buyingctrlException;
-
+import buyingctrl.model.vo.DealMng;
 import member.model.vo.Member;
 import sellerboard.model.vo.SellerBoard;
 
@@ -44,7 +44,7 @@ public class DealMngDao {
 	}
 
 	
-	//요구사항 없는 구매내역 조회 리스트
+	//전체 구매내역 조회
 	public ArrayList<SellerBoard> nrqselectList(Connection con, Member m) throws buyingctrlException {
 		
 		ArrayList<SellerBoard> nreqList = null;
@@ -69,8 +69,6 @@ public class DealMngDao {
 				System.out.println("1");
 				sb.setBtitle(rset.getString("btitle"));
 				System.out.println("2");
-//				sb.setDealdateB(rset.getDate("dealdateB"));
-//				System.out.println("3"); -->쿼리에서도 D.DEALDATEB 지워버림... select해야되는데ㅠㅠㅠㅠㅠㅠ아쒸ㅜㅜㅠㅠ
 				sb.setPrice(rset.getInt("price"));
 				System.out.println("4");
 				
@@ -92,9 +90,178 @@ public class DealMngDao {
 		return nreqList;
 	}
 
+	
+	
+	
+	
+	
+	
+	//진행중 조회
+	public ArrayList<DealMng> ingselectList(Connection con, Member m) throws buyingctrlException {
+		
+		ArrayList<DealMng> dingList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("ingselectList");
+		
+		try {
+			dingList = new ArrayList<DealMng>();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, m.getMno());
+			pstmt.setString(2, "진행중");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				DealMng dm = new DealMng();
+				
+				dm.setImages(rset.getString("images"));
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setPrice(rset.getInt("price"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setNickname(rset.getString("nickname"));
+				
+				
+				dingList.add(dm);
+				System.out.println("진행중인 구매내역 조회 리스트(DealMngDao) : "+ dingList);
+				
+			}
+			
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new buyingctrlException(e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return dingList;
+		
+		
+	}
+
+	//완료된 거래 리스트 조회
+	public ArrayList<DealMng> finselectList(Connection con, Member m) throws buyingctrlException {
+		
+		ArrayList<DealMng> finList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("finselectList");
+		
+		try {
+			finList = new ArrayList<DealMng>();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, m.getMno());
+			pstmt.setString(2, "완료");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				DealMng dm = new DealMng();
+				
+				dm.setImages(rset.getString("images"));
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setPrice(rset.getInt("price"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setNickname(rset.getString("nickname"));
+				
+				
+				finList.add(dm);
+				System.out.println("완료된 구매내역 조회 리스트(DealMngDao) : "+ finList);
+				
+			}
+			
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new buyingctrlException(e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		
+		return finList;
+	}
 
 
+	
+	//거래 취소 조회
+	public ArrayList<DealMng> ccselectList(Connection con, Member m) throws buyingctrlException {
+		
+		ArrayList<DealMng> ccList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("ccselectList");
+		
+		try {
+			ccList = new ArrayList<DealMng>();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, m.getMno());
+			pstmt.setString(2, "취소");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				DealMng dm = new DealMng();
+				
+				dm.setImages(rset.getString("images"));
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setPrice(rset.getInt("price"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setNickname(rset.getString("nickname"));
+				
+				
+				ccList.add(dm);
+				System.out.println("취소 구매내역 조회 리스트(DealMngDao) : "+ ccList);
+				
+			}
+			
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new buyingctrlException(e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		
+		return ccList;
+		
+		
+		
+		
+	}
 
+
+	
+	
+	
+
+	
 
 	
 	

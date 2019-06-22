@@ -14,7 +14,12 @@ public class DealMng {
 	private String completeyn;
 	private Date completedate;
 	
+	private String images;
+	private String btitle;
+	private int price;
+	private String nickname;
 	
+
 	public DealMng() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -33,6 +38,25 @@ public class DealMng {
 		this.deitcount = deitcount;
 		this.completeyn = completeyn;
 		this.completedate = completedate;
+	}
+	
+	
+
+
+
+
+	public DealMng(int dmcode, int mno, int sno, String progress, Date dealdate, String images, String btitle,
+			int price, String nickname) {
+		super();
+		this.dmcode = dmcode;
+		this.mno = mno;
+		this.sno = sno;
+		this.progress = progress;
+		this.dealdate = dealdate;
+		this.images = images;
+		this.btitle = btitle;
+		this.price = price;
+		this.nickname = nickname;
 	}
 
 
@@ -133,7 +157,45 @@ public class DealMng {
 		this.completedate = completedate;
 	}
 	
-	
+
+	public String getImages() {
+		return images;
+	}
+
+
+	public void setImages(String images) {
+		this.images = images;
+	}
+
+
+	public String getBtitle() {
+		return btitle;
+	}
+
+
+	public void setBtitle(String btitle) {
+		this.btitle = btitle;
+	}
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
+	public String getNickname() {
+		return nickname;
+	}
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
 	
 	
