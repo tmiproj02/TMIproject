@@ -31,6 +31,7 @@ font-family: 'Noto Sans KR', sans-serif;
 	margin-top : 50px;
 }
 .section4{
+	overflow:hidden;
 	margin:0 auto;
 }
 .section4>div{

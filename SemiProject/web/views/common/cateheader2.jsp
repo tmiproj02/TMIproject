@@ -237,6 +237,9 @@ nav{
 	padding-top:10px;
 	padding-bottom:10px;
 }
+.mylog .mynick{
+	display:inline-block;
+}
 .mylog>a>div{
 	display:inline-block;
 }
@@ -308,7 +311,7 @@ nav{
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>
                             <div class="mylog padding-15px"><a href="/">
                             	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important; vertical-align: middle;"/></div>
-                            	<div><h5><%= m.getUserName() %></h5></a></div>
+                            	<div class="mynick"><h5><%= m.getUserName() %></h5></a></div>
                             	</a>
                             	<div class="downmymenu">
 		                           	<ul class="mylogmenu" style="list-style:none;margin:5px 0;">
