@@ -343,51 +343,51 @@ footer{
 
                 <div class="category">
                     <ul>
-                        <li><a href="/semi/selectList.bo?cate=designCategoryPage">
+                        <li><a href="/semi/selectList.bo?cate=designCategoryPage&cCode=10&code=0">
                             <img src="/semi/resources/images/edit.png"> <br>
-                            <a href="/semi/selectList.bo?cate=designCategoryPage"><b>디자인</b></a>
+                            <a href="/semi/selectList.bo?cate=designCategoryPage&cCode=10&code=0"><b>디자인</b></a>
                         </a></li>
                     </ul>
                 
                     <ul>
-                        <li><a href="/semi/selectList.bo?cate=itCategoryPage">
+                        <li><a href="/semi/selectList.bo?cate=itCategoryPage&cCode=20&code=0">
                             <img src="/semi/resources/images/television.png"><br>
-                            <a href="/semi/selectList.bo?cate=itCategoryPage"><b>IT/프로그래밍</b></a>
+                            <a href="/semi/selectList.bo?cate=itCategoryPage&cCode=20&code=0"><b>IT/프로그래밍</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/selectList.bo?cate=marketingCategoryPage">
+                        <li><a href="/semi/selectList.bo?cate=marketingCategoryPage&cCode=30&code=0">
                             <img src="/semi/resources/images/bar-chart.png"><br>
-                            <a href="/semi/selectList.bo?cate=marketingCategoryPage"><b>마케팅</b></a>
+                            <a href="/semi/selectList.bo?cate=marketingCategoryPage&cCode=30&code=0"><b>마케팅</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/selectList.bo?cate=contentCategoryPage">
+                        <li><a href="/semi/selectList.bo?cate=contentCategoryPage&cCode=40&code=0">
                             <img src="/semi/resources/images/play-button.png"><br>
-                            <a href="/semi/selectList.bo?cate=contentCategoryPage"><b>콘텐츠 제작</b></a>
+                            <a href="/semi/selectList.bo?cate=contentCategoryPage&cCode=40&code=0"><b>콘텐츠 제작</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/selectList.bo?cate=transCategoryPage">
+                        <li><a href="/semi/selectList.bo?cate=transCategoryPage&cCode=50&code=0">
                             <img src="/semi/resources/images/microphone.png"><br>
-                            <a href="/semi/selectList.bo?cate=transCategoryPage"><b>번역/통역</b></a>
+                            <a href="/semi/selectList.bo?cate=transCategoryPage&cCode=50&code=0"><b>번역/통역</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/selectList.bo?cate=textCategoryPage">
+                        <li><a href="/semi/selectList.bo?cate=textCategoryPage&cCode=60&code=0">
                             <img src="/semi/resources/images/file.png"><br>
-                            <a href="/semi/selectList.bo?cate=textCategoryPage"><b>문서/취업</b></a>
+                            <a href="/semi/selectList.bo?cate=textCategoryPage&cCode=60&code=0"><b>문서/취업</b></a>
                         </a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="/semi/selectList.bo?cate=giftCategoryPage">
+                        <li><a href="/semi/selectList.bo?cate=giftCategoryPage&cCode=70&code=0">
                             <img src="/semi/resources/images/gift.png"><br>
-                            <a href="/semi/selectList.bo?cate=giftCategoryPage"><b>기프트/커스텀</b></a>
+                            <a href="/semi/selectList.bo?cate=giftCategoryPage&cCode=70&code=0"><b>기프트/커스텀</b></a>
                         </a></li>
                     </ul>
                 </div>

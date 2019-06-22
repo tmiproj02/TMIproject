@@ -74,14 +74,13 @@
                  
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
-                  		<tr>    			
-                  			<th>No</th>
-                  			<th>제목</th>
-                  			<th>1차 카테고리</th>
-                  			<th>2차 카테고리</th>
-                  			<th>작성일</th>
-                  			<th>상세보기</th>
-                  		
+                  		<tr>    		
+                  		 <th style="width:5%;">No</th>
+                          <th style="width:17%;">제목</th>
+                          <th style="width:15%">1차 카테고리</th>
+                          <th style="width:15%;">2차 카테고리</th>
+                          <th style="width:12%;">작성일</th>
+                          <th style="width:12%;">상세보기</th> 		
                   		</tr>
                       </thead>
                       <tbody>

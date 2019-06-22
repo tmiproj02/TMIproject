@@ -79,15 +79,15 @@
                   <!-- 여기부터 테이블 -->
                   <div class="x_content">
                  
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
                       <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>제목</th>
-                          <th>Email</th>
-                          <th>닉네임</th>
-                          <th>답변여부</th>
-                      	  <th>관리</th>
+                        <tr> 
+                          <th style="width:5%;">No</th>
+                          <th style="width:17%;">제목</th>
+                          <th style="width:15%">Email</th>
+                          <th style="width:15%;">닉네임</th>
+                          <th style="width:12%;">답변여부</th>
+                          <th style="width:12%;">관리</th>           
                         </tr>
                       </thead>
                       <tbody>
@@ -95,9 +95,10 @@
                       	<%
                       	int num = 1;
                       	for(ClientRequest cr : crList){ %>
-                      	
+                      	  <%System.out.print(cr.getRno());%>
                         <tr id="trId">
                           <td style="display:none;"><input type="hidden" id="rno" value="<%=cr.getRno()%>"></td>
+                          <td style="display:none;"><input type="hidden" id="rContent" value="<%=cr.getrContent()%>"></td>
                           <td><%=num %></td>
                           <td><%=cr.getrTitle()%></td>
                           <td class="email"><%=cr.getEmail() %></td>
@@ -112,10 +113,10 @@
                           
                           <td class="last">
 	                          <a class="btn btn-primary btn-xs replyBtn"><i class="fa fa-send-o"></i>&nbsp;답변</a>
-	                          <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-trash-o"></i>&nbsp;삭제 </a>
+	                          <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i>&nbsp;삭제 </a>
 	                       <!-- Modal -->
 	                       
-							<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
@@ -153,7 +154,6 @@
           </div>
           <!-- /top tiles -->
 
-          
         </div>
         <!-- /page content -->
 
@@ -231,15 +231,14 @@
 					$.ajax({
 						url : "/semi/rDelete.admin",
 		        		type : "get",
-		        		data : {rno : $(this).parents('#trId').find('input').val()} ,
+		        		data : {rno : $(this).parents('#trId').find('input').eq(0).val()} ,
 		        		success : function(data){
 		        			location.href = "/semi/requestList.admin";
 		        		},
 		        		error : function(){
 		        			alert("어드인 회원삭제에서 오류");
 		        		}
-						
-						
+
 					});
 					
 					
@@ -248,16 +247,18 @@
         	});
     
     
-    	$('.docBtn').each(function(index, item){
+    	$('.replyBtn').each(function(index, item){
     		$(this).click(function(){
-    			var email = $(this).parent().parent().find('td').eq(1).text();
-    			var nickName = $(this).parent().parent().find('td').eq(2).text();
-    			console.log(email);
-    			console.log(nickName);
-    			location.href="/semi/docList.admin?email="+email+"&nickName="+nickName;
+    			var rno = $(this).parents('#trId').find('input').eq(0).val();
+    			var rTitle = $(this).parents('#trId').find('td').eq(3).text();
+    			var rContent = $(this).parents('#trId').find('input').eq(1).val();
+    			
+    			location.href="/semi/views/adminPages/production/memberRequestDetail.jsp?rno="+rno+"&rTitle="+rTitle+"&rContent="+rContent;
     		});
     		
     	});
+    	
+    	
 	</script>
     
     

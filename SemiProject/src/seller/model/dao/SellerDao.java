@@ -57,6 +57,7 @@ public class SellerDao {
 			
 			System.out.println("값을 잘전달받는지 확인하기위함");
 			System.out.println(s.getMno());
+			System.out.println(s.getAbletime());
 			System.out.println(s.getBankname());
 			System.out.println(s.getBanknumber());
 			System.out.println(s.getCareerdate1());
@@ -72,18 +73,19 @@ public class SellerDao {
 			
 			// ? 에 해당하는 값을 추가 함
 			pstmt.setInt(1, s.getMno());
-			pstmt.setString(2, s.getBankname());
-			pstmt.setString(3, s.getBanknumber());
-			pstmt.setString(4, s.getCareerdate1());
-			pstmt.setString(5, s.getCareerdate2());
-			pstmt.setString(6, s.getCareerdate3());
-			pstmt.setString(7, s.getCareer1());
-			pstmt.setString(8, s.getCareer2());
-			pstmt.setString(9, s.getCareer3());
-			pstmt.setString(10, s.getCertificat1());
-			pstmt.setString(11, s.getCertificat2());
-			pstmt.setString(12, s.getCertificat3());
-			pstmt.setString(13, s.getIntrotext());
+			pstmt.setString(2, s.getAbletime());
+			pstmt.setString(3, s.getBankname());
+			pstmt.setString(4, s.getBanknumber());
+			pstmt.setString(5, s.getCareerdate1());
+			pstmt.setString(6, s.getCareerdate2());
+			pstmt.setString(7, s.getCareerdate3());
+			pstmt.setString(8, s.getCareer1());
+			pstmt.setString(9, s.getCareer2());
+			pstmt.setString(10, s.getCareer3());
+			pstmt.setString(11, s.getCertificat1());
+			pstmt.setString(12, s.getCertificat2());
+			pstmt.setString(13, s.getCertificat3());
+			pstmt.setString(14, s.getIntrotext());
 			
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {

@@ -26,8 +26,14 @@ public class DealMng {
 	}
 
 
-	public DealMng(int dmcode, int bno, int mno, int sno, String progress, Date dealdate, int deitcount,
-			String completeyn, Date completedate) {
+	
+	
+	
+
+
+
+public DealMng(int dmcode, int bno, int mno, int sno, String progress, Date dealdate, int deitcount,
+			String completeyn, Date completedate, String images, String btitle, int price, String nickname) {
 		super();
 		this.dmcode = dmcode;
 		this.bno = bno;
@@ -38,26 +44,34 @@ public class DealMng {
 		this.deitcount = deitcount;
 		this.completeyn = completeyn;
 		this.completedate = completedate;
-	}
-	
-	
-
-
-
-
-	public DealMng(int dmcode, int mno, int sno, String progress, Date dealdate, String images, String btitle,
-			int price, String nickname) {
-		super();
-		this.dmcode = dmcode;
-		this.mno = mno;
-		this.sno = sno;
-		this.progress = progress;
-		this.dealdate = dealdate;
 		this.images = images;
 		this.btitle = btitle;
 		this.price = price;
 		this.nickname = nickname;
 	}
+
+
+
+
+
+
+
+
+//조회(전체,진해중,완료,취소)
+	public DealMng(String images, int dmcode, String btitle, Date dealdate, String nickname, int price, int mno, String progress) {
+		super();
+		this.dmcode = dmcode;
+		this.mno = mno;
+		this.progress = progress;
+		this.images = images;
+		this.btitle = btitle;
+		this.price = price;
+		this.nickname = nickname;
+		this.dealdate = dealdate;
+	}
+
+
+	
 
 
 	@Override

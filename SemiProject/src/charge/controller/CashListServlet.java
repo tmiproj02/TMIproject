@@ -34,8 +34,9 @@ public class CashListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			HttpSession session = request.getSession();
-			Member m = (Member)session.getAttribute("member");
+		
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
 
 		ArrayList<Cash> rechargeList = new ArrayList<Cash>();
 		

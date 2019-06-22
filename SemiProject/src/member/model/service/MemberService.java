@@ -95,10 +95,13 @@ public class MemberService {
 	}
 
 	public int emailDupCheck(String email) throws MemberException {
-		
+		int isDup = 0;
 		con = getConnection();
-		int isDup = mDao.emailDupCheck(con,email);
-		
+		try {
+		 isDup = mDao.emailDupCheck(con,email);
+		}catch(MemberException e) {
+			e.printStackTrace();
+		}
 		close(con);
 		
 		return isDup;
@@ -138,6 +141,21 @@ public class MemberService {
 		close(con);
 
 		return result;
+	}
+
+	public int nickNameDupCheck(String nickName) {
+		int isDup = 0;
+	
+		try {
+			con = getConnection();
+			isDup = mDao.nickNameDupCheck(con,nickName);
+		}catch(Exception e) {
+				e.printStackTrace();
+		}
+		
+		close(con);
+		
+		return isDup;
 	}
 	
 	

@@ -65,6 +65,7 @@
 	width:18%;
 }
 .post{
+	width:84%;
 	margin:0 auto;
 	padding: 0 15px;
 	display:inline-block;

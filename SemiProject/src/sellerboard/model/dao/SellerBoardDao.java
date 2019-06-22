@@ -88,9 +88,9 @@ public class SellerBoardDao {
 			pstmt.setInt(10, sb.getEditablecount());				//수정 횟수
 			pstmt.setInt(11, sb.getDuedate());					//작업기간
 			pstmt.setInt(12, sb.getSpeed());					//빠른작업(옵션)
-			pstmt.setInt(13, sb.getExtradate1());				//빠른작업(옵션)
+			pstmt.setString(13, sb.getExtradate1());				//빠른작업(옵션)
 			pstmt.setInt(14, sb.getPlusedit());					//추가수정(옵션)
-			pstmt.setInt(15, sb.getExtradate2());				//추가수정(옵션)
+			pstmt.setString(15, sb.getExtradate2());				//추가수정(옵션)
 			
 			
 			result=pstmt.executeUpdate();
@@ -132,13 +132,18 @@ public class SellerBoardDao {
 	}
 
 
-	public ArrayList<SellerBoard> selectList(Connection con, int currentPage, int pageLimit, int boardLimit) {
+	public ArrayList<SellerBoard> selectList(Connection con, int currentPage, int pageLimit, int boardLimit, String cCode, String code) {
 		ArrayList<SellerBoard> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectList");
+		String sql = null;
+		if(code.equals("0")) {
+			sql = prop.getProperty("selectList");
+		} else {
+			sql = prop.getProperty("selectList2");
+		}
 		try {
+			
 			pstmt = con.prepareStatement(sql);
 		
 			int startRow = (currentPage - 1)*boardLimit +1;
@@ -148,8 +153,17 @@ public class SellerBoardDao {
 			System.out.println(endRow);
 			
 			
-			pstmt.setInt(1, endRow);
-			pstmt.setInt(2, startRow);
+			if(code.equals("0")) {
+				pstmt.setString(1, cCode);
+				pstmt.setInt(2, endRow);
+				pstmt.setInt(3, startRow);
+			} else {
+				pstmt.setString(1, cCode);
+				pstmt.setString(2, code);
+				pstmt.setInt(3, endRow);
+				pstmt.setInt(4, startRow);
+			}
+					
 			
 			rset=pstmt.executeQuery();
 			
@@ -171,9 +185,9 @@ public class SellerBoardDao {
 				b.setEditablecount(rset.getInt("EDITABLECOUNT"));
 				b.setDuedate(rset.getInt("DUEDATE"));
 				b.setSpeed(rset.getInt("SPEED"));
-				b.setExtradate1(rset.getInt("EXTRADATE1"));
+				b.setExtradate1(rset.getString("EXTRADATE1"));
 				b.setPlusedit(rset.getInt("PLUSEDIT"));
-				b.setExtradate2(rset.getInt("EXTRADATE2"));
+				b.setExtradate2(rset.getString("EXTRADATE2"));
 				b.setAd(rset.getString("AD"));
 				b.setAdexpire(rset.getInt("ADEXPIRE"));
 				b.setBdate(rset.getDate("BDATE"));

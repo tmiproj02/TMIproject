@@ -75,12 +75,12 @@
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
                       <thead>
                   		<tr>
-                  			<th>No</th>
-                  			<th>서비스 제목</th>
-                  			<th>신청자</th>
-                  			<th>신청일</th>
-                  			<th>상세보기</th>
-                  			<th>관리</th>
+                  		  <th style="width:5%;">No</th>
+                          <th style="width:17%;">서비스 제목</th>
+                          <th style="width:15%">신청자</th>
+                          <th style="width:15%;">신청일</th>
+                          <th style="width:12%;">상세보기</th>
+                          <th style="width:12%;">관리</th> 
                   		</tr>
                       </thead>
                       <tbody>
@@ -95,10 +95,10 @@
                           <td><%=sb.getBdate() %></td>
                           <td class="a-right a-right "> <a class="btn btn-primary btn-xs docDetailBtn" ><i class="fa fa-search"></i> 상세보기 </a></td>
                           <td class=" last"><a class="btn btn-success btn-xs approveBtn"><i class="fa fa-check"></i>승인</a>
-                          					<a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-close"></i> 거절 </a>
+                          					<a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#refuseModal<%=num%>"><i class="fa fa-close"></i> 거절 </a>
                          
                           <!-- Modal -->
-							<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal fade" id="refuseModal<%=num%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
@@ -119,7 +119,7 @@
 							</div> 
 						</td>
                        </tr>
-           				<%  num++; } %>	
+           				<%  num++; } %>
                       
                        
                       </tbody>

@@ -32,7 +32,8 @@ public class Member implements Serializable {
 	private String isSNS;
 	private int documentCnt;
 	private int mno;
-	
+	private String isValid;
+	private String isAdmin;
 	
 	
 	// 2. 생성자
@@ -286,6 +287,27 @@ public class Member implements Serializable {
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
+
+
+	public String getIsValid() {
+		return isValid;
+	}
+
+
+	public void setIsValid(String isValid) {
+		this.isValid = isValid;
+	}
+
+
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+
+
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	
 	
 	
 	

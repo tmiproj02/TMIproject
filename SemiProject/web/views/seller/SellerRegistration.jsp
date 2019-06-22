@@ -75,7 +75,7 @@
 					</div>
 				    <h5 class="modal-title">연락가능시간</h5>
 				    <div class="ui input focus">
-						<input type="text" id="abletime" placeholder="10:00~16:00" value="">
+						<input type="text" id="abletime" name="abletime" placeholder="10:00~16:00" value="">
 					</div>
 					<h5 class="modal-title">전문가소개</h5>
 					<div class="inline field">

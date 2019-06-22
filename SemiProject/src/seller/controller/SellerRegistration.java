@@ -60,9 +60,9 @@ public class SellerRegistration extends HttpServlet {
 		}
 		
 		//form 버튼이 눌렸을 때 getParameter로 값을 받아온다 
-		//
-
-		String introtext = request.getParameter("introtext");				//전문가 소개
+		// 
+		String abletime = request.getParameter("abletime");			//연락가능시간
+		String introtext = request.getParameter("introtext");		//전문가 소개
 		String careerdate1 = request.getParameter("careerdate1");	//경력 날짜 1
 		String careerdate2 = request.getParameter("careerdate2");	//경력 날짜 2
 		String careerdate3 = request.getParameter("careerdate2");	//경력 날짜 3
@@ -75,7 +75,7 @@ public class SellerRegistration extends HttpServlet {
 		String bankname = request.getParameter("bankname");
 		String bankNumber = request.getParameter("bankNumber");
 		
-		Seller s = new Seller(mno, bankname, bankNumber, careerdate1, careerdate2, careerdate3, career1, career2, career3, certificat1, certificat2, certificat3, introtext);
+		Seller s = new Seller(mno, abletime, bankname, bankNumber, careerdate1, careerdate2, careerdate3, career1, career2, career3, certificat1, certificat2, certificat3, introtext);
 		
 		SellerService ss = new SellerService();
 		

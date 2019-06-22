@@ -66,15 +66,13 @@
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
-                          <th>No</th>
-                          <th>이메일</th>
-                          <th>닉네임</th>
-                          <th>작성한 게시물 수</th>
-                          <th>가입일자</th>
-                          <th>작성글</th>
-                          <th>회원관리</th>
-                        
-                          
+                        	 <th style="width:5%;">No</th>
+                          <th style="width:17%;">이메일</th>
+                          <th style="width:15%">닉네임</th>
+                          <th style="width:15%;">작성한 게시물 수</th>
+                          <th style="width:12%;">가입일자</th>
+                          <th style="width:12%;">작성글</th> 
+                          <th style="width:12%;">작성글</th> 
                         </tr>
                       </thead>
                       <tbody>

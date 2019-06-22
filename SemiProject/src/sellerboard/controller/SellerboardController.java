@@ -81,14 +81,14 @@ public class SellerboardController extends HttpServlet {
 		String requesttobuyer = mrequest.getParameter("requesttobuyer");						//작업 전 요청사항
 		String category1_code = mrequest.getParameter("category1_code");						//상위 카테고리
 		String category2_code = mrequest.getParameter("category2_code");						//하위 카테고리
-		int price = Integer.parseInt(mrequest.getParameter("price"));						//가격
-		String images = mrequest.getFilesystemName("thumbnailImg1");										//이미지들
-		int editablecount = Integer.parseInt(mrequest.getParameter("editablecount"));		//수정 횟수
-		int duedate = Integer.parseInt(mrequest.getParameter("duedate"));					//작업 기간
-		int speed = Integer.parseInt(mrequest.getParameter("speed"));						//빠른 작업(옵션)
-		int plusedit = Integer.parseInt(mrequest.getParameter("plusedit"));					//추가 수정(옵션)
-		int extradate1 = Integer.parseInt(mrequest.getParameter("extradate1"));					//추가 수정(옵션)
-		int extradate2 = Integer.parseInt(mrequest.getParameter("extradate2"));					//추가 수정(옵션)
+		int price = Integer.parseInt(mrequest.getParameter("price"));							//가격
+		String images = mrequest.getFilesystemName("thumbnailImg1");							//이미지들
+		int editablecount = Integer.parseInt(mrequest.getParameter("editablecount"));			//수정 횟수
+		int duedate = Integer.parseInt(mrequest.getParameter("duedate"));						//작업 기간
+		int speed = Integer.parseInt(mrequest.getParameter("speed"));							//빠른 작업(옵션)
+		int plusedit = Integer.parseInt(mrequest.getParameter("plusedit"));						//추가 수정(옵션)
+		String extradate1 = mrequest.getParameter("extradate1");								//추가 수정(옵션)
+		String extradate2 = mrequest.getParameter("extradate2");								//추가 수정(옵션)
 		
 		System.out.println(images);
 		//request를 가져오려했는데 이미 요청받는 request와 겹쳐서 requesttobuyer로 받았음

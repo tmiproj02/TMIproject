@@ -8,6 +8,7 @@ public class Seller implements Serializable {
 
 	private int sno;					//판매자번호(PK)
     private int mno;					//회원 번호(FK)
+    private String abletime;			//연락가능시간
     private String bankname;			//계좌은행
     private String banknumber;			//계좌번호
     private int income;					//수익금
@@ -31,10 +32,11 @@ public class Seller implements Serializable {
 	}
 
     //사용자가 직접 입력하는 것을 따로 받음
-	public Seller(int mno, String bankname, String banknumber, String careerdate1, String careerdate2, String careerdate3,
+	public Seller(int mno, String abletime, String bankname, String banknumber, String careerdate1, String careerdate2, String careerdate3,
 			String career1, String career2, String career3, String certificat1, String certificat2, String certificat3, String introtext) {
 		super();
 		this.mno=mno;
+		this.abletime=abletime;
 		this.bankname = bankname;
 		this.banknumber = banknumber;
 		this.careerdate1 = careerdate1;
@@ -49,12 +51,13 @@ public class Seller implements Serializable {
 		this.introtext = introtext;
 	}
 
-	public Seller(int sno, int mno, String bankname, String banknumber, int income, String careerdate1,
+	public Seller(int sno, int mno, String abletime, String bankname, String banknumber, int income, String careerdate1,
 			String careerdate2, String careerdate3, String career1, String career2, String career3, String certificat1,
 			String certificat2, String certificat3, String introtext, int cpcount, int sevaluation) {
 		super();
 		this.sno = sno;
 		this.mno = mno;
+		this.abletime=abletime;
 		this.bankname = bankname;
 		this.banknumber = banknumber;
 		this.income = income;
@@ -72,22 +75,26 @@ public class Seller implements Serializable {
 		this.sevaluation = sevaluation;
 	}
 
+
 	//객체 이름으로 모든 내용 조회하기
 	@Override
 	public String toString() {
-		return "Seller [sno=" + sno + ", mno=" + mno + ", bankname=" + bankname + ", banknumber=" + banknumber
-				+ ", income=" + income + ", careerdate1=" + careerdate1 + ", careerdate2=" + careerdate2
-				+ ", careerdate3=" + careerdate3 + ", career1=" + career1 + ", career2=" + career2 + ", career3="
-				+ career3 + ", certificat1=" + certificat1 + ", certificat2=" + certificat2 + ", certificat3="
-				+ certificat3 + ", introtext=" + introtext + ", cpcount=" + cpcount + ", sevaluation=" + sevaluation
-				+ "]";
+		return "Seller [sno=" + sno + ", mno=" + mno + ", abletime=" + abletime + ", bankname=" + bankname
+				+ ", banknumber=" + banknumber + ", income=" + income + ", careerdate1=" + careerdate1
+				+ ", careerdate2=" + careerdate2 + ", careerdate3=" + careerdate3 + ", career1=" + career1
+				+ ", career2=" + career2 + ", career3=" + career3 + ", certificat1=" + certificat1 + ", certificat2="
+				+ certificat2 + ", certificat3=" + certificat3 + ", introtext=" + introtext + ", cpcount=" + cpcount
+				+ ", sevaluation=" + sevaluation + "]";
 	}
-
+	
 	
 	//필드 변수에 대한 Getter Setter
 	public int getSno() {
 		return sno;
 	}
+
+
+	
 
 	public void setSno(int sno) {
 		this.sno = sno;
@@ -100,7 +107,16 @@ public class Seller implements Serializable {
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
+	
+	public String getAbletime() {
+		return abletime;
+	}
 
+	public void setAbletime(String abletime) {
+		this.abletime = abletime;
+	}
+
+	
 	public String getBankname() {
 		return bankname;
 	}

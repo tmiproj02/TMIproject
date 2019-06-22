@@ -34,9 +34,9 @@ public class SellerboardService {
 		return result;
 	}
 
-	public ArrayList<SellerBoard> selectList(int currentPage, int pageLimit, int boardLimit) {
+	public ArrayList<SellerBoard> selectList(int currentPage, int pageLimit, int boardLimit, String cCode, String code) {
 		con = getConnection();
-		ArrayList<SellerBoard> list = sbDao.selectList(con,currentPage,pageLimit,boardLimit);
+		ArrayList<SellerBoard> list = sbDao.selectList(con,currentPage,pageLimit,boardLimit,cCode,code);
 		close(con);
 		
 		

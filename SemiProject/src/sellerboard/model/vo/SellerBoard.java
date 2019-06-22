@@ -27,13 +27,14 @@ public class SellerBoard implements Serializable {
 	private int adexpire; 					//광고 만료일
 	private Date bdate; 					//작성일
 	private String state; 					//진행 상태
-	private int extradate1; 				//빠른 작업 일수
-	private int extradate2; 				//추가 수정 회수
+	private String extradate1; 				//빠른 작업 일수
+	private String extradate2; 				//추가 수정 회수
 	private int nickName;
 	private Date dealdateB;					//구매내역 조회할 때 사용할 겁니다:) (구매날짜입니당)
 	private int dmcode;						//'' (주문번호)
 	private int mno;						//구매자
 	private String introtext;			//seller소개
+	
 	public String getIntrotext() {
 		return introtext;
 	}
@@ -77,8 +78,8 @@ public class SellerBoard implements Serializable {
 	
 	public SellerBoard(int bno, int sno, String btitle, String bcontent, String erecontent, String request,
 			String category1_code, String category2_code, int price, int bevaluation, String images, int editablecount,
-			int duedate, int speed, int plusedit, String ad, int adexpire, Date bdate, String state, int extradate1,
-			int extradate2) {
+			int duedate, int speed, int plusedit, String ad, int adexpire, Date bdate, String state, String extradate1,
+			String extradate2) {
 		super();
 		this.bno = bno;
 		this.sno = sno;
@@ -103,9 +104,17 @@ public class SellerBoard implements Serializable {
 		this.extradate2 = extradate2;
 	}
 	
+	public SellerBoard(String btitle, int price, String images, Date dealdateB) {
+	      super();
+	      this.btitle = btitle;
+	      this.price = price;
+	      this.images = images;
+	      this.dealdateB = dealdateB;
+	   }
+	
 	//사용자가 직접 입력하는 것을 따로 받음
 	public SellerBoard(String btitle, String bcontent, String erecontent, String request, String category1_code,
-			String category2_code, int price, String images, int editablecount, int duedate, int speed, int plusedit, int extradate1, int extradate2) {
+			String category2_code, int price, String images, int editablecount, int duedate, int speed, int plusedit, String extradate1, String extradate2) {
 		super();
 		this.btitle = btitle;
 		this.bcontent = bcontent;
@@ -335,19 +344,19 @@ public class SellerBoard implements Serializable {
 
 	}
 
-	public void setExtradate1(int extradate1) {
+	public void setExtradate1(String extradate1) {
 		this.extradate1 = extradate1;
 	}
 
-	public int getExtradate1() {
+	public String getExtradate1() {
 		return extradate1;
 	}
 
-	public int getExtradate2() {
+	public String getExtradate2() {
 		return extradate2;
 	}
 
-	public void setExtradate2(int extradate2) {
+	public void setExtradate2(String extradate2) {
 		this.extradate2 = extradate2;
 	}
 	
