@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <!-- bootstrap css 파일 추가하기 -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
