@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 		
 		MemberService ms = new MemberService();
 		
-		try {
+		try { 
 			m = ms.selectMemeber(m);
 			
 			// 관리자 계정일 경우 관리자 페이지로 보낸다.

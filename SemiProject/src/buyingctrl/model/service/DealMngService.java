@@ -6,7 +6,6 @@ import buyingctrl.model.dao.DealMngDao;
 import buyingctrl.model.exception.buyingctrlException;
 import buyingctrl.model.vo.DealMng;
 import member.model.vo.Member;
-import sellerboard.model.vo.SellerBoard;
 
 import static member.common.JDBCTemplete.*;
 
@@ -17,13 +16,12 @@ public class DealMngService {
 	private DealMngDao dmDao = new DealMngDao();
 	
 	//전체 구매 내역 조회
-	public ArrayList<SellerBoard> nrselectList(Member m) throws buyingctrlException {
+	public ArrayList<DealMng> nrselectList(Member m) throws buyingctrlException {
 
 		con = getConnection();
 
-		ArrayList<SellerBoard> nreqList = dmDao.nrqselectList(con, m);
+		ArrayList<DealMng> nreqList = dmDao.nrqselectList(con, m);
 		System.out.println("구매전체조회service : " + nreqList);
-		
 		close(con);
 		
 		return nreqList;
@@ -71,6 +69,23 @@ public class DealMngService {
 		close(con);
 		
 		return ccList;
+	}
+
+
+	//구매 전체 내역에서 검색
+	public ArrayList<DealMng> searchAllList(String keyword, Member m) throws buyingctrlException {
+		
+		con = getConnection();
+		System.out.println("keyword service : " + keyword);
+		ArrayList<DealMng> nreqList = null;
+		
+		nreqList = dmDao.searchAllList(con, keyword, m);
+		
+		
+		return nreqList;
+		
+		
+		
 	}
 
 

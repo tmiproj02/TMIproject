@@ -9,10 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+
 import buyingctrl.model.exception.buyingctrlException;
 import buyingctrl.model.vo.DealMng;
 import member.model.vo.Member;
-import sellerboard.model.vo.SellerBoard;
 
 import static member.common.JDBCTemplete.*;
 
@@ -20,6 +20,9 @@ import static member.common.JDBCTemplete.*;
 public class DealMngDao {
 
 	private Properties prop;
+	private String progressing = "진행중";
+	private String fin = "완료";
+	private String cc = "취소";
 	
 	public DealMngDao() {
 		prop = new Properties();
@@ -45,36 +48,41 @@ public class DealMngDao {
 
 	
 	//전체 구매내역 조회
-	public ArrayList<SellerBoard> nrqselectList(Connection con, Member m) throws buyingctrlException {
+	public ArrayList<DealMng> nrqselectList(Connection con, Member m) throws buyingctrlException {
 		
-		ArrayList<SellerBoard> nreqList = null;
+		ArrayList<DealMng> nreqList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("nreqselectList");
 		
-		try {			
-			nreqList = new ArrayList<SellerBoard>();
-			
+		try {
+			nreqList = new ArrayList<DealMng>();
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, m.getMno());
 			
 			rset = pstmt.executeQuery();
-			
+			System.out.println(m.getMno());
 			while(rset.next()) {
-				SellerBoard sb = new SellerBoard();
+				DealMng dm = new DealMng();
 				
-				sb.setImages(rset.getString("images"));
-				System.out.println("1");
-				sb.setBtitle(rset.getString("btitle"));
-				System.out.println("2");
-				sb.setPrice(rset.getInt("price"));
-				System.out.println("4");
+				dm.setImages(rset.getString(1));
+				dm.setDmcode(rset.getInt(2));
+				dm.setBtitle(rset.getString(3));
+				dm.setDealdate(rset.getDate(4));
+				dm.setNickname(rset.getString(5));
+				dm.setPrice(rset.getInt(6));
+				
+				dm.setMno(rset.getInt(7));
+				
+				dm.setProgress(rset.getString(8));
 				
 				
-				nreqList.add(sb);
-				System.out.println("요구사항 없는 구매내역 조회 리스트(DealMngDao) : "+ nreqList);
+				
+				
+				nreqList.add(dm);
+				System.out.println("구매 내역 전체 조회 리스트(DealMngDao) : "+ nreqList);
 				
 			}
 			
@@ -108,23 +116,27 @@ public class DealMngDao {
 		try {
 			dingList = new ArrayList<DealMng>();
 			
+			
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, m.getMno());
-			pstmt.setString(2, "진행중");
+			pstmt.setString(2, progressing);
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				DealMng dm = new DealMng();
 				
-				dm.setImages(rset.getString("images"));
-				dm.setBtitle(rset.getString("btitle"));
-				dm.setPrice(rset.getInt("price"));
-				dm.setDmcode(rset.getInt("dmcode"));
-				dm.setDealdate(rset.getDate("dealdate"));
-				dm.setNickname(rset.getString("nickname"));
+				dm.setImages(rset.getString(1));
+				dm.setDmcode(rset.getInt(2));
+				dm.setBtitle(rset.getString(3));
+				dm.setDealdate(rset.getDate(4));
+				dm.setNickname(rset.getString(5));
+				dm.setPrice(rset.getInt(6));
 				
+				dm.setMno(rset.getInt(7));
+				
+				dm.setProgress(rset.getString(8));
 				
 				dingList.add(dm);
 				System.out.println("진행중인 구매내역 조회 리스트(DealMngDao) : "+ dingList);
@@ -161,19 +173,23 @@ public class DealMngDao {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, m.getMno());
-			pstmt.setString(2, "완료");
+			pstmt.setString(2, fin);
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				DealMng dm = new DealMng();
 				
-				dm.setImages(rset.getString("images"));
-				dm.setBtitle(rset.getString("btitle"));
-				dm.setPrice(rset.getInt("price"));
-				dm.setDmcode(rset.getInt("dmcode"));
-				dm.setDealdate(rset.getDate("dealdate"));
-				dm.setNickname(rset.getString("nickname"));
+				dm.setImages(rset.getString(1));
+				dm.setDmcode(rset.getInt(2));
+				dm.setBtitle(rset.getString(3));
+				dm.setDealdate(rset.getDate(4));
+				dm.setNickname(rset.getString(5));
+				dm.setPrice(rset.getInt(6));
+				
+				dm.setMno(rset.getInt(7));
+				
+				dm.setProgress(rset.getString(8));
 				
 				
 				finList.add(dm);
@@ -215,19 +231,23 @@ public class DealMngDao {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, m.getMno());
-			pstmt.setString(2, "취소");
+			pstmt.setString(2, cc);
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				DealMng dm = new DealMng();
 				
-				dm.setImages(rset.getString("images"));
-				dm.setBtitle(rset.getString("btitle"));
-				dm.setPrice(rset.getInt("price"));
-				dm.setDmcode(rset.getInt("dmcode"));
-				dm.setDealdate(rset.getDate("dealdate"));
-				dm.setNickname(rset.getString("nickname"));
+				dm.setImages(rset.getString(1));
+				dm.setDmcode(rset.getInt(2));
+				dm.setBtitle(rset.getString(3));
+				dm.setDealdate(rset.getDate(4));
+				dm.setNickname(rset.getString(5));
+				dm.setPrice(rset.getInt(6));
+				
+				dm.setMno(rset.getInt(7));
+				
+				dm.setProgress(rset.getString(8));
 				
 				
 				ccList.add(dm);
@@ -254,6 +274,53 @@ public class DealMngDao {
 		
 		
 		
+	}
+
+	//구매 전체 내역에서 검색
+	public ArrayList<DealMng> searchAllList(Connection con, String keyword, Member m) throws buyingctrlException {
+		
+		ArrayList<DealMng> nreqList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searAllselect");
+		
+		try {
+			
+			nreqList = new ArrayList<DealMng>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, m.getMno());
+			pstmt.setString(2, keyword);
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				DealMng dm = new DealMng();
+				
+				dm.setImages(rset.getString(1));
+				dm.setDmcode(rset.getInt(2));
+				dm.setBtitle(rset.getString(3));
+				dm.setDealdate(rset.getDate(4));
+				dm.setNickname(rset.getString(5));
+				dm.setPrice(rset.getInt(6));
+				
+				dm.setMno(rset.getInt(7));
+				
+				dm.setProgress(rset.getString(8));
+				
+				nreqList.add(dm);
+				System.out.println("검색 내용(DealMngDao) : " + nreqList);
+				System.out.println("키워드!!!!!!!!!!!!!");
+			
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new buyingctrlException(e.getMessage());
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return nreqList;
 	}
 
 

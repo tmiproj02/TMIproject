@@ -149,7 +149,27 @@ public class SellerBoard implements Serializable {
 		this.state = state;
 	}
 
+	
 
+	//구매내역 전체 조회
+	public SellerBoard(int bno, int sno, String btitle, int price, String images, Date dealdateB, int dmcode, int mno) {
+		super();
+		this.bno = bno;
+		this.sno = sno;
+		this.btitle = btitle;
+		this.price = price;
+		this.images = images;
+		this.dealdateB = dealdateB;
+		this.dmcode = dmcode;
+		this.mno = mno;
+	}
+	public SellerBoard(String btitle, int price, String images, Date dealdateB) {
+		super();
+		this.btitle = btitle;
+		this.price = price;
+		this.images = images;
+		this.dealdateB = dealdateB;
+	}
 
 	@Override
 	public String toString() {
