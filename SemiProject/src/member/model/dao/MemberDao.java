@@ -126,7 +126,7 @@ public class MemberDao {
 					result.setCash(rset.getInt("cash"));
 					result.setIsSeller(rset.getString("isSeller"));
 					result.setProfileImage(rset.getString("profileimage"));
-					result.setCallTime(rset.getString("callTime"));
+					
 					result.setIsAlive(rset.getString("isAlive"));
 					result.setCoupon(rset.getString("coupon"));
 					

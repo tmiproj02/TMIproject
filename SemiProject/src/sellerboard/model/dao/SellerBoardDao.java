@@ -132,13 +132,18 @@ public class SellerBoardDao {
 	}
 
 
-	public ArrayList<SellerBoard> selectList(Connection con, int currentPage, int pageLimit, int boardLimit) {
+	public ArrayList<SellerBoard> selectList(Connection con, int currentPage, int pageLimit, int boardLimit, String cCode, String code) {
 		ArrayList<SellerBoard> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectList");
+		String sql = null;
+		if(code.equals("0")) {
+			sql = prop.getProperty("selectList");
+		} else {
+			sql = prop.getProperty("selectList2");
+		}
 		try {
+			
 			pstmt = con.prepareStatement(sql);
 		
 			int startRow = (currentPage - 1)*boardLimit +1;
@@ -148,8 +153,17 @@ public class SellerBoardDao {
 			System.out.println(endRow);
 			
 			
-			pstmt.setInt(1, endRow);
-			pstmt.setInt(2, startRow);
+			if(code.equals("0")) {
+				pstmt.setString(1, cCode);
+				pstmt.setInt(2, endRow);
+				pstmt.setInt(3, startRow);
+			} else {
+				pstmt.setString(1, cCode);
+				pstmt.setString(2, code);
+				pstmt.setInt(3, endRow);
+				pstmt.setInt(4, startRow);
+			}
+					
 			
 			rset=pstmt.executeQuery();
 			
