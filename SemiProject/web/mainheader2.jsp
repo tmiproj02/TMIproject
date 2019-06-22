@@ -216,7 +216,7 @@
 					      <div class="swiper-slide"><img src="/semi/resources/images/ad.PNG" style="width:650px; height:280px;"></div>
 					      <div class="swiper-slide"><img src="/semi/resources/images/ad1.PNG" style="width:650px; height:245px;"></div>
 					      <div class="swiper-slide"><img src="/semi/resources/images/ad2.PNG" style="width:650px; height:256px;"></div>
-					    </div>
+					    </div> 
 					    <!-- Add Pagination -->
 					    <div class="swiper-pagination"></div>
 					    <!-- Add Arrows -->
