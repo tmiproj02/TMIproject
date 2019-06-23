@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import seller.model.dao.SellerDao;
+import seller.model.exception.SellerException;
 import sellerboard.model.exception.SellerboardException;
 import sellerboard.model.vo.SellerBoard;
 
@@ -43,7 +44,7 @@ public class SellerBoardDao {
 	}
 		
 		
-	public int insertSellerboard(Connection con, SellerBoard sb,int sno) throws SellerboardException{
+	public int insertSellerboard(Connection con, SellerBoard sb) throws SellerboardException{
 		// 결과 확인을 위한 변수 result 생성
 		int result = 0;
 				
@@ -60,6 +61,7 @@ public class SellerBoardDao {
 			
 			
 			System.out.println("값을 잘전달받는지 확인하기위함");
+			System.out.println("SNO :"+sb.getSno());					//판매자번호
 			System.out.println("제목 :"+sb.getBtitle());					//제목
 			System.out.println("상세설명 :"+sb.getBcontent());				//상세 설명
 			System.out.println("수정및 재진행 :"+sb.getErecontent());				//수정 및 재진행 안내
@@ -76,7 +78,7 @@ public class SellerBoardDao {
 			System.out.println("추가수정세부 :"+sb.getExtradate2());
 			
 			// ? 에 해당하는 값을 추가 함
-			pstmt.setInt(1, sno);					//sno
+			pstmt.setInt(1, sb.getSno());					//sno
 			pstmt.setString(2, sb.getBtitle());					//제목
 			pstmt.setString(3, sb.getBcontent());				//상세 설명
 			pstmt.setString(4, sb.getErecontent());				//수정 및 재진행 안내
@@ -205,6 +207,39 @@ public class SellerBoardDao {
 			close(pstmt);	
 		}		
 		return list;
+	}
+
+
+	public int findSno(Connection con, String email) throws SellerboardException {
+		int result = 0; // 결과를 담을 객체
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; // Select의 결과를 담은 객체
+		
+		try {
+			String sql = prop.getProperty("findSno");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			//쿼리를 수행하고 그 결과 받아오기
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result=rset.getInt("SNO");
+				System.out.println("Dao에서 Sno를 잘받아왓는지 값 확인"+rset.getInt("SNO"));
+				//여기까지 문제없이 DB에서 값을 가져왔다.
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SellerboardException(e.getMessage());
+		} finally {
+			// DB 객체를 반환하는 순서는
+			// 선언의 순서와 반드시 정 반대가 되어야 한다.
+			close(rset);
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

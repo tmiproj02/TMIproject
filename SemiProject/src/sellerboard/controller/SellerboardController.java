@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -16,6 +17,9 @@ import sellerboard.model.service.SellerboardService;
 import sellerboard.model.vo.SellerBoard;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import member.model.vo.Member;
+import seller.model.vo.Seller;
 
 
 
@@ -43,12 +47,31 @@ public class SellerboardController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType(" text/html; charset=UTF-8"); 
 		
+		//판매자의 번호를 받아오기 위하여 세션을 가져오고 거기서 끌어오는 방식
+		HttpSession session = request.getSession();
+		//Seller s = (Seller)session.getAttribute("seller");
+		Member m = (Member)session.getAttribute("member");
+		
+		int sno = 0;
+
+		//email을 가지고 sno까지 간다.
+		String email = m.getEmail();
+		System.out.println("Sellerboard의 email : " + email);
+		
+		try {
+			sno= new SellerboardService().findSno(email);
+		} catch(SellerboardException e) {
+			request.setAttribute("msg", "판매자번호 가져오는 도중에 에러발생했어");
+			request.setAttribute("exception", e);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+		
+		
 		//IMG 처리 부분
 		//IMG를 처리하기전에 cos.jar을 라이브러리에 넣어줘야 한다.
 		// 1. 전송할 파일 크기 설정하기
 		int maxSize = 1024*1024*10;	//10MB
-		int sno = Integer.parseInt(request.getParameter("sno"));
-		System.out.println(sno);
+		
 		//2. multipart/form-data 형식으로 전송되었는지 확인!
 		if(!ServletFileUpload.isMultipartContent(request)) {	//MultipartContent 형식으로 전달이 되지 않았느냐?
 			//만약 올바른  multipart/form-data로 전송되지 않았을 경우 에러페이지로 즉시 이동시킨다.
@@ -96,13 +119,13 @@ public class SellerboardController extends HttpServlet {
 		//이미지 이름을 가져오기
 		System.out.println("이미지 이름 :"+mrequest.getFilesystemName(images));
 		
-		SellerBoard sb = new SellerBoard(btitle, bcontent, erecontent, requesttobuyer, category1_code, category2_code, price, images, editablecount, duedate, speed, plusedit,extradate1,extradate2);
+		SellerBoard sb = new SellerBoard(sno, btitle, bcontent, erecontent, requesttobuyer, category1_code, category2_code, price, images, editablecount, duedate, speed, plusedit,extradate1,extradate2);
 		
 		SellerboardService sbs = new SellerboardService();
 		
 		
 		try {
-			sbs.insertsellerBoard(sb,sno);
+			sbs.insertsellerBoard(sb);
 			System.out.println("판매서비스 등록완료");
 		
 			response.sendRedirect("views/seller/SellerboardComplete.jsp");

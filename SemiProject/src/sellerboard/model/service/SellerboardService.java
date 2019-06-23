@@ -13,10 +13,10 @@ public class SellerboardService {
 	private Connection con;
 	private SellerBoardDao sbDao = new SellerBoardDao();
 	
-	public int insertsellerBoard(SellerBoard sb,int sno) throws SellerboardException{
+	public int insertsellerBoard(SellerBoard sb) throws SellerboardException{
 		//Dao = data access object
 				con = getConnection();
-				int result = sbDao.insertSellerboard(con,sb,sno);
+				int result = sbDao.insertSellerboard(con,sb);
 				//실행하면 숫자가 나오는데 숫자만 돌려주면 된다.		
 				
 				if(result>0) commit(con);
@@ -41,6 +41,20 @@ public class SellerboardService {
 		
 		
 		return list;
+	}
+
+	public int findSno(String email) throws SellerboardException {
+		con = getConnection();
+		
+		int result = sbDao.findSno(con, email);
+		
+		close(con);
+		
+		System.out.println("SellerService에서 값 잘받아왔는지 확인" + result);
+		
+		if(result == 0) throw new SellerboardException("Sno를 가져오는 과정에서 문제발생");
+		
+		return result;
 	}
 
 }

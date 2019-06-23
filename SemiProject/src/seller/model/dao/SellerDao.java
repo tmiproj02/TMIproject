@@ -44,10 +44,12 @@ public class SellerDao {
 		int result = 0;
 				
 		PreparedStatement pstmt = null;
+		
 				
 		try {
 			// 준비할 쿼리문 작성하기
 			String sql = prop.getProperty("insertSeller");
+			
 			
 			//1. PreparedStatement 객체 생성하기 pstmt는 실행 전에 반드시 쿼리 양식을 들고 있어야 한다.
 			//그래서 미리 작성을함 문제는 입력값이 아주 많은데 한꺼번에 다 받아야 하기 때문에 주의가 필요하다.
@@ -150,7 +152,6 @@ public class SellerDao {
 				result=rset.getInt("MNO");
 				System.out.println("Dao에서 Mno를 잘받아왓는지 값 확인"+rset.getInt("MNO"));
 				//여기까지 문제없이 DB에서 값을 가져왔다.
-				
 			}
 			
 			
@@ -163,9 +164,32 @@ public class SellerDao {
 			close(rset);
 			close(pstmt);
 		}
+		return result;
+	}
+
+	public int changeIsseller(Connection con, int mno) throws SellerException{
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		//System.out.println("isSeller DAO 무사히 접근 받은 mno는"+mno);
 		
-		
-		
+		try {
+			String sql = prop.getProperty("changeIsSeller");
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			result = pstmt.executeUpdate();
+			
+			//System.out.println("DAO에서 끝난 mno값"+mno);
+		} catch (SQLException e) {
+			 
+			e.printStackTrace();
+			throw new SellerException(e.getMessage());
+			
+		} finally {
+			close(pstmt);
+		}
 		
 		return result;
 	}

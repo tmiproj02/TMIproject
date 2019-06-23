@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.model.service.MemberService;
 import member.model.vo.Member;
 
 import seller.model.exception.SellerException;
@@ -82,7 +81,7 @@ public class SellerRegistration extends HttpServlet {
 		try {
 			ss.insertSeller(s);
 			System.out.println("판매자 등록완료");
-			
+			ss.changeIsseller(mno);
 			response.sendRedirect("views/seller/SellerComplete.jsp");
 		} catch(SellerException e){
 			request.setAttribute("msg", "판매자 등록 중 에러가 발생했어");
@@ -90,8 +89,6 @@ public class SellerRegistration extends HttpServlet {
 			
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-	
-		
 	}
 
 	/**
