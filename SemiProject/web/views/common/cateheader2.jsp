@@ -305,7 +305,11 @@ nav{
                     </div>
                     <div class="right-head paddinghead">
                         <div class="info">
-                            <div class="padding-20px"><a href="/">판매 시작하기</a></div>
+                            <%if(s == null){ %>
+                            	<div class="padding-20px"><a href="/semi/views/seller/SellerRegistration.jsp">판매 시작하기</a></div>
+                            <%}else{ %>
+                            	<div class="padding-20px"><a href="/semi/views/seller/ServiceRegistration.jsp">판매 시작하기</a></div>
+                            <%} %>
                             <div class="padding-15px"><a style="cursor:pointer;" onclick="nrequest();">구매</a></div>
                             <div class="padding-15px"><a href="/">메시지</a></div>
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>

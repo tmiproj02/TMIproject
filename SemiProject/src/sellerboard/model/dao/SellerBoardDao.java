@@ -248,7 +248,7 @@ public class SellerBoardDao {
 				b.setAdexpire(rset.getInt("ADEXPIRE"));
 				b.setBdate(rset.getDate("BDATE"));
 				b.setState(rset.getString("STATE"));
-				System.out.println(b);
+				
 				
 				list.add(b);
 			}

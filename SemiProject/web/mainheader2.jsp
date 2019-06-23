@@ -239,7 +239,7 @@
 </head>
 <body>
 <%@include file= "/views/common/faq.jsp"%>
-<%@include file= "/views/common/cateheader2.jsp"%>
+<%@include file= "/views/common/cateheader1.jsp"%>
 
 <%-- <% if(m == null){
   	response.sendRedirect("index.jsp");
