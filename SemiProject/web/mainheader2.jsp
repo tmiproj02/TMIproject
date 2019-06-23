@@ -98,6 +98,60 @@
 
 }
 .slider1{
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.sildercon{
+    float: left;
+    margin-right: 20px; 
+}
+.sildercon1{
+    float: left;
+    margin:0;
+}
+
+ .swiper-container {
+      width:650px;
+      height:230px;
+    }
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.container12{
+	width: 1200px;
+	margin: 0 auto;
+	
+	}
+.indexTitle1{
+    font-size: 16px;
+    margin-top: 100px;
+    color: #rgba(51, 51, 51, 0.801);
+
+}
+.indexTitle1 p{
+    font-size: 15px;
+    margin-top: 2px;
+    margin-bottom:-5px;
+    color: #rgba(51, 51, 51, 0.801);
+
+}
+.slider1{
     /* border: 1px solid #f00; */
     margin-top: 10px;
     display: inline-block;
@@ -112,36 +166,80 @@
     float: left;
     margin:0;
 }
-
- .swiper-container {
-      width:650px;
-      height:230px;
-    }
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
+.rank{
+    float: left;
+    background: #BDD4F2;
+    margin-top: 15px;
+    margin-right: 20px; 
+    border-radius: 10px;
+    width:384px;
     
+}
+.scontent2:nth-child(6){
+    border: none;
+}
+.rank1{
+    float: left;
+    background: #BDD4F2;
+    margin-top: 15px;
+    border-radius: 10px;
+    width:384px;
+     /* height: 350px; */
+     /* border: 1px solid #ccc; */
+    
+}
+.scontent1{
+	padding-top:14px;
+}
+.scontent1 p{
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;  
+    color: #333;  
+}
+.first{
+    margin: 15px 15px;
+    background: rgba(255, 255, 255, 0.733);
+    border-radius: 10px;
+}
 
+.firstimg{
+    float: left;
+    margin-left: 10px;
+}
+.firsttext{
+    float: left;
+    text-align: center;
+    margin: 10px;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.scontent2{
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    padding: 11px 0;
+    /* height:47px; */
+    margin: 0 auto;
+    
+}
+.scontent2 p{
+    display: inline-block;
+    padding-left: 50px;
+    padding-right: 30px;
+    /* margin-top: 10px; */
+}
+    .clearFix::after{
+    content: '';
+    clear: both;
+    display: block;
+}
 </style>
 </head>
 <body>
 <%@include file= "/views/common/faq.jsp"%>
-<%@include file= "/views/common/cateheader1.jsp"%>
+<%@include file= "/views/common/cateheader2.jsp"%>
 
 <%-- <% if(m == null){
   	response.sendRedirect("index.jsp");
@@ -718,7 +816,153 @@
             </div>
         </div>
 		
+		 
+            <div class="container12">
+                <div class="indexTitle1">
+                    <b>TOP 카테고리 전문가 랭킹</b> 
+                    <p>TMI에서 가장 많이 판매한 인기 전문가 랭킹 입니다.</p> 
+                </div>
+            
+
+            <div class="slider1 clearFix">
+                    <div class="rank">                
+                        <div class="sheader2">
+                        <div class="scontent1">
+                            <p><b>웹사이트 개발</b></p>
+                        </div>
+ 
+                        <div class="first clearFix">
+                            <div class="firstimg">
+                                <img src="/semi/resources/images/medal.png" style="width:70px; height:90px;">
+                            </div>
+                            <div class="firsttext">
+                                <p>총 판매 금액</p>
+                                <p>20000원</p>
+                                <p>아이디</p>
+                            </div>
+                        </div>
+                        
+                            <div class="scontent2">    
+                                <p>2위</p>
+                                <p>1000원</p>
+                                <p>아이디</p>                            
+                            </div>
+
+                            <div class="scontent2">                            
+                                <p>3위</p>
+                                <p>1000원</p>
+                                <p>아이디</p>                            
+                            </div>
+
+                            <div class="scontent2">                            
+                                <p>4위</p>
+                                <p>1000원</p>
+                                <p>아이디</p>                        
+                            </div>
+
+                            <div class="scontent2">
+                                <p>5위</p>
+                                <p>1000원</p>
+                                <p>아이디</p>
+                            </div>
+                            
+                            </div>
+                        
+                        </div>                                
+                    
+                    <div class="rank">
+                           <div class="sheader2">
+                        <div class="scontent1">
+                            <p><b>자소서/이력서</b></p>
+                        </div>
+ 
+                        <div class="first clearFix">
+                            <div class="firstimg">
+                                    <img src="/semi/resources/images/medal.png" style="width:70px; height:90px;">
+                            </div>
+                            <div class="firsttext">
+                                <p>총 판매 금액</p>
+                                <p>20000원</p>
+                                <p>아이디</p>
+                            </div>
+                        </div>
+                        
+                            <div class="scontent2">    
+                                <p>2위</p>
+                                <p>1000원</p>
+                                <p>아이디</p>                            
+                            </div>
+
+                            <div class="scontent2">                            
+                                <p>3위</p>
+                                <p>1000원</p>
+                                <p>아이디</p>                            
+                            </div>
+
+                            <div class="scontent2">                            
+                                <p>4위</p>
+                                <p>1000원</p>
+                                <p>아이디</p>                        
+                            </div>
+
+                            <div class="scontent2">
+                                <p>5위</p>
+                                <p>1000원</p>
+                                <p>아이디</p>
+                            </div>
+                            
+                            </div>
+                        </div>
+
+                        <div class="rank1">
+                            <div class="sheader2">
+                                <div class="scontent1">
+                                    <p><b>푸드</b></p>
+                                </div>
+            
+                                <div class="first clearFix">
+                                    <div class="firstimg">
+                                            <img src="/semi/resources/images/medal.png" style="width:70px; height:90px;">
+                                    </div>
+                                    <div class="firsttext">
+                                        <p>총 판매 금액</p>
+                                        <p>20000원</p>
+                                        <p>아이디</p>
+                                    </div>
+                                </div>
+                                
+                                    <div class="scontent2">    
+                                        <p>2위</p>
+                                        <p>1000원</p>
+                                        <p>아이디</p>                            
+                                    </div>
+        
+                                    <div class="scontent2">                            
+                                        <p>3위</p>
+                                        <p>1000원</p>
+                                        <p>아이디</p>                            
+                                    </div>
+        
+                                    <div class="scontent2">                            
+                                        <p>4위</p>
+                                        <p>1000원</p>
+                                        <p>아이디</p>                        
+                                    </div>
+        
+                                    <div class="scontent2">
+                                        <p>5위</p>
+                                        <p>1000원</p>
+                                        <p>아이디</p>
+                                    </div>
+                         </div>
+
+                </div>
+            </div>
+     
 		
+		
+		
+	</div>
 	</div>
 </div>
 

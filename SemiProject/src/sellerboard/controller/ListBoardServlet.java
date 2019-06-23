@@ -86,7 +86,7 @@ public class ListBoardServlet extends HttpServlet {
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit, maxPage, startPage, endPage);
 			request.setAttribute("pi", pi);
-					
+			request.setAttribute("code", code);		
 		}else {
 			page="views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 목록 조회 실패");

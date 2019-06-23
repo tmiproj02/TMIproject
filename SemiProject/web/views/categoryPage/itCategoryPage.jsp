@@ -4,6 +4,7 @@
 <%
 	ArrayList<SellerBoard> list = (ArrayList<SellerBoard>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	String code = (String)request.getAttribute("code");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
@@ -452,27 +453,27 @@ z-index: 2;
 				
 				<div class="paging">
  
-				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=1&cate=itCategoryPage" class="btn_arr first"><span class="hide">처음페이지</span></a>
+				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=1&cate=itCategoryPage&cCode=20&code=<%= code %>" class="btn_arr first"><span class="hide">처음페이지</span></a>
 				  <%if(currentPage<=1){ %>
 				  	<a class="btn_arr prev"><span class="hide">이전페이지</span></a>  
 				  <%} else{ %>          
-				  	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>&cate=itCategoryPage" class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+				  	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>&cate=itCategoryPage&cCode=20&code=<%= code %>" class="btn_arr prev"><span class="hide">이전페이지</span></a>  
 				  <%} %>   
 				  <%for(int p = startPage; p <= endPage; p++){
 						if(p==currentPage){  
 					%>
 				  	<a class="on"><%= p %></a>
 				  	<%}else{ %>
-				  	<a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>&cate=itCategoryPage"><%=p%></a>
+				  	<a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>&cate=itCategoryPage&cCode=20&code=<%= code %>"><%=p%></a>
 				  	<%}
 				  	}	
 				  	%>
 				  <%if(currentPage>=maxPage){ %>
 				  	<a class="btn_arr next"><span class="hide">다음페이지</span></a>
 				  <%}else{ %>
-				 	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>&cate=itCategoryPage" class="btn_arr next"><span class="hide">다음페이지</span></a> 
+				 	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>&cate=itCategoryPage&cCode=20&code=<%= code %>" class="btn_arr next"><span class="hide">다음페이지</span></a> 
 				  <%} %>           
-				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=maxPage %>&cate=itCategoryPage" class="btn_arr last"><span class="hide">마지막페이지</span></a>
+				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=maxPage %>&cate=itCategoryPage&cCode=20&code=<%= code %>" class="btn_arr last"><span class="hide">마지막페이지</span></a>
 				             
 				</div>
 			</div>			

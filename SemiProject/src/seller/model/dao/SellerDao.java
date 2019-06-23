@@ -113,9 +113,12 @@ public class SellerDao {
 			
 			result = new Seller();
 			if(rset.next()) {
-				
-				result.setIncome(rset.getInt("INCOME"));
-				
+				result.setSno(rset.getInt("SNO"));
+				result.setMno(rset.getInt("MNO"));
+				result.setAbletime(rset.getString("CALLTIME"));
+				result.setBankname(rset.getString("BANKNAME"));
+				result.setBanknumber(rset.getString("BANKNUMBER"));
+				result.setIncome(rset.getInt("INCOME"));		
 			}
 			
 			

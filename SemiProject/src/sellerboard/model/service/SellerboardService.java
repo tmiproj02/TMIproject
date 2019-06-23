@@ -43,4 +43,12 @@ public class SellerboardService {
 		return list;
 	}
 
+	public ArrayList<SellerBoard> myBoardSelect(int sno) throws SellerboardException {
+		con=getConnection();
+		ArrayList<SellerBoard> list = sbDao.myBoardSelect(con,sno);
+		close(con);
+		
+		return list;
+	}
+
 }

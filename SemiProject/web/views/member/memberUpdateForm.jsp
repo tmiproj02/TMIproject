@@ -6,69 +6,75 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <title>회원 정보 수정 페이지</title>
 <style>
-	nav, section {
-        float: left;
-    }
+*{
+font-family: 'Noto Sans KR', sans-serif;
+}
+.section1{
+	margin: 0 auto;
+}
+.section2{
+	margin: 0 auto;
+	width:550px;
+}
+.section3{
+	margin:0 auto;
+	margin-left:30px;
+	margin-top : 50px;
+	margin-bottom: 30px;
+}
+.section4{
+	margin:0 auto;
+	padding:25px;
+	margin-left:30px;
+}
+.section3>h3{
+font-family: 'Noto Sans KR', sans-serif;
+}
+.section4>table{
+display:inline-block;
+}
+.edit1>div{
+padding:10px 20px;
+}
 
 </style>
 <script src="/semi/resources/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<%@ include file="../common/cateheader1.jsp" %>
-	
-	
-	<section>
-	<h3>기본 정보</h3>
-	
-	<form id="mUpdate" action="/semi/mUpdate.do" method="post">
-		<table>
-			
-			<tr>
-				<td>이메일 : </td>
-				<td><%= m.getEmail() %></td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<td>변경할 PWD : </td>
-				<td><input type="password" name="userPwd" id="userPwd"/></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>변경할 PWD 확인 : </td>
-				<td><input type="password" name="userPwd2" id="userPwd2"/></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td colspan="3" id="result"></td>
-			</tr>
-			<tr>
-				<td>이름 : </td>
-				<td><%= m.getUserName() %></td>
-			</tr>
-			
-			<tr>
-				<td>연락처 : </td>
-				<td><input type="tel" name="phone" value="<%= m.getPhone()%>"/></td>
-				<td></td>
-			</tr>
+<%@ include file="../common/cateheader2.jsp" %>
+
+<div class="section1">
+	<div class="section2">
+		<div class="section3">
+			<h3>회원정보 수정</h3>
+		</div>
 		
-			<tr>
-				<td></td>
-				<td colspan = "2">
-					<input type="submit" value="회원 정보 수정"/>
-					&nbsp; &nbsp;
-					<input type="button" onclick="memberDel();" value="회원 탈퇴" />
-				</td>
-			</tr>
-		</table>
-	</form>
+		<div class="section4" style="width:450px; border: solid #E6E6E6 1px; border-radius: 5px;">
+		<form id="mUpdate" action="/semi/mUpdate.do" method="post">
+		
+			<div class="edit1" style="margin:8px;">
+				<div style="font-size:15px;">이메일 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= m.getEmail() %></div>
+				<div class="ui input" style="font-size:15px;">변경할 PWD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="userPwd" id="userPwd" style="width:200px; height:30px; border-radius:5px;"></div>
+				<div class="ui input" style="font-size:15px;">변경할 PWD 확인 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="userPwd2" id="userPwd2" style="width:200px; height:30px; border-radius:5px;"></div>
+				<div style="font-size:15px;">이름 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= m.getUserName() %></div>
+				<div class="ui input" style="font-size:15px;">연락처 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="tel" name="phone" value="<%= m.getPhone()%>" style="width:200px; height:30px; border-radius:5px;"></div>
+				<div><button class="ui button"><input type="submit" value="회원 정보 수정" style="border:none;"></button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					 <button class="ui button"><input type="button" onclick="memberDel();" value="회원 탈퇴" style="border:none;">
+				</div>
+			</div>
+		
+		</form>
+		
+		</div>
+		
+	</div>
+</div>
 	
-	<br><br>
-	
-	<a href="/semi/index.jsp">처음으로 돌아가기</a>
 	
 	<%@ include file="../common/footer.jsp" %>
 	
@@ -118,7 +124,6 @@
 			
 		}
 	</script>
-	</section>
 </body>
 </html>
 
