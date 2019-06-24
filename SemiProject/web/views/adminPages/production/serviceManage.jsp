@@ -57,10 +57,10 @@
           <div class="row tile_count">
          	 <div class="x_content">
 
-                    	<h3><b>서비스 관리</b></h3>
+                 <h3><b>서비스 관리</b></h3>
 				 <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
+                 <div class="x_panel">
+                 <div class="x_title">
                 
                     <h2 style="height:22px; margin: 3px 0px 3px 0px;">승인 대기 중인 서비스 목록</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -88,13 +88,13 @@
                        	int num = 1;
                        	for(SellerBoard sb : sList){ %>
                       	  <tr id="trId">
-                      	  <td style="display:none"><input type="hidden" id="bno" value="<%=sb.getBno()%>"/></td>
-                          <td><%=num %></td>
-                          <td><%=sb.getBtitle()%></td>
-                          <td><%=sb.getBcontent()%></td>
-                          <td><%=sb.getBdate() %></td>
-                          <td class="a-right a-right "> <a class="btn btn-primary btn-xs docDetailBtn" ><i class="fa fa-search"></i> 상세보기 </a></td>
-                          <td class=" last"><a class="btn btn-success btn-xs approveBtn"><i class="fa fa-check"></i>승인</a>
+	                      	  <input type="hidden" id="bno" value="<%=sb.getBno()%>"/>
+	                          <td><%=num %></td>
+	                          <td><%=sb.getBtitle()%></td>
+	                          <td><%=sb.getBcontent()%></td>
+	                          <td><%=sb.getBdate() %></td>
+                       	 	  <td class="a-right a-right "> <a class="btn btn-primary btn-xs docDetailBtn" ><i class="fa fa-search"></i> 상세보기 </a></td>
+                              <td class=" last"><a class="btn btn-success btn-xs approveBtn"><i class="fa fa-check"></i>승인</a>
                           					<a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#refuseModal<%=num%>"><i class="fa fa-close"></i> 거절 </a>
                          
                           <!-- Modal -->
@@ -128,20 +128,13 @@
                   </div>
                 </div>
               </div>	
-					
-					
+				
           </div>
           <!-- /top tiles -->
 
-          
         </div>
         <!-- /page content -->
 
-
-
-
-
-  
       </div>
     </div>
     </div>

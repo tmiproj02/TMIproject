@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>TMI - Admin Page</title>
+   
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -44,29 +44,28 @@
 	
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+     <title>TMI - Admin Page</title>
   </head>
 
   <body class="nav-md">
   	<div class="container body">
-      <div class="main_container" style="margin-bottom:2%;">
+      <div class="main_container">
   
    		<%@ include file="adminHeader.jsp" %>
    		
         <!-- page content -->
          <div class="right_col" role="main">
-               <div class="row tile_count">
-         	 <div class="x_content">
-                
-            
-          <!-- top tiles -->
-      		<h3><b>회원 관리</b></h3>
-				 <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+           <!-- top tiles -->
+            <div class="row tile_count">
+         	 	<div class="x_content">
+
+      			  <h3><b>회원 관리</b></h3>
+				  <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
                   <div class="x_title">
                 
                     <h2 style="height:22px; margin: 3px 0px 3px 0px;">회원 목록</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                     
+                    <ul class="nav navbar-right panel_toolbox"> 
                       <li><a class="collapse-link" style="margin-left:55px;"><i class="fa fa-chevron-up"></i></a>
                       </li>
                     </ul>
@@ -75,7 +74,6 @@
                   
                   <!-- 여기부터 테이블 -->
                   <div class="x_content">
-                 
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
                       <thead>
                         <tr>
@@ -84,27 +82,25 @@
                           <th style="width:15%">닉네임</th>
                           <th style="width:15%;">가입일자</th>
                           <th style="width:12%;">작성글</th>
-                          <th style="width:12%;">회원관리</th>
-                      
+                          <th style="width:12%;">회원관리</th>  	
                         </tr>
                       </thead>
                       <tbody>
-                    
                       	<%
                       	int num = 1;
                       	for(Member m : mList){ %>
                       	<% 
                       	if(m.getIsAlive().equals("Y") && m.getIsAdmin().equals("N")){ %>
                         <tr id="trId">
-                          <td style="display:none;"><input type="hidden" value="<%=m.getIsValid()%>"></td>
+                       	  <input type="hidden" value="<%=m.getIsValid()%>">
                           <td><%=num %></td>
                           <td class="email"><%=m.getEmail()%></td>
                           <td><%=m.getUserName()%></td>
                           <td><%=m.getEnrollDate()%></td>
                           <td class="a-right a-right "> <a class="btn btn-primary btn-xs docBtn" ><i class="fa fa-search"></i> 보기 </a></td>
                           <td class=" last">
-                          <a class="btn btn-warning btn-xs validManageBtn"><i class="fa fa-ban"></i> <%if(m.getIsValid().equals("Y")){%>정지<%}else{%>정지 해제<%} %></a>
-                          <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModalCenter<%=num%>"><i class="fa fa-trash-o"></i> 삭제 </a>
+                          	<a class="btn btn-warning btn-xs validManageBtn"><i class="fa fa-ban"></i> <%if(m.getIsValid().equals("Y")){%>정지<%}else{%>정지 해제<%} %></a>
+                         	 <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModalCenter<%=num%>"><i class="fa fa-trash-o"></i> 삭제 </a>
                      	  
                      	  <!-- Modal -->
 							<div class="modal fade" id="exampleModalCenter<%=num%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -128,14 +124,14 @@
 							</div> 
                      	 	</td>
                         </tr>
-                    	
-                      <% } %>
-                      <% num++; }  %>
+                   	   <% } %>
+                   	   <% num++; }  %>
                       </tbody>
                     </table>
                   </div>
                 </div>
-              </div>		
+              </div>	
+           
           </div>
           <!-- /top tiles -->
         </div>
@@ -214,7 +210,7 @@
 					$.ajax({
 						url : "/semi/mDelete.admin",
 		        		type : "get",
-		        		data : {email : $(this).parents('#trId').find('td').eq(2).text()} ,
+		        		data : {email : $(this).parents('#trId').find('td').eq(1).text()} ,
 		        		success : function(data){
 		        			
 		        			location.href = "/semi/memberSelect.admin";
@@ -234,8 +230,8 @@
      	// 해당 멤버 게시물 전체 조회 함수
     	$('.docBtn').each(function(index, item){
     		$(this).click(function(){
-    			var email = $(this).parent().parent().find('td').eq(2).text();
-    			var nickName = $(this).parent().parent().find('td').eq(3).text();
+    			var email = $(this).parent().parent().find('td').eq(1).text();
+    			var nickName = $(this).parent().parent().find('td').eq(2).text();
     			location.href="/semi/docList.admin?email="+email+"&nickName="+nickName;
     		});
     		
@@ -243,7 +239,7 @@
     	
     	$('.validManageBtn').each(function(){
     		$(this).click(function(){
-    			var email = $(this).parent().parent().find('td').eq(2).text();
+    			var email = $(this).parent().parent().find('td').eq(1).text();
     			var isValid = $(this).parent().parent().find('input').val();
     			location.href="/semi/validateManage.admin?email="+email+"&isValid="+isValid;
     			
@@ -253,10 +249,5 @@
     	
     	
 	</script>
-    
-    
-    
-    
-    
-	
+  
 </html>

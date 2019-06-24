@@ -74,20 +74,51 @@
 							   	 <h3 class="card-title">제목 : <%=rTitle %></h3>
 							   	 <p class="card-text" style="border-top : 2px solid gray;"><%=rContent %></p>
 						      </div>
-						  
 						    </div>
-						        	
-						      	
-				
-	                 </div>
-	                
-	                <div>
-	                 	<button id="replyBtn" class="btn btn-info" style="margin: 5px 0px 0px 788px;">답변하기</button>
-					</div>     
+						 
+						    
+	                  </div>
+	               
+	                   <div>
+	                 	<button id="" class="btn btn-info "  data-toggle="modal" data-target="#replyModal" style="margin: 5px 0px 0px 788px;">답변하기</button>
+				       </div>     
+	                 
+
+	               
                 </div>	
-					
-					
+
           </div>
+ 		<!-- Modal -->
+		<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h3 class="modal-title" id="exampleModalLabel">답변하기</h3>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form>
+		          <div class="form-group">
+		            <label for="recipient-name" class="col-form-label"><b>제목</b></label>
+		            <input type="text" class="form-control" id="recipient-name">
+		          </div>
+		          <div class="form-group">
+		            <label for="message-text" class="col-form-label">내용</label>
+		            <textarea class="form-control" id="message-text" style="height:400px;"></textarea>
+		          </div>
+		        </form>
+		      </div>
+		     
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-primary" onclick="submitFn();">전송</button>
+		      </div>
+		      
+		    </div>
+		  </div>
+		</div>
+          
           <!-- /top tiles -->
 
         </div>
@@ -141,17 +172,25 @@
     
     <script>
 		// 답변하기 함수
+
 		
-		$('replyBtn').click(function(){
-			
-			
-		});
-    	
+		function submitFn(){
+			$.ajax({
+				url : "clientRequest.do",
+				type : "post",
+				data : {rTitle : $('#rTitle').val(), rContent: $('#rContent').val()},
+				success : function(){
+					$('#rTitle').val(" ");
+					$('#rContent').val(" ");
+					alert("문의가 접수되었습니다.");
+				},
+				error : function(){
+					alert("전송실패");
+				}
+		
+			});
+		}
 	</script>
     
-    
-    
-    
-    
-	
+
 </html>
