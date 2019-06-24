@@ -37,7 +37,11 @@ public class SellerSelectServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("member");
-		
+		String page = null;
+		if(request.getAttribute("page")!=null) {
+			page = (String)request.getAttribute("page");
+		}
+		System.out.println(page);
 		String email = m.getEmail();
 		System.out.println(email);
 		Seller result = new Seller();
@@ -47,8 +51,11 @@ public class SellerSelectServlet extends HttpServlet {
 			System.out.println("판매자 입니다.");
 			System.out.println(result.getSno());
 			session.setAttribute("seller", result);
-			response.sendRedirect("/semi/mainheader2.jsp");
-			
+			if(page!=null) {
+				response.sendRedirect(page);
+			}else {
+				response.sendRedirect("/semi/mainheader2.jsp");
+			}
 		} catch (SellerException e) {
 			request.setAttribute("msg", "판매자 식별 실패");
 			request.setAttribute("exception", e);

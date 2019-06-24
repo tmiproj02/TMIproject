@@ -5,7 +5,7 @@
           <div class="left_col scroll-view">
            
             <div class="navbar nav_title" style="border: 0;">
-              <a href="/semi/memberSelect.admin" class="site_title"><i class="fa fa-paw"></i> <span>TMI Corporation</span></a>
+              <a href="/semi/memberSelect.admin" class="site_title"><i class="fa fa-money"></i><span>TMI Corporation</span></a>
             </div>
 
             <div class="clearfix"></div>

@@ -14,7 +14,6 @@
 	      
 	      <div style="cursor:pointer;" onclick="triggerChatFn()">
 	      <img class="chat" src="/semi/resources/images/chat.png" style="width: 50px !important; height: 50px !important;">
-	      <button id="popUpChatBox" data-toggle="modal" data-target="#resetPwdModal" style="display:none;"></button>
 	      </div>
       
  

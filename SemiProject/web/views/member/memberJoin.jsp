@@ -19,6 +19,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 
+
+
+
+<style>
+
 <style>
 *{
    font-family: 'Noto Sans KR', sans-serif;
@@ -111,14 +116,14 @@ input{margin-bottom: 9px;}
                <input type="text" name="userName" style="width : 268px; height:37px;" required="required" class="form-control"/>
                
                  <p><b>주민등록번호</b></p>
-                <input type="text" name="memberSSN1" id="memberSSN1" style="width :125px; height:37px; display:inline; margin-bottom:0px;" required="required" class="form-control"/>&nbsp - &nbsp<input type="password" name="memberSSN2" id="memberSSN2" style="width : 124px; height:37px; display:inline; margin-bottom:0px;" required="required" class="form-control"/>
+                <input type="text" name="memberSSN1" id="memberSSN1" style="width :125px; height:37px; display:inline; margin-bottom:0px;" required="required" class="form-control"/>&nbsp; - &nbsp;<input type="password" name="memberSSN2" id="memberSSN2" style="width : 124px; height:37px; display:inline; margin-bottom:0px;" required="required" class="form-control"/>
                 <label id="ssnResult"></label>
                 
                 <p><b>닉네임</b></p>
-                <input type="text" name="nickName" id="nickName" class="form-control" required="required" style="width:268px;height:37px;"/>
-               
+                <input type="text" name="nickName" id="nickName" class="form-control" required="required" style="width:268px;height:37px; display:inline-block;"/>
+                <input type="button" value="중복확인" id="nickNameDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; background:#364559;" class="btn btn-primary">
                <p><b>연락처</b></p>
-               <input type="tel" name="phone1" required="required" style="width:77px; height:37px; display:inline;" class="form-control"/>&nbsp - &nbsp<input type="tel" name="phone2" required="required" style="width:77px; height:37px; display:inline;" class="form-control"/>&nbsp - &nbsp<input type="tel" name="phone3" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>
+               <input type="tel" name="phone1" required="required" style="width:77px; height:37px; display:inline;" class="form-control"/>&nbsp - &nbsp<input type="tel" name="phone2" required="required" style="width:77px; height:37px; display:inline;" class="form-control"/>&nbsp; - &nbsp;<input type="tel" name="phone3" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>
                 <input type="submit" id="submitBtn" value=" 동의 후 회원 가입" class="btn btn-primary" style="text-align:center;width: 351px; height:45px; margin-left: 56px; margin-top:-10px;background:#364559;left:601px;position:absolute" disabled/> 
             </form>
             
@@ -206,10 +211,17 @@ input{margin-bottom: 9px;}
       }
    
    
-   
+     // 이메일 중복체크 버튼 이벤트
       $("#emailDupCheckBtn").click(function(){
          isDupEmail();
       });
+     
+   // 닉네임 중복체크 버튼 이벤트
+      $("#nickNameDupCheckBtn").click(function(){
+         isDupNick();
+      });
+      
+      
    
       // 닉네임 중복 체크 함수
       function isDupNick(){
@@ -224,8 +236,9 @@ input{margin-bottom: 9px;}
     			  // 중복인 경우
     			  if(isDup == 1){
     				  window.nickDupCheckNum = 0;
-    				 
+    				   alert("이미 사용중인 닉네임입니다.");
     			  }else{
+    				   alert("사용가능한 닉네임입니다.")
     				  window.nickDupCheckNum = 1;
     			
     			  }
@@ -311,9 +324,9 @@ input{margin-bottom: 9px;}
       
       
       
-      // 제출 시 유효성 검사 함수
+  
       function validate(){
-    	  isDupNick();
+    
          // 비밀번호
          var pwd1 = $('#userPwd').val();
          var pwd2 = $('#userPwd2').val();
@@ -330,7 +343,8 @@ input{margin-bottom: 9px;}
             alert("이메일 중복검사를 해주세요");
             return false;
          }
-         
+   	  
+   	
          // 비밀번호 체크
          if(!isSamePwd(pwd1,pwd2)){   
           alert("비밀번호가 일치하지 않습니다.");
@@ -341,8 +355,17 @@ input{margin-bottom: 9px;}
             alert("올바르지 않은 형식의 비밀번호입니다.");
             return false;
          }
+	   	
+	   
+	   	  // 닉네임 중복체크
+	       if(nickDupCheckNum == 0){
+	      	 alert("이미 사용중인 닉네임입니다!");
+	      	 return false;
+	       }
          
          
+         
+         alert("제출시점 nickDupCheckNum :" + nickDupCHeckNum);
          // 주민등록번호 체크
          if(!ssnRegEx(ssn1,ssn2)){
             alert("올바르지 않은 형식의 주민등록번호입니다.");
@@ -352,15 +375,16 @@ input{margin-bottom: 9px;}
          if(!$('#term1').prop('checked')|| !$('#term2').prop('checked')){
             return false;
          }
-         
+        
   
-         if(nickDupCheckNum == 0){
-        	 alert("이미 사용중인 닉네임입니다!");
-        	 return false;
-         }else{
-        	
-         }
+      
+         
+         
       }
+      
+      
+      
+      
       
       function toMain(){
          location.href = "/semi/index.jsp";

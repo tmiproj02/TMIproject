@@ -77,12 +77,13 @@ public class SellerRegistration extends HttpServlet {
 		Seller s = new Seller(mno, abletime, bankname, bankNumber, careerdate1, careerdate2, careerdate3, career1, career2, career3, certificat1, certificat2, certificat3, introtext);
 		
 		SellerService ss = new SellerService();
-		
+		String page = "views/seller/SellerComplete.jsp";
 		try {
 			ss.insertSeller(s);
 			System.out.println("판매자 등록완료");
 			ss.changeIsseller(mno);
-			response.sendRedirect("views/seller/SellerComplete.jsp");
+			request.setAttribute("page", page);
+			response.sendRedirect(page);
 		} catch(SellerException e){
 			request.setAttribute("msg", "판매자 등록 중 에러가 발생했어");
 			request.setAttribute("exception", e); // 화면을 던져줄거니까

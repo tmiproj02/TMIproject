@@ -33,6 +33,9 @@ public class SellerService {
 		int result = sDao.insertSeller(con,s);
 		//실행하면 숫자가 나오는데 숫자만 돌려주면 된다.		
 		
+		
+		
+		
 		if(result>0) commit(con);
 		else rollback(con);
 		

@@ -62,7 +62,7 @@
           <!-- top tiles -->
        
 
-                    	<h3><b>1:1 문의 관리</b></h3>
+                    <h3><b>1:1 문의 관리</b></h3>
 				 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -97,8 +97,9 @@
                       	for(ClientRequest cr : crList){ %>
                       	  <%System.out.print(cr.getRno());%>
                         <tr id="trId">
-                          <td style="display:none;"><input type="hidden" id="rno" value="<%=cr.getRno()%>"></td>
-                          <td style="display:none;"><input type="hidden" id="rContent" value="<%=cr.getrContent()%>"></td>
+                      	  
+                          <input type="hidden" id="rno" value="<%=cr.getRno()%>">
+                          <input type="hidden" id="rContent" value="<%=cr.getrContent()%>">
                           <td><%=num %></td>
                           <td><%=cr.getrTitle()%></td>
                           <td class="email"><%=cr.getEmail() %></td>
@@ -113,10 +114,10 @@
                           
                           <td class="last">
 	                          <a class="btn btn-primary btn-xs replyBtn"><i class="fa fa-send-o"></i>&nbsp;답변</a>
-	                          <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i>&nbsp;삭제 </a>
+	                          <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal<%=num%>"><i class="fa fa-trash-o"></i>&nbsp;삭제 </a>
 	                       <!-- Modal -->
 	                       
-							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal fade" id="deleteModal<%=num%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
@@ -250,7 +251,7 @@
     	$('.replyBtn').each(function(index, item){
     		$(this).click(function(){
     			var rno = $(this).parents('#trId').find('input').eq(0).val();
-    			var rTitle = $(this).parents('#trId').find('td').eq(3).text();
+    			var rTitle = $(this).parents('#trId').find('td').eq(1).text();
     			var rContent = $(this).parents('#trId').find('input').eq(1).val();
     			
     			location.href="/semi/views/adminPages/production/memberRequestDetail.jsp?rno="+rno+"&rTitle="+rTitle+"&rContent="+rContent;
