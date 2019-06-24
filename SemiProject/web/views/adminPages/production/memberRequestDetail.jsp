@@ -101,11 +101,11 @@
 		        <form>
 		          <div class="form-group">
 		            <label for="recipient-name" class="col-form-label"><b>제목</b></label>
-		            <input type="text" class="form-control" id="recipient-name">
+		            <input type="text" class="form-control" id="replyTitle" value="Re)<%=rTitle%>">
 		          </div>
 		          <div class="form-group">
 		            <label for="message-text" class="col-form-label">내용</label>
-		            <textarea class="form-control" id="message-text" style="height:400px;"></textarea>
+		            <textarea class="form-control" id="replyContent" style="height:400px;"></textarea>
 		          </div>
 		        </form>
 		      </div>
@@ -176,12 +176,12 @@
 		
 		function submitFn(){
 			$.ajax({
-				url : "clientRequest.do",
+				url : "requestReply.admin",
 				type : "post",
-				data : {rTitle : $('#rTitle').val(), rContent: $('#rContent').val()},
+				data : {replyTitle : $('#replyTitle').val(), replyContent: $('#replyContent').val()},
 				success : function(){
-					$('#rTitle').val(" ");
-					$('#rContent').val(" ");
+					$('#replyTitle').val(" ");
+					$('#replyContent').val(" ");
 					alert("문의가 접수되었습니다.");
 				},
 				error : function(){
