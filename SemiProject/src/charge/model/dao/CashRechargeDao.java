@@ -187,7 +187,7 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 	
 
 	//캐시 사용내역 조회 리스트(구매관리)
-	public ArrayList<Cash> selectList(Connection con, Member m) throws CashRechargeException, FileNotFoundException, IOException{
+	public ArrayList<Cash> selectList(Connection con, int currentPage, int limit, Member m) throws CashRechargeException, FileNotFoundException, IOException{
 		
 		ArrayList<Cash> rechargeList = null;
 		PreparedStatement pstmt = null;
@@ -207,20 +207,26 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 			
 			rechargeList = new ArrayList<Cash>();
 			
-			pstmt = con.prepareStatement(sql);			
+			pstmt = con.prepareStatement(sql);	
+			
+			int startRow = (currentPage - 1) * limit + 1; //현재가 1페이지면 게시글1부터, 현재가 2페이지면 게시글 11부터~
+			int endRow = startRow + limit -1; // startRow가 1일 때 endRow는 10, startRow가 11일 때 endRow는 20~
 			
 			pstmt.setInt(1, m.getMno());
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
+			
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				Cash cash = new Cash();
 				
-				cash.setPayno(rset.getInt(1));
-				cash.setMno(rset.getInt(2));
-				cash.setPayp(rset.getInt(3));
-				cash.setPaydate(rset.getDate(4));
-				cash.setClassify(rset.getString(5));
+				cash.setPayno(rset.getInt("payno"));
+				cash.setMno(rset.getInt(m.getMno()));
+				cash.setPayp(rset.getInt("payp"));
+				cash.setPaydate(rset.getDate("paydate"));
+				cash.setClassify(rset.getString("classify"));
 				
 				rechargeList.add(cash);
 				System.out.println("dao" + cash);
@@ -243,134 +249,170 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 
 
 
-	//필터! ('충전','사용','환불','전체')
-	public ArrayList<Cash> searchList(Connection con, Member m, String category) throws FileNotFoundException, IOException {
-		
-		ArrayList<Cash> list = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		prop2 = new Properties();
-		
-		String filePath2
-		   = CashRechargeDao.class
-		   .getResource("/config/cashList-query.properties").getPath();
-		
-		prop2.load(new FileReader(filePath2));
-		
-		
-		String sql = null;
-		
-		switch(category) {
-		case "recharging" :
-			sql = prop2.getProperty("searchCashRec");
-			break;
-		case "sptcash" :
-			sql = prop2.getProperty("searchCashspt");
-			break;
-		case "refunding" :
-			sql = prop2.getProperty("searchCashref");
-			break;
-		case "all" :
-			sql = prop2.getProperty("searchx");
-		}
-		
-		try {
+	//필터! ('충전','사용','전체')
+		public ArrayList<Cash> searchList(Connection con, Member m, String category) throws FileNotFoundException, IOException {
 			
-			pstmt = con.prepareStatement(sql);
+			ArrayList<Cash> list = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
 			
-			pstmt.setInt(1, m.getMno());
+			prop2 = new Properties();
 			
-			if(sql.equals(prop2.getProperty("searchCashRec"))) {
-				pstmt.setString(2, "충전");
-			} else if(sql.equals(prop2.getProperty("searchCashspt"))) {
-				pstmt.setString(3, "사용");
-			} else if(sql.equals(prop2.getProperty("searchCashref"))) {
-				pstmt.setString(4, "환불");
+			String filePath2
+			   = CashRechargeDao.class
+			   .getResource("/config/cashList-query.properties").getPath();
+			
+			prop2.load(new FileReader(filePath2));
+			
+			
+			String sql = null;
+			
+			switch(category) {
+			case "recharging" :
+				sql = prop2.getProperty("searchCashRec");
+				break;
+			case "sptcash" :
+				sql = prop2.getProperty("searchCashspt");
+				break;
+			case "all" :
+				sql = prop2.getProperty("searchx");
 			}
 			
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, m.getMno());
+				
+				if(sql.equals(prop2.getProperty("searchCashRec"))) {
+					pstmt.setString(2, "충전");
+				} else if(sql.equals(prop2.getProperty("searchCashspt"))) {
+					pstmt.setString(3, "사용");
+				}
+				
+				
+				rset = pstmt.executeQuery();
+				
+				list = new ArrayList<Cash>();
+				
+				while(rset.next()){
+					
+					Cash cs = new Cash();
+					
+					cs.setPayno(rset.getInt(1));
+					cs.setMno(rset.getInt(2));
+					cs.setPayp(rset.getInt(3));
+					cs.setPaydate(rset.getDate(4));
+					cs.setClassify(rset.getString(5));
+					
+					list.add(cs);
+					
+				}
+				
+			} catch (SQLException e) {
 			
-			rset = pstmt.executeQuery();
-			
-			list = new ArrayList<Cash>();
-			
-			while(rset.next()){
+				e.printStackTrace();
 				
-				Cash cs = new Cash();
-				
-				cs.setPayno(rset.getInt(1));
-				cs.setMno(rset.getInt(2));
-				cs.setPayp(rset.getInt(3));
-				cs.setPaydate(rset.getDate(4));
-				cs.setClassify(rset.getString(5));
-				
-				list.add(cs);
-				
+			} finally {
+				close(rset);
+				close(pstmt);
 			}
 			
-		} catch (SQLException e) {
-		
-			e.printStackTrace();
-			
-		} finally {
-			close(rset);
-			close(pstmt);
+			return list;
 		}
-		
-		return list;
-	}
 
 
 
 
 
-	//캐시 내역에서 '사용'으로 DB에 들어갈 부분
-	public int insertsptCash(Connection con, Cash csh) throws FileNotFoundException, IOException, CashRechargeException {
-		
-		prop2 = new Properties();
-		
-		System.out.println(csh.getMno());
-		
-		String filePath2
-		   = CashRechargeDao.class
-		   .getResource("/config/cashList-query.properties").getPath();
-		
-		prop2.load(new FileReader(filePath2));
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		try {
-			//String sql = "INSERT INTO CASH VALUES(SEQ_PAYNO.NEXTVAL,?,?,SYSDATE,?)";
-			String sql = prop2.getProperty("insertsptCashL");
-			
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, csh.getMno());
-			pstmt.setInt(2, csh.getPayp());
-			pstmt.setString(3, csh.getClassify());
-			
-			result=pstmt.executeUpdate();
-			
-			
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-			throw new CashRechargeException(e.getMessage());
-		} finally {
-			close(pstmt);
-		}
-		
-		
-		
-		
-		return result;
-		
-		
-		
-	}
+//	//캐시 내역에서 '사용'으로 DB에 들어갈 부분
+//	public int insertsptCash(Connection con, Cash csh) throws FileNotFoundException, IOException, CashRechargeException {
+//		
+//		prop2 = new Properties();
+//		
+//		System.out.println(csh.getMno());
+//		
+//		String filePath2
+//		   = CashRechargeDao.class
+//		   .getResource("/config/cashList-query.properties").getPath();
+//		
+//		prop2.load(new FileReader(filePath2));
+//		
+//		int result = 0;
+//		PreparedStatement pstmt = null;
+//		
+//		try {
+//			//String sql = "INSERT INTO CASH VALUES(SEQ_PAYNO.NEXTVAL,?,?,SYSDATE,?)";
+//			String sql = prop2.getProperty("insertsptCashL");
+//			
+//			
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, csh.getMno());
+//			pstmt.setInt(2, csh.getPayp());
+//			pstmt.setString(3, csh.getClassify());
+//			
+//			result=pstmt.executeUpdate();
+//			
+//			
+//			
+//		} catch(SQLException e) {
+//			e.printStackTrace();
+//			throw new CashRechargeException(e.getMessage());
+//		} finally {
+//			close(pstmt);
+//		}
+//		
+//		
+//		
+//		
+//		return result;
+//		
+//		
+//		
+//	}
 
+		//게시글 개수 카운트
+		public int getListCount(Connection con, Member m) throws FileNotFoundException, IOException {
+			// 총 게시글 수
+					int listCount = 0;
+						// 총 게시글 수를 쿼리로 만들어놓음(board-query.properties에)
+					PreparedStatement pstmt = null;
+					ResultSet rset = null;
 
+					
+					prop2 = new Properties();
+					
+					String filePath2
+					   = CashRechargeDao.class
+					   .getResource("/config/cashList-query.properties").getPath();
+					
+					prop2.load(new FileReader(filePath2));
+					
+					String sql = prop2.getProperty("listCount");
+				
+					try {
+						
+						pstmt = con.prepareStatement(sql);
+						
+						pstmt.setInt(1, m.getMno());
+						
+						rset = pstmt.executeQuery();
+						
+						if(rset.next()) { //결과값이 나왔다면
+							listCount = rset.getInt(1); //결과는 숫자형 딱 1개 나옴.(개수를 조회하는거니깐)
+						}
+
+					} catch (SQLException e) {
+					
+						e.printStackTrace();
+					
+					} finally {
+						close(rset);
+						close(pstmt);
+					}
+					
+					return listCount;
+		}		
 
 
 

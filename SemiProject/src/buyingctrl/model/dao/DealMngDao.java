@@ -12,6 +12,7 @@ import java.util.*;
 
 import buyingctrl.model.exception.buyingctrlException;
 import buyingctrl.model.vo.DealMng;
+import charge.model.dao.CashRechargeDao;
 import member.model.vo.Member;
 
 import static member.common.JDBCTemplete.*;
@@ -48,7 +49,7 @@ public class DealMngDao {
 
 	
 	//전체 구매내역 조회
-	public ArrayList<DealMng> nrqselectList(Connection con, Member m) throws buyingctrlException {
+	public ArrayList<DealMng> nrqselectList(Connection con, int currentPage, int limit, Member m) throws buyingctrlException {
 		
 		ArrayList<DealMng> nreqList = null;
 		PreparedStatement pstmt = null;
@@ -60,23 +61,25 @@ public class DealMngDao {
 			nreqList = new ArrayList<DealMng>();
 			pstmt = con.prepareStatement(sql);
 			
+			int startRow = (currentPage - 1) * limit + 1; //현재가 1페이지면 게시글1부터, 현재가 2페이지면 게시글 11부터~
+			int endRow = startRow + limit -1; // startRow가 1일 때 endRow는 10, startRow가 11일 때 endRow는 20~
+
 			pstmt.setInt(1, m.getMno());
+			pstmt.setString(2, m.getNickName());
+			pstmt.setInt(3, endRow);
+			pstmt.setInt(4, startRow);
 			
 			rset = pstmt.executeQuery();
-			System.out.println(m.getMno());
+			
 			while(rset.next()) {
 				DealMng dm = new DealMng();
 				
-				dm.setImages(rset.getString(1));
-				dm.setDmcode(rset.getInt(2));
-				dm.setBtitle(rset.getString(3));
-				dm.setDealdate(rset.getDate(4));
-				dm.setNickname(rset.getString(5));
-				dm.setPrice(rset.getInt(6));
-				
-				dm.setMno(rset.getInt(7));
-				
-				dm.setProgress(rset.getString(8));
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setNickname(rset.getString("nickName"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setProgress(rset.getString("progress"));
+				dm.setPrice(rset.getInt("price"));
 				
 				
 				
@@ -120,23 +123,20 @@ public class DealMngDao {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, m.getMno());
-			pstmt.setString(2, progressing);
-			
+			pstmt.setString(2, m.getNickName());
+			pstmt.setString(3, progressing);
+
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				DealMng dm = new DealMng();
 				
-				dm.setImages(rset.getString(1));
-				dm.setDmcode(rset.getInt(2));
-				dm.setBtitle(rset.getString(3));
-				dm.setDealdate(rset.getDate(4));
-				dm.setNickname(rset.getString(5));
-				dm.setPrice(rset.getInt(6));
-				
-				dm.setMno(rset.getInt(7));
-				
-				dm.setProgress(rset.getString(8));
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setNickname(rset.getString("nickName"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setProgress(rset.getString("progress"));
+				dm.setPrice(rset.getInt("price"));
 				
 				dingList.add(dm);
 				System.out.println("진행중인 구매내역 조회 리스트(DealMngDao) : "+ dingList);
@@ -173,23 +173,21 @@ public class DealMngDao {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, m.getMno());
-			pstmt.setString(2, fin);
+			pstmt.setString(2, m.getNickName());
+			pstmt.setString(3, fin);
+			
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				DealMng dm = new DealMng();
 				
-				dm.setImages(rset.getString(1));
-				dm.setDmcode(rset.getInt(2));
-				dm.setBtitle(rset.getString(3));
-				dm.setDealdate(rset.getDate(4));
-				dm.setNickname(rset.getString(5));
-				dm.setPrice(rset.getInt(6));
-				
-				dm.setMno(rset.getInt(7));
-				
-				dm.setProgress(rset.getString(8));
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setNickname(rset.getString("nickName"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setProgress(rset.getString("progress"));
+				dm.setPrice(rset.getInt("price"));
 				
 				
 				finList.add(dm);
@@ -231,23 +229,21 @@ public class DealMngDao {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, m.getMno());
-			pstmt.setString(2, cc);
+			pstmt.setString(2, m.getNickName());
+			pstmt.setString(3, cc);
+			
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				DealMng dm = new DealMng();
 				
-				dm.setImages(rset.getString(1));
-				dm.setDmcode(rset.getInt(2));
-				dm.setBtitle(rset.getString(3));
-				dm.setDealdate(rset.getDate(4));
-				dm.setNickname(rset.getString(5));
-				dm.setPrice(rset.getInt(6));
-				
-				dm.setMno(rset.getInt(7));
-				
-				dm.setProgress(rset.getString(8));
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setNickname(rset.getString("nickName"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setProgress(rset.getString("progress"));
+				dm.setPrice(rset.getInt("price"));
 				
 				
 				ccList.add(dm);
@@ -289,26 +285,21 @@ public class DealMngDao {
 			
 			nreqList = new ArrayList<DealMng>();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, m.getMno());
+			pstmt.setString(1, m.getEmail());
 			pstmt.setString(2, keyword);
 			rset = pstmt.executeQuery();
 			while(rset.next()){
 				DealMng dm = new DealMng();
 				
-				dm.setImages(rset.getString(1));
-				dm.setDmcode(rset.getInt(2));
-				dm.setBtitle(rset.getString(3));
-				dm.setDealdate(rset.getDate(4));
-				dm.setNickname(rset.getString(5));
-				dm.setPrice(rset.getInt(6));
-				
-				dm.setMno(rset.getInt(7));
-				
-				dm.setProgress(rset.getString(8));
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setNickname(rset.getString("nickName"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setProgress(rset.getString("progress"));
+				dm.setPrice(rset.getInt("price"));
 				
 				nreqList.add(dm);
 				System.out.println("검색 내용(DealMngDao) : " + nreqList);
-				System.out.println("키워드!!!!!!!!!!!!!");
 			
 			}
 		}catch(SQLException e) {
@@ -321,6 +312,45 @@ public class DealMngDao {
 		
 		
 		return nreqList;
+	}
+
+	
+//페이징, 개수 세어보는 부분
+	public int getListCount(Connection con, Member m) {
+		
+		// 총 게시글 수
+		int listCount = 0;
+			// 총 게시글 수를 쿼리로 만들어놓음(board-query.properties에)
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		
+		String sql = prop.getProperty("listCount");
+	
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, m.getMno());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { //결과값이 나왔다면
+				listCount = rset.getInt(1); //결과는 숫자형 딱 1개 나옴.(개수를 조회하는거니깐)
+			}
+
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+		
+		
 	}
 
 

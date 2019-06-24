@@ -58,17 +58,16 @@ public DealMng(int dmcode, int bno, int mno, int sno, String progress, Date deal
 
 
 //조회(전체,진해중,완료,취소)
-	public DealMng(String images, int dmcode, String btitle, Date dealdate, String nickname, int price, int mno, String progress) {
-		super();
-		this.dmcode = dmcode;
-		this.mno = mno;
-		this.progress = progress;
-		this.images = images;
-		this.btitle = btitle;
-		this.price = price;
-		this.nickname = nickname;
-		this.dealdate = dealdate;
-	}
+public DealMng(int dmcode, String progress, Date dealdate, String btitle, int price, String nickname) {
+	super();
+	this.dmcode = dmcode;
+	this.progress = progress;
+	this.dealdate = dealdate;
+	this.btitle = btitle;
+	this.price = price;
+	this.nickname = nickname;
+}
+	
 
 
 	
@@ -80,6 +79,14 @@ public DealMng(int dmcode, int bno, int mno, int sno, String progress, Date deal
 				+ ", dealdate=" + dealdate + ", deitcount=" + deitcount + ", completeyn=" + completeyn
 				+ ", completedate=" + completedate + "]";
 	}
+
+
+	
+
+
+
+
+
 
 
 	public int getDmcode() {

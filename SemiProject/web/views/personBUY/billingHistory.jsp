@@ -3,7 +3,12 @@
 <%@ page import="java.util.*, charge.model.vo.*, member.model.vo.*" %>
 <%  ArrayList<Cash> rechargeList = (ArrayList<Cash>)request.getAttribute("rechargeList");
 	System.out.println("billingHistory:"+rechargeList); 
-	
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -185,6 +190,11 @@
 <body>
 	<%@ include file="/views/common/cateheader2.jsp" %>
 	
+	<%
+	DecimalFormat df = new DecimalFormat("###,###");
+	int val = m.getCash();
+	%>
+	
 	<div class="my-page-buy">
 		<div class="scontainer">
 			<div class="scontainer1">
@@ -203,7 +213,7 @@
 								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href="../member/memberUpdateForm.jsp"><%=m.getNickName() %></a></div>
 								<br>
 								<div class="font-color-lighter font-size-h6 font-noto">TMI캐시</div>
-								<h3 class="margin-bottom-15 margin-top-5 link-color-blue NGB"><i class="won sign icon"></i><%=m.getCash()%> 원</h3>
+								<h3 class="margin-bottom-15 margin-top-5 link-color-blue NGB"><i class="won sign icon"></i><%=df.format(val)%> 원</h3>
 								<div>
 									<label class="buyer-check font-noto" style="cursor:pointer;" onclick="lbcash();"><i class="credit card outline icon"></i>캐시충전</label>
 									
@@ -252,20 +262,14 @@
 					  <div class="ui basic floating dropdown button">
 					    <div class="text font-noto">전체</div>
 					    <i class="dropdown icon"></i>
-					    <div class="menu">
-					      <div class="item font-noto">전체</div>
-					      <div class="item font-noto">충전</div>
-					      <div class="item font-noto">사용</div>
-					      <div class="item font-noto">환불</div>
+					    <div class="menu" id="searchCondition">
+					      <div class="item font-noto" id="selectall" onclick="billHist();">전체</div>
+					      <div class="item font-noto" id="selectrcg">충전</div>
+					      <div class="item font-noto" id="selectspt">사용</div>
 					    </div>
 					  </div>
-					  
-					  <div class="listSelect" style="display:inline;">
-					  <button class="ui blue basic button">조회</button>
-					</div>
-					<script>
-            			$('.ui.dropdown').dropdown();
-        			</script>
+					 
+					
 					</div>
 				
 				
@@ -298,7 +302,8 @@
 							</div>
 							<div class="listcontent">
 								<div class="meta">
-									<span class="price font-noto" style="color:orange; font-size:30px;"><i class="won sign icon"></i><%= c.getPayp() %>원</span>
+									<%int price = c.getPayp(); %>
+									<span class="price font-noto" style="color:orange; font-size:25px;"><i class="won sign icon"></i><%=df.format(price)%>원</span>
 									
 								</div>
 									<p style="letter-spacing:2px;" class="font-noto">결제일 : <%= c.getPaydate() %></p>
@@ -316,6 +321,35 @@
 
 			<br>
 
+		<%-- 페이징 처리 --%>
+		<div class="pagingArea" align="center">
+			<button class="ui black button" onclick="location.href='<%= request.getContextPath() %>/cList.bo?currentPage=1'"><<</button>
+			<%  if(currentPage <= 1){  %>
+			<button class="ui grey button" disabled><</button>
+			<%  }else{ %>
+			<button class="ui grey button" onclick="location.href='<%= request.getContextPath() %>/cList.bo?currentPage=<%=currentPage - 1 %>'"><</button>
+			<%  } %>
+			
+			<% for(int p = startPage; p <= endPage; p++){
+					if(p == currentPage){	
+			%>
+				<button class="ui blue basic button" disabled><%= p %></button>
+			<%      }else{ %>
+				<button class="ui blue basic button" onclick="location.href='<%= request.getContextPath() %>/cList.bo?currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
+				
+			<%  if(currentPage >= maxPage){  %>
+			<button class="ui grey button" disabled>></button>
+			<%  }else{ %>
+			<button class="ui grey button" onclick="location.href='<%= request.getContextPath() %>/cList.bo?currentPage=<%=currentPage + 1 %>'">></button>
+			<%  } %>
+			<button class="ui black button" onclick="location.href='<%= request.getContextPath() %>/cList.bo?currentPage=<%= maxPage %>'">>></button>
+		</div>
+
+
+
+			<br>
 				<div class="bgcheck padding-15" style="background-color:#dcdcdc; margin-top:40px; padding-left:15px;">
                                         <h6 class="NGB margin-all-0 padding-bottom-5" style="font-size:17px;">
                                             <i class="bullhorn icon"></i>
@@ -336,33 +370,40 @@
 			</div>
 		</div>
 	
-				
-		<%-- 페이징 처리 --%>
-		<%--
-		<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
-			<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
-			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>'"><</button>
-			<%  } %>
-			
-			<% for(int p = startPage; p <= endPage; p++){
-					if(p == currentPage){	
-			%>
-				<button disabled><%= p %></button>
-			<%      }else{ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
-			<%      } %>
-			<% } %>
-				
-			<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
-			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>'">></button>
-			<%  } %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
-		</div> --%>
+	<%--<script> 필터
+            			$('.ui.dropdown').dropdown();
+            			
+            			$('#selectall').click(function(){
+            				$.ajax({
+            					url : '/semi/cList.bo',
+            					type : 'get',
+            					success : function(data){
+            						
+            						$.each(data, function(index, value){ //각각 뽑을거니 each쓰고, data(array나 특정 값들을 여러개 가지고 있는 객체)받아서 함수실행시킬건데 안에 순번과 값을 담을거예여~
+            							
+            							var $tr = $('<tr>'); //jQuery에서 tr생성
+            							var $userNo = $('<td>').text(value.userNo); //value가 가지고 있는 userNo를 td생성하여 전달합니다.
+            							var $userName = $('<td>').text(value.userName);
+            							var $gender = $('<td>').text(value.gender);
+            							var $phone = $('<td>').text(value.phone);
+            							
+            							$tr.append($userNo); // A append B : B를 A속에 넣겠다~
+            							$tr.append($userName);
+            							$tr.append($gender);
+            							$tr.append($phone);
+            							
+            							//위의 값을 넣은 tr들이 table에 담겨야한다.
+            							$('#userTable').append($tr);
+            						});
+            						
+            					}, error : function(){
+            						
+            						console.log("에러입니다.");
+            					}
+            				});
+            			});
+        			</script>		  --%>	
+		
 				
 
 
@@ -378,7 +419,7 @@
 	function nrequest(){
 		location.href="/semi/nReq.bo"
 	}
-	
+
 	
 	</script>
 	

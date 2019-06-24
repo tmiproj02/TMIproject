@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.model.vo.*" %>
+<%@ page import="member.model.vo.*, java.text.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -79,7 +79,7 @@
 	
 	height: auto;
 	border: 1px solid lightgray;
-	background-color: lemonchiffon;
+	background-color: #D7E8F2;
 }
 
 .cashPrice>li {
@@ -93,7 +93,7 @@
 }
 
 .cashBox {
-	border-top: 2px dotted #ff8c00;
+	border-top: 2px dashed #3DA8E5;
 	width: 100%;
 }
 
@@ -101,6 +101,13 @@
 	font-size: 16px;
 	font-weight: bold;
 }
+
+.font-noto{
+		font-family: 'Noto Sans KR', sans-serif;
+    	font-weight: 400;
+	}
+	
+	.par{ text-align: center; }
 
 /*radio 버튼 색상변경 */
 input[type='radio'] {
@@ -137,11 +144,14 @@ input[type='radio']:checked:before {
 <body>
 	<%@ include file="/views/common/cateheader2.jsp"%>
 
-
+	<%
+	DecimalFormat df = new DecimalFormat("###,###");
+	int val = m.getCash();
+	%>
 
 	<section>
 	
-		<div class="container1">
+		<div class="container1 font-noto">
 			
 				<div class="ui two column very relaxed grid" style="margin-top:3%;">
 					<div class="column">
@@ -230,10 +240,20 @@ input[type='radio']:checked:before {
 									</tr>
 									<tr>
 										<th scope="row"><label> <input type="radio"
-												name="cPrice" value="2000000">
+												name="cPrice" value="3000000">
 												<div class="awesome-radio-text"
 													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
-													<b class="priceNum"><i class="won sign icon"></i>2,000,000</b>
+													<b class="priceNum"><i class="won sign icon"></i>3,000,000</b>
+													&nbsp;&nbsp;
+												</div>
+										</label></th>
+									</tr>
+									<tr>
+										<th scope="row"><label> <input type="radio"
+												name="cPrice" value="5000000">
+												<div class="awesome-radio-text"
+													style="display: inline; padding-right: 300px;"> &nbsp;&nbsp;
+													<b class="priceNum"><i class="won sign icon"></i>5,000,000</b>
 													&nbsp;&nbsp;
 												</div>
 										</label></th>
@@ -257,7 +277,8 @@ input[type='radio']:checked:before {
 
 									<div class="cashDoubleCheck now" style="display:inline-bolder; padding-left:45%; margin-top:-25%; margin-botton:10%;">
 										<p style="font-weight:bolder; font-size:20px;">보유캐시</p>
-										<div class="nowCash" style="color: red; font-size: 18px;"><%=m.getCash()%>원</div>
+										
+										<span class="nowCash" style="color: red; font-size: 18px;"><%=df.format(val)%>원</span>
 									</div>
 									<br><br>
 									<hr class="cashBox">
@@ -276,33 +297,36 @@ input[type='radio']:checked:before {
 											<i class="plus icon"></i>충전 혜택 &nbsp; &nbsp; &nbsp;
 										</p>
 										<div style="align-text:right; display:inline;" width="50px">
-											<i class="won sign icon" style="margin-left:-7%%;"></i>
-											<p style="font-size:20px; display:inline;" class="moremoney">0</p>
+											<i class="won sign icon"></i>
+											<p style="font-size:20px; display:inline; margin-left:-2%;" class="moremoney">0</p>
 											
 										</div>
 										<br>
 										<br>
+										<br><br>
 										
 
 										<p style="padding-top:15%; padding-left: 20px; display: inline; font-size:20px; font-weight:bolder;">총 충전 금액 &nbsp; &nbsp; &nbsp;</p>
 										<div style="align-text:right; display:inline;" width="50px">
 											<i class="won sign icon" style="padding-left:3.5%;"></i>
-											<p style="font-size:20px; display:inline; padding-left:3%;" class="totalprice">0</p>
+											<p style="font-size:20px; display:inline; padding-left:3%; color:red;" class="totalprice">0</p>
 											
 										</div>
 										
 								
 									</div> <br>
-									<hr class="cashBox"> <br><br><br>
-									<b style="font-size:20px; padding-left:20px;">총 결제 금액</b> <br> <br> <br>
-									<i class="won sign icon" style="padding-left:10px; font-size:40px;"></i>
-									<p style="font-size: 40px; color: red; font-weight: bold; display: inline-block; padding-left:7px;" class="pricewon">0</p>
-									<span style="font-size: 40px; color: red; font-weight: bold; display: inline-block;">원</span>
-
+									<hr class="cashBox"> <br>
+									<b style="font-size:20px; padding-left:20px;">총 결제 금액</b> <br> <br> <br> <br> <br>
+									<div class="par"">
+									<i class="won sign icon" style="font-size:25px; display: inline-block;"></i>
+									<span style="font-size: 35px; color: red; font-weight: bold; display: inline-block;" class="pricewon">0</span>
+									<span style="font-size: 35px; color: red; font-weight: bold; display: inline-block;">원</span>
+									<br><br>
+									</div>
 								</div>
 								<br><br>
 								<div>
-									<button class="ui red button" style="width:280px; font-size:20px;">충전하기</button>
+									<button class="ui red button font-noto" style="width:280px; font-size:20px;">충전하기</button>
 								</div>
 							</div>
 						</div>
@@ -362,6 +386,7 @@ input[type='radio']:checked:before {
 
 
 	<script>
+	
 
 	$('th').click(function(){
 		var price = Number($("input:radio[name=cPrice]:checked").val());
@@ -370,10 +395,11 @@ input[type='radio']:checked:before {
 		console.log(price);
 		console.log(pricemore);
 		console.log(tprice);
-		$('.pricewon').text(price);
-		$('.moremoney').text(pricemore);
-		$('.totalprice').text(tprice);
-	})
+		
+		$('.pricewon').text(Number(price).toLocaleString('en').split(".")[0]);
+		$('.moremoney').text(Number(pricemore).toLocaleString('en').split(".")[0]);
+		$('.totalprice').text(Number(tprice).toLocaleString('en').split(".")[0]);
+	});
 	
 	$('button').click(function(){ <%-- 이거 나중에 지우고 아래 주석처리 한 것을 올려야해욥(지금은 결제 막아놓음. 바로 결제완료로 감) --%>
 		var price = Number($("input:radio[name=cPrice]:checked").val()); //가격받는부분
@@ -411,7 +437,7 @@ input[type='radio']:checked:before {
 
 		//--
 		var IMP = window.IMP; // 생략가능
-		IMP.init('imp75606853'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		IMP.init('imp75606853'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용 [완료시imp91745666]
 
 		IMP.request_pay({
     		pg : 'html5_inicis', // version 1.1.0부터 지원.

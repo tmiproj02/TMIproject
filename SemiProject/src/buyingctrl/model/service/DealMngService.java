@@ -16,11 +16,11 @@ public class DealMngService {
 	private DealMngDao dmDao = new DealMngDao();
 	
 	//전체 구매 내역 조회
-	public ArrayList<DealMng> nrselectList(Member m) throws buyingctrlException {
+	public ArrayList<DealMng> nrselectList(int currentPage, int limit, Member m) throws buyingctrlException {
 
 		con = getConnection();
 
-		ArrayList<DealMng> nreqList = dmDao.nrqselectList(con, m);
+		ArrayList<DealMng> nreqList = dmDao.nrqselectList(con, currentPage, limit, m);
 		System.out.println("구매전체조회service : " + nreqList);
 		close(con);
 		
@@ -86,6 +86,17 @@ public class DealMngService {
 		
 		
 		
+	}
+
+
+//페이징, 게시할 개수 세어보는 부분 (전체조회)
+	public int getListCount(Member m) {
+		con = getConnection();
+		int listCount = dmDao.getListCount(con, m); //함수 실행시키고 (create method합니당~)
+		
+		close(con); //실행 완료됐으면
+		
+		return listCount; //결과를 넣어서 반환해요
 	}
 
 

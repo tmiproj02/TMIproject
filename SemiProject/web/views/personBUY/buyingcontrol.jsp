@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, member.model.vo.*, buyingctrl.model.vo.*, sellerboard.model.vo.*" %>
+<%@ page import="java.util.*, member.model.vo.*, buyingctrl.model.vo.*, charge.model.vo.*" %>
 <% 
-   ArrayList<SellerBoard> reqList = (ArrayList<SellerBoard>)request.getAttribute("nreqList");
-   System.out.println("(buyingcontrol.jsp)ArrayList<SellerBoard>:"+reqList); 
+ArrayList<DealMng> reqList = (ArrayList<DealMng>)request.getAttribute("nreqList");
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -246,6 +252,11 @@
 <body>
 	<%@ include file="/views/common/cateheader2.jsp" %>
 
+	<%
+	DecimalFormat df = new DecimalFormat("###,###");
+	int val = m.getCash();
+	%>
+
 	<div class="my-page-buy">
 		<div class="scontainer">
 			<div class="scontainer1">
@@ -264,7 +275,7 @@
 								<div class="font-noto" style="margin-top:5px;margin-bottom:10px;"><a href="../member/memberUpdateForm.jsp"><%=m.getNickName() %></a></div>
 								<br>
 								<div class="font-color-lighter font-size-h6 font-noto">TMI캐시</div>
-								<h3 class="margin-bottom-15 margin-top-5 link-color-blue NGB"><i class="won sign icon"></i><%=m.getCash()%> 원</h3>
+								<h3 class="margin-bottom-15 margin-top-5 link-color-blue NGB"><i class="won sign icon"></i><%=df.format(val)%> 원</h3>
 								<div>
 									<label class="seller-check font-noto" style="cursor:pointer;" onclick="lbcash();"><i class="credit card outline icon"></i>캐시충전</label>
 									
@@ -310,7 +321,7 @@
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp; <span class="selling-history select"><%=reqList.size() %></span></a>
+								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp; <span class="selling-history select">0</span></a>
 							</li>
 							<li>
 								<a style="cursor:pointer;" onclick="prging();">진행중 &nbsp; <span class="selling-history">0</span></a>
@@ -327,8 +338,8 @@
 				<div style="margin-top:20px">
 					<div class="font-noto" style="padding: 0 71.5%;">
 							<div class="ui icon input">
-  							<input type="text" placeholder="서비스 제목 검색">
-							<i class="inverted circular search link icon"></i>
+  							<input type="text" id="keyword" placeholder="서비스 제목 검색">
+							<i class="inverted circular search link icon" onclick="search();"></i>
 						</div>
 					</div>
 				</div>
@@ -337,6 +348,7 @@
 				<% if (reqList.size()==0) { %>
 					<div class="padding-15" style="margin-top:10px">
 						<div class="detail-box">
+						
 							<div class="detail-list">
 								<!-- 내역이 없을 때 -->
 								<div><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
@@ -346,34 +358,67 @@
 						</div>
 					</div>
 					
-				<% } else {%>
+					<% } else {%>
 							
 						<div class="detail-list2 padding-15">
+					
 							<!-- 내역이 있을 때 -->
 							<div class="tableArea">
 								
 								<br>
-								<%  for(SellerBoard sb : reqList) { %>
+								<%  for(DealMng dm : reqList) { %>
 								<table align="center" id="listArea">
 									<tr>
-										<th class="bcthumb"> <%-- <img src="/semi/resources/<%= sb.getBoardfile() %>" width="80px;">--%> <%=sb.getImages() %></th>
+										<th class="bcthumb"><img src="/semi/resources/images/noun_Coins.png" width="80px;"></th>
 										<th width="150px" class="bcinfo">
-											<p>주문번호 : <%=sb.getDmcode() %></p>
-											<p style="font-size:18px;"><%=sb.getBtitle()%></p>
+											<p>주문번호 : <%=dm.getDmcode() %></p>
+											<p style="font-size:18px;"><%=dm.getBtitle() %></p>
+											<p>거래일자 : <%=dm.getDealdate() %></p>
+											<p>판매자 : <%=dm.getNickname() %></p>
 										</th>
-										
-										<th class="bcprice"><i class="won sign icon"></i><%=sb.getPrice()%>원</th>
+										<%int price = dm.getPrice(); %>
+										<th class="bcprice"><i class="won sign icon"></i><%=df.format(price)%></th>
 									</tr>
-									
-								</table>
+								</table>	
+								<% } %>
 							
 						</div>
 					</div>
 					
 					
-					<% }} %>
+					<% } %>
 					
-					<br><br><br><br>
+					<br>
+					
+					<%-- 페이징 처리 --%>
+		<div class="pagingArea" align="center">
+			<button class="ui black button" onclick="location.href='<%= request.getContextPath() %>/nReq.bo?currentPage=1'"><<</button>
+			<%  if(currentPage <= 1){  %>
+			<button class="ui grey button" disabled><</button>
+			<%  }else{ %>
+			<button class="ui grey button" onclick="location.href='<%= request.getContextPath() %>/nReq.bo?currentPage=<%=currentPage - 1 %>'"><</button>
+			<%  } %>
+			
+			<% for(int p = startPage; p <= endPage; p++){
+					if(p == currentPage){	
+			%>
+				<button class="ui blue basic button" disabled><%= p %></button>
+			<%      }else{ %>
+				<button class="ui blue basic button" onclick="location.href='<%= request.getContextPath() %>/nReq.bo?currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
+				
+			<%  if(currentPage >= maxPage){  %>
+			<button class="ui grey button" disabled>></button>
+			<%  }else{ %>
+			<button class="ui grey button" onclick="location.href='<%= request.getContextPath() %>/nReq.bo?currentPage=<%=currentPage + 1 %>'">></button>
+			<%  } %>
+			<button class="ui black button" onclick="location.href='<%= request.getContextPath() %>/nReq.bo?currentPage=<%= maxPage %>'">>></button>
+		</div>
+					
+					
+					
+					<br><br><br>
 					<div class="row" style="text-align:left;">
                             <div class="col-xs-12">
                                 <div class="padding-15 panel bg-color-main profits-panel-border border-radius-0 border-solid">
@@ -436,6 +481,11 @@
 		function cclist(){
 			location.href="/semi/cced.bo"
 		}
+		
+		function search(){
+			location.href="<%=request.getContextPath()%>/searchA.bo?keyword="+$('#keyword').val();
+		}
+		
 	</script>
 	
 	
