@@ -4,9 +4,8 @@
 	import="buy.buy.model.vo.* ,buy.comment.model.vo.*, java.util.*, member.model.vo.*"%>
 
 <%
-	SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
-	System.out.println("list JSP에서 Sellerboard : " + b);
-	/* ArrayList<BoardComment> clist = (ArrayList<BoardComment>) request.getAttribute("clist"); */
+SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
+ArrayList<BoardComment> clist = (ArrayList<BoardComment>)request.getAttribute("clist");
 %>
 
 <!DOCTYPE html>
@@ -118,6 +117,7 @@ li {
 .pricebox {
 	border: 1px solid #e6e6e6;
 	padding: 20px;
+	margin-top: 30px;
 }
 
 .pricebox p {
@@ -136,8 +136,6 @@ margin: 20px 10px;
 }
 
 .sellerInfobox {
-	border: 1px solid #e6e6e6;
-	margin-top: 30px;
 }
 
 .sellerinfo {
@@ -210,9 +208,7 @@ margin: 20px 10px;
 	function fnMove(seq) {
 		var offset = $(".tabcontent" + seq).offset();
 		var winH = $(".tabcontent" + seq).height();
-		$('html, body').animate({
-			scrollTop : (offset.top - winH / 3)
-		}, 400);
+		$('html, body').animate({scrollTop : (offset.top - winH*1.8)}, 400);
 	};
 
 	$(document).ready(function() {
@@ -242,8 +238,8 @@ margin: 20px 10px;
 				</div>
 
 				<div class="starbox">
-					<div class="ui massive star rating" data-rating="3"
-						data-max-rating="5"></div>
+					<div class="ui massive star rating" data-rating="1"
+						data-max-rating="1"></div>
 						<span><%=b.getBevaluation() %>점</span> 
 
 					<script>
@@ -290,62 +286,184 @@ margin: 20px 10px;
 
 				<div class="tabcontent4" style="margin-bottom: 1000px;">
 
-					<div id="replySelectArea">
-						<!-- 게시글의 댓글을 보여주는 부분 -->
-						<%-- <%
-							if (clist != null) {
-						%>
-						<%
-							for (BoardComment bco : clist) {
-						%>
-						<table id="replySelectTable">
-							<tr>
-								<td rowspan="2"></td>
-								<td><b><%=bco.getCwriter()%></b></td>
-								<td><%=bco.getCdate()%></td>
-								<td align="center">
-									<%
-										if (m.getUserName().equals(bco.getCwriter())) {
-									%> <input
-									type="hidden" name="cno" value="<%=bco.getCno()%>" />
-
-									<button type="button" class="updateBtn"
-										onclick="updateReply(this);">수정하기</button>
-
-									<button type="button" class="updateConfirm"
-										onclick="updateConfirm(this);" style="display: none;">수정완료</button>
-									&nbsp;&nbsp;
-
-									<button type="button" class="deleteBtn"
-										onclick="deleteReply(this);">삭제하기</button> <%
-								 	} else {
-								 %> <span>
-										마지막 레벨입니다.</span> <%
-								 	}
-								 %>
-								</td>
-							</tr>
-							<tr class="comment replyList">
-								<td colspan="3" style="background: transparent;"><textarea
-										class="reply-content" cols="105" rows="3" readonly="readonly"><%=bco.getCcontent()%></textarea>
-								</td>
-							</tr>
-						</table>
-						<%
-							}
-							} else {
-						%>
-						<p>현재 등록된 댓글이 없습니다.</p>
-						<%
-							}
-						%>
-					 --%>
-					</div>
+					<div class="outer">
+		<br>
+		<% if(m != null){ %>
+		<div class="replyArea">
+         <div class="replyWriteArea">
+            <form action="/semi/insertComment.bo" method="post">
+               <input type="hidden" name="writer" value="<%=m.getEmail()%>"/>
+               <input type="hidden" name="bno" value="<%=b.getBno() %>" />
+               <input type="hidden" name="refcno" value="0" />
+               <input type="hidden" name="clevel" value="1" />
+               
+               <table align="center">
+                  <tr>
+                     <td>댓글 작성</td>
+                     <td><textArea rows="3" cols="80" id="replyContent" name="replyContent"></textArea></td>
+                     <td><button type="submit" id="addReply">댓글 등록</button></td>
+                  </tr>
+               </table>
+            </form>
+            <%} %>
+         </div>
+         <div id="replySelectArea">
+      		<!-- 게시글의 댓글을 보여주는 부분 -->
+      		<% if (clist != null){%>
+      			<% for(BoardComment bco : clist){ %>
+	      			<table id="replySelectTable"
+	             style="margin-left : <%= (bco.getClevel()-1) * 15 %>px;
+	                   width : <%= 800 - ((bco.getClevel()-1) * 15)%>px;"
+	             class="replyList<%=bco.getClevel()%>">
+	              <tr>
+	                 <td rowspan="2"> </td>
+	               <td><b><%= bco.getCwriter() %></b></td>
+	               <td><%= bco.getCdate() %></td>
+	               <td align="center">
+	               <%if(m.getEmail().equals(bco.getCwriterId())) { %>
+	                  <input type="hidden" name="cno" value="<%=bco.getCno()%>"/>
+	                       
+	                  <button type="button" class="updateBtn" 
+	                     onclick="updateReply(this);">수정하기</button>
+	                     
+	                  <button type="button" class="updateConfirm"
+	                     onclick="updateConfirm(this);"
+	                     style="display:none;" >수정완료</button> &nbsp;&nbsp;
+	                     
+	                  <button type="button" class="deleteBtn"
+	                     onclick="deleteReply(this);">삭제하기</button>
+	       
+	                     
+	               <% } else {%>
+	                  
+	               <% } %>
+	               </td>
+	            </tr>
+	            <tr class="comment replyList<%=bco.getClevel()%>">
+	               <td colspan="3" style="background : transparent;">
+	               <div class="reply-content" cols="105" rows="3"
+	                readonly="readonly"><%= bco.getCcontent() %></div>
+	               </td>
+	            </tr>
+	         </table>
+      		<% } } else { %>
+      		 <p>현재 등록된 댓글이 없습니다.</p>
+      		<%} %>
+         </div>
+      </div>
+		
+		
+	</div>
 				</div>
 
 
 			</div>
 		</div>
+
+	<script>
+	function updateReply(obj) {
+        // 현재 위치와 가장 근접한 textarea 접근하기
+        $(obj).parent().parent().next().find('textarea')
+        .removeAttr('readonly');
+        
+        // 수정 완료 버튼을 화면 보이게 하기
+        $(obj).siblings('.updateConfirm').css('display','inline');
+        
+        // 수정하기 버튼 숨기기
+        $(obj).css('display', 'none');
+     }
+     
+    <%--  function updateConfirm(obj) {
+        // 댓글의 내용 가져오기
+        var content
+          = $(obj).parent().parent().next().find('textarea').val();
+        
+        // 댓글의 번호 가져오기
+        var cno = $(obj).siblings('input').val();
+        
+        // 게시글 번호 가져오기
+        var bno = '<%=b.getBno()%>';
+        
+        location.href="/myWeb/updateComment.bo?"
+               +"cno="+cno+"&bno="+bno+"&content="+content;
+     } --%>
+     
+    <%--  function deleteReply(obj){
+        // 댓글의 번호 가져오기
+        var cno = $(obj).siblings('input').val();
+        
+        // 게시글 번호 가져오기
+        var bno = '<%=b.getBno()%>';
+        
+        location.href="/myWeb/deleteComment.bo"
+        +"?cno="+cno+"&bno="+bno;
+     } --%>
+     
+     function reComment(obj){
+        // 추가 완료 버튼을 화면 보이게 하기
+        $(obj).siblings('.insertConfirm').css('display','inline');
+        
+        // 클릭한 버튼 숨기기
+        $(obj).css('display', 'none');
+        
+        // 내용 입력 공간 만들기
+        var htmlForm = 
+           '<tr class="comment"><td></td>'
+              +'<td colspan="3" style="background : transparent;">'
+                 + '<textarea class="reply-content" style="background : ivory;" cols="105" rows="3"></textarea>'
+              + '</td>'
+           + '</tr>';
+        
+        $(obj).parents('table').append(htmlForm);
+        
+     }
+     
+     function reConfirm(obj) {
+        // 댓글의 내용 가져오기
+        
+        // 참조할 댓글의 번호 가져오기
+        var refcno = $(obj).siblings('input[name="refcno"]').val();
+        var level = Number($(obj).siblings('input[name="clevel"]').val()) + 1;
+        
+        // console.log(refcno + " : " + level);
+        
+        // 게시글 번호 가져오기
+        var bno = '<%=b.getBno()%>';
+        
+        var parent = $(obj).parent();
+        var grandparent = parent.parent();
+        var siblingsTR = grandparent.siblings().last();
+        
+        var content = siblingsTR.find('textarea').val();
+        
+        // console.log(parent.html());
+        // console.log(grandparent.html());
+        // console.log(siblingsTR.html());
+        
+        // console.log(content);
+
+        // writer, replyContent
+        // bno, refcno, clevel
+       location.href='/semi/insertComment.bo'
+                   
+                   + '&replyContent=' + content
+                   + '&bno=' + bno
+                   + '&refcno=' + refcno
+                   + '&clevel=' + level; 
+     }
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 		<div class="detailbox2">
@@ -356,40 +474,11 @@ margin: 20px 10px;
 			
 
 			<div class="pricebox" style="border: 1px solid #e6e6e6;">
-				<p><%=b.getBcontent() %></p>
-				
-				<div class="clearFix" style="margin-bottom: 20px;">
-					<div class="pricedue clearFix">
-						<img src="/semi/resources/images/calendar.png" alt="" style="width: 15px; height:15px; float: left;"/>
-						<p>작업일: &nbsp;<%=b.getDuedate() %>일</p>
-					</div>
-					<div class="priceedit clearFix">
-						<img src="/semi/resources/images/tool.png" alt="" style="width: 15px; height:15px; float: left;"/>
-						<p>수정횟수: &nbsp;<%=b.getEditablecount() %>회</p>
-					</div>
-				</div>
-				<a href="<%= request.getContextPath() %>/buyPage.bo?bno=<%=b.getBno()%>"
-					style="">구매하기(<%=b.getPrice() %>원)</a>
-			</div>
-
-
-			<div class="shildbox container2 clearFix" style="margin-top: 20px;">
-				<img src="/semi/resources/images/shild.png" alt=""
-					style="float: left; margin:10px 10px;">
-				<div class="buybtntext">
-					<p>TMI는 안전한 거래 환경을 제공합니다.</p>
-					<p>TMI를 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</p>
-				</div>
-
-			</div>
-
-
-
-			<div class="sellerInfobox">
+				<div class="sellerInfobox">
 				<div class="sellerpadding">
 					<div class="selleridbox1">
 						<img src="" alt="" />
-						<p style="text-align:center;">이자식</p>
+						<p style="text-align:center;">보드닉네임집어넣기</p>
 					</div>
 
 					<div style="text-align: center;">
@@ -410,6 +499,37 @@ margin: 20px 10px;
 
 				</div>
 			</div>
+				
+				<div class="clearFix" style="margin-bottom: 20px; text-align: center;">
+					<div class="pricedue clearFix">
+						<img src="/semi/resources/images/calendar.png" alt="" style="width: 15px; height:15px; float: left;"/>
+						<p>작업일: &nbsp;<%=b.getDuedate() %>일</p>
+					</div>
+					<div class="priceedit clearFix">
+						<img src="/semi/resources/images/tool.png" alt="" style="width: 15px; height:15px; float: left;"/>
+						<p>수정횟수: &nbsp;<%=b.getEditablecount() %>회</p>
+					</div>
+				</div>
+				<div style="text-align: center;">
+				<a href="<%= request.getContextPath() %>/buyPage.bo?bno=<%=b.getBno()%>"
+					style="">구매하기(<%=b.getPrice() %>원)</a>
+				</div>
+			</div>
+
+
+			<div class="shildbox container2 clearFix" style="margin-top: 20px;">
+				<img src="/semi/resources/images/shild.png" alt=""
+					style="float: left; margin:10px 10px;">
+				<div class="buybtntext">
+					<p>TMI는 안전한 거래 환경을 제공합니다.</p>
+					<p>TMI를 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</p>
+				</div>
+
+			</div>
+
+
+
+			
 		</div>
 	</section>
 

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+
 import charge.model.exception.CashRechargeException;
 import charge.model.vo.Cash;
 import member.model.vo.Member;
@@ -237,7 +238,214 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 		return rechargeList;
 		
 	}
-	
+
+
+
+
+
+	//필터! ('충전','사용','환불','전체')
+	public ArrayList<Cash> searchList(Connection con, Member m, String category) throws FileNotFoundException, IOException {
+		
+		ArrayList<Cash> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		prop2 = new Properties();
+		
+		String filePath2
+		   = CashRechargeDao.class
+		   .getResource("/config/cashList-query.properties").getPath();
+		
+		prop2.load(new FileReader(filePath2));
+		
+		
+		String sql = null;
+		
+		switch(category) {
+		case "recharging" :
+			sql = prop2.getProperty("searchCashRec");
+			break;
+		case "sptcash" :
+			sql = prop2.getProperty("searchCashspt");
+			break;
+		case "refunding" :
+			sql = prop2.getProperty("searchCashref");
+			break;
+		case "all" :
+			sql = prop2.getProperty("searchx");
+		}
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, m.getMno());
+			
+			if(sql.equals(prop2.getProperty("searchCashRec"))) {
+				pstmt.setString(2, "충전");
+			} else if(sql.equals(prop2.getProperty("searchCashspt"))) {
+				pstmt.setString(3, "사용");
+			} else if(sql.equals(prop2.getProperty("searchCashref"))) {
+				pstmt.setString(4, "환불");
+			}
+			
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Cash>();
+			
+			while(rset.next()){
+				
+				Cash cs = new Cash();
+				
+				cs.setPayno(rset.getInt(1));
+				cs.setMno(rset.getInt(2));
+				cs.setPayp(rset.getInt(3));
+				cs.setPaydate(rset.getDate(4));
+				cs.setClassify(rset.getString(5));
+				
+				list.add(cs);
+				
+			}
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+
+
+
+
+	//캐시 내역에서 '사용'으로 DB에 들어갈 부분
+	public int insertsptCash(Connection con, Cash csh) throws FileNotFoundException, IOException, CashRechargeException {
+		
+		prop2 = new Properties();
+		
+		System.out.println(csh.getMno());
+		
+		String filePath2
+		   = CashRechargeDao.class
+		   .getResource("/config/cashList-query.properties").getPath();
+		
+		prop2.load(new FileReader(filePath2));
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			//String sql = "INSERT INTO CASH VALUES(SEQ_PAYNO.NEXTVAL,?,?,SYSDATE,?)";
+			String sql = prop2.getProperty("insertsptCashL");
+			
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, csh.getMno());
+			pstmt.setInt(2, csh.getPayp());
+			pstmt.setString(3, csh.getClassify());
+			
+			result=pstmt.executeUpdate();
+			
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new CashRechargeException(e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		
+		return result;
+		
+		
+		
+	}
+
+
+
+
+
+	//member에서 현재 캐시 +로 들어가는 부분
+	public int updateSptCash(Connection con, Member m) throws FileNotFoundException, IOException, CashRechargeException {
+		
+		prop = new Properties();
+		
+		String filePath
+		   = CashRechargeDao.class
+		   .getResource("/config/member-query.properties").getPath();
+		
+		prop.load(new FileReader(filePath));
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+
+			String sql = prop.getProperty("updateSptCash");
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, m.getCash());
+			pstmt.setString(2, m.getEmail());
+
+			result = pstmt.executeUpdate();
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new CashRechargeException(e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+		
+	}
+
+
+
+
+
+
+	public int CashUpdate(Connection con, int mno, int tprice) throws FileNotFoundException, IOException, SQLException {
+		
+		prop = new Properties();
+		
+		String filePath
+		   = CashRechargeDao.class
+		   .getResource("/config/member-query.properties").getPath();
+		
+		prop.load(new FileReader(filePath));
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		
+		String sql = prop.getProperty("updateSptCash");
+		
+		pstmt=con.prepareStatement(sql);
+		
+		pstmt.setInt(1, tprice);
+		pstmt.setInt(2, mno);
+		
+		result = pstmt.executeUpdate();
+		
+		
+		
+		
+		
+		return result;
+	}
 	
 	
 	

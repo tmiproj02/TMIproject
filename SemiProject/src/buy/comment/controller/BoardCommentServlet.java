@@ -1,4 +1,4 @@
-package comment.controller;
+package buy.comment.controller;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import comment.model.service.BoardCommentService;
-import comment.model.vo.BoardComment;
+import buy.comment.model.service.BoardCommentService;
+import buy.comment.model.vo.BoardComment;
 
 /**
  * Servlet implementation class BoardCommentServlet
@@ -30,14 +30,13 @@ public class BoardCommentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		int cno = Integer.parseInt(request.getParameter("cno"));
-		String content = request.getParameter("ccontent");
-		String writer = request.getParameter("cwriter");
-		int cevaluation = Integer.parseInt(request.getParameter("cevaluation"));
+		String content = request.getParameter("replyContent");
+		String writer = request.getParameter("writer");
+		int refcno = Integer.parseInt(request.getParameter("refcno"));
+		int clevel = Integer.parseInt(request.getParameter("clevel"));
 		
-		BoardComment bco = new BoardComment(bno, cno, writer, content, cevaluation);
+		BoardComment bco = new BoardComment(bno, content, writer, refcno, clevel);
 		int result = new BoardCommentService().insertComment(bco);
 		
 		if(result > 0) {

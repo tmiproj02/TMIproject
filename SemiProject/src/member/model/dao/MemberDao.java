@@ -130,7 +130,7 @@ public class MemberDao {
 					result.setIsAlive(rset.getString("isAlive"));
 					result.setIsAdmin(rset.getString("isAdmin"));
 					result.setCoupon(rset.getString("coupon"));
-					
+					result.setMno(rset.getInt("MNO"));
 				}
 			}catch(Exception e) {
 				e.printStackTrace();

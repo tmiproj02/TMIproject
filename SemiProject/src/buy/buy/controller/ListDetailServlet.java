@@ -39,8 +39,9 @@ public class ListDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+	
 		int bno = Integer.parseInt(request.getParameter("bno"));
-//		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
+		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
 		SellerBoard b;
 		String page = "";
 		
@@ -48,8 +49,7 @@ public class ListDetailServlet extends HttpServlet {
 			b = new BoardService().selectOne(bno);
 			page = "views/buypage/listDetail.jsp";
 			request.setAttribute("sellerboard", b);
-			System.out.println(b);
-//			request.setAttribute("clist", clist);
+			request.setAttribute("clist", clist);
 		} catch (BoardException e) {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세 보기 실패");

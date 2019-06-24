@@ -1,9 +1,6 @@
-package buy.buy.controller;
+package charge.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,25 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import buy.buy.model.exception.BoardException;
-import buy.buy.model.service.BoardService;
-import buy.buy.model.vo.SellerBoard;
 import charge.model.exception.CashRechargeException;
 import charge.model.service.CashRechargeService;
-import charge.model.vo.Cash;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class BuyPagePaymentServlet
+ * Servlet implementation class CashSptServlet
  */
-@WebServlet("/bPayment.bo")
-public class BuyPagePaymentServlet extends HttpServlet {
+@WebServlet("/mCashSpt.bo")
+public class CashSptServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BuyPagePaymentServlet() {
+    public CashSptServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,38 +31,41 @@ public class BuyPagePaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
 		
+		//2사용
+		int Cash = (int)(request.getAttribute("tprice"));
+		String email = (String) request.getAttribute("email");
+		System.out.println("Cash : " + Cash);
+		Member m = new Member(Cash);
 		
-		int tprice = (int)request.getAttribute("tprice");
-		String page = "";
-		
-
-		HttpSession session = request.getSession();
-		Member m = (Member)session.getAttribute("member");
-		m.setCash(m.getCash()-tprice);
-		
+		m.setEmail(email);
 		
 		CashRechargeService crs = new CashRechargeService();
-	
+		
+		HttpSession session = request.getSession(false);
+		Member changeMember = (Member)session.getAttribute("member");
+		String page;
 		try {
+			changeMember.setCash(crs.minusinsertCash(m));
 			
-			crs.CashUpdate(m.getMno(),tprice);
+			session.setAttribute("member", changeMember);
 			
-			page = "views/buypage/payCreate.jsp";
-			request.setAttribute("tprice", tprice);
-			session.setAttribute("member", m);
-			
-			request.getRequestDispatcher(page).forward(request, response);
-		} catch(SQLException e) {
-			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "결제목록 불러오기 에러!");
-			request.setAttribute("exception", e);
+			request
+			.getRequestDispatcher("/bPayment.bo")
+			.forward(request, response);
+			page = "views/buypage/payCreate.jsp"; 
+		} catch (CashRechargeException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
-			request.getRequestDispatcher(page).forward(request, response);
-		}
+		} 
+		
+		
+		
+//			response.sendRedirect("/semi/views/personBUY/buyingcontrol.jsp");
+		
+		
+		
+		
 		
 		
 		

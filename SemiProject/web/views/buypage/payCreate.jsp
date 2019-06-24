@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="buy.buy.model.vo.* , java.util.*, member.model.vo.*" %>
 <%
-SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
+	String tprice = request.getParameter("tprice");
 %>
 <!DOCTYPE html>
 <html>
@@ -48,8 +48,8 @@ SellerBoard b = (SellerBoard)request.getAttribute("sellerboard");
 		<div>
 			<p>결제가 완료되었습니다.</p>
 			<div>
-				<p>결제금액 1000원</p>
-				<p>쿠폰 10,000원</p>
+				<p>결제금액 <%=tprice %>원</p>
+				
 			</div>
 			<p>주문 내역은 "우측상단 닉네임>구매>구매관리"에서 확인 가능합니다.<br>
 				기타 문의사항이 있을 경우, 고객센터를 이용해 주세요.

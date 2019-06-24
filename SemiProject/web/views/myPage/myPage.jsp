@@ -217,7 +217,7 @@ font-family: 'Noto Sans KR', sans-serif;
 							<div class="menu-box">
 								<div class="padding-15">
 									<div class="menu-line" style="text-align:center">
-										<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;">							
+										<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
 											<div><img src="/semi/resources/images/buying_active.png" alt="" /></div>
 											<h6>구매관리</h6>							
 										</div></a>
