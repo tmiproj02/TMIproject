@@ -18,7 +18,29 @@ public class DealMng {
 	private String btitle;
 	private int price;
 	private String nickname;
-	
+	private String sNickname;
+
+	public String getsNickname() {
+		return sNickname;
+	}
+
+
+
+
+
+
+
+
+	public void setsNickname(String sNickname) {
+		this.sNickname = sNickname;
+	}
+
+
+
+
+
+
+
 
 	public DealMng() {
 		super();

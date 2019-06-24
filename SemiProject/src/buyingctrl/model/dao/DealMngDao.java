@@ -354,6 +354,45 @@ public class DealMngDao {
 	}
 
 
+	public ArrayList<DealMng> selectDeal(Connection con, int sno) {
+		ArrayList<DealMng> list = new ArrayList<DealMng>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = "SELECT D.*,M.NICKNAME FROM DEALMANAGER D JOIN MEMBER M ON (D.MNO = M.MNO) WHERE SNO = ?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, sno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				DealMng dm = new DealMng();
+				
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setsNickname(rset.getString("nickName"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setProgress(rset.getString("progress"));
+				dm.setPrice(rset.getInt("price"));
+				
+				list.add(dm);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+
 	
 	
 	

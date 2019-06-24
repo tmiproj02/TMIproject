@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import sellerboard.model.dao.SellerBoardDao;
 import sellerboard.model.exception.SellerboardException;
 import sellerboard.model.vo.SellerBoard;
+import sellerboard.model.vo.Talent;
 
 public class SellerboardService {
 
@@ -27,9 +28,9 @@ public class SellerboardService {
 				return result;
 	}
 
-	public int getListCount() {
+	public int getListCount(String cCode, String code) {
 		con = getConnection();
-		int result = sbDao.getListCount(con);
+		int result = sbDao.getListCount(con,cCode,code);
 		close(con);
 		return result;
 	}
@@ -63,6 +64,29 @@ public class SellerboardService {
 		if(result == 0) throw new SellerboardException("Sno를 가져오는 과정에서 문제발생");
 		
 		return result;
+	}
+
+	public Talent SelectTalent(String cCode, String code) {
+		con = getConnection();
+		
+		String t1 = "";
+		String t2 = "";
+		Talent t = new Talent();
+		if(code.equals("0")) {
+			t1=sbDao.SelectTalent1(con, cCode);
+			t.setTalent1(t1);
+			System.out.println(t.getTalent1());
+		} else {
+			t1=sbDao.SelectTalent1(con, cCode);
+			t2=sbDao.SelectTalent2(con, code);
+			t.setTalent1(t1);
+			t.setTalent2(t2);
+			System.out.println(t.getTalent1());
+		}
+		
+		close(con);
+		
+		return t;
 	}
 
 }

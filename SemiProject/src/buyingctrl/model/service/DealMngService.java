@@ -100,6 +100,17 @@ public class DealMngService {
 	}
 
 
+
+	public ArrayList<DealMng> selectDeal(int sno) {
+		con = getConnection();
+		ArrayList<DealMng> list = dmDao.selectDeal(con,sno);
+		
+		close(con);
+		
+		return list;
+	}
+
+
 	
 
 	

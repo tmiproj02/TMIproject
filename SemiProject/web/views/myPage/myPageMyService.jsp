@@ -249,7 +249,7 @@
 									<div><img src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 									<h6>광고관리</h6>							
 								</div></a>
-								<a href="/semi/views/myPage/myPageMyService.jsp"><div class="padding-all-15 menu-slot active">
+								<a href="/semi/myboard.bo?sno=<%= s.getSno() %>"><div class="padding-all-15 menu-slot active">
 									<div><img src="/semi/resources/images/my_gigs_active.png" alt="" /></div>
 									<h6>나의 서비스</h6>			
 								</div></a>
@@ -271,16 +271,16 @@
 								<a style="color:#000" href="/semi/myboard.bo?sno=<%=s.getSno() %>">전체 &nbsp; <span class="selling-history select"><%=list.size()%></span></a>
 							</li>
 							<li>
-								<a href="/semi/myboard.bo?sno=<%=s.getSno() %>">판매중 &nbsp; <span class="selling-history"><%=b2 %></span></a>
+								<a href="/semi/myboard.bo?sno=<%=s.getSno() %>&state=B2">판매중 &nbsp; <span class="selling-history"><%=b2 %></span></a>
 							</li>
 							<li>
-								<a href="/semi/myboard.bo?sno=<%=s.getSno() %>">승인대기중 &nbsp; <span class="selling-history"><%=b1 %></span></a>
+								<a href="/semi/myboard.bo?sno=<%=s.getSno() %>&state=B1">승인대기중 &nbsp; <span class="selling-history"><%=b1 %></span></a>
 							</li>
 							<li>
-								<a href="/semi/myboard.bo?sno=<%=s.getSno() %>">판매중지 &nbsp; <span class="selling-history"><%=b3 %></span></a>
+								<a href="/semi/myboard.bo?sno=<%=s.getSno() %>&state=B3">판매중지 &nbsp; <span class="selling-history"><%=b3 %></span></a>
 							</li>
 							<li>
-								<a href="/semi/myboard.bo?sno=<%=s.getSno() %>">비승인 &nbsp; <span class="selling-history"><%=b4 %></span></a>
+								<a href="/semi/myboard.bo?sno=<%=s.getSno() %>&state=B4">비승인 &nbsp; <span class="selling-history"><%=b4 %></span></a>
 							</li>
 						</ul>
 					</div>
@@ -302,7 +302,7 @@
 								
 								<div class="mySlist" style="margin:0;padding: 20px 0">
 									<div style="width:20%; "><img width=100px src="/semi/resources/selleruploadIMG/<%=b.getImages()%>" alt="" /></div>
-									<div style="width:50%; "><div><a href=""><h5 style="text-align:left; margin-left:20px"><%=b.getBtitle() %></h5></a></div></div>
+									<div style="width:50%; "><div><a href="/semi/listDetail.bo?bno=<%= b.getBno()%>"><h5 style="text-align:left; margin-left:20px"><%=b.getBtitle() %></h5></a></div></div>
 									<div style="width:15%; "><div style="margin:30px 0"><h5><%=b.getPrice() %></h5></div></div>
 									<div style="width:15%; border-right:none;"><div style="margin:30px 0"><h5><%=states%></h5></div></div>
 								</div>
@@ -313,7 +313,9 @@
 							<div class="detail-list">
 								<div>
 									<h5 class="font-noto" style="color:#878787">
-									등록한 서비스가 없습니다.<br> 서비스를 등록하여 판매를 시작해보세요!
+									등록한 서비스가 없습니다.<br> 서비
+									
+									스를 등록하여 판매를 시작해보세요!
                                     </h5>
 								</div>
 								<button class="ui button" style="background:#364559;color:white;margin-top:5px;" onclick="sellstart()">판매 시작하기

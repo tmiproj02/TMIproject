@@ -35,19 +35,25 @@ public class MyBoardServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		String state = null;
+		if(request.getParameter("state") != null) {
+			state = request.getParameter("state");
+		}
 		
 		int sno = Integer.parseInt(request.getParameter("sno"));
 		System.out.println(sno);
-		
-		
-		
+
 		ArrayList<SellerBoard> list;
 		String page="";
 		try {
 			list = new SellerboardService().myBoardSelect(sno);
 			
-			System.out.println("들어옴");
-			page="views/myPage/myPageMyService.jsp"; 
+			if(state == null) {
+				page="views/myPage/myPageMyService.jsp"; 
+			} else {
+				page="views/myPage/MyService/MyService"+state+".jsp";
+			}
+			
 			request.setAttribute("list", list);
 			
 		} catch (SellerboardException e) {

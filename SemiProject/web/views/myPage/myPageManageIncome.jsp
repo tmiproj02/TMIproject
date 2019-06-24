@@ -288,7 +288,7 @@
 									<div><img src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 									<h6>광고관리</h6>							
 								</div></a>
-								<a href="/semi/views/myPage/myPageMyService.jsp"><div class="padding-all-15 menu-slot">
+								<a href="/semi/myboard.bo?sno=<%= s.getSno() %>"><div class="padding-all-15 menu-slot">
 									<div><img src="/semi/resources/images/my_gigs_active.png" alt="" /></div>
 									<h6>나의 서비스</h6>			
 								</div></a>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import sellerboard.model.service.SellerboardService;
 import sellerboard.model.vo.PageInfo;
 import sellerboard.model.vo.SellerBoard;
+import sellerboard.model.vo.Talent;
 
 /**
  * Servlet implementation class ListBoardServlet
@@ -49,21 +50,23 @@ public class ListBoardServlet extends HttpServlet {
 		currentPage = 1;
 		pageLimit = 5;
 		boardLimit = 12;
-		String cate = request.getParameter("cate");
+		
 		String cCode = request.getParameter("cCode");
 		String code = request.getParameter("code");
-		System.out.println(cate);
 		System.out.println(cCode);
 		System.out.println(code);
 		
+		Talent t = bs.SelectTalent(cCode,code);
 		
+		t.setTalent1code(cCode);
+		t.setTalent2code(code);
 		
 		if(request.getParameter("currentPage")!=null) {
 			currentPage
 			= Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int listCount = bs.getListCount();
+		int listCount = bs.getListCount(cCode,code);
 		
 		System.out.println("총 게시물 개수 : " + listCount);
 		
@@ -79,14 +82,16 @@ public class ListBoardServlet extends HttpServlet {
 		
 		list = bs.selectList(currentPage, pageLimit, boardLimit, cCode, code);
 		
+		
 		String page="";
 		if(list != null) {
-			page="views/categoryPage/"+cate+".jsp"; 
+			page="views/categoryPage/allCategoryPage.jsp";
 			request.setAttribute("list", list);
-			
+			request.setAttribute("talent", t);
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit, maxPage, startPage, endPage);
 			request.setAttribute("pi", pi);
-			request.setAttribute("code", code);		
+			request.setAttribute("code", code);
+			request.setAttribute("cCode", cCode);
 		}else {
 			page="views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 목록 조회 실패");

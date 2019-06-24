@@ -17,6 +17,7 @@ import seller.model.dao.SellerDao;
 import seller.model.exception.SellerException;
 import sellerboard.model.exception.SellerboardException;
 import sellerboard.model.vo.SellerBoard;
+import sellerboard.model.vo.Talent;
 
 public class SellerBoardDao {
 
@@ -108,25 +109,32 @@ public class SellerBoardDao {
 	}
 
 
-	public int getListCount(Connection con) {
+	public int getListCount(Connection con,String cCode, String code) {
 		int listCount=0;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
-		String sql = prop.getProperty("listCount");
-		
+		String sql = null;
+		System.out.println(cCode);
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(sql);
+			if(code.equals("0")) {
+				sql = "SELECT COUNT(*) FROM SELLERBOARD WHERE STATE = 'B2' AND CATEGORY1_CODE = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, cCode);
+			}else {
+				sql = "SELECT COUNT(*) FROM SELLERBOARD WHERE STATE = 'B2' AND CATEGORY1_CODE = ?  AND CATEGORY2_CODE = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, cCode);
+				pstmt.setString(2, code);
+			}	
+			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				
 				listCount = rset.getInt(1);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		
 		
@@ -299,6 +307,64 @@ public class SellerBoardDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+
+	public String SelectTalent1(Connection con, String cCode) {
+		String t = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; // Select의 결과를 담은 객체
+		
+		String sql=prop.getProperty("selecttalent1");
+		System.out.println("Dao의 cCode: " + cCode);
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, cCode);
+			
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()) {
+				t=rset.getString(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return t;
+	}
+
+
+	public String SelectTalent2(Connection con, String code) {
+		String t = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; // Select의 결과를 담은 객체
+		
+		String sql=prop.getProperty("selecttalent2");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, code);
+			
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()) {
+				t=rset.getString(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return t;
 	}
 
 }
