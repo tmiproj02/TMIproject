@@ -1,9 +1,6 @@
-package buy.buy.controller;
+package buyingctrl.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,25 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import buy.buy.model.exception.BoardException;
-import buy.buy.model.service.BoardService;
-import buy.buy.model.vo.SellerBoard;
 import charge.model.exception.CashRechargeException;
 import charge.model.service.CashRechargeService;
 import charge.model.vo.Cash;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class BuyPagePaymentServlet
+ * Servlet implementation class sptCashListServlet
  */
-@WebServlet("/bPayment.bo")
-public class BuyPagePaymentServlet extends HttpServlet {
+@WebServlet("/sptList.bo")
+public class sptCashListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BuyPagePaymentServlet() {
+    public sptCashListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,40 +32,44 @@ public class BuyPagePaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		
-		int tprice = (int)request.getAttribute("tprice");
-		String page = "";
-		
 
+		//1사용
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("member");
-		m.setCash(m.getCash()-tprice);
+
+		int mno = m.getMno();
+		System.out.println(mno);
+		int cp = Integer.parseInt(request.getParameter("tprice")); //차감되는가격(이름변경해야함.)
+		System.out.println(cp);
+		String email = request.getParameter("email");
+
 		
-		
+		Cash csh = new Cash(mno, cp, "사용");
+
 		CashRechargeService crs = new CashRechargeService();
-	
+
+		
 		try {
+			crs.spentCashInsert(csh);
 			
-			crs.CashUpdate(m.getMno(),tprice);
+			request.setAttribute("tprice", cp);
+			request.setAttribute("email", email);
+
 			
-			page = "views/buypage/payCreate.jsp";
-			request.setAttribute("tprice", tprice);
-			session.setAttribute("member", m);
+			request
+			.getRequestDispatcher("/bPayment.bo")
+			.forward(request, response); 
 			
-			request.getRequestDispatcher(page).forward(request, response);
-		} catch(SQLException e) {
-			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "결제목록 불러오기 에러!");
+			
+		} catch(CashRechargeException e) {
+
+			request.setAttribute("msg", "사용된 캐시 내역 넣을 때 에러 발생!!");
 			request.setAttribute("exception", e);
-			e.printStackTrace();
-			
-			request.getRequestDispatcher(page).forward(request, response);
+		
+			request
+			.getRequestDispatcher("views/common/errorPage.jsp")
+			.forward(request, response);
 		}
-		
-		
 		
 		
 	}

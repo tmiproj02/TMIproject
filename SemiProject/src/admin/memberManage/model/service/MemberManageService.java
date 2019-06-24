@@ -108,6 +108,19 @@ public class MemberManageService {
 		
 	}
 
+
+	public void replyRequest(ClientRequest cr) {
+		con = getConnection();
+		try {
+			mDao.replyRequest(con,cr);
+			commit(con);
+		}catch(Exception e) {
+			rollback(con);
+			e.printStackTrace();
+		}
+		
+	}
+
 	
 	
 	

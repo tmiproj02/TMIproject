@@ -1,4 +1,4 @@
-package buy.buy.controller;
+package charge.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,26 +8,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import buy.buy.model.exception.BoardException;
-import buy.buy.model.service.BoardService;
-import buy.buy.model.vo.SellerBoard;
-import buy.comment.model.service.BoardCommentService;
-import buy.comment.model.vo.BoardComment;
-
-
+import charge.model.exception.CashRechargeException;
+import charge.model.service.CashRechargeService;
+import charge.model.vo.Cash;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class ListDetailServlet
+ * Servlet implementation class whghlListServlet
  */
-@WebServlet("/listDetail.bo")
-public class ListDetailServlet extends HttpServlet {
+@WebServlet("/whghl.bo")
+public class whghlListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListDetailServlet() {
+    public whghlListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,27 +34,27 @@ public class ListDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
 		
-	
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
-		SellerBoard b;
+		// 검색 카테고리
+		String category = request.getParameter("con");
+		
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		
+		
+		ArrayList<Cash> list = new ArrayList<Cash>();
+		
+		CashRechargeService cs = new CashRechargeService();
+		
 		String page = "";
-		
-		try {
-			b = new BoardService().selectOne(bno);
-			page = "views/buypage/listDetail.jsp";
-			request.setAttribute("sellerboard", b);
-			request.setAttribute("clist", clist);
-		} catch (BoardException e) {
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시글 상세 보기 실패");
-			
-		}
+		list = cs.searchNotice(category, m);
+
+		page = "views/personBUY/billingHistory.jsp";
+		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher(page).forward(request, response);
+		
+		
 		
 		
 	}

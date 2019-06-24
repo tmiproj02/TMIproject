@@ -237,6 +237,9 @@ nav{
 	padding-top:10px;
 	padding-bottom:10px;
 }
+.mylog .mynick{
+	display:inline-block;
+}
 .mylog>a>div{
 	display:inline-block;
 }
@@ -302,19 +305,23 @@ nav{
                     </div>
                     <div class="right-head paddinghead">
                         <div class="info">
-                            <div class="padding-20px"><a href="/">판매 시작하기</a></div>
+                            <%if(s == null){ %>
+                            	<div class="padding-20px"><a href="/semi/views/seller/SellerRegistration.jsp">판매 시작하기</a></div>
+                            <%}else{ %>
+                            	<div class="padding-20px"><a href="/semi/views/seller/ServiceRegistration.jsp">판매 시작하기</a></div>
+                            <%} %>
                             <div class="padding-15px"><a style="cursor:pointer;" onclick="nrequest();">구매</a></div>
-                            <div class="padding-15px"><a href="/">메시지</a></div>
+                            <div class="padding-15px"><a href="/semi/views/message/message.jsp">메시지</a></div>
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>
                             <div class="mylog padding-15px"><a href="/">
                             	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important; vertical-align: middle;"/></div>
-                            	<div><h5><%= m.getUserName() %></h5></div>
+                            	<div class="mynick"><h5><%= m.getNickName() %></h5></a></div>
                             	</a>
                             	<div class="downmymenu">
 		                           	<ul class="mylogmenu" style="list-style:none;margin:5px 0;">
-		                           		<li><a href="/semi/views/myPage/myPageManageSell.jsp"><div><h5>나의TMI</h5></div></a></li>
+		                           		<li><a href="/semi/views/myPage/myPage.jsp"><div><h5>나의TMI</h5></div></a></li>
 		                           		<li><a href=""><div><h5>친구초대</h5></div></a></li>
-		                           		<li><a href="views/member/memberUpdateForm.jsp"><div><h5>정보수정</h5></div></a></li>
+		                           		<li><a href="/semi/views/member/memberUpdateForm.jsp"><div><h5>정보수정</h5></div></a></li>
 		                           		<li><a href="/semi/logout.do"><div><h5>로그아웃</h5></div></a></li>
 		                           	</ul>
                        			</div>
@@ -336,7 +343,7 @@ nav{
                 <div class="navsize">
                     <ul class='nav_ul'>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate0"><a href="">나의정보</a></div>
+                        	<div class="cate" id="cate0"><a href="/semi/views/myPage/myPage.jsp">나의정보</a></div>
                         </li>
                         <li clase="talent-category">
 	                        <div class="cate" id="cate1"><a href="">구매관리</a></div>
@@ -351,14 +358,14 @@ nav{
                         	<div class="cate" id="cate2"><a href="/semi/views/myPage/myPageManageSell.jsp">판매관리</a></div>
                         	<ul class="downmenu" id="downmenu2">
                         		<li><a href="/semi/views/myPage/myPageManageSell.jsp">판매관리</a></li>
-	                        	<li><a href="/semi/views/myPage/myPageMyService.jsp">나의서비스</a></li>
+	                        	<li><a href="/semi/myboard.bo?sno=<%= s.getSno() %>">나의서비스</a></li>
 	                            <li><a href="/semi/views/myPage/myPageManageIncome.jsp">수익관리</a></li>
 	                            <li><a href="/semi/views/myPage/myPageManageAd.jsp">광고등록</a></li>
 	                        </ul>
                         </li>
                         
                         <li clase="talent-category">
-                        	<div class="cate" id="cate3"><a href="">메시지</a></div>
+                        	<div class="cate" id="cate3"><a href="/semi/views/message/message.jsp">메시지</a></div>
                         </li>
                         <li clase="talent-category">
                         	<div class="cate" id="cate4"><a href="">계정설정</a></div>

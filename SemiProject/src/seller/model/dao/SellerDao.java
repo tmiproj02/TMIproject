@@ -44,10 +44,12 @@ public class SellerDao {
 		int result = 0;
 				
 		PreparedStatement pstmt = null;
+		
 				
 		try {
 			// 준비할 쿼리문 작성하기
 			String sql = prop.getProperty("insertSeller");
+			
 			
 			//1. PreparedStatement 객체 생성하기 pstmt는 실행 전에 반드시 쿼리 양식을 들고 있어야 한다.
 			//그래서 미리 작성을함 문제는 입력값이 아주 많은데 한꺼번에 다 받아야 하기 때문에 주의가 필요하다.
@@ -57,6 +59,7 @@ public class SellerDao {
 			
 			System.out.println("값을 잘전달받는지 확인하기위함");
 			System.out.println(s.getMno());
+			System.out.println(s.getAbletime());
 			System.out.println(s.getBankname());
 			System.out.println(s.getBanknumber());
 			System.out.println(s.getCareerdate1());
@@ -72,18 +75,19 @@ public class SellerDao {
 			
 			// ? 에 해당하는 값을 추가 함
 			pstmt.setInt(1, s.getMno());
-			pstmt.setString(2, s.getBankname());
-			pstmt.setString(3, s.getBanknumber());
-			pstmt.setString(4, s.getCareerdate1());
-			pstmt.setString(5, s.getCareerdate2());
-			pstmt.setString(6, s.getCareerdate3());
-			pstmt.setString(7, s.getCareer1());
-			pstmt.setString(8, s.getCareer2());
-			pstmt.setString(9, s.getCareer3());
-			pstmt.setString(10, s.getCertificat1());
-			pstmt.setString(11, s.getCertificat2());
-			pstmt.setString(12, s.getCertificat3());
-			pstmt.setString(13, s.getIntrotext());
+			pstmt.setString(2, s.getAbletime());
+			pstmt.setString(3, s.getBankname());
+			pstmt.setString(4, s.getBanknumber());
+			pstmt.setString(5, s.getCareerdate1());
+			pstmt.setString(6, s.getCareerdate2());
+			pstmt.setString(7, s.getCareerdate3());
+			pstmt.setString(8, s.getCareer1());
+			pstmt.setString(9, s.getCareer2());
+			pstmt.setString(10, s.getCareer3());
+			pstmt.setString(11, s.getCertificat1());
+			pstmt.setString(12, s.getCertificat2());
+			pstmt.setString(13, s.getCertificat3());
+			pstmt.setString(14, s.getIntrotext());
 			
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -112,6 +116,11 @@ public class SellerDao {
 			result = new Seller();
 			if(rset.next()) {
 				
+				result.setSno(rset.getInt("SNO"));
+				result.setMno(rset.getInt("MNO"));
+				result.setAbletime(rset.getString("CALLTIME"));
+				result.setBankname(rset.getString("BANKNAME"));
+				result.setBanknumber(rset.getString("BANKNUMBER"));
 				result.setIncome(rset.getInt("INCOME"));
 				
 			}
@@ -148,7 +157,6 @@ public class SellerDao {
 				result=rset.getInt("MNO");
 				System.out.println("Dao에서 Mno를 잘받아왓는지 값 확인"+rset.getInt("MNO"));
 				//여기까지 문제없이 DB에서 값을 가져왔다.
-				
 			}
 			
 			
@@ -161,9 +169,32 @@ public class SellerDao {
 			close(rset);
 			close(pstmt);
 		}
+		return result;
+	}
+
+	public int changeIsseller(Connection con, int mno) throws SellerException{
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		//System.out.println("isSeller DAO 무사히 접근 받은 mno는"+mno);
 		
-		
-		
+		try {
+			String sql = prop.getProperty("changeIsSeller");
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			result = pstmt.executeUpdate();
+			
+			//System.out.println("DAO에서 끝난 mno값"+mno);
+		} catch (SQLException e) {
+			 
+			e.printStackTrace();
+			throw new SellerException(e.getMessage());
+			
+		} finally {
+			close(pstmt);
+		}
 		
 		return result;
 	}

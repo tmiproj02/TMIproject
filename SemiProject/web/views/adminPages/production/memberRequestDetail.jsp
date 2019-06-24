@@ -111,7 +111,7 @@
 		      </div>
 		     
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">취소</button>
 		        <button type="button" class="btn btn-primary" onclick="submitFn();">전송</button>
 		      </div>
 		      
@@ -176,12 +176,13 @@
 		
 		function submitFn(){
 			$.ajax({
-				url : "requestReply.admin",
+				url : "/semi/requestReply.admin",
 				type : "post",
-				data : {replyTitle : $('#replyTitle').val(), replyContent: $('#replyContent').val()},
+				data : {rno : <%=rno%>, replyTitle : $('#replyTitle').val(), replyContent: $('#replyContent').val()},
 				success : function(){
 					$('#replyTitle').val(" ");
 					$('#replyContent').val(" ");
+					$('.cancel').trigger('click');
 					alert("문의가 접수되었습니다.");
 				},
 				error : function(){

@@ -35,6 +35,17 @@ public class ClientRequest implements Serializable{
 			this.rContent = rContent;
 			NickName = nickName;
 		}
+		
+		
+		
+
+
+		public ClientRequest(int rno, String rTitle, String rContent) {
+			super();
+			this.rno = rno;
+			this.rTitle = rTitle;
+			this.rContent = rContent;
+		}
 
 
 		public String getEmail() {

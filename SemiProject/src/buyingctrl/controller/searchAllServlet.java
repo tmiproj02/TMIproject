@@ -1,7 +1,6 @@
-package buy.buy.controller;
+package buyingctrl.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -11,25 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import buy.buy.model.exception.BoardException;
-import buy.buy.model.service.BoardService;
-import buy.buy.model.vo.SellerBoard;
-import charge.model.exception.CashRechargeException;
-import charge.model.service.CashRechargeService;
-import charge.model.vo.Cash;
+import buyingctrl.model.exception.buyingctrlException;
+import buyingctrl.model.service.DealMngService;
+import buyingctrl.model.vo.DealMng;
 import member.model.vo.Member;
 
+
 /**
- * Servlet implementation class BuyPagePaymentServlet
+ * Servlet implementation class searchAllServlet
  */
-@WebServlet("/bPayment.bo")
-public class BuyPagePaymentServlet extends HttpServlet {
+@WebServlet("/searchA.bo")
+public class searchAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BuyPagePaymentServlet() {
+    public searchAllServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,39 +35,34 @@ public class BuyPagePaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
 		
-		
-		int tprice = (int)request.getAttribute("tprice");
-		String page = "";
-		
-
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("member");
-		m.setCash(m.getCash()-tprice);
 		
+		// 검색 키워드
+		String keyword = request.getParameter("keyword");
+		System.out.println("★keyword 입력 : " + keyword);
+		ArrayList<DealMng> nreqList = new ArrayList<DealMng>();
 		
-		CashRechargeService crs = new CashRechargeService();
-	
+		DealMngService dms = new DealMngService();
+		
+		String page = "";
 		try {
+			nreqList = dms.searchAllList(keyword, m);
 			
-			crs.CashUpdate(m.getMno(),tprice);
+			page = "views/personBUY/buyingcontrol.jsp";
 			
-			page = "views/buypage/payCreate.jsp";
-			request.setAttribute("tprice", tprice);
-			session.setAttribute("member", m);
+			request.setAttribute("nreqList", nreqList);
 			
 			request.getRequestDispatcher(page).forward(request, response);
-		} catch(SQLException e) {
+		}catch(buyingctrlException e) {
 			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "결제목록 불러오기 에러!");
+			request.setAttribute("msg", "전체내역 중 검색한 것 불러오기 에러!");
 			request.setAttribute("exception", e);
 			e.printStackTrace();
 			
 			request.getRequestDispatcher(page).forward(request, response);
-		}
-		
+		}	
 		
 		
 		

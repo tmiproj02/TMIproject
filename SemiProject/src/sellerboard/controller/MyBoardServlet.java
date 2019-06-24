@@ -1,4 +1,4 @@
-package buy.buy.controller;
+package sellerboard.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,25 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import buy.buy.model.exception.BoardException;
-import buy.buy.model.service.BoardService;
-import buy.buy.model.vo.SellerBoard;
-import buy.comment.model.service.BoardCommentService;
-import buy.comment.model.vo.BoardComment;
-
-
+import sellerboard.model.exception.SellerboardException;
+import sellerboard.model.service.SellerboardService;
+import sellerboard.model.vo.SellerBoard;
 
 /**
- * Servlet implementation class ListDetailServlet
+ * Servlet implementation class MyBoardServlet
  */
-@WebServlet("/listDetail.bo")
-public class ListDetailServlet extends HttpServlet {
+@WebServlet("/myboard.bo")
+public class MyBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListDetailServlet() {
+    public MyBoardServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,25 +35,27 @@ public class ListDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-	
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		ArrayList<BoardComment> clist = new BoardCommentService().selectList(bno);
-		SellerBoard b;
-		String page = "";
 		
+		int sno = Integer.parseInt(request.getParameter("sno"));
+		System.out.println(sno);
+		
+		
+		
+		ArrayList<SellerBoard> list;
+		String page="";
 		try {
-			b = new BoardService().selectOne(bno);
-			page = "views/buypage/listDetail.jsp";
-			request.setAttribute("sellerboard", b);
-			request.setAttribute("clist", clist);
-		} catch (BoardException e) {
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시글 상세 보기 실패");
+			list = new SellerboardService().myBoardSelect(sno);
 			
+			System.out.println("들어옴");
+			page="views/myPage/myPageMyService.jsp"; 
+			request.setAttribute("list", list);
+			
+		} catch (SellerboardException e) {
+			System.out.println("오류");
+			page="views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시글 목록 조회 실패");
 		}
-		
 		request.getRequestDispatcher(page).forward(request, response);
-		
 		
 	}
 

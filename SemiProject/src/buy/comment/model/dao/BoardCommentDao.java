@@ -21,7 +21,7 @@ private Properties prop = new Properties();
 	
 	public BoardCommentDao() {
 		String filePath = BoardCommentDao.class
-				.getResource("/config/comment-query.properties")
+				.getResource("/buy/comment/config/comment-query.properties")
 				.getPath();
 		
 		try {
@@ -45,13 +45,13 @@ int result = 0;
 			pstmt.setString(2, bco.getCcontent());
 			pstmt.setString(3, bco.getCwriter());
 			
-//			if(bco.getRefCno() > 0) {
-//				pstmt.setInt(4, bco.getRefCno());
-//			}else {
-//				pstmt.setNull(4, java.sql.Types.NULL);
-//			}
+			if(bco.getRefCno() > 0) {
+				pstmt.setInt(4, bco.getRefCno());
+			}else {
+				pstmt.setNull(4, java.sql.Types.NULL);
+			}
 			
-		
+			System.out.println(sql);
 			
 			result = pstmt.executeUpdate();
 			
@@ -90,7 +90,7 @@ int result = 0;
 				bco.setCno(rset.getInt("CNO"));
 				bco.setBno(bno);
 				bco.setCcontent(rset.getString("CCONTENT"));
-				bco.setCwriter(rset.getString("USERNAME"));
+				bco.setCwriter(rset.getString("CWRITER"));
 				bco.setCdate(rset.getDate("CDATE"));
 
 				clist.add(bco);

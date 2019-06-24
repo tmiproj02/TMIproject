@@ -50,7 +50,12 @@ public class ListBoardServlet extends HttpServlet {
 		pageLimit = 5;
 		boardLimit = 12;
 		String cate = request.getParameter("cate");
+		String cCode = request.getParameter("cCode");
+		String code = request.getParameter("code");
 		System.out.println(cate);
+		System.out.println(cCode);
+		System.out.println(code);
+		
 		
 		
 		if(request.getParameter("currentPage")!=null) {
@@ -72,7 +77,7 @@ public class ListBoardServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		list = bs.selectList(currentPage, pageLimit, boardLimit);
+		list = bs.selectList(currentPage, pageLimit, boardLimit, cCode, code);
 		
 		String page="";
 		if(list != null) {
@@ -81,7 +86,7 @@ public class ListBoardServlet extends HttpServlet {
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit, maxPage, startPage, endPage);
 			request.setAttribute("pi", pi);
-					
+			request.setAttribute("code", code);		
 		}else {
 			page="views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 목록 조회 실패");

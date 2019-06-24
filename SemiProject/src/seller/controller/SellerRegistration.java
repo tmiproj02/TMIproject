@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.model.service.MemberService;
 import member.model.vo.Member;
 
 import seller.model.exception.SellerException;
@@ -60,9 +59,9 @@ public class SellerRegistration extends HttpServlet {
 		}
 		
 		//form 버튼이 눌렸을 때 getParameter로 값을 받아온다 
-		//
-
-		String introtext = request.getParameter("introtext");				//전문가 소개
+		// 
+		String abletime = request.getParameter("abletime");			//연락가능시간
+		String introtext = request.getParameter("introtext");		//전문가 소개
 		String careerdate1 = request.getParameter("careerdate1");	//경력 날짜 1
 		String careerdate2 = request.getParameter("careerdate2");	//경력 날짜 2
 		String careerdate3 = request.getParameter("careerdate2");	//경력 날짜 3
@@ -75,23 +74,22 @@ public class SellerRegistration extends HttpServlet {
 		String bankname = request.getParameter("bankname");
 		String bankNumber = request.getParameter("bankNumber");
 		
-		Seller s = new Seller(mno, bankname, bankNumber, careerdate1, careerdate2, careerdate3, career1, career2, career3, certificat1, certificat2, certificat3, introtext);
+		Seller s = new Seller(mno, abletime, bankname, bankNumber, careerdate1, careerdate2, careerdate3, career1, career2, career3, certificat1, certificat2, certificat3, introtext);
 		
 		SellerService ss = new SellerService();
-		
+		String page = "views/seller/SellerComplete.jsp";
 		try {
 			ss.insertSeller(s);
 			System.out.println("판매자 등록완료");
-			
-			response.sendRedirect("views/seller/SellerComplete.jsp");
+			ss.changeIsseller(mno);
+			request.setAttribute("page", page);
+			response.sendRedirect(page);
 		} catch(SellerException e){
 			request.setAttribute("msg", "판매자 등록 중 에러가 발생했어");
 			request.setAttribute("exception", e); // 화면을 던져줄거니까
 			
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-	
-		
 	}
 
 	/**

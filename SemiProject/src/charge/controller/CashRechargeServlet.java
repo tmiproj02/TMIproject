@@ -38,7 +38,7 @@ public class CashRechargeServlet extends HttpServlet{
 		response.setContentType("text/html; charset=UTF-8");
 		
 		
-		int Cash = (int)(request.getAttribute("price"));
+		int Cash = (int)(request.getAttribute("tprice"));
 		String email = (String) request.getAttribute("email");
 		System.out.println("Cash : " + Cash);
 		Member m = new Member(Cash);
@@ -55,7 +55,11 @@ public class CashRechargeServlet extends HttpServlet{
 			
 			session.setAttribute("member", changeMember);
 			
-			response.sendRedirect("/semi/views/personBUY/buyingcontrol.jsp");
+//			response.sendRedirect("/semi/views/personBUY/buyingcontrol.jsp");
+			
+			request
+			.getRequestDispatcher("/cList.bo")
+			.forward(request, response); 
 
 		} catch(CashRechargeException e) {
 

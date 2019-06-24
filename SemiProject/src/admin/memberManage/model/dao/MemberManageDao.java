@@ -214,4 +214,25 @@ public class MemberManageDao {
 		
 	}
 
+	public void replyRequest(Connection con,ClientRequest cr) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("requestReply");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, cr.getrTitle());
+			pstmt.setString(2, cr.getrContent());
+			pstmt.setInt(3,cr.getRno());
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+	}
+
 }
