@@ -57,11 +57,6 @@ public class SellerSelectServlet extends HttpServlet {
 			.getRequestDispatcher("views/common/errorPage.jsp")
 			.forward(request, response);	
 		}
-		
-		
-		
-		
-		
 	}
 
 	/**

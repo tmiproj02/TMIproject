@@ -75,6 +75,7 @@ public class SellerRegistration extends HttpServlet {
 		Seller s = new Seller(mno, abletime, bankname, bankNumber, careerdate1, careerdate2, careerdate3, career1, career2, career3, certificat1, certificat2, certificat3, introtext);
 		
 		SellerService ss = new SellerService();
+		session.setAttribute("seller", s);
 		
 		try {
 			ss.insertSeller(s);
