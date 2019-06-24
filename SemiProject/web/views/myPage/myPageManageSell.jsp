@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "buyingctrl.model.vo.*,java.util.*" %>
+<%ArrayList<DealMng> list = (ArrayList<DealMng>)request.getAttribute("list");  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -158,6 +160,21 @@
 		background-color: #BDD4F2;
 		color : #000;
 	}
+	.mySlist{
+		overflow:hidden;
+		margin:0 auto;
+		border-bottom : 1px solid #E6E6E6;
+		
+	}
+	.mySlist>div{
+		display:inline-block;
+		float:left;
+		vertical-align:center;
+		border-right : 1px solid #E6E6E6;
+	}
+	.mySlist>div div{
+		margin:20px 0;
+	}
 </style>
 </head>
 <body>
@@ -238,13 +255,10 @@
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000" href="">요청사항 미작성 &nbsp; <span class="selling-history select">0</span></a>
+								<a style="color:#000" href="">전체 &nbsp; <span class="selling-history select"><%=list.size() %></span></a>
 							</li>
 							<li>
 								<a href="">진행중 &nbsp; <span class="selling-history">0</span></a>
-							</li>
-							<li>
-								<a href="">발송중 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 							<li>
 								<a href="">완료 &nbsp; <span class="selling-history">0</span></a>
@@ -280,10 +294,25 @@
 				<div>
 					<div class="padding-15" style="margin-top:10px">
 						<div class="detail-box">
+							<%if(list != null){ %>
+							<div class="detail-list" style="padding:0">
+								<%for(DealMng d : list){ %>
+
+								<div class="mySlist" style="margin:0;padding: 20px 0">
+									<div style="width:20%; "><img width=100px src="/semi/resources/selleruploadIMG/<%=d.getImages()%>" alt="" /></div>
+									<div style="width:50%; "><div><a href="/semi/listDetail.bo?bno=<%= d.getBno()%>"><h5 style="text-align:left; margin:0 20px"><%=d.getBtitle() %></h5></a></div></div>
+									<div style="width:15%; "><div style="margin:30px 0"><h5><%=d.getPrice() %></h5></div></div>
+									<div style="width:15%; border-right:none;"><div style="margin:30px 0"><h5><%=d.getProgress()%></h5></div></div>
+								</div>
+								<%} %>
+							</div>
+						<%}else{ %>
 							<div class="detail-list">
 								<div><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
 								<h5 class="font-noto" style="margin:10px 0;">내역이 없습니다.</h5>
 							</div>
+							<%} %>
+							
 						</div>
 					</div>
 				</div>	

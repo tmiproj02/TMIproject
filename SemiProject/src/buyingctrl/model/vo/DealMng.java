@@ -19,7 +19,7 @@ public class DealMng {
 	private int price;
 	private String nickname;
 	private String sNickname;
-
+	
 	public String getsNickname() {
 		return sNickname;
 	}

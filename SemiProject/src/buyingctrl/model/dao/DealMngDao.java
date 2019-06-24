@@ -360,23 +360,27 @@ public class DealMngDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = "SELECT D.*,M.NICKNAME FROM DEALMANAGER D JOIN MEMBER M ON (D.MNO = M.MNO) WHERE SNO = ?";
+		String sql = "SELECT D.*,M.NICKNAME,B.BTITLE,B.IMAGES FROM DEALMANAGER D JOIN MEMBER M ON (D.MNO = M.MNO) JOIN SELLERBOARD B ON (D.BNO = B.BNO) WHERE D.SNO = ?";
 		
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, sno);
-			
+			System.out.println(sql);
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
+			while(rset.next()) {
 				DealMng dm = new DealMng();
-				
+				System.out.println("진입");
+				dm.setBno(rset.getInt("BNO"));
 				dm.setBtitle(rset.getString("btitle"));
 				dm.setsNickname(rset.getString("nickName"));
 				dm.setDmcode(rset.getInt("dmcode"));
 				dm.setDealdate(rset.getDate("dealdate"));
 				dm.setProgress(rset.getString("progress"));
 				dm.setPrice(rset.getInt("price"));
+				dm.setImages(rset.getString("IMAGES"));
+				
+				System.out.println(dm.getBno());
 				
 				list.add(dm);
 			}

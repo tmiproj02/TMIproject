@@ -40,9 +40,28 @@ public class SelectDealServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Seller s = (Seller)session.getAttribute("seller");
 		
+		System.out.println(s.getSno());
 		DealMngService dms = new DealMngService();
 		
 		ArrayList<DealMng> list = dms.selectDeal(s.getSno());
+		
+		String page="";
+		
+		if(list != null) {
+			request.setAttribute("list", list);
+			page = "views/myPage/myPageManageSell.jsp";
+			
+		}else {
+			page = "/views/common/errorPage.jsp";
+			request.setAttribute("msg", "요구사항이 없는 것 불러오기 에러!");
+		}
+		
+		
+		request.getRequestDispatcher(page).forward(request, response);
+		
+		
+		
+		
 		
 		
 	}
