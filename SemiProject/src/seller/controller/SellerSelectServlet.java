@@ -39,13 +39,13 @@ public class SellerSelectServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		
 		String email = m.getEmail();
-		
+		System.out.println(email);
 		Seller result = new Seller();
 		
 		try {
 			result = new SellerService().selectSeller(email);
 			System.out.println("판매자 입니다.");
-			
+			System.out.println(result.getSno());
 			session.setAttribute("seller", result);
 			response.sendRedirect("/semi/mainheader2.jsp");
 			

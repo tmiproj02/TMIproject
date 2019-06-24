@@ -34,7 +34,6 @@ public class SellerBoard implements Serializable {
 	private int dmcode;						//'' (주문번호)
 	private int mno;						//구매자
 	private String introtext;			//seller소개
-	
 	public String getIntrotext() {
 		return introtext;
 	}
@@ -104,18 +103,11 @@ public class SellerBoard implements Serializable {
 		this.extradate2 = extradate2;
 	}
 	
-	public SellerBoard(String btitle, int price, String images, Date dealdateB) {
-	      super();
-	      this.btitle = btitle;
-	      this.price = price;
-	      this.images = images;
-	      this.dealdateB = dealdateB;
-	   }
-	
 	//사용자가 직접 입력하는 것을 따로 받음
-	public SellerBoard(String btitle, String bcontent, String erecontent, String request, String category1_code,
+	public SellerBoard(int sno, String btitle, String bcontent, String erecontent, String request, String category1_code,
 			String category2_code, int price, String images, int editablecount, int duedate, int speed, int plusedit, String extradate1, String extradate2) {
 		super();
+		this.sno = sno;
 		this.btitle = btitle;
 		this.bcontent = bcontent;
 		this.erecontent = erecontent;
@@ -158,7 +150,27 @@ public class SellerBoard implements Serializable {
 		this.state = state;
 	}
 
+	
 
+	//구매내역 전체 조회
+	public SellerBoard(int bno, int sno, String btitle, int price, String images, Date dealdateB, int dmcode, int mno) {
+		super();
+		this.bno = bno;
+		this.sno = sno;
+		this.btitle = btitle;
+		this.price = price;
+		this.images = images;
+		this.dealdateB = dealdateB;
+		this.dmcode = dmcode;
+		this.mno = mno;
+	}
+	public SellerBoard(String btitle, int price, String images, Date dealdateB) {
+		super();
+		this.btitle = btitle;
+		this.price = price;
+		this.images = images;
+		this.dealdateB = dealdateB;
+	}
 
 	@Override
 	public String toString() {

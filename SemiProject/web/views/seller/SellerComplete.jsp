@@ -50,7 +50,7 @@
 		<p class="lead">판매자 등록이 완료되었습니다!!<br>판매를 시작해보세요</p>
 		<hr class="my-4">
 		<div align="right">
-			<a class="btn btn-primary btn-lg" id="backButton" role="button" href="/semi/mainheader2.jsp">메인으로가기</a>
+			<a class="btn btn-primary btn-lg" id="backButton" role="button" href="/semi/seller.so">메인으로가기</a>
 			<a class="btn btn-primary btn-lg" id="backButton" role="button" href="/semi/views/seller/ServiceRegistration.jsp">판매하러가기</a>
 		</div>
 	</div>
