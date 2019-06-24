@@ -43,13 +43,11 @@ public class SellerRegistration extends HttpServlet {
 		
 		int mno=0;
 		
-		//똑같이 이메일과 패스워드로 MNO 폰번호를가져올것이다. 
+		//똑같이 이메일로 MNO 폰번호를가져올것이다. 
 		String email = m.getEmail();
 		
 		try {
 			mno = new SellerService().findMno(email);
-			
-			
 
 		} catch (SellerException e) {
 			request.setAttribute("msg", "멤버번호 가져오는 도중에 에러발생했어");
@@ -59,7 +57,7 @@ public class SellerRegistration extends HttpServlet {
 		}
 		
 		//form 버튼이 눌렸을 때 getParameter로 값을 받아온다 
-		// 
+		
 		String abletime = request.getParameter("abletime");			//연락가능시간
 		String introtext = request.getParameter("introtext");		//전문가 소개
 		String careerdate1 = request.getParameter("careerdate1");	//경력 날짜 1

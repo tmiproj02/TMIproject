@@ -193,6 +193,38 @@ public class SellerDao {
 		
 		return result;
 	}
+
+	public String phoneNB(Connection con, String email) throws SellerException {
+		String result = null; // 결과를 담을 객체
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; // Select의 결과를 담은 객체
+		
+		try {
+			String sql = prop.getProperty("phoneNB");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			//쿼리를 수행하고 그 결과 받아오기
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result=rset.getString("PHONE");
+				System.out.println("Dao에서 폰번호를 잘받아왓는지 값 확인"+result);
+				//여기까지 문제없이 DB에서 값을 가져왔다.
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SellerException(e.getMessage());
+		} finally {
+			// DB 객체를 반환하는 순서는
+			// 선언의 순서와 반드시 정 반대가 되어야 한다.
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
 }
 
 

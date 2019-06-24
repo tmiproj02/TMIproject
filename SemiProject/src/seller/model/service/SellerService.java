@@ -72,5 +72,18 @@ public class SellerService {
 		
 		return result;
 	}
+	public String phoneNB(String email) throws SellerException {
+		con = getConnection();
+		
+		String result = sDao.phoneNB(con, email);
+		
+		close(con);
+		
+		System.out.println("SellerService에서 값 잘받아왔는지 확인" + result);
+		
+		if(result == null) throw new SellerException("Mno를 가져오는 과정에서 문제발생");
+		
+		return result;
+	}
 
 }
