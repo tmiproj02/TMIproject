@@ -17,6 +17,8 @@ public class ClientRequest implements Serializable{
 		private String NickName;
 		private Date rDate;
 		private String reply;
+		private String replyTitle;
+		private String replyContent;
 		
 		public ClientRequest(String email, String rTitle, String rContent, String nickName, Date rDate) {
 			super();
@@ -123,6 +125,30 @@ public class ClientRequest implements Serializable{
 
 		public void setRno(int rno) {
 			this.rno = rno;
+		}
+		
+		
+		
+		
+
+
+		public String getReplyTitle() {
+			return replyTitle;
+		}
+
+
+		public void setReplyTitle(String replyTitle) {
+			this.replyTitle = replyTitle;
+		}
+
+
+		public String getReplyContent() {
+			return replyContent;
+		}
+
+
+		public void setReplyContent(String replyContent) {
+			this.replyContent = replyContent;
 		}
 
 

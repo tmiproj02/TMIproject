@@ -311,7 +311,7 @@ nav{
                             	<div class="padding-20px"><a href="/semi/views/seller/ServiceRegistration.jsp">판매 시작하기</a></div>
                             <%} %>
                             <div class="padding-15px"><a style="cursor:pointer;" onclick="nrequest();">구매</a></div>
-                            <div class="padding-15px"><a href="/semi/views/message/message.jsp">메시지</a></div>
+                            <div class="padding-15px"><a href="/semi/messageList">메시지</a></div>
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>
                             <div class="mylog padding-15px"><a href="/">
                             	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important; vertical-align: middle;"/></div>
@@ -365,7 +365,7 @@ nav{
                         </li>
                         
                         <li clase="talent-category">
-                        	<div class="cate" id="cate3"><a href="/semi/views/message/message.jsp">메시지</a></div>
+                        	<div class="cate" id="cate3"><a href="/semi/messageList">메시지</a></div>
                         </li>
                         <li clase="talent-category">
                         	<div class="cate" id="cate4"><a href="">계정설정</a></div>

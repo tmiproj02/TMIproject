@@ -7,11 +7,7 @@
 	Seller s = (Seller)session.getAttribute("seller");
 	
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>cateheader1</title>
+
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -278,8 +274,8 @@ nav{
 	left:30px;
 }
 </style>
-</head>
-<body>
+
+
 <div id='wrap'>
         <header>
             <div class='head'>
@@ -317,7 +313,7 @@ nav{
                             	<div class="padding-20px"><a href="/semi/views/seller/ServiceRegistration.jsp">판매 시작하기</a></div>
                             <%} %>
                             <div class="padding-15px"><a style="cursor:pointer" onclick="buyingctrl();">구매</a></div>
-                            <div class="padding-15px"><a href="/">메시지</a></div>
+                            <div class="padding-15px"><a href="/semi/messageList">메시지</a></div>
                             <div class="padding-15px"><a href="/">찜한 서비스</a></div>
                             <div class="mylog padding-15px"><a href="/">
                             	<div style="width:30px;height:30px"><img src="/semi/resources/images/myprofile.png" width=30px style="border-radius: 500px !important; vertical-align: middle;"/></div>
@@ -462,5 +458,3 @@ nav{
 			location.href="/semi/nReq.bo";
 		}
     </script>
-</body>
-</html>

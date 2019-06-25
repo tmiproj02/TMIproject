@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="member.model.vo.ClientRequest" %>
+<%@ page import="message.model.vo.PageInfo" %>
+<%
+	ArrayList<ClientRequest> requestList = (ArrayList<ClientRequest>)request.getAttribute("requestList"); 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();    
+%>   
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -183,9 +197,9 @@ font-family: 'Noto Sans KR', sans-serif;
 		
 			<div class="section4">
 				<div class="mp1">
-					<div style="margin : 22	px 0px 0px 22px;">
+					<div style="margin : 22px 0px 0px 22px;">
 						<h3>구매 / 판매 메세지</h3>
-						<h3>1:1 문의 답변</h3>
+						<a href="/semi/messageList"><h3>1:1 문의 답변</h3></a>
 					</div>
 				
 						
@@ -193,51 +207,93 @@ font-family: 'Noto Sans KR', sans-serif;
 		 
 				
 			<div class="mp2">
-				<div class="box1" style="border: 1px solid #E6E6E6; border-radius: 3px; width: 840px; height: 105px; padding: 5px 10px; margin-top: 35px; margin-left: 20px;">
-					<div class="dbox" style="text-align: center;padding: 20px 0px;">
-						<div class="detail1" style="border-right: 1px solid #E6E6E6; padding-right: 44px;">
-							<h4>판매 중인 건</h4>
-							<a href=""><b>0</b>건</a>
-						</div>
-						<div class="detail2" style="border-right: 1px solid #E6E6E6;padding:0 48px;">
-							<h4>이달의 수익금</h4>
-							<a href=""><b>0</b>건</a>
-						</div> 
-						<div class="detail3" style="border-right: 1px solid #E6E6E6;padding:0 48px;">
-							<h4>구매 중인 건</h4>
-							<a href=""><b>0</b>건</a>
-						</div>
-						<div class="detail4" style="border-right: 1px solid #E6E6E6;padding:0 48px;">
-							<h4>TMI 캐쉬</h4>
-							<a href=""><b>0</b>건</a>
-						</div>
-						<div class="detail5" style="padding-left: 40px">
-							<h4>보유 쿠폰 개수</h4>
-							<a href=""><b>0</b>건</a>
-						</div>
-					</div>
-				
-				</div>
-				<div class="box2" style="margin-top:20px; margin-left:25px;">
-					<div class="content1">
-						<ul class="sell-ing">
-							<li>
-								<a style="color:#000; font-size:15px;" href="">할일 &nbsp; <span class="selling-history select">0</span></a>
-							</li>
-							<li style="font-size:15px;">
-							<a style="color:#000; font-size:15px;" href="">알림 &nbsp; <span class="selling-history select">0</span></a>
-							</li>
-							
-						</ul>
-					</div>
-					<div class="content2" style="border: 1px solid #E6E6E6; width:870px; height:320px; margin-top:20px;"></div>
-				</div>
+				<h2 style="margin-left:5%;">1:1문의 답변</h2>
+				<table class="ui blue table" style="width:85%; margin-left:5%;">
+				  <thead>
+				    <tr><th>No</th>
+				    <th style="width:50%; margin-right: 5%;">제목</th>
+				    <th>보낸이</th>
+				  </tr>
+				  </thead>
+				  
+				  <tbody>
+				   	<%
+				   	int num = 1;
+				   	for(ClientRequest cr : requestList){
+				   		if(cr.getReplyTitle()!=null){
+				   		%>
+				   	  <tr>
+				   	  	<input type="hidden" value="<%=cr.getReplyContent()%>"/>
+				   	  	<td><%=num %></td>	
+				   	  	<td><span class="detailSpans" style="cursor:pointer;" onclick="replyDetail();"><%=cr.getReplyTitle()%></span></td>
+				   	  	<td>관리자
+				   	  			<!-- Modal -->
+								<div class="ui modal" id="replyDetailModal<%=num%>">
+								  <div class="header">제목 : <%=cr.getReplyTitle()%></div>
+								  <div class="content">
+								    <p><%=cr.getReplyContent()%></p>
+								    
+								  </div>
+								</div>
+				   	  	</td>
+				   	  	
+				   	  </tr>
+					  <% } %>
+				   	<% num++; } %>
+
+				  </tbody>
+				</table>
+
+			<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=1'"><<</button>
+			<%  if(currentPage <= 1){  %>
+			<button disabled><</button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=<%=currentPage - 1 %>'"><</button>
+			<%  } %>
 			
+			<% for(int p = startPage; p <= endPage; p++){
+					if(p == currentPage){	
+			%>
+				<button disabled><%= p %></button>
+			<%      }else{ %>
+				<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
+				
+			<%  if(currentPage >= maxPage){  %>
+			<button disabled>></button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=<%=currentPage + 1 %>'">></button>
+			<%  } %>
+			<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=<%= maxPage %>'">>></button>
+			
+		</div> 
+			
+				
 			</div>
+		
+			
+			
 		</div>
 	</div>
 </div>
 
  <%@ include file="../common/footer.jsp" %>
 </body>
+<script>
+	$('.detailSpans').each(function(){
+		$(this).click(function(){
+			var num = $(this).parent().parent().find('td').eq(0).text();
+			var modalId = "#replyDetailModal"+num;
+			$(modalId).modal('show');
+		});
+		
+	});
+
+
+</script>
+
+
+
 </html>
