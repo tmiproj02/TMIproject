@@ -24,12 +24,9 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-<script src="/semi/resources/js/semantic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <title>판매관리</title>
 <style>
 	.font-noto{
@@ -192,6 +189,23 @@
 	.mySlist>div div{
 		margin:20px 0;
 	}
+	.paging .hide {display:block;height:0;width:0;font-size:0;line-height:0;margin:0;padding:0;overflow:hidden;}
+
+	.paging{padding:19px;text-align:center;}
+	
+	.paging a{display:inline-block;width:23px;height:23px;padding-top:2px;vertical-align:middle;}
+	
+	.paging a:hover{text-decoration:underline;}
+	
+	.paging .btn_arr{text-decoration:none;}
+	
+	.paging .btn_arr, .paging .on{margin:0 3px;padding-top:0;border:1px solid #ddd; border-radius:30px;
+	
+	/* background:url(/front/img/com/btn_paging.png) no-repeat; */}
+	
+	.paging .on{padding-top:1px;height:22px;color:#fff;font-weight:bold;background:rgb(54, 69, 89);}
+	
+	.paging .on:hover{text-decoration:none;}
 </style>
 </head>
 <body>
@@ -253,7 +267,7 @@
 									<div><img src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 									<h6>광고관리</h6>							
 								</div></a>
-								<a href="/semi/myboard.bo?sno=<%= s.getSno() %>"><div class="padding-all-15 menu-slot">
+								<a href="/semi/myboard.bo"><div class="padding-all-15 menu-slot">
 									<div><img src="/semi/resources/images/my_gigs_active.png" alt="" /></div>
 									<h6>나의 서비스</h6>			
 								</div></a>
@@ -353,8 +367,36 @@
 								<h5 class="font-noto" style="margin:10px 0;">내역이 없습니다.</h5>
 							</div>
 							<%} %>
-							
 						</div>
+						<% if(list != null){ int count = -1;%>
+						<% for(DealMng d : list){ count++;}%>
+						<% if(count>-1){ %>
+							<div class="paging">
+		 
+						  	<a href="" class="btn_arr first"><span class="hide">처음페이지</span></a>
+						  
+						  	<a class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+						    
+						  	<a href="" class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+						  
+						 
+						  	<a class="on">1</a>
+						  	
+						  	<a href="">2</a>
+						  	<a href="">3</a>
+						  	<a href="">4</a>
+						  	<a href="">5</a>
+						  
+						 
+						  	<a class="btn_arr next"><span class="hide">다음페이지</span></a>
+						  
+						 	<a href="" class="btn_arr next"><span class="hide">다음페이지</span></a> 
+						 
+						  	<a href="" class="btn_arr last"><span class="hide">마지막페이지</span></a>
+						          
+							</div>
+						<%} %>							
+						<%} %>
 					</div>
 				</div>	
 			</div>
