@@ -79,6 +79,7 @@ public class DealMngDao {
 				dm.setDmcode(rset.getInt("dmcode"));
 				dm.setDealdate(rset.getDate("dealdate"));
 				dm.setProgress(rset.getString("progress"));
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				dm.setPrice(rset.getInt("price"));
 				
 				

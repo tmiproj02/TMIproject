@@ -10,6 +10,19 @@ int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
 
+int s1 = 0;
+int s2 = 0;
+int s3 = 0;
+
+for(DealMng d : reqList){
+   switch(d.getProgress()){
+      case "진행중" : s1+=1; break;
+      case "완료" : s2+=1; break;
+      case "취소" : s3+=1; break;
+    }
+}
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -321,16 +334,16 @@ int endPage = pi.getEndPage();
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp; <span class="selling-history select">0</span></a>
+								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp; <span class="selling-history select"><%= reqList.size() %></span></a>
 							</li>
 							<li>
-								<a style="cursor:pointer;" onclick="prging();">진행중 &nbsp; <span class="selling-history">0</span></a>
+								<a style="cursor:pointer;" onclick="prging();">진행중 &nbsp; <span class="selling-history"><%= s1 %></span></a>
 							</li>
 							<li>
-								<a style="cursor:pointer;" onclick="finlist();">완료 &nbsp; <span class="selling-history">0</span></a>
+								<a style="cursor:pointer;" onclick="finlist();">완료 &nbsp; <span class="selling-history"><%= s2 %></span></a>
 							</li>
 							<li>
-								<a  style="cursor:pointer;" onclick="cclist();">취소 &nbsp; <span class="selling-history">0</span></a>
+								<a  style="cursor:pointer;" onclick="cclist();">취소 &nbsp; <span class="selling-history"><%= s3 %></span></a>
 							</li>
 						</ul>
 					</div>

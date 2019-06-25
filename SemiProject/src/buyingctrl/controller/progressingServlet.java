@@ -52,7 +52,6 @@ public class progressingServlet extends HttpServlet {
 			
 			request.setAttribute("dingList", dingList);
 			
-			request.getRequestDispatcher(page).forward(request, response);
 			
 			
 			
@@ -62,10 +61,11 @@ public class progressingServlet extends HttpServlet {
 			request.setAttribute("exception", e);
 			e.printStackTrace();
 			
-			request.getRequestDispatcher(page).forward(request, response);
+
 		}
 		
 		
+		request.getRequestDispatcher(page).forward(request, response);
 		
 		
 		
