@@ -257,7 +257,7 @@
 									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
 									<h6>판매관리</h6>							
 								</div></a>
-								<a href="/semi/views/myPage/myPageManageIncome.jsp"><div class="padding-all-15 menu-slot">
+								<a href="/semi/list.ic"><div class="padding-all-15 menu-slot">
 									<div><img src="/semi/resources/images/profits_new_active.png" alt="" /></div>
 									<h6>수익관리</h6>			
 								</div></a>

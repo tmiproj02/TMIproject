@@ -239,7 +239,7 @@
 									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
 									<h6>판매관리</h6>							
 								</div></a>
-								<a href="/semi/views/myPage/myPageManageIncome.jsp"><div class="padding-all-15 menu-slot">
+								<a href="/semi/list.ic"><div class="padding-all-15 menu-slot">
 									<div><img src="/semi/resources/images/profits_new_active.png" alt="" /></div>
 									<h6>수익관리</h6>			
 								</div></a>
@@ -249,7 +249,7 @@
 									<div><img src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 									<h6>광고관리</h6>							
 								</div></a>
-								<a href="/semi/myboard.bo?sno=<%= s.getSno() %>"><div class="padding-all-15 menu-slot active">
+								<a href="/semi/myboard.bo"><div class="padding-all-15 menu-slot active">
 									<div><img src="/semi/resources/images/my_gigs_active.png" alt="" /></div>
 									<h6>나의 서비스</h6>			
 								</div></a>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "sellerboard.model.vo.*, java.util.*" %>
-<%
+<% 
 	ArrayList<SellerBoard> list = (ArrayList<SellerBoard>)request.getAttribute("list");
 	int b1 = 0;
 	int b2 = 0;
@@ -235,21 +235,21 @@
 					<div class="menu-box">
 						<div class="padding-15">
 							<div class="menu-line" style="text-align:center">
-								<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
+								<a href="/semi/dSelect.do"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
 									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
 									<h6>판매관리</h6>							
 								</div></a>
-								<a href="/semi/views/myPage/myPageManageIncome.jsp"><div class="padding-all-15 menu-slot">
+								<a href="/semi/list.ic"><div class="padding-all-15 menu-slot">
 									<div><img src="/semi/resources/images/profits_new_active.png" alt="" /></div>
 									<h6>수익관리</h6>			
 								</div></a>
 							</div>
 							<div class="menu-line" style="text-align:center;border-bottom:solid #E6E6E6 1px;">
-								<a href="/semi/views/myPage/myPageManageAd.jsp"><div class="padding-all-15 menu-slot" style="border-right:solid #E6E6E6 1px;">							
+								<a href="/semi/views/myPage/myPageManageAd.jsp"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;">							
 									<div><img src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 									<h6>광고관리</h6>							
 								</div></a>
-								<a href="/semi/myboard.bo?sno=<%= s.getSno() %>"><div class="padding-all-15 menu-slot active">
+								<a href="/semi/myboard.bo"><div class="padding-all-15 menu-slot">
 									<div><img src="/semi/resources/images/my_gigs_active.png" alt="" /></div>
 									<h6>나의 서비스</h6>			
 								</div></a>

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.text.DecimalFormat"%>
+<%@ page import="java.text.DecimalFormat,java.util.*,income.model.vo.*"%>
+<%
+	ArrayList<Income> list = (ArrayList<Income>)request.getAttribute("list");
+	Income ic = (Income)request.getAttribute("ic");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -227,6 +231,21 @@
 		background-color: #BDD4F2;
 		color : #000;
 	}
+	.mySlist{
+		overflow:hidden;
+		margin:0 auto;
+		border-bottom : 1px solid #E6E6E6;
+		
+	}
+	.mySlist>div{
+		display:inline-block;
+		float:left;
+		vertical-align:center;
+		border-right : 1px solid #E6E6E6;
+	}
+	.mySlist>div div{
+		
+	}
 </style>
 </head>
 <body>
@@ -255,13 +274,21 @@
 								</div>
 								
 								<%
-								 String income = "0";
-								 String cash = dc.format(m.getCash());
-								if(s!=null){
-								  income = dc.format(s.getIncome()); 	  
-								} 
+									 String allincome = "0";
+										 String beforeincome = "0";	
+										 String afterincome = "0";
+									 String cash = dc.format(m.getCash());
+									if(ic!=null){
+									  allincome = dc.format(ic.getAllincome()); 
+									  beforeincome = dc.format(ic.getBeforeincome());
+									  afterincome = dc.format(ic.getAfterincome());
+									} 
 								%>
-								<div class="font-noto won"><b><%=income %>원</b></div>
+								<%if(ic!=null){ %>
+									<div class="font-noto won"><b><%=beforeincome %>원</b></div>
+								<%}else{ %>
+									<div class="font-noto won"><b>0원</b></div>
+								<%} %>
 							</div></li>
 							<li><div class="income-out">
 								<div class="income-out-div">
@@ -278,7 +305,7 @@
 									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
 									<h6>판매관리</h6>							
 								</div></a>
-								<a href="/semi/views/myPage/myPageManageIncome.jsp"><div class="padding-all-15 menu-slot active">
+								<a href="/semi/list.ic"><div class="padding-all-15 menu-slot active">
 									<div><img src="/semi/resources/images/profits_new_active.png" alt="" /></div>
 									<h6>수익관리</h6>			
 								</div></a>
@@ -288,7 +315,7 @@
 									<div><img src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 									<h6>광고관리</h6>							
 								</div></a>
-								<a href="/semi/myboard.bo?sno=<%= s.getSno() %>"><div class="padding-all-15 menu-slot">
+								<a href="/semi/myboard.bo"><div class="padding-all-15 menu-slot">
 									<div><img src="/semi/resources/images/my_gigs_active.png" alt="" /></div>
 									<h6>나의 서비스</h6>			
 								</div></a>
@@ -319,16 +346,30 @@
 										<div style="width:25%;float:left"><img width=80% src="/semi/resources/images/profits_new_active.png" alt="" /></div>
 										<div style="width:75%;padding-right:15px;float:left">
 											<h5 class="font-noto" style="margin-top:5px;margin-bottom:10px">출금가능 수익금</h5>
-											<h2 class="font-noto" style="margin:0;margin-bottom:10px"><%=income %>원</h2>
+											<%if(ic!=null){ %>
+											<h2 class="font-noto" style="margin:0;margin-bottom:10px"><%=beforeincome%>원</h2>
+											<%}else{ %>
+											<h2 class="font-noto" style="margin:0;margin-bottom:10px">0원</h2>
+											<%} %>
 										</div>
 									</div>
 									<div class="predict-income padding-15">
-										<h6 class="margin-10">예상 수익금</h6>
+										<h6 class="margin-10">전체 수익금</h6>
+										<%if(ic!=null){ %>
+										<h5 class="margin-10" style="margin-bottom:10px"><%=allincome %>원</h5>
+										<%}else{ %>
 										<h5 class="margin-10" style="margin-bottom:10px">0원</h5>
+										<%} %>
+										
 									</div>
 									<div class="predict-income padding-15" style="border-right:none;">
 										<h6 class="margin-10">출금 완료 수익금</h6>
+										<%if(ic!=null){ %>
+										<h5 class="margin-10" style="margin-bottom:10px"><%=afterincome %>원</h5>
+										<%}else{ %>
 										<h5 class="margin-10" style="margin-bottom:10px">0원</h5>
+										<%} %>
+										
 									</div>
 								</div>
 							</div>
@@ -415,10 +456,23 @@
 				</div>
 				<div>
 					<div class="padding-15" style="margin-top:10px">
+						
 						<div class="detail-box">
-							<div class="detail-list">
-								<div><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
-								<h5 class="font-noto" style="margin:10px 0;">내역이 없습니다.</h5>
+							<div class="detail-list" style = "padding : 0;">
+								<%if(list!=null){ %>
+								
+									<%for(Income i : list){ %>
+									<div class="mySlist" style="margin:0;padding: 20px 0">
+										<div style="width:25%; "><h5><%=i.getRownum()%></h5></div>
+										<div style="width:25%; "><div><h5><%=i.getIcmoney() %>원</h5></div></div>
+										<div style="width:25%; "><div><h5><%=i.getIchistory()%></h5></div></div>
+										<div style="width:25%;"><h5><%=i.getIcdate() %></h5></div>
+									</div>
+									<%} %>
+								<%}else{ %>
+									<div style="margin-top:130px"><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
+									<h5 style="margin-bottom:129px;margin-top: 10px;" class="font-noto">내역이 없습니다.</h5>
+								<%} %>								
 							</div>
 						</div>
 					</div>
