@@ -126,21 +126,21 @@ public class CashRechargeService  {
 	
 		
 
-//	//캐시 내역에서 '사용'으로 DB에 들어갈 부분
-//		public int spentCashInsert(Cash csh) throws FileNotFoundException, IOException, CashRechargeException {
-//			
-//			con = getConnection();
-//			int result = crDao.insertsptCash(con, csh);
-//			
-//			if(result > 0) commit(con);
-//			else rollback(con);
-//			
-//			close(con);
-//			
-//			return result;
-//		}
-//
-//
+	//캐시 내역에서 '사용'으로 DB에 들어갈 부분
+		public int spentCashInsert(Cash csh) throws FileNotFoundException, IOException, CashRechargeException {
+			
+			con = getConnection();
+			int result = crDao.insertsptCash(con, csh);
+			
+			if(result > 0) commit(con);
+			else rollback(con);
+			
+			close(con);
+			
+			return result;
+		}
+
+		
 //	//member에서 현재 캐시 -로 들어가는 부분
 //		public int minusinsertCash(Member m) throws FileNotFoundException, IOException, CashRechargeException {
 //			
@@ -196,6 +196,12 @@ public class CashRechargeService  {
 			
 			return result;
 		}
+
+
+
+
+
+		
 		
 		
 		

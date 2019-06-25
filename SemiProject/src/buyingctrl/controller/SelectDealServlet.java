@@ -1,4 +1,4 @@
-package sellerboard.controller;
+package buyingctrl.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,22 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import buyingctrl.model.service.DealMngService;
+import buyingctrl.model.vo.DealMng;
+import member.model.vo.Member;
 import seller.model.vo.Seller;
-import sellerboard.model.exception.SellerboardException;
-import sellerboard.model.service.SellerboardService;
-import sellerboard.model.vo.SellerBoard;
 
 /**
- * Servlet implementation class MyBoardServlet
+ * Servlet implementation class SelectDealServlet
  */
-@WebServlet("/myboard.bo")
-public class MyBoardServlet extends HttpServlet {
+@WebServlet("/dSelect.do")
+public class SelectDealServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyBoardServlet() {
+    public SelectDealServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,38 +37,39 @@ public class MyBoardServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		String state = null;
-		if(request.getParameter("state") != null) {
-			state = request.getParameter("state");
-		}
-		
 		HttpSession session = request.getSession();
 		Seller s = (Seller)session.getAttribute("seller");
+		DealMngService dms = new DealMngService();
 		
-		
-		
-		int sno = s.getSno();
-		System.out.println(sno);
-
-		ArrayList<SellerBoard> list;
-		String page="";
-		try {
-			list = new SellerboardService().myBoardSelect(sno);
-			
-			if(state == null) {
-				page="views/myPage/myPageMyService.jsp"; 
-			} else {
-				page="views/myPage/MyService/MyService"+state+".jsp";
-			}
-			
-			request.setAttribute("list", list);
-			
-		} catch (SellerboardException e) {
-			System.out.println("오류");
-			page="views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시글 목록 조회 실패");
+		String state=null;
+		if(request.getParameter("state")!=null) {
+			state=request.getParameter("state");
 		}
+		
+		ArrayList<DealMng> list = dms.selectDeal(s.getSno());
+		
+		String page="";
+		
+		if(list != null) {
+			request.setAttribute("list", list);
+			if(request.getParameter("state")!=null) {
+				page = "views/myPage/mySell/mySell"+state+".jsp";
+				
+			}else {
+				page = "views/myPage/myPageManageSell.jsp";
+			}
+		}else {
+			page = "/views/common/errorPage.jsp";
+			request.setAttribute("msg", "요구사항이 없는 것 불러오기 에러!");
+		}
+		
+		
 		request.getRequestDispatcher(page).forward(request, response);
+		
+		
+		
+		
+		
 		
 	}
 

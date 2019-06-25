@@ -207,7 +207,7 @@ table td:nth-child(4){
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="checkbox" name="check" value="<%=b.getPrice() %>"/>이미지</td>
+							<td><input type="hidden" name="check" value="<%=b.getPrice() %>" id="option1" checked/>이미지</td>
 							<td><%=b.getEditablecount() %>일</td>
 							<td class="price"><%=b.getPrice() %>원</td>
 						</tr>
@@ -221,14 +221,14 @@ table td:nth-child(4){
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="checkbox" name="check" value="<%=b.getSpeed() %>"/>빠른 작업</td>
+							<td><input type="checkbox" name="check" value="<%=b.getSpeed() %>" class="option2"/>빠른 작업</td>
 							<td><%=b.getExtradate1() %>일</td>
 							<td class="price"><%=b.getSpeed() %>원</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="check" value="<%=b.getPlusedit() %>"/>추가 수정</td>
+							<td><input type="checkbox" name="check" value="<%=b.getPlusedit() %>" class="option2"/>추가 수정</td>
 							<td><%=b.getExtradate2() %>일</td>
-							<td class="price">0원</td>
+							<td class="price"><%=b.getPlusedit() %>원</td>
 						</tr>
 				
 					</tbody>
@@ -266,7 +266,7 @@ table td:nth-child(4){
 				</div>
 				<div class="sumbox">
 					<p>총 결제금액(VAT 포함)</p>
-					<p class="totalPrice">0원</p>
+					<p class="totalPrice"><%=b.getPrice() %>원</p>
 				</div>
 			</div>
 			
@@ -283,21 +283,20 @@ table td:nth-child(4){
 					<p>TMI를 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</p>
 				</div>
 				
-				
-				<div class="buybtnbox">
-					<a onclick="goPay()">결제하기</a>
+					<div class="buybtnbox">
+						<a onclick="goPay()">결제하기</a>
+					</div>
+			
 				</div>
-				</div>
+				  
 				</section>
 				<%} %>
 	<script>	
-	// 선택된 체크박스의 상품의 가격 합계 구하는 함수
-
     // 선택된 체크박스의 상품의 가격 합계 구하는 함수
-    var total1=0;
+    var total1=<%=b.getPrice() %>;
     $('input[name=check]').click(function(){
 	   
-    	total1=0;
+    	total1=<%=b.getPrice() %>;
        $('input[name=check]:checked').each(function() {
     	   
           /* console.log(Number($('.price' + $(this).val()).text()));
@@ -312,8 +311,18 @@ table td:nth-child(4){
     });
 	
     function goPay(){
- 	   location.href = "<%= request.getContextPath() %>/sptList.bo?tprice="+total1;
+    	
+    	if(<%= m.getCash() %> < total1){
+    		alert("캐쉬충전이 필요합니다.");
+    		location.href="views/personBUY/cash.jsp";
+    	}else{ 		
+    		location.href = "<%= request.getContextPath() %>/sptList.bo?tprice="+total1;
+    	}
+    		
+  
     }
 	</script>
+	
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

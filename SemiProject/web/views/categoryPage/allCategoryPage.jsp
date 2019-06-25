@@ -3,8 +3,8 @@
 <%@ page import="sellerboard.model.vo.*, java.util.*" %>
 <%
 	ArrayList<SellerBoard> list = (ArrayList<SellerBoard>)request.getAttribute("list");
+	Talent t = (Talent)request.getAttribute("talent");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	String code = (String)request.getAttribute("code");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
@@ -19,7 +19,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-<title>디자인 카테고리 페이지</title>
+<title><%=t.getTalent1() %> 카테고리 페이지</title>
 <style>
 *{
 	font-family: 'Noto Sans KR', sans-serif;
@@ -67,17 +67,20 @@
 	width:18%;
 }
 .post{
+
 	width:84%;
 	margin:0 auto;
 	padding: 0 15px;
 	display:inline-block;
 }
 .posting{
+
 	padding:0 20px;
 	margin-bottom: 20px;
 	
 }
 .post-row{
+
 position: relative;
 z-index: 2;
 }
@@ -105,6 +108,16 @@ z-index: 2;
 
 .paging .on:hover{text-decoration:none;}
 
+.ani{
+	width:210px;
+	cursor:pointer;
+	transition:0.25s;
+}
+.ani:hover{
+	transform: scale(1.05);
+}
+
+
 
 </style>
 
@@ -117,16 +130,20 @@ z-index: 2;
 	<div class="section2">
 			<div class="sbody">
 				<div class="cb1" style="width:18%" >
-					<h1 style="font-size:25px;">디자인</h1>		
+					<h1 style="font-size:25px;"><%=t.getTalent1() %></h1>		
 				</div>
 			
 				<div class="cb2" style="width:50%;"> 
 					<%if(m!=null){ %>
-						<h3 style="font-size:15px;display:inline-block;"><a href="/semi/mainheader2.jsp">홈</a></h3>
+						<h3 style="font-size:15px;display:inline-block;"><a href="/semi/mainheader2.jsp">홈 ></a></h3>
 					<%}else{ %>
-						<h3 style="font-size:15px;display:inline-block;"><a href="/semi/index.jsp">홈</a></h3>
-					<%} %>>
-					<h3 style="font-size:15px;display:inline-block;"><a href="/semi/selectList.bo?cate=designCategoryPage">디자인</a></h3>		
+						<h3 style="font-size:15px;display:inline-block;"><a href="/semi/index.jsp">홈 ></a></h3>
+					<%} %>
+					<h3 style="font-size:15px;display:inline-block;"><a href="/semi/selectList.bo?cate=contentCategoryPage"><%=t.getTalent1() %></a></h3>	
+					
+					<%if(t.getTalent2()!=null){ %>
+						<h3 style="font-size:15px;display:inline-block;"><a href="/semi/selectList.bo?cate=contentCategoryPage">> <%=t.getTalent2() %></a></h3>	
+					<%} %>
 				</div>
 
 				<div class="cb3" style="width:31%;padding:0 20px;">
@@ -150,11 +167,19 @@ z-index: 2;
 					<div class="accordion" style="padding:10px 30px;">
 					<div class="ui vertical accordion menu" style="float:left; width:160px;font-family: 'Noto Sans KR', sans-serif;">
 					  <div class="item">
-					    <a class="active title">
+					    <%if(t.getTalent1().equals("디자인")){ %>
+					    	<a class="active title">
+					    <%}else{%>
+					    	<a class="title">
+					    <%} %>
 					      <i class="dropdown icon"></i>
 					      	<b>디자인</b>
 					    </a>
-					    <div class="active content">
+					    <%if(t.getTalent1().equals("디자인")){ %>
+					    	<div class="active content">
+					    <%}else{%>
+					    	<div class="content">
+					    <%} %>
 					      <div class="ui form">
 					        <div class="grouped fields">
 					          <div class="field">
@@ -188,11 +213,19 @@ z-index: 2;
 					  </div>
 					 
 					 <div class="item">
-					    <a class="title">
+					    <%if(t.getTalent1().equals("IT/프로그래밍")){ %>
+					    	<a class="active title">
+					    <%}else{%>
+					    	<a class="title">
+					    <%} %>
 					      <i class="dropdown icon"></i>
 					      	<b>IT/프로그래밍</b>
 					    </a>
-					    <div class="content">
+					    <%if(t.getTalent1().equals("IT/프로그래밍")){ %>
+					    	<div class="active content">
+					    <%}else{%>
+					    	<div class="content">
+					    <%} %>
 					      <div class="ui form">
 					        <div class="grouped fields">
 					          <div class="field">
@@ -226,11 +259,19 @@ z-index: 2;
 					  </div>
 					  
 					  <div class="item">
-					    <a class="title">
+					    <%if(t.getTalent1().equals("마케팅")){ %>
+					    	<a class="active title">
+					    <%}else{%>
+					    	<a class="title">
+					    <%} %>
 					      <i class="dropdown icon"></i>
 					      	<b>마케팅</b>
 					    </a>
-					    <div class="content">
+					    <%if(t.getTalent1().equals("마케팅")){ %>
+					    	<div class="active content">
+					    <%}else{%>
+					    	<div class="content">
+					    <%} %>
 					      <div class="ui form">
 					        <div class="grouped fields">
 					          <div class="field">
@@ -264,11 +305,19 @@ z-index: 2;
 					  </div>
 					  
 					  <div class="item">
-					    <a class="title">
+					    <%if(t.getTalent1().equals("콘텐츠제작")){ %>
+					    	<a class="active title">
+					    <%}else{%>
+					    	<a class="title">
+					    <%} %>
 					      <i class="dropdown icon"></i>
 					      	<b>콘텐츠제작</b>
 					    </a>
-					    <div class="content">
+					    <%if(t.getTalent1().equals("콘텐츠제작")){ %>
+					    	<div class="active content">
+					    <%}else{%>
+					    	<div class="content">
+					    <%} %>
 					      <div class="ui form">
 					        <div class="grouped fields">
 					          <div class="field">
@@ -302,11 +351,19 @@ z-index: 2;
 					  </div>
 					  
 					  <div class="item">
-					    <a class="title">
+					    <%if(t.getTalent1().equals("번역/통역")){ %>
+					    	<a class="active title">
+					    <%}else{%>
+					    	<a class="title">
+					    <%} %>
 					      <i class="dropdown icon"></i>
 					      	<b>번역/통역</b>
 					    </a>
-					    <div class="content">
+					    <%if(t.getTalent1().equals("번역/통역")){ %>
+					    	<div class="active content">
+					    <%}else{%>
+					    	<div class="content">
+					    <%} %>
 					      <div class="ui form">
 					        <div class="grouped fields">
 					          <div class="field">
@@ -330,11 +387,19 @@ z-index: 2;
 					  </div>
 					  
 					  <div class="item">
-					    <a class="title">
+					    <%if(t.getTalent1().equals("문서/취업")){ %>
+					    	<a class="active title">
+					    <%}else{%>
+					    	<a class="title">
+					    <%} %>
 					      <i class="dropdown icon"></i>
 					      	<b>문서/취업</b>
 					    </a>
-					    <div class="content">
+					    <%if(t.getTalent1().equals("문서/취업")){ %>
+					    	<div class="active content">
+					    <%}else{%>
+					    	<div class="content">
+					    <%} %>
 					      <div class="ui form">
 					        <div class="grouped fields">
 					          <div class="field">
@@ -368,11 +433,19 @@ z-index: 2;
 					  </div>
 					  
 					  <div class="item">
-					    <a class="title">
+					    <%if(t.getTalent1().equals("기프트/커스텀")){ %>
+					    	<a class="active title">
+					    <%}else{%>
+					    	<a class="title">
+					    <%} %>
 					      <i class="dropdown icon"></i>
 					      	<b>기프트/커스텀</b>
 					    </a>
-					    <div class="content">
+					    <%if(t.getTalent1().equals("기프트/커스텀")){ %>
+					    	<div class="active content">
+					    <%}else{%>
+					    	<div class="content">
+					    <%} %>
 					      <div class="ui form">
 					        <div class="grouped fields">
 					          <div class="field">
@@ -410,12 +483,12 @@ z-index: 2;
 							if(j>=list.size()) break;
 							SellerBoard b = list.get(j);%>
 						
-						 <div style="width:210px; cursor:pointer;" onclick='location.href="/semi/listDetail.bo?bno=<%= b.getBno()%>"'>
-						 	<div class="ui card" style="margin:0;">
-							  <div class="image" style="height:170px;">
+						 <div class="ani">
+						 	<div class="ui card" style="margin:0;height:331px;overflow:hidden;">
+							  <div class="image" style="height:170px;" onclick='location.href="/semi/listDetail.bo?bno=<%= b.getBno()%>"'>
 							    <img src="/semi/resources/selleruploadIMG/<%=b.getImages() %>" style="height:170px;">
 							  </div>
-							  <div class="content" style="height:120px;">
+							  <div class="content" style="height:120px;" onclick='location.href="/semi/listDetail.bo?bno=<%= b.getBno()%>"'>
 							    
 							    <div class="meta">
 							      <span class="date">판매자닉네임</span>
@@ -429,7 +502,7 @@ z-index: 2;
 							    <a>
 							      <i class="ui" style="height:33px;"></i>
 							      <div class="ui heart rating" data-rating="1" data-max-rating="1"></div>
-							      <div class="ui star rating" data-rating="3" style="float:right;"></div>
+							      <div class="ui star rating" data-rating="5" style="float:right;"></div>
 							    </a>
 							  </div>
 							</div>
@@ -454,27 +527,27 @@ z-index: 2;
 				
 				<div class="paging">
  
-				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=1&cate=designCategoryPage&cCode=10&code=<%= code %>" class="btn_arr first"><span class="hide">처음페이지</span></a>
+				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=1&cCode=<%=t.getTalent1code()%>&code=<%=t.getTalent2code() %>" class="btn_arr first"><span class="hide">처음페이지</span></a>
 				  <%if(currentPage<=1){ %>
 				  	<a class="btn_arr prev"><span class="hide">이전페이지</span></a>  
 				  <%} else{ %>          
-				  	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>&cate=designCategoryPage&cCode=10&code=<%= code %>" class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+				  	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>&cCode=<%=t.getTalent1code()%>&code=<%=t.getTalent2code() %>" class="btn_arr prev"><span class="hide">이전페이지</span></a>  
 				  <%} %>   
 				  <%for(int p = startPage; p <= endPage; p++){
 						if(p==currentPage){  
 					%>
 				  	<a class="on"><%= p %></a>
 				  	<%}else{ %>
-				  	<a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>&cate=designCategoryPage&cCode=10&code=<%= code %>"><%=p%></a>
+				  	<a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>&cCode=<%=t.getTalent1code()%>&code=<%=t.getTalent2code() %>"><%=p%></a>
 				  	<%}
 				  	}	
 				  	%>
 				  <%if(currentPage>=maxPage){ %>
 				  	<a class="btn_arr next"><span class="hide">다음페이지</span></a>
 				  <%}else{ %>
-				 	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>&cate=designCategoryPage&cCode=10&code=<%= code %>" class="btn_arr next"><span class="hide">다음페이지</span></a> 
+				 	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>&cCode=<%=t.getTalent1code()%>&code=<%=t.getTalent2code() %>" class="btn_arr next"><span class="hide">다음페이지</span></a> 
 				  <%} %>           
-				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=maxPage %>&cate=designCategoryPage&cCode=10&code=<%= code %>" class="btn_arr last"><span class="hide">마지막페이지</span></a>
+				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=maxPage %>&cCode=<%=t.getTalent1code()%>&code=<%=t.getTalent2code() %>" class="btn_arr last"><span class="hide">마지막페이지</span></a>
 				             
 				</div>
 			</div>			

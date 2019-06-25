@@ -244,7 +244,7 @@ public class DealMngDao {
 				dm.setDealdate(rset.getDate("dealdate"));
 				dm.setProgress(rset.getString("progress"));
 				dm.setPrice(rset.getInt("price"));
-				
+
 				
 				ccList.add(dm);
 				System.out.println("취소 구매내역 조회 리스트(DealMngDao) : "+ ccList);
@@ -351,6 +351,78 @@ public class DealMngDao {
 		return listCount;
 		
 		
+	}
+
+
+	public ArrayList<DealMng> selectDeal(Connection con, int sno) {
+		ArrayList<DealMng> list = new ArrayList<DealMng>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = "SELECT D.*,M.NICKNAME,B.BTITLE,B.IMAGES FROM DEALMANAGER D JOIN MEMBER M ON (D.MNO = M.MNO) JOIN SELLERBOARD B ON (D.BNO = B.BNO) WHERE D.SNO = ?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, sno);
+			System.out.println(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				DealMng dm = new DealMng();
+				System.out.println("진입");
+				
+				dm.setBno(rset.getInt("BNO"));
+				dm.setBtitle(rset.getString("btitle"));
+				dm.setNickname(rset.getString("nickName"));
+				dm.setDmcode(rset.getInt("dmcode"));
+				dm.setDealdate(rset.getDate("dealdate"));
+				dm.setProgress(rset.getString("progress"));
+				dm.setPrice(rset.getInt("price"));
+				dm.setImages(rset.getString("IMAGES"));
+				
+				
+				System.out.println(dm.getBtitle());
+				
+				System.out.println(dm.getBno());
+				
+				list.add(dm);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+
+	public int updateProgress(Connection con, String progress, String dmcode) throws buyingctrlException {
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE DEALMANAGER SET PROGRESS = ? WHERE DMCODE = ?";
+		int result = -1;
+		try {
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setString(1, progress);
+			pstmt.setString(2, dmcode);
+			
+			result = pstmt.executeUpdate();
+			System.out.println(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new buyingctrlException(e.getMessage());
+		} finally {
+			close(pstmt);
+			
+		}
+		
+		return result;
 	}
 
 

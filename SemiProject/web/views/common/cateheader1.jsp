@@ -7,7 +7,11 @@
 	Seller s = (Seller)session.getAttribute("seller");
 	
 %>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cateheader1</title>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -274,8 +278,8 @@ nav{
 	left:30px;
 }
 </style>
-
-
+</head>
+<body>
 <div id='wrap'>
         <header>
             <div class='head'>
@@ -346,70 +350,70 @@ nav{
                 <div class="navsize">
                     <ul class='nav_ul'>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate0"><a href="/semi/selectList.bo?cate=designCategoryPage&cCode=10&code=0">디자인</a></div>
+                        	<div class="cate" id="cate0"><a href="/semi/selectList.bo?cCode=10&code=0">디자인</a></div>
                         	<ul class="downmenu" id="downmenu0">
-                        		<li><a href="/semi/selectList.bo?cate=designCategoryPage&cCode=10&code=11">로고디자인</a></li>
-                            	<li><a href="/semi/selectList.bo?cate=designCategoryPage&cCode=10&code=12">의류디자인</a></li>
-                            	<li><a href="/semi/selectList.bo?cate=designCategoryPage&cCode=10&code=13">간판디자인</a></li>
-                            	<li><a href="/semi/selectList.bo?cate=designCategoryPage&cCode=10&code=14">일러스트</a></li>
-                            	<li><a href="/semi/selectList.bo?cate=designCategoryPage&cCode=10&code=15">웹툰</a></li>
+                        		<li><a href="/semi/selectList.bo?cCode=10&code=11">로고디자인</a></li>
+                            	<li><a href="/semi/selectList.bo?cCode=10&code=12">의류디자인</a></li>
+                            	<li><a href="/semi/selectList.bo?cCode=10&code=13">간판디자인</a></li>
+                            	<li><a href="/semi/selectList.bo?cCode=10&code=14">일러스트</a></li>
+                            	<li><a href="/semi/selectList.bo?cCode=10&code=15">웹툰</a></li>
                         	</ul>
                         	
                         </li>
                         <li clase="talent-category">
-	                        <div class="cate" id="cate1"><a href="/semi/selectList.bo?cate=itCategoryPage&cCode=20&code=0">IT/프로그래밍</a></div>
+	                        <div class="cate" id="cate1"><a href="/semi/selectList.bo?cCode=20&code=0">IT/프로그래밍</a></div>
 	                        <ul class="downmenu" id="downmenu1">
-	                        	<li><a href="/semi/selectList.bo?cate=itCategoryPage&cCode=20&code=21">웹사이트 개발</a></li>
-	                            <li><a href="/semi/selectList.bo?cate=itCategoryPage&cCode=20&code=22">프로그램 개발</a></li>
-	                            <li><a href="/semi/selectList.bo?cate=itCategoryPage&cCode=20&code=23">서버 및 기술지원</a></li>
-	                            <li><a href="/semi/selectList.bo?cate=itCategoryPage&cCode=20&code=24">게임</a></li>
-	                            <li><a href="/semi/selectList.bo?cate=itCategoryPage&cCode=20&code=25">모바일앱/웹</a></li>
+	                        	<li><a href="/semi/selectList.bo?cCode=20&code=21">웹사이트 개발</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=20&code=22">프로그램 개발</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=20&code=23">서버 및 기술지원</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=20&code=24">게임</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=20&code=25">모바일앱/웹</a></li>
 	                        </ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate2"><a href="/semi/selectList.bo?cate=marketingCategoryPage&cCode=10&code=0">마케팅</a></div>
+                        	<div class="cate" id="cate2"><a href="/semi/selectList.bo?cCode=30&code=0">마케팅</a></div>
                         	<ul class="downmenu" id="downmenu2">
-                        		<li><a href="">sns마켓팅</a></li>
-	                            <li><a href="">종합광고대행</a></li>
-	                            <li><a href="">블로그</a></li>
-	                            <li><a href="">마케팅 노하우</a></li>
-	                            <li><a href="">유튜브 크리에이터</a></li>
+                        		<li><a href="/semi/selectList.bo?cCode=30&code=31">sns마켓팅</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=30&code=32">종합광고대행</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=30&code=33">블로그</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=30&code=34">마케팅 노하우</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=30&code=35">유튜브 크리에이터</a></li>
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate3"><a href="/semi/selectList.bo?cate=contentCategoryPage&cCode=10&code=0">콘텐츠 제작</a></div>
+                        	<div class="cate" id="cate3"><a href="/semi/selectList.bo?cCode=40&code=0">콘텐츠 제작</a></div>
                         	<ul class="downmenu" id="downmenu3">
-	                        	<li><a href="">영상</a></li>
-	                            <li><a href="">더빙/녹음</a></li>
-	                            <li><a href="">음악/사운드</a></li>
-	                            <li><a href="">엔터테이너</a></li>
-	                            <li><a href="">사진</a></li>
+	                        	<li><a href="/semi/selectList.bo?cCode=40&code=41">영상</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=40&code=42">더빙/녹음</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=40&code=43">음악/사운드</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=40&code=44">엔터테이너</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=40&code=45">사진</a></li>
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate4"><a href="/semi/selectList.bo?cate=transCategoryPage&cCode=10&code=0">번역/통역</a></div>
+                        	<div class="cate" id="cate4"><a href="/semi/selectList.bo?cCode=50&code=0">번역/통역</a></div>
 	                        <ul class="downmenu" id="downmenu4">
-		                        <li><a href="">번역</a></li>
-	                            <li><a href="">영상번역</a></li>
-	                            <li><a href="">통역</a></li>
+		                        <li><a href="/semi/selectList.bo?cCode=50&code=51">번역</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=50&code=52">영상번역</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=50&code=53">통역</a></li>
 	                        </ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate5"><a href="/semi/selectList.bo?cate=textCategoryPage&cCode=10&code=0">문서/취업</a></div>
+                        	<div class="cate" id="cate5"><a href="/semi/selectList.bo?cCode=60&code=0">문서/취업</a></div>
                         	<ul class="downmenu" id="downmenu5">
-                        		<li><a href="">논문</a></li>
-	                            <li><a href="">타이핑</a></li>
-	                            <li><a href="">글작성/대본</a></li>
-	                            <li><a href="">면접/취업코딩</a></li>
-	                            <li><a href="">자소서/이력서</a></li>
+                        		<li><a href="/semi/selectList.bo?cCode=60&code=61">논문</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=60&code=62">타이핑</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=60&code=63">글작성/대본</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=60&code=64">면접/취업코딩</a></li>
+	                            <li><a href="/semi/selectList.bo?cCode=60&code=65">자소서/이력서</a></li>
                         	</ul>
                         </li>
                         <li clase="talent-category">
-                        	<div class="cate" id="cate6"><a href="/semi/selectList.bo?cate=giftCategoryPage&cCode=10&code=0">기프트/커스텀</a></div>
+                        	<div class="cate" id="cate6"><a href="/semi/selectList.bo?cCode=70&code=0">기프트/커스텀</a></div>
                         	<ul class="downmenu"  id="downmenu6">
-                        		<li><a href="">라이프</a></li>
-                            	<li><a href="">패션</a></li>
-                            	<li><a href="">푸드</a></li>
+                        		<li><a href="/semi/selectList.bo?cCode=70&code=71">라이프</a></li>
+                            	<li><a href="/semi/selectList.bo?cCode=70&code=72">패션</a></li>
+                            	<li><a href="/semi/selectList.bo?cCode=70&code=73">푸드</a></li>
                         	</ul>
                         </li>
                     </ul>
@@ -458,3 +462,5 @@ nav{
 			location.href="/semi/nReq.bo";
 		}
     </script>
+</body>
+</html>

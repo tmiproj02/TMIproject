@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" import="seller.model.service.SellerService" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,7 @@
 </head>
 <body onload="window.resizeTo(300,300)" onresize="window.resizeTo(300,300)">
 	<%@ include file="/views/common/cateheader1.jsp" %>
-
+	
 	<!-- summit버튼이 눌렸을때 처리하기 위하여 seller.do 라는 경로를 설정한 서블릿을 호출 -->
 	<form action="/semi/seller.do" method="post" style="margin-top:100px;">
 		<div id="regist" class="jumbotron" style = "position: absolute; top:100px;left:30%; width:800px; height:auto;" align="center">
@@ -67,13 +68,19 @@
 					<br>
 					<img class="ui small left floated image" src="/semi/views/seller/images/person.png" style="left:30px; width:150px; height:150px;">
 				</div>
+				<% 
+					String email = m.getEmail();
+					String phone = null;
+					phone = new SellerService().phoneNB(email);
+					System.out.println("JSP에서 받아왔나?"+phone);
+				%>
 				
 				<div class="column">
 				    <h5 class="modal-title">전화번호</h5>
 				    <div class="ui input focus">
-						<input type="text" id="phone" placeholder="-없이 입력" value="">
+						<input type="text" id="phone" name="phone" placeholder="번호없음" value="<%= phone %>" readonly>
 					</div>
-				    <h5 class="modal-title">연락가능시간</h5>
+					<h5 class="modal-title">연락가능시간</h5>
 				    <div class="ui input focus">
 						<input type="text" id="abletime" name="abletime" placeholder="10:00~16:00" value="">
 					</div>
