@@ -24,12 +24,9 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-<script src="/semi/resources/js/semantic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <title>판매관리</title>
 <style>
 	.font-noto{
@@ -192,6 +189,23 @@
 	.mySlist>div div{
 		margin:20px 0;
 	}
+	.paging .hide {display:block;height:0;width:0;font-size:0;line-height:0;margin:0;padding:0;overflow:hidden;}
+
+	.paging{padding:19px;text-align:center;}
+	
+	.paging a{display:inline-block;width:23px;height:23px;padding-top:2px;vertical-align:middle;}
+	
+	.paging a:hover{text-decoration:underline;}
+	
+	.paging .btn_arr{text-decoration:none;}
+	
+	.paging .btn_arr, .paging .on{margin:0 3px;padding-top:0;border:1px solid #ddd; border-radius:30px;
+	
+	/* background:url(/front/img/com/btn_paging.png) no-repeat; */}
+	
+	.paging .on{padding-top:1px;height:22px;color:#fff;font-weight:bold;background:rgb(54, 69, 89);}
+	
+	.paging .on:hover{text-decoration:none;}
 </style>
 </head>
 <body>
@@ -253,7 +267,7 @@
 									<div><img src="/semi/resources/images/advertisement_active.png" alt="" /></div>
 									<h6>광고관리</h6>							
 								</div></a>
-								<a href="/semi/myboard.bo?sno=<%= s.getSno() %>"><div class="padding-all-15 menu-slot">
+								<a href="/semi/myboard.bo%>"><div class="padding-all-15 menu-slot">
 									<div><img src="/semi/resources/images/my_gigs_active.png" alt="" /></div>
 									<h6>나의 서비스</h6>			
 								</div></a>
@@ -318,17 +332,34 @@
 								<%
 								 String price = dc.format(d.getPrice()); 
 								%>
-								<div class="mySlist" style="margin:0;padding: 20px 0">
+									<div class="mySlist" style="margin:0;padding: 20px 0">
 									<div style="width:20%; "><img width=100px src="/semi/resources/selleruploadIMG/<%=d.getImages()%>" alt="" /></div>
 									<div style="width:45%; height:78px;"><div style="text-overflow: ellipsis; overflow:hidden;margin:30px 0"><a href="/semi/listDetail.bo?bno=<%= d.getBno()%>"><h5 style="text-align:left; padding:0 10px; margin:0 20px;overflow:hidden;text-overflow: ellipsis; white-space: nowrap;"><%=d.getBtitle() %></h5></a></div></div>
 									<div style="width:10%; "><div style="margin:30px 0"><h5><%=d.getNickname() %></h5></div></div>
 									<div style="width:15%; "><div style="margin:30px 0"><h5><%=price %>원</h5></div></div>
-									<div style="width:10%; border-right:none;"><div style="margin:30px 0"><h5><%=d.getProgress()%></h5></div></div>
+									<div style="width:10%; border-right:none;"><div style="margin:30px 0">
+										<select onchange="if(this.value) location.href=(this.value);" name="" id="" style="border-radius:5px;font-size:13px;">
+											<%if(d.getProgress().equals("진행중")){ %>
+												<option value="/semi/uProgress.do?progress=진행중&dmcode=<%=d.getDmcode()%>&state=s1">진행중</option>
+												<option value="/semi/uProgress.do?progress=완료&dmcode=<%=d.getDmcode()%>&state=s1">완료</option>
+												<option value="/semi/uProgress.do?progress=취소&dmcode=<%=d.getDmcode()%>&state=s1">취소</option>
+											<%} else if(d.getProgress().equals("완료")){%>
+												<option value="/semi/uProgress.do?progress=완료&dmcode=<%=d.getDmcode()%>&state=s1">완료</option>
+												<option value="/semi/uProgress.do?progress=진행중&dmcode=<%=d.getDmcode()%>&state=s1">진행중</option>
+												<option value="/semi/uProgress.do?progress=취소&dmcode=<%=d.getDmcode()%>&state=s1">취소</option>
+											<%} else if(d.getProgress().equals("취소")){%>
+												<option value="/semi/uProgress.do?progress=취소&dmcode=<%=d.getDmcode()%>&state=s1">취소</option>
+												<option value="/semi/uProgress.do?progress=진행중&dmcode=<%=d.getDmcode()%>&state=s1">진행중</option>
+												<option value="/semi/uProgress.do?progress=완료&dmcode=<%=d.getDmcode()%>&state=s1">완료</option>
+											<%} %>
+										</select>
+									</div></div>
 								</div>
-								<%} else{ continue;}%>
+
 								<%} if(count<0){%>
-									<div style="margin-top:50px;"><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0;" /></div>
-									<h5 class="font-noto" style="margin:10px 0;margin-bottom:50px;">내역이 없습니다.</h5>
+									<div style="margin-top:129px;"><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
+									<h5 class="font-noto" style="margin:10px 0;margin-bottom:130px;">내역이 없습니다.</h5>
+								<%} %>
 								<%} %>
 							</div>
 						<%}else{ %>
@@ -337,8 +368,36 @@
 								<h5 class="font-noto" style="margin:10px 0;">내역이 없습니다.</h5>
 							</div>
 							<%} %>
-							
 						</div>
+						<% if(list != null){ int count = -1;%>
+						<% for(DealMng d : list){if(d.getProgress().equals("취소")){ count++;}}%>
+						<% if(count>-1){ %>
+							<div class="paging">
+		 
+						  	<a href="" class="btn_arr first"><span class="hide">처음페이지</span></a>
+						  
+						  	<a class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+						    
+						  	<a href="" class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+						  
+						 
+						  	<a class="on">1</a>
+						  	
+						  	<a href="">2</a>
+						  	<a href="">3</a>
+						  	<a href="">4</a>
+						  	<a href="">5</a>
+						  
+						 
+						  	<a class="btn_arr next"><span class="hide">다음페이지</span></a>
+						  
+						 	<a href="" class="btn_arr next"><span class="hide">다음페이지</span></a> 
+						 
+						  	<a href="" class="btn_arr last"><span class="hide">마지막페이지</span></a>
+						          
+							</div>
+						<%} %>							
+						<%} %>
 					</div>
 				</div>	
 			</div>

@@ -39,14 +39,12 @@ public class SelectDealServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Seller s = (Seller)session.getAttribute("seller");
+		DealMngService dms = new DealMngService();
 		
-		String state="";
+		String state=null;
 		if(request.getParameter("state")!=null) {
 			state=request.getParameter("state");
 		}
-		
-		System.out.println(s.getSno());
-		DealMngService dms = new DealMngService();
 		
 		ArrayList<DealMng> list = dms.selectDeal(s.getSno());
 		
