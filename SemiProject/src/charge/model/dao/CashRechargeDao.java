@@ -325,51 +325,51 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 
 
 
-//	//캐시 내역에서 '사용'으로 DB에 들어갈 부분
-//	public int insertsptCash(Connection con, Cash csh) throws FileNotFoundException, IOException, CashRechargeException {
-//		
-//		prop2 = new Properties();
-//		
-//		System.out.println(csh.getMno());
-//		
-//		String filePath2
-//		   = CashRechargeDao.class
-//		   .getResource("/config/cashList-query.properties").getPath();
-//		
-//		prop2.load(new FileReader(filePath2));
-//		
-//		int result = 0;
-//		PreparedStatement pstmt = null;
-//		
-//		try {
-//			//String sql = "INSERT INTO CASH VALUES(SEQ_PAYNO.NEXTVAL,?,?,SYSDATE,?)";
-//			String sql = prop2.getProperty("insertsptCashL");
-//			
-//			
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, csh.getMno());
-//			pstmt.setInt(2, csh.getPayp());
-//			pstmt.setString(3, csh.getClassify());
-//			
-//			result=pstmt.executeUpdate();
-//			
-//			
-//			
-//		} catch(SQLException e) {
-//			e.printStackTrace();
-//			throw new CashRechargeException(e.getMessage());
-//		} finally {
-//			close(pstmt);
-//		}
-//		
-//		
-//		
-//		
-//		return result;
-//		
-//		
-//		
-//	}
+	//캐시 내역에서 '사용'으로 DB에 들어갈 부분
+	public int insertsptCash(Connection con, Cash csh) throws FileNotFoundException, IOException, CashRechargeException {
+		
+		prop2 = new Properties();
+		
+		System.out.println(csh.getMno());
+		
+		String filePath2
+		   = CashRechargeDao.class
+		   .getResource("/config/cashList-query.properties").getPath();
+		
+		prop2.load(new FileReader(filePath2));
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			//String sql = "INSERT INTO CASH VALUES(SEQ_PAYNO.NEXTVAL,?,?,SYSDATE,?)";
+			String sql = prop2.getProperty("insertsptCashL");
+			
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, csh.getMno());
+			pstmt.setInt(2, csh.getPayp());
+			pstmt.setString(3, csh.getClassify());
+			
+			result=pstmt.executeUpdate();
+			
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new CashRechargeException(e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		
+		return result;
+		
+		
+		
+	}
 
 		//게시글 개수 카운트
 		public int getListCount(Connection con, Member m) throws FileNotFoundException, IOException {
@@ -488,7 +488,12 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 		
 		return result;
 	}
-	
+
+
+
+
+
+
 	
 	
 	

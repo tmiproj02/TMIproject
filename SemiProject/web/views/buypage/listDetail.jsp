@@ -132,7 +132,7 @@ border-radius: 8px;
 margin: 20px 10px;
 }
 .shildbox {
-	border: 1px solid #e6e6e6;
+/* 	border: 1px solid #e6e6e6; */
 }
 
 .sellerInfobox {
@@ -238,9 +238,9 @@ margin: 20px 10px;
 				</div>
 
 				<div class="starbox">
-					<div class="ui massive star rating" data-rating="1"
+					<div class="ui huge star rating" data-rating="1"
 						data-max-rating="1"></div>
-						<span><%=b.getBevaluation() %>점</span> 
+						<span style="font-size: 21px; vertical-align: top;"> : &nbsp;&nbsp;<%=b.getBevaluation() %>.0 <span style="font-size: 12px;">점</span></span> 
 
 					<script>
 						$('.ui.rating').rating();
@@ -267,24 +267,24 @@ margin: 20px 10px;
 						<p>서비스 평가</p>
 					</li>
 				</ul>
-				<div class="tabcontent1" style="margin-bottom: 1000px;">
+				<div class="tabcontent1" style="margin-bottom: 500px;">
 					<p>
 						<%=b.getBcontent() %>
 					</p>
 				</div>
 
-				<div class="tabcontent2" style="margin-bottom: 1000px;">
+				<div class="tabcontent2" style="margin-bottom: 500px;">
 					<p>
 						<%=b.getErecontent() %>
 					</p>
 				</div>
-				<div class="tabcontent3" style="margin-bottom: 1000px;">
+				<div class="tabcontent3" style="margin-bottom: 500px;">
 					<p>
 						<%=b.getRequest() %>
 					</p>
 				</div>
 
-				<div class="tabcontent4" style="margin-bottom: 1000px;">
+				<div class="tabcontent4" style="margin-bottom: 500px;">
 
 					<div class="outer">
 		<br>
@@ -478,7 +478,7 @@ margin: 20px 10px;
 				<div class="sellerpadding">
 					<div class="selleridbox1">
 						<img src="" alt="" />
-						<p style="text-align:center;">보드닉네임집어넣기</p>
+						<p style="text-align:center; font-size: 21px; font-weight: bold;">착한매미</p>
 					</div>
 
 					<div style="text-align: center;">
@@ -510,13 +510,22 @@ margin: 20px 10px;
 						<p>수정횟수: &nbsp;<%=b.getEditablecount() %>회</p>
 					</div>
 				</div>
+				
+				<% if(m != null) { %>
 				<div style="text-align: center;">
 				<a href="<%= request.getContextPath() %>/buyPage.bo?bno=<%=b.getBno()%>"
 					style="">구매하기(<%=b.getPrice() %>원)</a>
 				</div>
+				
+				<% } else { %>
+				<div style="text-align: center;">
+				<a href="<%= request.getContextPath() %>/views/LoginForm.jsp"
+					onclick="alert('로그인이 필요한 서비스입니다.')">구매하기(<%=b.getPrice() %>원)</a>
+				</div>
+				<% } %>
 			</div>
 
-
+			
 			<div class="shildbox container2 clearFix" style="margin-top: 20px;">
 				<img src="/semi/resources/images/shild.png" alt=""
 					style="float: left; margin:10px 10px;">
