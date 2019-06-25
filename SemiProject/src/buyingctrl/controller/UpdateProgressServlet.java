@@ -1,31 +1,26 @@
 package buyingctrl.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import buyingctrl.model.exception.buyingctrlException;
 import buyingctrl.model.service.DealMngService;
-import buyingctrl.model.vo.DealMng;
-import member.model.vo.Member;
-import seller.model.vo.Seller;
 
 /**
- * Servlet implementation class SelectDealServlet
+ * Servlet implementation class UpdateProgressServlet
  */
-@WebServlet("/dSelect.do")
-public class SelectDealServlet extends HttpServlet {
+@WebServlet("/uProgress.do")
+public class UpdateProgressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectDealServlet() {
+    public UpdateProgressServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,40 +32,28 @@ public class SelectDealServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		HttpSession session = request.getSession();
-		Seller s = (Seller)session.getAttribute("seller");
+		String progress = request.getParameter("progress");
+		String dmcode = request.getParameter("dmcode");
+		
+		System.out.println(progress + " " + dmcode);
 		
 		String state="";
 		if(request.getParameter("state")!=null) {
 			state=request.getParameter("state");
 		}
 		
-		System.out.println(s.getSno());
 		DealMngService dms = new DealMngService();
-		
-		ArrayList<DealMng> list = dms.selectDeal(s.getSno());
-		
-		String page="";
-		
-		if(list != null) {
-			request.setAttribute("list", list);
-			if(request.getParameter("state")!=null) {
-				page = "views/myPage/mySell/mySell"+state+".jsp";
-				
-			}else {
-				page = "views/myPage/myPageManageSell.jsp";
-			}
-		}else {
+		String page = "";
+		try {
+			dms.updateProgress(progress,dmcode);
+			page="/dSelect.do";
+		} catch (buyingctrlException e) {
 			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "요구사항이 없는 것 불러오기 에러!");
+			request.setAttribute("error", e);
 		}
 		
-		
 		request.getRequestDispatcher(page).forward(request, response);
-		
-		
-		
-		
 		
 		
 	}

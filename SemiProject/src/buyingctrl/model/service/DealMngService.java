@@ -111,6 +111,20 @@ public class DealMngService {
 	}
 
 
+
+	public int updateProgress(String progress, String dmcode) throws buyingctrlException {
+		con=getConnection();
+		int result = dmDao.updateProgress(con,progress,dmcode);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		return result;
+		
+		
+	}
+
+
 	
 
 	

@@ -1,7 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "buyingctrl.model.vo.*,java.util.*" %>
-<%ArrayList<DealMng> list = (ArrayList<DealMng>)request.getAttribute("list");  %>
+<%
+	ArrayList<DealMng> list = (ArrayList<DealMng>)request.getAttribute("list");  
+	int s1 = 0;
+	int s2 = 0;
+	int s3 = 0;
+
+	for(DealMng d : list){
+		switch(d.getProgress()){
+			case "진행중" : s1+=1; break;
+			case "완료" : s2+=1; break;
+			case "취소" : s3+=1; break;
+ 		}
+	}
+	
+	
+
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -222,7 +239,7 @@
 					<div class="menu-box">
 						<div class="padding-15">
 							<div class="menu-line" style="text-align:center">
-								<a href="/semi/views/myPage/myPageManageSell.jsp"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;">							
+								<a href="/semi/dSelect.do"><div class="padding-all-15 menu-slot active" style="border-right:solid #E6E6E6 1px;">							
 									<div><img src="/semi/resources/images/selling_active.png" alt="" /></div>
 									<h6>판매관리</h6>							
 								</div></a>
@@ -255,16 +272,16 @@
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000" href="">전체 &nbsp; <span class="selling-history select"><%=list.size() %></span></a>
+								<a style="color:#000" href="/semi/dSelect.do">전체 &nbsp; <span class="selling-history select"><%=list.size() %></span></a>
 							</li>
 							<li>
-								<a href="">진행중 &nbsp; <span class="selling-history">0</span></a>
+								<a href="/semi/dSelect.do?state=s1">진행중 &nbsp; <span class="selling-history"><%=s1 %></span></a>
 							</li>
 							<li>
-								<a href="">완료 &nbsp; <span class="selling-history">0</span></a>
+								<a href="/semi/dSelect.do?state=s2">완료 &nbsp; <span class="selling-history"><%=s2 %></span></a>
 							</li>
 							<li>
-								<a href="">취소 &nbsp; <span class="selling-history">0</span></a>
+								<a href="/semi/dSelect.do?state=s3">취소 &nbsp; <span class="selling-history"><%=s3 %></span></a>
 							</li>
 						</ul>
 					</div>
@@ -294,16 +311,40 @@
 				<div>
 					<div class="padding-15" style="margin-top:10px">
 						<div class="detail-box">
-							<%if(list != null){ %>
+							<%if(list != null){ int count = -1;%>
 							<div class="detail-list" style="padding:0">
-								<%for(DealMng d : list){ %>
-
-								<div class="mySlist" style="margin:0;padding: 20px 0">
+								<%for(DealMng d : list){count+=1;%>
+								
+								<%
+								 String price = dc.format(d.getPrice()); 
+								%>
+									<div class="mySlist" style="margin:0;padding: 20px 0">
 									<div style="width:20%; "><img width=100px src="/semi/resources/selleruploadIMG/<%=d.getImages()%>" alt="" /></div>
-									<div style="width:50%; "><div><a href="/semi/listDetail.bo?bno=<%= d.getBno()%>"><h5 style="text-align:left; margin:0 20px"><%=d.getBtitle() %></h5></a></div></div>
-									<div style="width:15%; "><div style="margin:30px 0"><h5><%=d.getPrice() %></h5></div></div>
-									<div style="width:15%; border-right:none;"><div style="margin:30px 0"><h5><%=d.getProgress()%></h5></div></div>
+									<div style="width:45%; height:78px;"><div style="text-overflow: ellipsis; overflow:hidden;margin:30px 0"><a href="/semi/listDetail.bo?bno=<%= d.getBno()%>"><h5 style="text-align:left; padding:0 10px; margin:0 20px;overflow:hidden;text-overflow: ellipsis; white-space: nowrap;"><%=d.getBtitle() %></h5></a></div></div>
+									<div style="width:10%; "><div style="margin:30px 0"><h5><%=d.getNickname() %></h5></div></div>
+									<div style="width:15%; "><div style="margin:30px 0"><h5><%=price %>원</h5></div></div>
+									<div style="width:10%; border-right:none;"><div style="margin:30px 0">
+										<select onchange="if(this.value) location.href=(this.value);" name="" id="" style="border-radius:5px;font-size:13px;">
+											<%if(d.getProgress().equals("진행중")){ %>
+												<option value="/semi/uProgress.do?progress=진행중&dmcode=<%=d.getDmcode()%>">진행중</option>
+												<option value="/semi/uProgress.do?progress=완료&dmcode=<%=d.getDmcode()%>">완료</option>
+												<option value="/semi/uProgress.do?progress=취소&dmcode=<%=d.getDmcode()%>">취소</option>
+											<%} else if(d.getProgress().equals("완료")){%>
+												<option value="/semi/uProgress.do?progress=완료&dmcode=<%=d.getDmcode()%>">완료</option>
+												<option value="/semi/uProgress.do?progress=진행중&dmcode=<%=d.getDmcode()%>">진행중</option>
+												<option value="/semi/uProgress.do?progress=취소&dmcode=<%=d.getDmcode()%>">취소</option>
+											<%} else if(d.getProgress().equals("취소")){%>
+												<option value="/semi/uProgress.do?progress=취소&dmcode=<%=d.getDmcode()%>">취소</option>
+												<option value="/semi/uProgress.do?progress=진행중&dmcode=<%=d.getDmcode()%>">진행중</option>
+												<option value="/semi/uProgress.do?progress=완료&dmcode=<%=d.getDmcode()%>">완료</option>
+											<%} %>
+										</select>
+									</div></div>
 								</div>
+
+								<%} if(count<0){%>
+									<div style="margin-top:129px;"><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
+									<h5 class="font-noto" style="margin:10px 0;margin-bottom:130px;">내역이 없습니다.</h5>
 								<%} %>
 							</div>
 						<%}else{ %>

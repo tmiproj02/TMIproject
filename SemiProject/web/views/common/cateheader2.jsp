@@ -358,7 +358,7 @@ nav{
                         	<div class="cate" id="cate2"><a href="/semi/dSelect.do">판매관리</a></div>
                         	<ul class="downmenu" id="downmenu2">
                         		<li><a href="/semi/dSelect.do">판매관리</a></li>
-	                        	<li><a href="/semi/myboard.bo?sno=<%= s.getSno() %>">나의서비스</a></li>
+	                        	<li><a href="/semi/myboard.bo">나의서비스</a></li>
 	                            <li><a href="/semi/views/myPage/myPageManageIncome.jsp">수익관리</a></li>
 	                            <li><a href="/semi/views/myPage/myPageManageAd.jsp">광고등록</a></li>
 	                        </ul>
