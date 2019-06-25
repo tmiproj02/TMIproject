@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.*" %>
-<% Member m = (Member)session.getAttribute("member"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -274,7 +274,7 @@
 								<a style="color:#000" href="">요청사항 미작성 &nbsp; <span class="selling-history select">0</span></a>
 							</li>
 							<li>
-								<a href="">진행중 &nbsp; <span class="selling-history">0</span></a>
+								<a href="views/personBUY/buyingProgressing.jsp">진행중 &nbsp; <span class="selling-history">0</span></a>
 							</li>
 							<li>
 								<a href="">발송중 &nbsp; <span class="selling-history">0</span></a>
@@ -334,165 +334,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- --------------------------------------------------------------------------------------------- -->
-	<section>
-		<div class="container1">
-        <h3>구매 관리</h3>
-		</div>
-		
-		<div class="container1 clearFix">
-		
-		<div class="ui top attached tabular menu">
-			<a class="item active" id="bcorderList"> 주문목록 </a> <a class="item" id="progressing"> 진행중 </a> <a class="item" id="comp"> 완료 </a>
 
-		</div>
-		<div class="ui bottom attached segment">
-			<div id="olderlist-cont" style="border : 2px solid olive"> <!-- 주문목록 -->
-				<p>주문목록 넣는 자리할거고여 여기는 아래의 뭘 누르든 구매 주문 완료 페이지로 넘어갈 예정입니당~</p>
-				
-				<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				
-			</div>
-			
-			<div id="progressing-cont" style="border : 2px solid skyblue" hidden> <!-- 진행중 -->
-				<p>진행중인 주문목록 넣을 자리임당~</p>
-				
-				<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
-			
-			<div id="comp-cont" style="border : 2px solid lightpink" hidden> <!-- 완료 -->
-				<p>완료된 주문목록 넣을거여요~</p>
-				
-				<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="ui items" style="border:1px solid lightgray; padding:10px;">
-						<div class="item" >
-							<div class="orderthumb">
-								<img src="/semi/resources/images/cashIcon.png" width="140px" height="80px">
-							</div>
-							<div class="listcontent">
-								<div class="header">
-									<p>주문 번호</p>
-									<h4>판매글 제목</h4>
-								</div>
-								<div class="meta">
-									<span class="price"><i class="won sign icon"></i>990000000원</span>
-								</div>
-								<div class="description">
-									<p>여기는 판매자 이름(nickname)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					
-				
-			</div>
-		</div>
-
-
-
-
-
-		</div>
-
-		<br><br><br><br>
-            <a href="/semi/index.jsp">홈으로 돌아가기</a>
-    </section>
 
 	<script>
 		document.getElementById("bcorderList").addEventListener("click", function() {

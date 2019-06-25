@@ -345,9 +345,10 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 			//String sql = "INSERT INTO CASH VALUES(SEQ_PAYNO.NEXTVAL,?,?,SYSDATE,?)";
 			String sql = prop2.getProperty("insertsptCashL");
 			
-			
+			System.out.println(csh.getMno());
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, csh.getMno());
+		
 			pstmt.setInt(2, csh.getPayp());
 			pstmt.setString(3, csh.getClassify());
 			

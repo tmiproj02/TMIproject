@@ -15,24 +15,18 @@ import buyingctrl.model.service.DealMngService;
 import buyingctrl.model.vo.DealMng;
 import member.model.vo.Member;
 
-/**
- * Servlet implementation class progressingServlet
- */
+
 @WebServlet("/prging.bo")
 public class progressingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public progressingServlet() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
@@ -48,7 +42,7 @@ public class progressingServlet extends HttpServlet {
 			
 			dingList = dms.ingselectList(m);
 			
-			page = "views/personBUY/buyingcontrolIng.jsp";
+			page = "views/personBUY/buyingProgressing.jsp";
 			
 			request.setAttribute("dingList", dingList);
 			

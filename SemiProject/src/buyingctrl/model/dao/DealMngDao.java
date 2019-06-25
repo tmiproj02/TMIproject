@@ -108,7 +108,7 @@ public class DealMngDao {
 	
 	
 	//진행중 조회
-	public ArrayList<DealMng> ingselectList(Connection con, Member m) throws buyingctrlException {
+	public ArrayList<DealMng> ingselectList(Connection con, Member m)  {
 		
 		ArrayList<DealMng> dingList = null;
 		PreparedStatement pstmt = null;
@@ -122,9 +122,9 @@ public class DealMngDao {
 			
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, m.getMno());
-			pstmt.setString(2, m.getNickName());
-			pstmt.setString(3, progressing);
+			 pstmt.setInt(1, m.getMno());
+			 System.out.println(m.getMno());
+			System.out.println(sql);
 
 			rset = pstmt.executeQuery();
 			
@@ -132,10 +132,9 @@ public class DealMngDao {
 				DealMng dm = new DealMng();
 				
 				dm.setBtitle(rset.getString("btitle"));
-				dm.setNickname(rset.getString("nickName"));
+				dm.setsNickname(rset.getString("nickName"));
 				dm.setDmcode(rset.getInt("dmcode"));
 				dm.setDealdate(rset.getDate("dealdate"));
-				dm.setProgress(rset.getString("progress"));
 				dm.setPrice(rset.getInt("price"));
 				
 				dingList.add(dm);
@@ -147,7 +146,7 @@ public class DealMngDao {
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
-			throw new buyingctrlException(e.getMessage());
+		
 		} finally {
 			close(rset);
 			close(pstmt);
@@ -423,6 +422,29 @@ public class DealMngDao {
 		}
 		
 		return result;
+	}
+
+
+	public void dealComplete(int mno, int bno, int sno, Connection con,int cp) {
+			
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("dealComplete");
+			System.out.println(sql);
+			
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, bno);
+				pstmt.setInt(2, mno);
+				pstmt.setInt(3, sno);
+				pstmt.setInt(4, cp);
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
 	}
 
 

@@ -459,7 +459,7 @@ nav{
     	});
     	
     	function buyingctrl(){
-			location.href="/semi/nReq.bo";
+			location.href="/semi/prging.bo";
 		}
     </script>
 </body>

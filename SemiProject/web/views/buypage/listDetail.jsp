@@ -513,7 +513,7 @@ margin: 20px 10px;
 				
 				<% if(m != null) { %>
 				<div style="text-align: center;">
-				<a href="<%= request.getContextPath() %>/buyPage.bo?bno=<%=b.getBno()%>"
+				<a href="<%= request.getContextPath() %>/buyPage.bo?bno=<%=b.getBno()%>&sno=<%=b.getSno()%>"
 					style="">구매하기(<%=b.getPrice() %>원)</a>
 				</div>
 				

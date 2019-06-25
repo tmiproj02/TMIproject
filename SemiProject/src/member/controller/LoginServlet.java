@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			m = ms.selectMemeber(m);
-			
+			System.out.println("로그인 서블릿에서 가져온 m : " + m);
 			// 관리자 계정일 경우 관리자 페이지로 보낸다.
 			if(m.getIsAdmin().equals("Y")) {
 				HttpSession session = request.getSession();

@@ -130,6 +130,7 @@ public class MemberDao {
 					result.setIsAlive(rset.getString("isAlive"));
 					result.setIsAdmin(rset.getString("isAdmin"));
 					result.setCoupon(rset.getString("coupon"));
+					result.setMno(rset.getInt("mno"));
 					
 				}
 			}catch(Exception e) {

@@ -348,7 +348,7 @@ nav{
                         <li clase="talent-category">
 	                        <div class="cate" id="cate1"><a href="">구매관리</a></div>
                         	<ul class="downmenu" id="downmenu1">
-                        		<li><a style="cursor:pointer;" onclick="nrequest();">구매관리</a></li>
+                        		<li><a style="cursor:pointer;" onclick="prging();">구매관리</a></li>
                         		<li><a style="cursor:pointer;" onclick="billHist();">TMI캐시</a></li>
                             	<li><a href="/semi/views/personBUY/cash.jsp">캐시충전</a></li>
                             	<li><a href="/semi/views/personBUY/coupon.jsp">쿠폰</a></li>
@@ -422,8 +422,8 @@ nav{
 			location.href="/semi/cList.bo"
 		}
     	
-    	function nrequest(){
-    		location.href="/semi/nReq.bo"
+    	function prging(){
+    		location.href="/semi/prging.bo"
     	}
     </script>
     

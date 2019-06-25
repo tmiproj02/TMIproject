@@ -1,6 +1,7 @@
 package buyingctrl.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,42 +9,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import buyingctrl.model.service.DealMngService;
 import charge.model.exception.CashRechargeException;
 import charge.model.service.CashRechargeService;
 import charge.model.vo.Cash;
 import member.model.vo.Member;
 
-/**
- * Servlet implementation class sptCashListServlet
- */
-@WebServlet("/sptList.bo")
-public class sptCashListServlet extends HttpServlet {
+
+@WebServlet("/dealComplete")
+public class DealCompleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public sptCashListServlet() {
+
+    public DealCompleteServlet() {
         super();
-        // TODO Auto-generated constructor stub
+      
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//1사용
+	
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("member");
 
 		int mno = m.getMno();
-		System.out.println(mno);
-		int cp = Integer.parseInt(request.getParameter("tprice")); //차감되는가격(이름변경해야함.)
-		System.out.println(cp);
-		String email = request.getParameter("email");
-
 		
+		int sno = Integer.parseInt(request.getParameter("sno"));
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		String email = request.getParameter("email"); // 어따쓰는건지?
+		System.out.println("mno : " + mno);
+		System.out.println("sno : " + sno);
+		System.out.println("bno : " + bno);
+		
+		
+		
+		int cp = Integer.parseInt(request.getParameter("tprice")); //차감되는가격(이름변경해야함.)
+		
+
 		Cash csh = new Cash(mno, cp, "사용");
 
 		CashRechargeService crs = new CashRechargeService();
@@ -51,6 +54,11 @@ public class sptCashListServlet extends HttpServlet {
 		
 		try {
 			crs.spentCashInsert(csh);
+			
+			new DealMngService().dealComplete(mno,bno,sno,cp);
+			
+				
+			
 			
 			request.setAttribute("tprice", cp);
 			request.setAttribute("email", email);
