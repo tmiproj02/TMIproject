@@ -130,7 +130,8 @@ public class MemberDao {
 					result.setIsAlive(rset.getString("isAlive"));
 					result.setIsAdmin(rset.getString("isAdmin"));
 					result.setCoupon(rset.getString("coupon"));
-					result.setMno(rset.getInt("MNO"));
+					result.setMno(rset.getInt("mno"));
+					
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -348,6 +349,107 @@ public class MemberDao {
 			}
 			
 			return isDup;
+		}
+
+
+
+
+
+		public int getMcount(Member m, Connection con) {
+			int mCount = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("getMcount");
+			
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, m.getEmail());
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					
+					mCount = rset.getInt(1);
+					
+				}
+				
+				
+				System.out.println("mCount : " + mCount);
+				
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			
+			return mCount;
+		}
+
+
+		public int getBuyCount(Member m, Connection con) {
+			int buyCount = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("getBuyCount");
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, m.getMno());
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					
+					buyCount = rset.getInt(1);
+					
+				}
+				System.out.println("buyCount : " +buyCount);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			
+			return buyCount;
+		}
+
+
+		public int getSellCount(Member m, Connection con) {
+			int sellCount = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("getSellCount");
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, m.getMno());
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					
+					sellCount = rset.getInt(1);
+					
+				}
+				
+				System.out.println("sellCount : " + sellCount);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			
+			return sellCount;
 		}
 	
 	
