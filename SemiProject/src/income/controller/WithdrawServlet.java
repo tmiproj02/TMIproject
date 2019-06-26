@@ -43,9 +43,15 @@ public class WithdrawServlet extends HttpServlet {
 		
 		int result = -1;
 		
+		int result2 = -1;
+		
+		s.setIncome(s.getIncome()-wdMoney);
+		
+		session.setAttribute("seller", s);
+		
 		try {
 			result = is.withdraw(s.getSno(), wdMoney);
-			
+			result2 = is.updateincome(s.getSno(),wdMoney);
 			response.sendRedirect("/semi/list.ic");
 		} catch (IncomeException e) {
 			

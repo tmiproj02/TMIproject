@@ -252,7 +252,7 @@ font-family: 'Noto Sans KR', sans-serif;
 						</div>
 						<div class="detail2" style="border-right: 1px solid #E6E6E6;padding:0 35px;">
 							<h4>이달의 수익금</h4>
-							<a href=""><b>0</b>원</a>
+							<a href=""><b><%=income %></b>원</a>
 						</div> 
 						<div class="detail3" style="border-right: 1px solid #E6E6E6;padding:0 35px;">
 							<h4>구매 중인 건</h4>
@@ -260,7 +260,7 @@ font-family: 'Noto Sans KR', sans-serif;
 						</div>
 						<div class="detail4" style="border-right: 1px solid #E6E6E6;padding:0 39px;">
 							<h4>TMI 캐쉬</h4>
-							<a href=""><b>0</b>원</a>
+							<a href=""><b><%= cash %></b>원</a>
 						</div>
 						<div class="detail5" style="padding-left: 35px">
 							<h4>보유 쿠폰 개수</h4>

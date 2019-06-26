@@ -72,6 +72,28 @@ public class IncomeDao {
 		
 		return result;
 	}
+
+	public int updateincome(Connection con, int sno, int wdMoney) {
+		int result = -1;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE SELLER SET INCOME=(INCOME-?) WHERE SNO=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, wdMoney);
+			pstmt.setInt(2, sno);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 	
 	
 	

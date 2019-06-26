@@ -31,6 +31,18 @@ public class IncomeService {
 		
 		return result;
 	}
+	public int updateincome(int sno, int wdMoney) {
+		con = getConnection();
+		
+		int result = id.updateincome(con,sno,wdMoney);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+	
+	
 	
 	
 	

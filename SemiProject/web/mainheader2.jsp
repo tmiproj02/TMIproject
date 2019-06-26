@@ -5,7 +5,7 @@
 	int mCount = 0;
 	int buyCount = 0;
 	int sellCount = 0;
-	
+		
 	    mCount = (int)(session.getAttribute("mCount"));
 
 		buyCount = (int)(session.getAttribute("buyCount"));
