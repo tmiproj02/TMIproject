@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import income.model.exception.IncomeException;
 import income.model.vo.Income;
 import static member.common.JDBCTemplete.*;
 public class IncomeDao {
@@ -44,6 +45,32 @@ public class IncomeDao {
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public int withdraw(Connection con, int sno, int wdMoney) throws IncomeException {
+		PreparedStatement pstmt = null;
+		int result = -1;
+		
+		String sql = "INSERT INTO INCOME VALUES(SEQ_ICCODE.NEXTVAL,?,NULL,?,DEFAULT,'출금')";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, sno);
+			pstmt.setInt(2, wdMoney);
+			
+			
+			
+			result=pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IncomeException(e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	

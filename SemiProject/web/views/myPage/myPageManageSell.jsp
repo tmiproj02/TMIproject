@@ -334,8 +334,8 @@
 								%>
 									<div class="mySlist" style="margin:0;padding: 20px 0">
 									<div style="width:20%; "><img width=100px src="/semi/resources/selleruploadIMG/<%=d.getImages()%>" alt="" /></div>
-									<div style="width:45%; height:78px;"><div style="text-overflow: ellipsis; overflow:hidden;margin:30px 0"><a href="/semi/listDetail.bo?bno=<%= d.getBno()%>"><h5 style="text-align:left; padding:0 10px; margin:0 20px;overflow:hidden;text-overflow: ellipsis; white-space: nowrap;"><%=d.getBtitle() %></h5></a></div></div>
-									<div style="width:10%; "><div style="margin:30px 0"><h5><%=d.getNickname() %></h5></div></div>
+									<div style="width:40%; height:78px;"><div style="text-overflow: ellipsis; overflow:hidden;margin:30px 0"><a href="/semi/listDetail.bo?bno=<%= d.getBno()%>"><h5 style="text-align:left; padding:0 10px; margin:0 20px;overflow:hidden;text-overflow: ellipsis; white-space: nowrap;"><%=d.getBtitle() %></h5></a></div></div>
+									<div style="width:15%; "><div style="margin:30px 0"><h5><%=d.getNickname() %></h5></div></div>
 									<div style="width:15%; "><div style="margin:30px 0"><h5><%=price %>원</h5></div></div>
 									<div style="width:10%; border-right:none;"><div style="margin:30px 0">
 										<select onchange="if(this.value) location.href=(this.value);" name="" id="" style="border-radius:5px;font-size:13px;">
