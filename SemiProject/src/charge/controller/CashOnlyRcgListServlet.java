@@ -16,16 +16,16 @@ import charge.model.vo.Cash;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class CashSptListServlet
+ * Servlet implementation class CashOnlyRcgListServlet
  */
-@WebServlet("/spentList.bo")
-public class CashSptListServlet extends HttpServlet {
+@WebServlet("/rcgList.do")
+public class CashOnlyRcgListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CashSptListServlet() {
+    public CashOnlyRcgListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,7 +38,7 @@ public class CashSptListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("member");
 
-		ArrayList<Cash> spentOnlyList = new ArrayList<Cash>();
+		ArrayList<Cash> rcgOnlyList = new ArrayList<Cash>();
 		
 		CashRechargeService crs = new CashRechargeService();
 		
@@ -80,7 +80,7 @@ public class CashSptListServlet extends HttpServlet {
 				}
 				
 				// 페이징 처리
-				int listCount = crs.getsptOnlyListCount(m); //게시글 수 (물론 selectList로 해도 되지만, ListCount는 개수만 가져온다.)
+				int listCount = crs.getrcgOnlyListCount(m); //게시글 수 (물론 selectList로 해도 되지만, ListCount는 개수만 가져온다.)
 												   //create method합시당~ (service, dao, query.properties 순서대로 작성해여~)
 				System.out.println("총 페이지 개수 : " + listCount);
 				
@@ -104,11 +104,11 @@ public class CashSptListServlet extends HttpServlet {
 		String page="";
 	
 		try {
-			spentOnlyList = crs.selectSptOnlyList(currentPage, limit, m);
+			rcgOnlyList = crs.selectrcgOnlyList(currentPage, limit, m);
 		
-			page = "views/personBUY/billingHistorySpt.jsp";
+			page = "views/personBUY/billingHistoryRcg.jsp";
 			
-			request.setAttribute("spentOnlyList", spentOnlyList);
+			request.setAttribute("rcgOnlyList", rcgOnlyList);
 			
 			charge.model.vo.PageInfo pi = new charge.model.vo.PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 			// 6개의 페이지 정보 담아서~
@@ -120,15 +120,9 @@ public class CashSptListServlet extends HttpServlet {
 			request.setAttribute("exception", e);
 			e.printStackTrace();
 			
-			
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
-		
-		
-		
-		
-		
 		
 		
 		

@@ -51,6 +51,13 @@ for(DealMng d : reqList){
 		padding-left : 5%;
 	}
 	
+	.detail-list{
+		border: solid #E6E6E6 1px !important;
+		padding : 85px 0;
+		text-align : center;
+		margin-top : 20px;
+	}
+	
 	.font-noto{
 		font-family: 'Noto Sans KR', sans-serif;
     	font-weight: 400;
@@ -334,7 +341,7 @@ for(DealMng d : reqList){
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp; <span class="selling-history select"><%= reqList.size() %></span></a>
+								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp; <span class="selling-history select"><%=reqList.size() %></span></a>
 							</li>
 							<li>
 								<a style="cursor:pointer;" onclick="prging();">진행중 &nbsp; <span class="selling-history"><%= s1 %></span></a>
@@ -376,30 +383,25 @@ for(DealMng d : reqList){
 						<div class="detail-list2 padding-15">
 					
 							<!-- 내역이 있을 때 -->
-							<div class="tableArea">
-								
-								<br>
-								<%  for(DealMng dm : reqList) { %>
-								<table align="center" id="listArea">
-									<tr>
-										<th class="bcthumb"><img src="/semi/resources/images/noun_Coins.png" width="80px;"></th>
-										<th width="150px" class="bcinfo">
-											<p>주문번호 : <%=dm.getDmcode() %></p>
-											<p style="font-size:18px;"><%=dm.getBtitle() %></p>
-											<p>거래일자 : <%=dm.getDealdate() %></p>
-											<p>판매자 : <%=dm.getNickname() %></p>
-										</th>
-										<%int price = dm.getPrice(); %>
-										<th class="bcprice"><i class="won sign icon"></i><%=df.format(price)%></th>
-									</tr>
-								</table>	
-								<% } %>
 							
-						</div>
+								
+								<div class="detail-list" style="padding:0">
+								<%for(DealMng d : reqList){ %>
+
+								<div class="mySlist" style="margin:0;padding: 20px 0">
+									<div style="width:20%; "><img width=100px src="/semi/resources/images/cashIcon.png" alt="" /></div>
+									<div style="width:50%; "><div><a href="/semi/listDetail.bo?bno=<%= d.getBno()%>"><h5 style="text-align:left; margin:0 20px"><%=d.getBtitle() %></h5></a></div></div>
+									<div style="width:15%; "><div style="margin:30px 0"><h5><%=d.getPrice() %></h5></div></div>
+									<div style="width:15%; border-right:none;"><div style="margin:30px 0"><h5><%=d.getProgress()%></h5></div></div>
+								</div>
+								<%} %>
+							</div>
+							
+						
 					</div>
 					
-					
-					<% } %>
+					<%} %>
+			
 					
 					<br>
 					
@@ -472,7 +474,7 @@ for(DealMng d : reqList){
 
 	<script>
 		function lbcash(){
-			location.href="cash.jsp";
+			location.href="/semi/views/personBUY/cash.jsp";
 		}
 		
 		function billHist(){

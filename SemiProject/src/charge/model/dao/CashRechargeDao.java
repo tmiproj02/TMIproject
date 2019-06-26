@@ -21,6 +21,9 @@ public class CashRechargeDao {
 
 private Properties prop;
 private Properties prop2;
+
+private String rc="충전";
+private String uc="사용";
 	
 //	public CashRechargeDao() {
 //		prop = new Properties();
@@ -490,7 +493,7 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 	}
 	
 	//사용내역 불러오기 -> 개수
-		public int getsptListCount(Connection con, Member m) throws FileNotFoundException, IOException {
+		public int getsptOnlyListCount(Connection con, Member m) throws FileNotFoundException, IOException {
 			// 총 게시글 수
 			int listCount = 0;
 				// 총 게시글 수를 쿼리로 만들어놓음(board-query.properties에)
@@ -513,7 +516,7 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setInt(1, m.getMno());
-				pstmt.setString(2, "사용");
+				pstmt.setString(2, uc);
 				
 				rset = pstmt.executeQuery();
 				
@@ -538,8 +541,8 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 
 
 	//'사용'내역 불러오기
-		public ArrayList<Cash> selectSptList(Connection con, int currentPage, int limit, Member m) throws FileNotFoundException, IOException, CashRechargeException {
-			ArrayList<Cash> sptList = null;
+		public ArrayList<Cash> selectSptOnlyList(Connection con, int currentPage, int limit, Member m) throws FileNotFoundException, IOException, CashRechargeException {
+			ArrayList<Cash> sptOnlyList = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			
@@ -555,7 +558,7 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 			
 			try {
 				
-				sptList = new ArrayList<Cash>();
+				sptOnlyList = new ArrayList<Cash>();
 				
 				pstmt = con.prepareStatement(sql);	
 				
@@ -563,7 +566,7 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 				int endRow = startRow + limit -1; // startRow가 1일 때 endRow는 10, startRow가 11일 때 endRow는 20~
 				
 				pstmt.setInt(1, m.getMno());
-				pstmt.setString(2, "사용");
+				pstmt.setString(2, uc);
 				pstmt.setInt(3, endRow);
 				pstmt.setInt(4, startRow);
 				
@@ -579,7 +582,7 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 					cash.setPaydate(rset.getDate("paydate"));
 					cash.setClassify(rset.getString("classify"));
 					
-					sptList.add(cash);
+					sptOnlyList.add(cash);
 					System.out.println("dao" + cash);
 				}
 				
@@ -592,7 +595,117 @@ public int insertRecharge(Connection con, Cash csh) throws CashRechargeException
 				close(pstmt);
 			}
 			
-			return sptList;
+			return sptOnlyList;
+		}
+
+
+
+
+
+		//'충전'내역만 불러오기 ->개수
+		public int getrcgOnlyListCount(Connection con, Member m) throws FileNotFoundException, IOException {
+			// 총 게시글 수
+						int listCount = 0;
+							// 총 게시글 수를 쿼리로 만들어놓음(board-query.properties에)
+						PreparedStatement pstmt = null;
+						ResultSet rset = null;
+
+						
+						prop2 = new Properties();
+						
+						String filePath2
+						   = CashRechargeDao.class
+						   .getResource("/config/cashList-query.properties").getPath();
+						
+						prop2.load(new FileReader(filePath2));
+						
+						String sql = prop2.getProperty("listrcgOnlyCount");
+					
+						try {
+							
+							pstmt = con.prepareStatement(sql);
+							
+							pstmt.setInt(1, m.getMno());
+							pstmt.setString(2, rc);
+							
+							rset = pstmt.executeQuery();
+							
+							if(rset.next()) { //결과값이 나왔다면
+								listCount = rset.getInt(1); //결과는 숫자형 딱 1개 나옴.(개수를 조회하는거니깐)
+							}
+
+						} catch (SQLException e) {
+						
+							e.printStackTrace();
+						
+						} finally {
+							close(rset);
+							close(pstmt);
+						}
+						
+						return listCount;
+		}
+
+
+
+
+
+		//'충전'내역만 불러오기
+		public ArrayList<Cash> selectrcgOnlyList(Connection con, int currentPage, int limit, Member m) throws FileNotFoundException, IOException, CashRechargeException {
+			ArrayList<Cash> rcgOnlyList = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			prop2 = new Properties();
+			
+			String filePath2
+			   = CashRechargeDao.class
+			   .getResource("/config/cashList-query.properties").getPath();
+			
+			prop2.load(new FileReader(filePath2));
+			
+			String sql = prop2.getProperty("selectrcgOnlyList");
+			
+			try {
+				
+				rcgOnlyList = new ArrayList<Cash>();
+				
+				pstmt = con.prepareStatement(sql);	
+				
+				int startRow = (currentPage - 1) * limit + 1; //현재가 1페이지면 게시글1부터, 현재가 2페이지면 게시글 11부터~
+				int endRow = startRow + limit -1; // startRow가 1일 때 endRow는 10, startRow가 11일 때 endRow는 20~
+				
+				pstmt.setInt(1, m.getMno());
+				pstmt.setString(2, rc);
+				pstmt.setInt(3, endRow);
+				pstmt.setInt(4, startRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					Cash cash = new Cash();
+					
+					cash.setPayno(rset.getInt("payno"));
+					cash.setMno(rset.getInt(m.getMno()));
+					cash.setPayp(rset.getInt("payp"));
+					cash.setPaydate(rset.getDate("paydate"));
+					cash.setClassify(rset.getString("classify"));
+					
+					rcgOnlyList.add(cash);
+					System.out.println("dao" + cash);
+				}
+				
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+				throw new CashRechargeException(e.getMessage());
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return rcgOnlyList;
 		}
 	
 	

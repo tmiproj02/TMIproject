@@ -333,6 +333,7 @@ public class DealMngDao {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, m.getMno());
+			pstmt.setString(2, m.getNickName());
 			
 			rset = pstmt.executeQuery();
 			

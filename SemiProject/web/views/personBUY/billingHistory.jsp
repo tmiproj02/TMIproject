@@ -253,7 +253,7 @@
 			</div>
 			<div class="scontainer3 width-75per padding-15" style="float:left">
 				<div class="padding-15">
-					<h3 class="font-noto" style="font-weight:700; margin-top:3%;">캐시내역</h3>
+					<h3 class="font-noto" style="font-weight:700; margin-top:3%;">캐시전체내역</h3>
 				</div>
 
 				<div style="margin-top:20px; margin-left:71%;">
@@ -266,7 +266,7 @@
 							<div class="menu">
 								<div class="item font-noto" onclick="billHist();">전체내역</div>
 								<div class="item font-noto" onclick="sptList();">사용내역</div>
-								<div class="item font-noto" onclick=>충전내역</div>
+								<div class="item font-noto" onclick="rcgListC();">충전내역</div>
 							</div>
 						</div>
 
@@ -292,9 +292,11 @@
 
 
 		<div class="purchaseListArea padding-15" style="margin-top : 10px;">
-				<%//if(rechargeList.contains("충전")){ %>
+				
 				<!-- 이 자리에 Arraylist로 반복문 넣어야 결제 내역이 목록화되어 나옴. -->
 				<%  for(Cash c : rechargeList) { %>
+				
+				<%if((c.getClassify()).equals("충전")){ %>
 				
 					<div class="ui items" style="border:3px solid #BDD4F2; border-radius: 5px; padding:10px; height:150px;">
 						<div class="item" >
@@ -318,8 +320,7 @@
 							</div>
 						</div>
 					</div>
-					<%// } } else if(rechargeList.contains("사용")) { %>
-					<%-- <% }  for(Cash c : rechargeList) { 
+					<%} else if((c.getClassify()).equals("사용")) { %>
 				
 					<div class="ui items" style="border:3px solid #BDD4F2; border-radius: 5px; padding:10px; height:150px;">
 						<div class="item" >
@@ -340,8 +341,8 @@
 								
 							</div>
 						</div>
-					</div>--%>
-				<% } } %> 	
+					</div>
+				<% } } } %> 	
 					
 
 			<br>
@@ -416,6 +417,10 @@
 	
 	function sptList(){
 		location.href="/semi/spentList.bo"
+	}
+	
+	function rcgListC(){
+		location.href="/semi/rcgList.do"
 	}
 	
 	</script>
