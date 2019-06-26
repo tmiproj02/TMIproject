@@ -448,6 +448,32 @@ public class DealMngDao {
 	}
 
 
+	public void makeIncome(int bno, int sno, int cp, Connection con) {
+			
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("makeIncome");
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				System.out.println(sql);
+				pstmt.setInt(1, sno);
+				pstmt.setInt(2, bno);
+				pstmt.setInt(3, cp);
+				
+				
+				pstmt.executeUpdate();
+				
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+			}
+		
+		
+	}
+
+
 	
 	
 	

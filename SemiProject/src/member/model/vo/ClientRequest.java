@@ -5,6 +5,11 @@ import java.sql.Date;
 
 public class ClientRequest implements Serializable{
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5000L;
+
 	public ClientRequest() {
 	
 	}
