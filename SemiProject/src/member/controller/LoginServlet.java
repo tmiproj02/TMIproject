@@ -44,20 +44,17 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			m = ms.selectMemeber(m);
-			
+			System.out.println("로그인 서블릿에서 가져온 m : " + m);
 			// 관리자 계정일 경우 관리자 페이지로 보낸다.
 			if(m.getIsAdmin().equals("Y")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("admin", m);
 				response.sendRedirect("memberSelect.admin");
 			}// 관리자가 아닐 경우 메일인증 여부 확인
-			
-			 else if(m.getEmailVerification().equals("0")) {
-			 request.setAttribute("errorMsg", "메일인증이 되지않은 계정입니다.");
-			 request.getRequestDispatcher("views/LoginForm.jsp").forward(request, response);
-			 }
-			 
-			else if(m.getIsValid().equals("N")||m.getIsAlive().equals("N")) {
+			else if(m.getEmailVerification().equals("0")) {
+				request.setAttribute("errorMsg", "메일인증이 되지않은 계정입니다.");
+				request.getRequestDispatcher("views/LoginForm.jsp").forward(request, response);
+			}else if(m.getIsValid().equals("N")||m.getIsAlive().equals("N")) {
 				request.setAttribute("errorMsg", "관리자에 의해 정지되었거나 탈퇴한 회원입니다.");
 				request.getRequestDispatcher("views/LoginForm.jsp").forward(request, response);
 			}

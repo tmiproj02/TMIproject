@@ -101,17 +101,17 @@
 		        <form>
 		          <div class="form-group">
 		            <label for="recipient-name" class="col-form-label"><b>제목</b></label>
-		            <input type="text" class="form-control" id="recipient-name">
+		            <input type="text" class="form-control" id="replyTitle" value="Re)<%=rTitle%>">
 		          </div>
 		          <div class="form-group">
 		            <label for="message-text" class="col-form-label">내용</label>
-		            <textarea class="form-control" id="message-text" style="height:400px;"></textarea>
+		            <textarea class="form-control" id="replyContent" style="height:400px;"></textarea>
 		          </div>
 		        </form>
 		      </div>
 		     
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">취소</button>
 		        <button type="button" class="btn btn-primary" onclick="submitFn();">전송</button>
 		      </div>
 		      
@@ -176,12 +176,13 @@
 		
 		function submitFn(){
 			$.ajax({
-				url : "clientRequest.do",
+				url : "/semi/requestReply.admin",
 				type : "post",
-				data : {rTitle : $('#rTitle').val(), rContent: $('#rContent').val()},
+				data : {rno : <%=rno%>, replyTitle : $('#replyTitle').val(), replyContent: $('#replyContent').val()},
 				success : function(){
-					$('#rTitle').val(" ");
-					$('#rContent').val(" ");
+					$('#replyTitle').val(" ");
+					$('#replyContent').val(" ");
+					$('.cancel').trigger('click');
 					alert("문의가 접수되었습니다.");
 				},
 				error : function(){
