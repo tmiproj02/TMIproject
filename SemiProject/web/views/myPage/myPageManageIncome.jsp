@@ -246,6 +246,9 @@
 	.mySlist>div div{
 		
 	}
+	#withdraw{
+		width:500px;
+	}
 </style>
 </head>
 <body>
@@ -326,7 +329,7 @@
 				</div>
 				
 			</div>
-			<div class="scontainer3 width-75per" style="float:left">
+			<div class="scontainer3 width-75per" style="float:left;padding-bottom : 78px;">
 				<div class="row">
 					<div class="padding-15" style="width:66.66667%; float:left">
 						<h3 class="font-noto" style="font-weight:700;margin-top:5px;">수익관리</h3>
@@ -432,8 +435,9 @@
 					</div>
 				</div>
 				<div style="margin-top:10px">
-					<div class="padding-15 font-noto">
-						<div id="change" class="ui compact selection dropdown" style="width:85px">
+					<div class="padding-15 font-noto" style="overflow:hidden;">
+						<div style="width:50%;float:left">
+							<div id="change" class="ui compact selection dropdown" style="width:85px">
 						  <i class="dropdown icon"></i>
 						  <div class="text">전체</div>
 						  <div class="menu">
@@ -441,6 +445,7 @@
 						      <div class="item">수익</div>
 						      <div class="item">출금</div>
 						  </div>
+						</div>
 						</div>
 					<script>
             			$('#change').dropdown({
@@ -455,6 +460,46 @@
             				}
             			});
         			</script>
+        			<div style="text-align:right;width:50%;float:left"><button class="ui teal button" onclick="withdrawbtn()">출금신청</button></div>
+        			
+        			<div id="withdraw"class="ui modal" style="width:500px">
+					  <div class="header font-noto">출금 신청</div>
+					  <div class="image content">
+					    <img class="image">
+					    
+					    	<div style="width:100%">
+					    		<div class="description font-noto" style="text-align:left;width:100%">
+						      		<div class="ui input focus" style="height:30px">
+									 	<h4 style="margin-top: 4px;margin-right: 10px;">출금 할 금액 : </h4>
+									 	<input type="text" id="wdMoney" name="withdraw" placeholder="<%=ic.getBeforeincome()%>"/><h4 style="margin-top: 5px;margin-left: 5px;">원</h4>
+									</div>
+					      		</div>
+					      		
+					      		<div class="font-noto" style="text-align:right;width:100%; margin-top:10px">
+					      			<button class="ui grey button" onclick="cancel()">취소</button>
+					      			<button class="ui teal button" onclick="withdraw()">출금</button>
+					      		</div>
+							</div>
+					   
+					  </div>
+					</div>
+					<script>
+					function withdrawbtn(){
+						$('#withdraw')
+						  .modal('show')
+						;
+					}
+					var income = <%=ic.getBeforeincome()%>;
+					var money = $('#wdMoney').val();
+					function withdraw(){
+						if(money>income){
+							alert("금액이 부족합니다.");
+						}else{
+							location.href = '/semi/withdraw.ic?wdMoney='+$('#wdMoney').val();
+						}
+					}
+					
+					</script>
 					</div>
 				</div>
 				<div>

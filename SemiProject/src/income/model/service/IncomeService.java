@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import income.model.dao.IncomeDao;
+import income.model.exception.IncomeException;
 import income.model.vo.Income;
 
 public class IncomeService {
@@ -19,6 +20,16 @@ public class IncomeService {
 		close(con);
 		
 		return list;
+	}
+	public int withdraw(int sno, int wdMoney) throws IncomeException {
+		con = getConnection();
+		
+		int result = id.withdraw(con,sno,wdMoney);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		return result;
 	}
 	
 	
