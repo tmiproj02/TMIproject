@@ -19,6 +19,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
 <title><%=t.getTalent1() %> 카테고리 페이지</title>
 <style>
 *{
@@ -90,6 +91,7 @@ z-index: 2;
 	box-shadow: 5px 5px 10px 0 #E6E6E6;
 	margin-right: 20px;
 }
+
 .paging .hide {display:block;height:0;width:0;font-size:0;line-height:0;margin:0;padding:0;overflow:hidden;}
 
 .paging{padding:19px;text-align:center;margin-left:150px;}

@@ -182,6 +182,28 @@ font-family: 'Noto Sans KR', sans-serif;
 		background-color: #BDD4F2;
 		color : #000;
 	}
+	
+.paging .hide {display:block;height:0;width:0;font-size:0;line-height:0;margin:0;padding:0;overflow:hidden;}
+
+.paging{margin-top:20px;padding-right:22px;text-align:center;}
+
+.paging a{display:inline-block;width:23px;height:23px;padding-top:2px;vertical-align:middle;}
+
+.paging a:hover{text-decoration:underline;}
+
+.paging .btn_arr{text-decoration:none;}
+
+.paging .btn_arr, .paging .on{margin:0 3px;padding-top:0;border:1px solid #ddd; border-radius:30px;
+
+/* background:url(/front/img/com/btn_paging.png) no-repeat; */}
+
+.paging .on{padding-top:1px;height:22px;color:#fff;font-weight:bold;background:rgb(54, 69, 89);}
+
+.paging .on:hover{text-decoration:none;}	
+	
+	
+	
+	
 </style>
 </head>
 
@@ -223,7 +245,7 @@ font-family: 'Noto Sans KR', sans-serif;
 				   		if(cr.getReplyTitle()!=null){
 				   		%>
 				   	  <tr>
-				   	  	<input type="hidden" value="<%=cr.getReplyContent()%>"/>
+				   	  	<input type="hidden" value="<%=cr.getReplyContent()%>">
 				   	  	<td><%=num %></td>	
 				   	  	<td><span class="detailSpans" style="cursor:pointer;" onclick="replyDetail();"><%=cr.getReplyTitle()%></span></td>
 				   	  	<td>관리자
@@ -244,31 +266,31 @@ font-family: 'Noto Sans KR', sans-serif;
 				  </tbody>
 				</table>
 
-			<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=1'"><<</button>
-			<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
-			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=<%=currentPage - 1 %>'"><</button>
-			<%  } %>
-			
-			<% for(int p = startPage; p <= endPage; p++){
-					if(p == currentPage){	
-			%>
-				<button disabled><%= p %></button>
-			<%      }else{ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=<%= p %>'"><%= p %></button>
-			<%      } %>
-			<% } %>
-				
-			<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
-			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=<%=currentPage + 1 %>'">></button>
-			<%  } %>
-			<button onclick="location.href='<%= request.getContextPath() %>/messageList?currentPage=<%= maxPage %>'">>></button>
-			
-		</div> 
+			<div class="paging">
+ 
+				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=1" class="btn_arr first"><span class="hide">처음페이지</span></a>
+				  <%if(currentPage<=1){ %>
+				  	<a class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+				  <%} else{ %>          
+				  	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>" class="btn_arr prev"><span class="hide">이전페이지</span></a>  
+				  <%} %>   
+				  <%for(int p = startPage; p <= endPage; p++){
+						if(p==currentPage){  
+					%>
+				  	<a class="on"><%= p %></a>
+				  	<%}else{ %>
+				  	<a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>"><%=p%></a>
+				  	<%}
+				  	}	
+				  	%>
+				  <%if(currentPage>=maxPage){ %>
+				  	<a class="btn_arr next"><span class="hide">다음페이지</span></a>
+				  <%}else{ %>
+				 	<a href="<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>" class="btn_arr next"><span class="hide">다음페이지</span></a> 
+				  <%} %>           
+				  <a href="<%=request.getContextPath()%>/selectList.bo?currentPage=<%=maxPage %>" class="btn_arr last"><span class="hide">마지막페이지</span></a>
+				             
+				</div>
 			
 				
 			</div>

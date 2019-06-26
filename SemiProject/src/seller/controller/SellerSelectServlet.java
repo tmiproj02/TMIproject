@@ -41,15 +41,13 @@ public class SellerSelectServlet extends HttpServlet {
 		if(request.getAttribute("page")!=null) {
 			page = (String)request.getAttribute("page");
 		}
-		System.out.println(page);
+
 		String email = m.getEmail();
-		System.out.println(email);
 		Seller result = new Seller();
 		
 		try {
 			result = new SellerService().selectSeller(email);
-			System.out.println("판매자 입니다.");
-			System.out.println(result.getSno());
+
 			session.setAttribute("seller", result);
 			if(page!=null) {
 				response.sendRedirect(page);
