@@ -34,7 +34,7 @@ public class SearchedBoardList extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8"); 
 		
 		
-		ArrayList<SellerBoard> list = null;
+		ArrayList<SellerBoard> searchedList = null;
 		SellerboardService bs = new SellerboardService();
 		
 		int startPage;
@@ -69,14 +69,14 @@ public class SearchedBoardList extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		list = bs.selectList(currentPage, pageLimit, boardLimit, cCode, code);
-		
+		searchedList = bs.searchedList(currentPage, pageLimit, boardLimit, searchWord);
+		System.out.println("리턴된 서치리스트 " + searchedList);
 		
 		String page="";
 		
-		if(list != null) {
+		if(searchedList != null) {
 			page="views/categoryPage/searchPage.jsp";
-			request.setAttribute("list", list);
+			request.setAttribute("searchedList", searchedList);
 			PageInfo pi = new PageInfo(currentPage, searchedListCount, pageLimit, boardLimit, maxPage, startPage, endPage);
 			request.setAttribute("pi", pi);
 			

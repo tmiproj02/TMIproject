@@ -3,8 +3,7 @@
     
 <%@ page import="sellerboard.model.vo.*, java.util.*" %>
 <%
-	ArrayList<SellerBoard> list = (ArrayList<SellerBoard>)request.getAttribute("list");
-	Talent t = (Talent)request.getAttribute("talent");
+	ArrayList<SellerBoard> searchedList = (ArrayList<SellerBoard>)request.getAttribute("searchedList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -41,37 +40,40 @@
 	width : 1200px;
 	margin:0 auto;
 }
-.searchbar{
+.sbody{
 	width : 1200px;
 	margin:0 auto;
-	/*background: #f3f4f8;*/
-	padding-top:70px;
-	text-align:center;
 	position: relative;
-    display: block;
-    overflow: hidden;
+	z-index: 1;
+	
 }
-.search_input{
-    border: none;
-    border-bottom: 4px solid #BDD4F2!important;
-    width: 700px;
-    text-align: center;
-    margin:0 auto;
-    margin-bottom: 50px;
+.sbody>div{
+	display:inline-block;
+	float:left;
+}
+.cb1{
+	margin-top: 50px; 
+	padding-left:40px;
+	padding-right:10px;
+		
+}
+.cb2{
+    margin-top: 40px; 
+    padding: 0 5px;
+}
+.cb3{
+	text-align:right;
+	margin-top: 50px;
+	z-index:0;
 }
 
-.search-input1{
- 	font-family: 'Noto Sans KR', sans-serif;
-    position: relative;
-	color: #333;
-    font-size: 38px;
-    width: 700px;
-    padding: 10px 55px;
-    text-align: center;
-    border: none;
-    outline: none;
-    background: none;
+.scontent{
+	margin:0 auto;
+	background:transparent;
+	
 }
+
+
 
 
 
@@ -127,6 +129,16 @@
 .paging .on{padding-top:1px;height:22px;color:#fff;font-weight:bold;background:rgb(54, 69, 89);}
 
 .paging .on:hover{text-decoration:none;}
+.ani{
+	width:210px;
+	cursor:pointer;
+	transition:0.25s;
+}
+.ani:hover{
+	transform: scale(1.05);
+}
+
+
 
 
 </style>
@@ -137,16 +149,7 @@
 
 <div class="section1">
 	<div class="section2">
-		<div class="searchbar">
-			<div class='search_input' >
-				<input type="hidden" name="type">
-                <input type="text" name="keyword" maxlength="15" class="search-input1" placeholder="어떤 서비스를 찾고 계신가요?">
-               	 <div class="search-btn" style="top: 88px;right: 270px; cursor: pointer; vertical-align: top;">
-                   <img class="cursor1" src="/semi/resources/images/x.png" style="width:23px; height: 23px; margin-right:10px;margin-bottom:5px;">
-                   <img class="cursor2" src="/semi/resources/images/searching.png" style="width:33px; height: 33px;">
-               	 </div>
-            </div>
-		</div>
+		
 
 		<div class="scontent">
 				<div class="left-menu">
@@ -410,8 +413,8 @@
 						<div class="post-row" style="z-index:0">
 						<div class="posting">
 						<%for(int j=(4*i);j<(4*(i+1));j++){
-							if(j>=list.size()) break;
-							SellerBoard b = list.get(j);%>
+							if(j>=searchedList.size()) break;
+							SellerBoard b = searchedList.get(j);%>
 						
 						 <div class="ani">
 						 	<div class="ui card" style="margin:0;height:331px;overflow:hidden;">
