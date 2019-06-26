@@ -426,31 +426,34 @@
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000" href="">수익금 내역 &nbsp;</a>
-							</li>
-							<li>
-								<a href="">출금내역 &nbsp;</a>
-							</li>
-							<li>
-								<a href="">월별 수수료 세금계산서 &nbsp;</a>
+								<h3>수익금 내역</h3>
 							</li>
 						</ul>
 					</div>
 				</div>
-				<div style="margin-top:20px">
+				<div style="margin-top:10px">
 					<div class="padding-15 font-noto">
-						<div class="ui compact selection dropdown" style="width:85px">
+						<div id="change" class="ui compact selection dropdown" style="width:85px">
 						  <i class="dropdown icon"></i>
 						  <div class="text">전체</div>
 						  <div class="menu">
 						   	  <div class="item">전체</div>
-						      <div class="item">완료</div>
-						      <div class="item">진행중</div>
-						      <div class="item">취소</div>
+						      <div class="item">수익</div>
+						      <div class="item">출금</div>
 						  </div>
 						</div>
 					<script>
-            			$('.ui.dropdown').dropdown();
+            			$('#change').dropdown({
+            				onChange: function(text){
+            					if(text=="수익"){
+            						console.log("수익");
+            					} else if(text=="전체"){
+            						console.log("전체");
+            					} else if(text=="출금"){
+            						console.log("출금");
+            					}
+            				}
+            			});
         			</script>
 					</div>
 				</div>
@@ -460,19 +463,63 @@
 						<div class="detail-box">
 							<div class="detail-list" style = "padding : 0;">
 								<%if(list!=null){ %>
-								
+								<div id="all">
 									<%for(Income i : list){ %>
-									<div class="mySlist" style="margin:0;padding: 20px 0">
+									<div class="mySlist"  style="margin:0;padding: 20px 0" >
 										<div style="width:25%; "><h5><%=i.getRownum()%></h5></div>
 										<div style="width:25%; "><div><h5><%=i.getIcmoney() %>원</h5></div></div>
 										<div style="width:25%; "><div><h5><%=i.getIchistory()%></h5></div></div>
 										<div style="width:25%;"><h5><%=i.getIcdate() %></h5></div>
 									</div>
 									<%} %>
+								</div>
+								<div id="after">
+									<%for(Income i : list){ %>
+										<%if(i.getIchistory().equals("출금")){ %>
+											<div class="mySlist" id="after" style="margin:0;padding: 20px 0" >
+												<div style="width:25%; "><h5><%=i.getRownum()%></h5></div>
+												<div style="width:25%; "><div><h5><%=i.getIcmoney() %>원</h5></div></div>
+												<div style="width:25%; "><div><h5><%=i.getIchistory()%></h5></div></div>
+												<div style="width:25%;"><h5><%=i.getIcdate() %></h5></div>
+											</div>
+										<%} %>
+									<%} %>
+								</div>
+								<div id="before">
+									<%for(Income i : list){ %>
+										<%if(i.getIchistory().equals("수익")){ %>
+											<div class="mySlist" id="before" style="margin:0;padding: 20px 0" >
+												<div style="width:25%; "><h5><%=i.getRownum()%></h5></div>
+												<div style="width:25%; "><div><h5><%=i.getIcmoney() %>원</h5></div></div>
+												<div style="width:25%; "><div><h5><%=i.getIchistory()%></h5></div></div>
+												<div style="width:25%;"><h5><%=i.getIcdate() %></h5></div>
+											</div>
+										<%} %>
+									<%} %>
+								</div>
 								<%}else{ %>
 									<div style="margin-top:130px"><img src="/semi/resources/images/nothing.png" style="width:50px;vertical-align: middle;border:0" /></div>
 									<h5 style="margin-bottom:129px;margin-top: 10px;" class="font-noto">내역이 없습니다.</h5>
-								<%} %>								
+								<%} %>
+								<script>
+									$('#change').dropdown({
+			            				onChange: function(text){
+			            					if(text=="수익"){
+			            						$('#all').css("display","none");
+			            						$('#after').css("display","none");
+			            						$('#before').css("display","block");		
+			            					} else if(text=="전체"){
+			            						$('#all').css("display","block");
+			            						$('#after').css("display","none");
+			            						$('#before').css("display","none");		
+			            					} else if(text=="출금"){
+			            						$('#all').css("display","none");
+			            						$('#after').css("display","block");
+			            						$('#before').css("display","none");		
+			            					}
+			            				}
+			            			});
+								</script>						
 							</div>
 						</div>
 					</div>

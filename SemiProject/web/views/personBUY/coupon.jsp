@@ -414,7 +414,7 @@
 	
 	
 	function lbcash(){
-		location.href="cash.jsp";
+		location.href="/semi/views/personBUY/cash.jsp";
 	}
 	
 	function billHist(){

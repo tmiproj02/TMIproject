@@ -11,8 +11,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
-
 import charge.model.dao.CashRechargeDao;
 import charge.model.exception.CashRechargeException;
 import charge.model.vo.Cash;
@@ -203,7 +201,54 @@ public class CashRechargeService  {
 
 		
 		
-		
-		
+		//'사용'내역 불러오기->개수
+				public int getsptOnlyListCount(Member m) throws FileNotFoundException, IOException {
+					con = getConnection();
+					int listCount = crDao.getsptOnlyListCount(con, m); //함수 실행시키고 (create method합니당~)
+					
+					close(con); //실행 완료됐으면
+					
+					return listCount; //결과를 넣어서 반환해
+				}
+
+
+		//'사용'내역 불러오기
+				public ArrayList<Cash> selectSptOnlyList(int currentPage, int limit, Member m) throws FileNotFoundException, IOException, CashRechargeException {
+
+					con = getConnection();
+					
+					ArrayList<Cash> spentOnlyList = crDao.selectSptOnlyList(con, currentPage, limit, m);
+					System.out.println("service"+spentOnlyList);
+					close(con);
+					
+					return spentOnlyList;			
+					
+					
+				}
+
+
+		//'충전'내역 불러오기 ->개수
+				public int getrcgOnlyListCount(Member m) throws FileNotFoundException, IOException {
+					con = getConnection();
+					int listCount = crDao.getrcgOnlyListCount(con, m); //함수 실행시키고 (create method합니당~)
+					
+					close(con); //실행 완료됐으면
+					
+					return listCount; //결과를 넣어서 반환해
+				}
+
+
+		//'충전'내역 불러오기
+				public ArrayList<Cash> selectrcgOnlyList(int currentPage, int limit, Member m) throws FileNotFoundException, IOException, CashRechargeException {
+					con = getConnection();
+					
+					ArrayList<Cash> rcgOnlyList = crDao.selectrcgOnlyList(con, currentPage, limit, m);
+					System.out.println("service"+rcgOnlyList);
+					close(con);
+					
+					return rcgOnlyList;
+				}
+
+
 		
 }

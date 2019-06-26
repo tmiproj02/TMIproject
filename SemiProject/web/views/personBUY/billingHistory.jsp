@@ -253,23 +253,24 @@
 			</div>
 			<div class="scontainer3 width-75per padding-15" style="float:left">
 				<div class="padding-15">
-					<h3 class="font-noto" style="font-weight:700; margin-top:3%;">캐시내역</h3>
+					<h3 class="font-noto" style="font-weight:700; margin-top:3%;">캐시전체내역</h3>
 				</div>
 
 				<div style="margin-top:20px; margin-left:71%;">
 					<div class="padding-15 font-noto">
-						
-					  <div class="ui basic floating dropdown button">
-					    <div class="text font-noto">전체</div>
-					    <i class="dropdown icon"></i>
-					    <div class="menu" id="searchCondition">
-					      <div class="item font-noto" id="selectall" onclick="billHist();">전체</div>
-					      <div class="item font-noto" id="selectrcg">충전</div>
-					      <div class="item font-noto" id="selectspt">사용</div>
-					    </div>
-					  </div>
-					 
-					
+
+						<div class="ui scrolling dropdown">
+							<input type="hidden" name="gender">
+							<div class="default text font-noto">전체내역</div>
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<div class="item font-noto" onclick="billHist();">전체내역</div>
+								<div class="item font-noto" onclick="sptList();">사용내역</div>
+								<div class="item font-noto" onclick="rcgListC();">충전내역</div>
+							</div>
+						</div>
+
+
 					</div>
 				
 				
@@ -295,11 +296,14 @@
 				<!-- 이 자리에 Arraylist로 반복문 넣어야 결제 내역이 목록화되어 나옴. -->
 				<%  for(Cash c : rechargeList) { %>
 				
+				<%if((c.getClassify()).equals("충전")){ %>
+				
 					<div class="ui items" style="border:3px solid #BDD4F2; border-radius: 5px; padding:10px; height:150px;">
 						<div class="item" >
 							<div class="pllist">
 								<p style="color:orange; font-size:30px" class="font-noto"><%= c.getClassify() %></p>
 							</div>
+							
 							<div class="listcontent">
 								<div class="meta">
 									<%int price = c.getPayp(); %>
@@ -316,7 +320,29 @@
 							</div>
 						</div>
 					</div>
-				<% }} %> 	
+					<%} else if((c.getClassify()).equals("사용")) { %>
+				
+					<div class="ui items" style="border:3px solid #BDD4F2; border-radius: 5px; padding:10px; height:150px;">
+						<div class="item" >
+							<div class="pllist">
+								<p style="color:greenyellow; font-size:30px" class="font-noto"><%= c.getClassify() %></p>
+							</div>
+							<div class="listcontent">
+								<div class="meta">
+									<%int price = c.getPayp(); %>
+									<span class="price font-noto" style="color:orange; font-size:25px;"><i class="won sign icon"></i><%=df.format(price)%>원</span>
+									
+								</div>
+									<p style="letter-spacing:2px;" class="font-noto">결제일 : <%= c.getPaydate() %></p>
+								<div style="display:inlne; margin-left:230%; margin-top:-50%;">
+									<img  id="coins" src="/semi/resources/images/noun_Coins.png" style="width:90px;"/>
+									</div>
+								
+								
+							</div>
+						</div>
+					</div>
+				<% } } } %> 	
 					
 
 			<br>
@@ -370,40 +396,7 @@
 			</div>
 		</div>
 	
-	<%--<script> 필터
-            			$('.ui.dropdown').dropdown();
-            			
-            			$('#selectall').click(function(){
-            				$.ajax({
-            					url : '/semi/cList.bo',
-            					type : 'get',
-            					success : function(data){
-            						
-            						$.each(data, function(index, value){ //각각 뽑을거니 each쓰고, data(array나 특정 값들을 여러개 가지고 있는 객체)받아서 함수실행시킬건데 안에 순번과 값을 담을거예여~
-            							
-            							var $tr = $('<tr>'); //jQuery에서 tr생성
-            							var $userNo = $('<td>').text(value.userNo); //value가 가지고 있는 userNo를 td생성하여 전달합니다.
-            							var $userName = $('<td>').text(value.userName);
-            							var $gender = $('<td>').text(value.gender);
-            							var $phone = $('<td>').text(value.phone);
-            							
-            							$tr.append($userNo); // A append B : B를 A속에 넣겠다~
-            							$tr.append($userName);
-            							$tr.append($gender);
-            							$tr.append($phone);
-            							
-            							//위의 값을 넣은 tr들이 table에 담겨야한다.
-            							$('#userTable').append($tr);
-            						});
-            						
-            					}, error : function(){
-            						
-            						console.log("에러입니다.");
-            					}
-            				});
-            			});
-        			</script>		  --%>	
-		
+
 				
 
 
@@ -420,6 +413,15 @@
 		location.href="/semi/nReq.bo"
 	}
 
+	$('.ui.dropdown').dropdown();
+	
+	function sptList(){
+		location.href="/semi/spentList.bo"
+	}
+	
+	function rcgListC(){
+		location.href="/semi/rcgList.do"
+	}
 	
 	</script>
 	
