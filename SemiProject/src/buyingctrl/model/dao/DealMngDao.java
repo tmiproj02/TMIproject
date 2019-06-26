@@ -458,8 +458,7 @@ public class DealMngDao {
 				System.out.println(sql);
 				pstmt.setInt(1, sno);
 				pstmt.setInt(2, bno);
-				pstmt.setInt(3, cp);
-				
+				pstmt.setDouble(3, Math.round(cp*0.9));
 				
 				pstmt.executeUpdate();
 				
@@ -469,6 +468,32 @@ public class DealMngDao {
 			}finally{
 				close(pstmt);
 			}
+		
+		
+	}
+
+
+	public void makeIncomeToSeller(int sno, int cp, Connection con) {
+			
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("makeIncomeToSeller");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setDouble(1, Math.round(cp*0.9));
+			pstmt.setInt(2, sno);
+	
+			pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
 		
 		
 	}

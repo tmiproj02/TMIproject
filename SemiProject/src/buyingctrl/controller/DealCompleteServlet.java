@@ -32,16 +32,12 @@ public class DealCompleteServlet extends HttpServlet {
 	
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("member");
-		System.out.println("와아");
+
 		int mno = m.getMno();
 		
 		int sno = Integer.parseInt(request.getParameter("sno"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		String email = request.getParameter("email"); // 어따쓰는건지?
-		System.out.println("mno : " + mno);
-		System.out.println("sno : " + sno);
-		System.out.println("bno : " + bno);
-		
 		
 		
 		int cp = Integer.parseInt(request.getParameter("tprice")); //차감되는가격(이름변경해야함.)

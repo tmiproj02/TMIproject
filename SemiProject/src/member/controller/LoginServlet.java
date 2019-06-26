@@ -33,9 +33,11 @@ public class LoginServlet extends HttpServlet {
 		
 		String userEmail = request.getParameter("userEmail");
 		String userPwd = request.getParameter("userPwd");
-		
 		String isSNS = request.getParameter("isSNS");
-	
+		int mCount = 0;
+		int buyCount =0;
+		int sellCount =0;
+		
 		Member m = new Member(userEmail,userPwd);
 		m.setIsSNS(isSNS);
 		
@@ -44,7 +46,11 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			m = ms.selectMemeber(m);
-			System.out.println("로그인 서블릿에서 가져온 m : " + m);
+			mCount = ms.getMcount(m);
+			buyCount = ms.getBuyCount(m);
+			sellCount = ms.getSellCount(m);
+			
+		
 			// 관리자 계정일 경우 관리자 페이지로 보낸다.
 			if(m.getIsAdmin().equals("Y")) {
 				HttpSession session = request.getSession();
@@ -60,17 +66,33 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 			else { // 메일인증 된 회원이면 로그인
-
+					
+					// 판매자일 경우
 				if(m.getIsSeller().equals("Y")) {
-					System.out.println(m.getIsSeller()+"판매자 실행");
+
 					HttpSession session = request.getSession();
 					session.setAttribute("member", m);
+					
+					System.out.println("서블릿에서의 mCount : " + mCount);
+					session.setAttribute("mCount", mCount);
+					session.setAttribute("buyCount", buyCount);
+					session.setAttribute("sellCount", sellCount);
+					
 					RequestDispatcher view = request.getRequestDispatcher("seller.so");
 					view.forward(request, response);
+					
+					
+					// 판매자 아닐경우
 				}else {
-
 					HttpSession session = request.getSession();
 					session.setAttribute("member", m);
+					System.out.println("서블릿에서의 mCount : " + mCount);
+					session.setAttribute("mCount", mCount);
+					session.setAttribute("buyCount", buyCount);
+					session.setAttribute("sellCount", sellCount);
+					
+					
+					
 					RequestDispatcher view = request.getRequestDispatcher("mainheader2.jsp");
 					view.forward(request, response);
 				}

@@ -137,7 +137,7 @@ public class DealMngService {
 		try {
 			dmDao.dealComplete(mno,bno,sno,con,cp);
 			dmDao.makeIncome(bno,sno,cp,con);
-			
+			dmDao.makeIncomeToSeller(sno,cp,con);
 			
 			commit(con);
 		}

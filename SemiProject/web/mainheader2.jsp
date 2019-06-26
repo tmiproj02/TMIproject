@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	int mCount = 0;
+	int buyCount = 0;
+	int sellCount = 0;
+	
+	    mCount = (int)(session.getAttribute("mCount"));
+
+		buyCount = (int)(session.getAttribute("buyCount"));
+
+	    sellCount = (int)(session.getAttribute("sellCount"));
+
+%>
+    
+    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -355,19 +372,19 @@
 						<div class="user2" style="font-size:16px;"><%=m.getNickName() %>님!</div>
 					</div>
 					<div class="progress" style="padding:10px;">
-						<div class="progress1" style="font-size:14px; margin-bottom: 5px;">안 읽은 메세지 
-							<a href="" style="margin-left: 89px;">
-							<span style="color:#f1c40f;">0</span>
+						<div class="progress1" style="font-size:14px; margin-bottom:5px;">메세지 수
+							<a href="/semi/messageList" style="margin-left: 118px;">
+							<span style="color:#f1c40f;"><%=mCount%></span>
 							</a>건
 						</div>
 						<div class="progress2" style="font-size:14px; margin-bottom: 5px;">구매 진행중 
-						<a href="" style="margin-left: 106px;">
-							<span style="color:#f1c40f;">0</span>
+						<a href="/semi/prging.bo" style="margin-left: 106px;">
+							<span style="color:#f1c40f;"><%=buyCount%></span>
 							</a>건
 						</div>
 						<div class="progress3" style="font-size:14px; margin-bottom: 5px;">판매 진행중 
 						<a href="" style="margin-left: 106px;">
-							<span style="color:#f1c40f;">0</span>
+							<span style="color:#f1c40f;"><%=sellCount%></span>
 							</a>건
 						</div>
 					</div>
