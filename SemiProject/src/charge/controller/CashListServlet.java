@@ -35,9 +35,12 @@ public class CashListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int allcnt = 0;
+		
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("member");
-
+		
+		
 		ArrayList<Cash> rechargeList = new ArrayList<Cash>();
 		
 		CashRechargeService crs = new CashRechargeService();
@@ -105,7 +108,7 @@ public class CashListServlet extends HttpServlet {
 	
 		try {
 			rechargeList = crs.selectList(currentPage, limit, m);
-		
+			allcnt++;
 			page = "views/personBUY/billingHistory.jsp";
 			
 			request.setAttribute("rechargeList", rechargeList);
@@ -113,7 +116,7 @@ public class CashListServlet extends HttpServlet {
 			charge.model.vo.PageInfo pi = new charge.model.vo.PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 			// 6개의 페이지 정보 담아서~
 			request.setAttribute("pi", pi); //담은 것들을 한 번에 보내요~		
-			
+			request.setAttribute("allcnt", allcnt);
 		} catch(CashRechargeException e) {
 			page = "/semi/views/common/errorPage.jsp";
 			request.setAttribute("msg", "결제목록 불러오기 에러!");

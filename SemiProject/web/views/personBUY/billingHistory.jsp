@@ -138,6 +138,7 @@
 	}
 	
 	.detail-box{
+		border-top: solid #E6E6E6 1px !important;
 	    border-bottom: solid #E6E6E6 1px !important;
 	}
 	.detail-list{
@@ -183,7 +184,21 @@
 		font-size : 13px;
 	}
 	
-	
+	.mySlist{
+		overflow:hidden;
+		margin:0 auto;
+		border-bottom : 1px solid #E6E6E6;
+		
+	}
+	.mySlist>div{
+		display:inline-block;
+		float:left;
+		vertical-align:center;
+		border-right : 1px solid #E6E6E6;
+	}
+	.mySlist>div div{
+		margin:20px 0;
+	}
 
 </style>
 </head>
@@ -257,7 +272,7 @@
 				</div>
 
 				<div style="margin-top:20px; margin-left:71%;">
-					<div class="padding-15 font-noto">
+					<div class="padding-15 font-noto" style="text-align: right;">
 
 						<div class="ui scrolling dropdown">
 							<input type="hidden" name="gender">
@@ -275,7 +290,7 @@
 				
 				
 				</div>
-				
+			<div>
 				<%if(rechargeList.size()==0) { %>
 					<div class="padding-15" style="margin-top:10px">
 						<div class="detail-box">
@@ -290,61 +305,43 @@
 				<% } else { %>
 
 
+								
 
-		<div class="purchaseListArea padding-15" style="margin-top : 10px;">
+			<div class="purchaseListArea padding-15" style="margin-top : 10px; padding:0">
 				
 				<!-- 이 자리에 Arraylist로 반복문 넣어야 결제 내역이 목록화되어 나옴. -->
 				<%  for(Cash c : rechargeList) { %>
 				
 				<%if((c.getClassify()).equals("충전")){ %>
-				
-					<div class="ui items" style="border:3px solid #BDD4F2; border-radius: 5px; padding:10px; height:150px;">
-						<div class="item" >
-							<div class="pllist">
-								<p style="color:orange; font-size:30px" class="font-noto"><%= c.getClassify() %></p>
-							</div>
-							
-							<div class="listcontent">
-								<div class="meta">
-									<%int price = c.getPayp(); %>
-									<span class="price font-noto" style="color:orange; font-size:25px;"><i class="won sign icon"></i><%=df.format(price)%>원</span>
-									
+								<%int price = c.getPayp(); %>
+								<div class="mySlist detail-list" style="margin:0;padding: 20px 0">
+									<div style="width:20%; "><img width=85px src="/semi/resources/images/cashIcon.png" style="padding-top:10px;" /></div>
+									<div style="width:50%; "><div>
+										<h5 style="text-align:left; margin:0 20px; color:#FF6666; font-size:20px;"><%= c.getClassify() %></h5> <br>
+										<h5 style="text-align:left; margin:0 20px">충전된 캐시는 충전 혜택(10%)이 포함된 금액입니다.</h5>
+										</div></div>
+									<div style="width:17%; "><div style="margin:30px 0"><h5 style="padding-top:15px;"><i class="plus icon"></i><i class="won sign icon"></i><%=df.format(price)%>원</h5></div></div>
+									<div style="width:13%; border-right:none;"><div style="margin:30px 0"><h5 style="padding-top:15px;"><%= c.getPaydate() %></h5></div></div>
 								</div>
-									<p style="letter-spacing:2px;" class="font-noto">결제일 : <%= c.getPaydate() %></p>
-									<p class="font-noto">충전된 캐시는 충전 혜택(+10%)이 포함된 금액입니다.</p>
-								<div style="display:inlne; margin-left:230%; margin-top:-50%;">
-									<img  id="coins" src="/semi/resources/images/noun_Coins.png" style="width:90px;"/>
-									</div>
-								
-								
-							</div>
-						</div>
-					</div>
+
 					<%} else if((c.getClassify()).equals("사용")) { %>
 				
-					<div class="ui items" style="border:3px solid #BDD4F2; border-radius: 5px; padding:10px; height:150px;">
-						<div class="item" >
-							<div class="pllist">
-								<p style="color:greenyellow; font-size:30px" class="font-noto"><%= c.getClassify() %></p>
-							</div>
-							<div class="listcontent">
-								<div class="meta">
-									<%int price = c.getPayp(); %>
-									<span class="price font-noto" style="color:orange; font-size:25px;"><i class="won sign icon"></i><%=df.format(price)%>원</span>
-									
+							<%int price = c.getPayp(); %>
+								<div class="mySlist detail-list" style="margin:0;padding: 20px 0">
+								
+									<div style="width:20%; "><img width=85px src="/semi/resources/images/cashIcon.png" style="padding-top:10px;" /></div>
+									<div style="width:50%; "><div>
+										<h5 style="text-align:left; margin:0 20px; color:#6E9FED; font-size:20px;"><%= c.getClassify() %></h5> <br>
+										<h5 style="text-align:left; margin:0 20px"><%=df.format(price)%>원이 사용되었습니다.</h5>
+										</div></div>
+									<div style="width:17%; "><div style="margin:30px 0;"><h5 style="padding-top:15px;"><i class="minus icon"></i><i class="won sign icon"></i><%=df.format(price)%>원</h5></div></div>
+									<div style="width:13%; border-right:none;"><div style="margin:30px 0"><h5 style="padding-top:15px;"><%= c.getPaydate() %></h5></div></div>
 								</div>
-									<p style="letter-spacing:2px;" class="font-noto">결제일 : <%= c.getPaydate() %></p>
-								<div style="display:inlne; margin-left:230%; margin-top:-50%;">
-									<img  id="coins" src="/semi/resources/images/noun_Coins.png" style="width:90px;"/>
-									</div>
-								
-								
-							</div>
-						</div>
-					</div>
+				
+
 				<% } } } %> 	
 					
-
+	</div>
 			<br>
 
 		<%-- 페이징 처리 --%>
@@ -390,11 +387,11 @@
 										</ul>
      			</div> 
 
-
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+
 	
 
 				

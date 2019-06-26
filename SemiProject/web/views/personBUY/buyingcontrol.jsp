@@ -265,7 +265,31 @@ for(DealMng d : reqList){
 		letter-spacing : -1.7px;
 	}
 
-	
+	.detail-box{
+		border-top: solid #E6E6E6 1px !important;
+	    border-bottom: solid #E6E6E6 1px !important;
+	}
+	.detail-list{
+		border: solid #E6E6E6 1px !important;
+		padding : 85px 0;
+		text-align : center;
+		margin-top : 20px;
+	}
+	.mySlist{
+		overflow:hidden;
+		margin:0 auto;
+		border-bottom : 1px solid #E6E6E6;
+		
+	}
+	.mySlist>div{
+		display:inline-block;
+		float:left;
+		vertical-align:center;
+		border-right : 1px solid #E6E6E6;
+	}
+	.mySlist>div div{
+		margin:20px 0;
+	}
 	
 </style>
 </head>
@@ -341,16 +365,16 @@ for(DealMng d : reqList){
 					<div class="padding-15">
 						<ul class="sell-ing">
 							<li>
-								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp; <span class="selling-history select"><%=reqList.size() %></span></a>
+								<a style="color:#000; cursor:pointer" onclick="nrequest();">전체내역 &nbsp;</a>
 							</li>
 							<li>
-								<a style="cursor:pointer;" onclick="prging();">진행중 &nbsp; <span class="selling-history"><%= s1 %></span></a>
+								<a style="cursor:pointer;" onclick="prging();">진행중 &nbsp;</a>
 							</li>
 							<li>
-								<a style="cursor:pointer;" onclick="finlist();">완료 &nbsp; <span class="selling-history"><%= s2 %></span></a>
+								<a style="cursor:pointer;" onclick="finlist();">완료 &nbsp;</a>
 							</li>
 							<li>
-								<a  style="cursor:pointer;" onclick="cclist();">취소 &nbsp; <span class="selling-history"><%= s3 %></span></a>
+								<a  style="cursor:pointer;" onclick="cclist();">취소 &nbsp;</a>
 							</li>
 						</ul>
 					</div>
@@ -379,7 +403,7 @@ for(DealMng d : reqList){
 					</div>
 					
 					<% } else {%>
-							
+							<div class="purchaseListArea" style="margin-top : 10px;">
 						<div class="detail-list2 padding-15">
 					
 							<!-- 내역이 있을 때 -->
@@ -387,14 +411,21 @@ for(DealMng d : reqList){
 								
 								<div class="detail-list" style="padding:0">
 								<%for(DealMng d : reqList){ %>
-
-								<div class="mySlist" style="margin:0;padding: 20px 0">
-									<div style="width:20%; "><img width=100px src="/semi/resources/images/cashIcon.png" alt="" /></div>
-									<div style="width:50%; "><div><a href="/semi/listDetail.bo?bno=<%= d.getBno()%>"><h5 style="text-align:left; margin:0 20px"><%=d.getBtitle() %></h5></a></div></div>
-									<div style="width:15%; "><div style="margin:30px 0"><h5><%=d.getPrice() %></h5></div></div>
-									<div style="width:15%; border-right:none;"><div style="margin:30px 0"><h5><%=d.getProgress()%></h5></div></div>
+									<div class="mySlist detail-list" style="margin:0;padding: 20px 0">
+									<div style="width:20%; "><img width=85px src="/semi/resources/images/cashIcon.png" style="padding-top:10px;" /></div>
+									<div style="width:50%; "><div><br>
+									<h5 style="text-align:left; margin:0 20px; font-size:20px;"><a style=" color:#6E9FED;" href="/semi/listDetail.bo?bno=<%= d.getBno()%>"><%= d.getBtitle() %></a></h5>
+										</div></div><%int price = d.getPrice(); %>
+									<div style="width:17%; "><div style="margin:30px 0;"><h5 style="padding-top:15px;"><i class="minus icon"></i><i class="won sign icon"></i><%=df.format(price)%>원</h5></div></div>
+									<div style="width:13%; border-right:none;"><div style="margin:30px 0"><h5 style="padding-top:15px;"><%=d.getDealdate() %></h5></div></div>
 								</div>
 								<%} %>
+								
+													
+								
+								
+								
+								
 							</div>
 							
 						

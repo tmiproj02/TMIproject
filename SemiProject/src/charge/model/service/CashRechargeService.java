@@ -29,8 +29,11 @@ public class CashRechargeService  {
 			
 			con = getConnection();
 			int result = crDao.insertRecharge(con, csh);
-			
-			if(result > 0) commit(con);
+
+			if(result > 0) {
+				
+				commit(con);
+			}
 			else rollback(con);
 			
 			close(con);

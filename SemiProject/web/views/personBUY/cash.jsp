@@ -401,7 +401,56 @@ input[type='radio']:checked:before {
 		$('.totalprice').text(Number(tprice).toLocaleString('en').split(".")[0]);
 	});
 	
-	$('button').click(function(){ <%-- 이거 나중에 지우고 아래 주석처리 한 것을 올려야해욥(지금은 결제 막아놓음. 바로 결제완료로 감) --%>
+	$('button').click(function(){
+		var price = Number($("input:radio[name=cPrice]:checked").val()); //가격받는부분
+		var pricemore = price*0.1; //혜택(10%)
+		var tprice = price+pricemore;
+		console.log(price);
+	
+		var uname = $('#userName').text();
+		var uemail = $('#email').text();var uphone = $('#phone').text();
+		console.log(uname);
+		console.log(uemail);
+		console.log(uphone);
+
+		//--
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp91745666'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용 [완료시imp91745666]
+
+		IMP.request_pay({
+    		pg : 'html5_inicis', // version 1.1.0부터 지원.
+    		pay_method : 'card',
+    		merchant_uid : 'merchant_' + new Date().getTime(),
+    		name : 'TMI 캐시 충전',
+    		amount :price,
+    		buyer_email : uemail,
+    		buyer_name : uname,
+    		buyer_tel : uphone,
+    		buyer_addr : '서울특별시 강남구 역삼동',
+    		buyer_postcode : ' 823-42',
+    		m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+		}, function(rsp) {
+    		if ( rsp.success ) {
+        		var msg = '결제가 완료되었습니다.';
+        		msg += '고유ID : ' + rsp.imp_uid;
+        		msg += '상점 거래ID : ' + rsp.merchant_uid;
+        		msg += '결제 금액 : ' + rsp.paid_amount;
+        		msg += '카드 승인번호 : ' + rsp.apply_num;
+   		
+        		alert(msg);
+        
+        		//성공 시 이동할 페이지 (MemberDB로 연결되어 캐시 충전으로 잔액에 플러스)
+        		location.href="<%=request.getContextPath()%>/insertRech.bo?tprice="+tprice+"&email="+uemail;
+        		
+    		} else {
+      			//실패 시 이동할 페이지
+        		location.href="<%=request.getContextPath()%>/views/personBUY/failPay.jsp";
+        
+    		}
+		});
+	});
+	<%--
+	$('button').click(function(){ 
 		var price = Number($("input:radio[name=cPrice]:checked").val()); //가격받는부분
 		var pricemore = price*0.1; //혜택(10%)
 		var tprice = price+pricemore;
@@ -415,11 +464,9 @@ input[type='radio']:checked:before {
 	
 	
         //성공 시 이동할 페이지
-        <%-- location.href="<%=request.getContextPath()%>/views/personBUY/billingHistory.jsp"; --%>
-        <%--location.href="<%=request.getContextPath()%>/mCashRec.bo?price="+price+"&email="+uemail;--%> <%-- MemberDB로 넘어가서 캐시 충전 --%>
-        location.href="<%=request.getContextPath()%>/insertRech.bo?tprice="+tprice+"&email="+uemail; <%-- CashDB로 넘어가서 충전내역으로 남김 --%>
+        location.href="<%=request.getContextPath()%>/insertRech.bo?tprice="+tprice+"&email="+uemail; <!-- CashDB로 넘어가서 충전내역으로 남김 -->
        
-	}); 
+	}); --%>
 	
 	
 	<%-- 
@@ -462,8 +509,8 @@ input[type='radio']:checked:before {
         		alert(msg);
         
         		//성공 시 이동할 페이지 (MemberDB로 연결되어 캐시 충전으로 잔액에 플러스)
-        		location.href="<%=request.getContextPath()%>/insertRech.bo?price="+price+"&email="+uemail;
-        
+        		location.href="<%=request.getContextPath()%>/insertRech.bo?tprice="+tprice+"&email="+uemail;
+        		
     		} else {
       			//실패 시 이동할 페이지
         		location.href="<%=request.getContextPath()%>/views/personBUY/failPay.jsp";
