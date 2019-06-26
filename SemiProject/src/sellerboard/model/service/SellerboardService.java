@@ -89,4 +89,24 @@ public class SellerboardService {
 		return t;
 	}
 
+	public int getSearchedListCount(String searchWord) {
+		int searchedListCount =0;
+		con = getConnection();
+		
+		try {
+			
+			searchedListCount = sbDao.getSearchedListCount(searchWord,con);
+			
+			commit(con);
+			
+			close(con);
+			
+		}catch(Exception e) {
+		
+			e.printStackTrace();
+		}
+		
+		return searchedListCount;
+	}
+
 }

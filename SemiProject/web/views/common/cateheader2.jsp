@@ -296,10 +296,9 @@ nav{
                             </a>
                         </div>
                         <div class='head_input'>
-                            <input type="text" name="keyword" maxlength="15" class="search-input" placeholder="어떤 서비스를 찾고계신가요?">
+                            <input type="text" name="searchWord" maxlength="15" class="search-input" placeholder="어떤 서비스를 찾고계신가요?">
                             <div class="search-btn">
-                                <img class="width-15px margin-right-10 cursor" src="/semi/resources/images/cancel-button2.png" style="display: none">
-                                <img class="width-20px cursor" src="/semi/resources/images/searching.png" style="vertical-align: inherit">
+                                <img class="width-20px cursor" src="/semi/resources/images/searching.png" style="vertical-align: inherit" onclick="doSearch();">
                             </div>
                         </div>
                     </div>
@@ -425,6 +424,14 @@ nav{
     	function prging(){
     		location.href="/semi/prging.bo"
     	}
+    	
+    	function doSearch(){
+    		var searchWord = $('#searchWord').val();
+    		location.href = "/semi/searchedList.bo?searchWord="+searchWord;
+    		
+    	}
+    	
+    	
     </script>
     
     

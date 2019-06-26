@@ -367,4 +367,39 @@ public class SellerBoardDao {
 		return t;
 	}
 
+
+	public int getSearchedListCount(String searchWord, Connection con) {
+		int searchedListCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getSearchedListCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, searchWord);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				searchedListCount = rset.getInt(1);
+				
+			}
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+	
+		}finally {
+			
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		
+		
+		return searchedListCount;
+	}
+
 }
