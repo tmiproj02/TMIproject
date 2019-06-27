@@ -2,11 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.Member"%>
 <%@ page import="seller.model.vo.Seller"%>
+<%@ page import="java.text.DecimalFormat"%>
 <% 
 	Member m = (Member)session.getAttribute("member");
 	Seller s = (Seller)session.getAttribute("seller");
 	
 %>
+<%DecimalFormat dc = new DecimalFormat("###,###,###,###");					  
+%>
+
 <!DOCTYPE html>
 <html>
 <head>

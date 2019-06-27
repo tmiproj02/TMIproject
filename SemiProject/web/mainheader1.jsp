@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.Member"%>
 <%@ page import="seller.model.vo.Seller,sellerboard.model.vo.*,java.util.*"%>
+<%@ page import="java.text.DecimalFormat"%>
+<%DecimalFormat dc = new DecimalFormat("###,###,###,###");					  
+%>
 <% 
 	Member m = (Member)session.getAttribute("member");
 	Seller s = (Seller)session.getAttribute("seller");
@@ -9,8 +12,10 @@
 	Top5 t = (Top5)request.getAttribute("t");
 	
 	ArrayList<String> str= new ArrayList<String>();
-	ArrayList<Integer> num= new ArrayList<Integer>();
+	ArrayList<Integer> num1= new ArrayList<Integer>();
 	
+	
+
 	
 	
 	for(Top5 to : list){
@@ -18,19 +23,19 @@
 		System.out.println(t.getTop1());
 		if(to.getCate().equals(t.getTop1())){
 			str.add(to.getNickname());
-			num.add(to.getIncome());
+			num1.add(to.getIncome());
 		}
 	}
 	for(Top5 to : list){
 		if(to.getCate().equals(t.getTop2())){
 			str.add(to.getNickname());
-			num.add(to.getIncome());
+			num1.add(to.getIncome());
 		}
 	}
 	for(Top5 to : list){
 		if(to.getCate().equals(t.getTop3())){
 			str.add(to.getNickname());
-			num.add(to.getIncome());
+			num1.add(to.getIncome());
 		}
 	}	
 	
@@ -235,9 +240,10 @@ div a{
     margin-right: 20px; 
     border-radius: 10px;
     width:384px;
-     /* height: 350px; */
-     /* border: 1px solid #ccc; */
     
+}
+.rank:hover{
+	border:1px solid #BDD4F2;
 }
 .scontent2:nth-child(6){
     border: none;
@@ -247,6 +253,7 @@ div a{
     background:  #f3f4f8;
     margin-top: 15px;
     border-radius: 10px;
+    
     width:384px;
      /* height: 350px; */
      /* border: 1px solid #ccc;#BDD4F2; */
@@ -295,9 +302,9 @@ div a{
 }
 .scontent2 p{
     display: inline-block;
-    padding-left:50px;
+    padding-left:40px;
     padding-right: 20px;
-    /* margin-top: 10px; */
+    margin-top: 10px; 
 }
 
 footer{
@@ -328,11 +335,16 @@ footer{
 .ani:hover>div>div>a>img{
 	 transform:scale(1.2);
 	 overflow:hidden;
+	 transition: 0.8s;
+}
+.ani1{
+border:5px solid transparent;
 }
 .ani1:hover{
 	cursor:pointer;
 	transition: all 0.1s ease-in-out;
 	background-color:#BDD4F2;
+	border:5px solid #BDD4F2;
 }
 
 
@@ -581,13 +593,22 @@ footer{
                     <b>TOP 카테고리 전문가 랭킹</b> 
                     <p>TMI에서 가장 많이 판매한 인기 전문가 랭킹 입니다.</p> 
                 </div>
-            
+            <%	
+            	ArrayList<String> num = new ArrayList<String>();
+		         String income = "0";
+			       	if(num1!=null){
+			       	  for(int i : num1){
+			       		income = dc.format(i);
+			       	  	num.add(income);
+			       	  }
+			       	} 
+            %>
 
             <div class="slider1 clearFix">
             		
                     <div class="ani1 rank">   
                                
-                        <div class="sheader2">  
+                        <div class="sheader2" style="border:2 solid #BDD4F2; ">  
                         <div class="scontent1">
                             <p><b><%=t.getTop1() %></b></p>
                         </div>
@@ -598,7 +619,7 @@ footer{
                             </div>
                             <div class="firsttext">
                                 <p style="font-size:13px; font-family: 'Noto Sans KR', sans-serif; margin-bottom:8px;float: left;">총 판매 금액</p>
-                                <p style="font-size:23px; margin-bottom:6px;"><b><%=num.get(0) %>원</b></p>
+                                <p style="font-size:20px; margin-bottom:6px;"><b><%=num.get(0) %>원</b></p>
                                 <p style="font-size:13px;float: left;"><%=str.get(0) %></p>
                             </div>
                         </div>
@@ -644,7 +665,7 @@ footer{
                             </div>
                             <div class="firsttext">
                                 <p style="font-size:13px;font-family: 'Noto Sans KR', sans-serif;margin-bottom:8px;float: left;">총 판매 금액</p>
-                                <p style="font-size:23px; margin-bottom:6px;"><b><%=num.get(5) %>원</b></p>
+                                <p style="font-size:20px; margin-bottom:6px;"><b><%=num.get(5) %>원</b></p>
                                 <p style="font-size:13px;float: left;"><%=str.get(5) %></p>
                             </div>
                         </div>
@@ -688,7 +709,7 @@ footer{
                                     </div>
                                     <div class="firsttext">
                                        <p style="font-size:13px;font-family: 'Noto Sans KR', sans-serif;margin-bottom:8px;float: left;">총 판매 금액</p>
-                                       <p style="font-size:23px; margin-bottom:6px;"><b><%=num.get(10) %>원</b></p>
+                                       <p style="font-size:20px; margin-bottom:6px;"><b><%=num.get(10) %>원</b></p>
                                 		<p style="font-size:13px;float: left;"><%=str.get(10) %></p>
                                     </div>
                                 </div>
