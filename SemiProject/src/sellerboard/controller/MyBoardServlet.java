@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import seller.model.vo.Seller;
 import sellerboard.model.exception.SellerboardException;
 import sellerboard.model.service.SellerboardService;
 import sellerboard.model.vo.SellerBoard;
@@ -40,7 +42,12 @@ public class MyBoardServlet extends HttpServlet {
 			state = request.getParameter("state");
 		}
 		
-		int sno = Integer.parseInt(request.getParameter("sno"));
+		HttpSession session = request.getSession();
+		Seller s = (Seller)session.getAttribute("seller");
+		
+		
+		
+		int sno = s.getSno();
 		System.out.println(sno);
 
 		ArrayList<SellerBoard> list;

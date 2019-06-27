@@ -95,15 +95,23 @@ public DealMng(int dmcode, String progress, Date dealdate, String btitle, int pr
 	
 
 
-	@Override
-	public String toString() {
-		return "DealMng [dmcode=" + dmcode + ", bno=" + bno + ", mno=" + mno + ", sno=" + sno + ", progress=" + progress
-				+ ", dealdate=" + dealdate + ", deitcount=" + deitcount + ", completeyn=" + completeyn
-				+ ", completedate=" + completedate + "]";
-	}
-
-
 	
+	
+
+
+
+
+
+
+
+	@Override
+public String toString() {
+	return "DealMng [dmcode=" + dmcode + ", bno=" + bno + ", mno=" + mno + ", sno=" + sno + ", progress=" + progress
+			+ ", dealdate=" + dealdate + ", deitcount=" + deitcount + ", completeyn=" + completeyn + ", completedate="
+			+ completedate + ", images=" + images + ", btitle=" + btitle + ", price=" + price + ", nickname=" + nickname
+			+ ", sNickname=" + sNickname + "]";
+}
+
 
 
 

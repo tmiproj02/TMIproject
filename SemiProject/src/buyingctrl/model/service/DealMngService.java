@@ -31,10 +31,16 @@ public class DealMngService {
 	
 	//진행중 조회
 	public ArrayList<DealMng> ingselectList(Member m) throws buyingctrlException {
-		
+		ArrayList<DealMng> dingList = null;
 		con = getConnection();
-		ArrayList<DealMng> dingList = dmDao.ingselectList(con, m);
-		System.out.println("진행중조회service : " + dingList);
+		try {
+			dingList = dmDao.ingselectList(con, m);
+			System.out.println("진행중조회service : " + dingList);
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		
 		close(con);
 		
@@ -111,14 +117,38 @@ public class DealMngService {
 	}
 
 
-	
 
-	
-	
-	
-	
-	
-	
-	
+	public int updateProgress(String progress, String dmcode) throws buyingctrlException {
+		con=getConnection();
+		int result = dmDao.updateProgress(con,progress,dmcode);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		return result;
+		
+		
+	}
+
+
+
+	public void dealComplete(int mno, int bno, int sno,int cp) {
+		con = getConnection();
+		try {
+			dmDao.dealComplete(mno,bno,sno,con,cp);
+			dmDao.makeIncome(bno,sno,cp,con);
+			dmDao.makeIncomeToSeller(sno,cp,con);
+			
+			commit(con);
+		}
+		catch(Exception e) {
+			rollback(con);
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+
 	
 }

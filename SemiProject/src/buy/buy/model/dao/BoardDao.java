@@ -51,6 +51,7 @@ public class BoardDao {
 			if(rset.next()) {
 				b = new SellerBoard();
 				b.setBno(bno);
+				b.setSno(rset.getInt("SNO"));
 				b.setBtitle(rset.getString("BTITLE"));
 				b.setBcontent(rset.getString("BCONTENT"));
 				b.setErecontent(rset.getString("ERECONTENT"));

@@ -108,7 +108,7 @@ public class DealMngDao {
 	
 	
 	//진행중 조회
-	public ArrayList<DealMng> ingselectList(Connection con, Member m) throws buyingctrlException {
+	public ArrayList<DealMng> ingselectList(Connection con, Member m)  {
 		
 		ArrayList<DealMng> dingList = null;
 		PreparedStatement pstmt = null;
@@ -122,9 +122,9 @@ public class DealMngDao {
 			
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, m.getMno());
-			pstmt.setString(2, m.getNickName());
-			pstmt.setString(3, progressing);
+			 pstmt.setInt(1, m.getMno());
+			 System.out.println(m.getMno());
+			System.out.println(sql);
 
 			rset = pstmt.executeQuery();
 			
@@ -132,10 +132,9 @@ public class DealMngDao {
 				DealMng dm = new DealMng();
 				
 				dm.setBtitle(rset.getString("btitle"));
-				dm.setNickname(rset.getString("nickName"));
+				dm.setsNickname(rset.getString("nickName"));
 				dm.setDmcode(rset.getInt("dmcode"));
 				dm.setDealdate(rset.getDate("dealdate"));
-				dm.setProgress(rset.getString("progress"));
 				dm.setPrice(rset.getInt("price"));
 				
 				dingList.add(dm);
@@ -147,7 +146,7 @@ public class DealMngDao {
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
-			throw new buyingctrlException(e.getMessage());
+		
 		} finally {
 			close(rset);
 			close(pstmt);
@@ -244,7 +243,7 @@ public class DealMngDao {
 				dm.setDealdate(rset.getDate("dealdate"));
 				dm.setProgress(rset.getString("progress"));
 				dm.setPrice(rset.getInt("price"));
-				
+
 				
 				ccList.add(dm);
 				System.out.println("취소 구매내역 조회 리스트(DealMngDao) : "+ ccList);
@@ -371,14 +370,18 @@ public class DealMngDao {
 			while(rset.next()) {
 				DealMng dm = new DealMng();
 				System.out.println("진입");
+				
 				dm.setBno(rset.getInt("BNO"));
 				dm.setBtitle(rset.getString("btitle"));
-				dm.setsNickname(rset.getString("nickName"));
+				dm.setNickname(rset.getString("nickName"));
 				dm.setDmcode(rset.getInt("dmcode"));
 				dm.setDealdate(rset.getDate("dealdate"));
 				dm.setProgress(rset.getString("progress"));
 				dm.setPrice(rset.getInt("price"));
 				dm.setImages(rset.getString("IMAGES"));
+				
+				
+				System.out.println(dm.getBtitle());
 				
 				System.out.println(dm.getBno());
 				
@@ -394,6 +397,105 @@ public class DealMngDao {
 		}
 		
 		return list;
+	}
+
+
+	public int updateProgress(Connection con, String progress, String dmcode) throws buyingctrlException {
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE DEALMANAGER SET PROGRESS = ? WHERE DMCODE = ?";
+		int result = -1;
+		try {
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setString(1, progress);
+			pstmt.setString(2, dmcode);
+			
+			result = pstmt.executeUpdate();
+			System.out.println(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new buyingctrlException(e.getMessage());
+		} finally {
+			close(pstmt);
+			
+		}
+		
+		return result;
+	}
+
+
+	public void dealComplete(int mno, int bno, int sno, Connection con,int cp) {
+			
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("dealComplete");
+			System.out.println(sql);
+			
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, bno);
+				pstmt.setInt(2, mno);
+				pstmt.setInt(3, sno);
+				pstmt.setInt(4, cp);
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+	}
+
+
+	public void makeIncome(int bno, int sno, int cp, Connection con) {
+			
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("makeIncome");
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				System.out.println(sql);
+				pstmt.setInt(1, sno);
+				pstmt.setInt(2, bno);
+				pstmt.setDouble(3, Math.round(cp*0.9));
+				
+				pstmt.executeUpdate();
+				
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+			}
+		
+		
+	}
+
+
+	public void makeIncomeToSeller(int sno, int cp, Connection con) {
+			
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("makeIncomeToSeller");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setDouble(1, Math.round(cp*0.9));
+			pstmt.setInt(2, sno);
+	
+			pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
+		
+		
 	}
 
 
